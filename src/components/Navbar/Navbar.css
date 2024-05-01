@@ -1,0 +1,39 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+
+  align-items: center;
+  background-color: #db011c;
+  padding: 10px 6vw;
+}
+.navbar a {
+  color: white;
+  text-decoration: none;
+  margin-right: 10px;
+}
+.navbarlast {
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+}
+.navbarlast button {
+  background-color: white;
+  color: #db011c;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.navbar img {
+  height: 4vw;
+  border-radius: 5px;
+}
+.navbarfirst {
+  display: flex;
+  align-items: center;
+  gap: 1.5vw;
+}
+.globe {
+  color: white;
+  font-size: 15px;
+}
