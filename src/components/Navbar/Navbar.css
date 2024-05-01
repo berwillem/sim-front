@@ -9,7 +9,7 @@
 .navbar a {
   color: white;
   text-decoration: none;
-  margin-right: 10px;
+  /* margin-right: 10px; */
 }
 .navbarlast {
   display: flex;
@@ -36,4 +36,48 @@
 .globe {
   color: white;
   font-size: 15px;
+}
+.openmenurespo {
+  display: none;
+}
+.navbarrespo {
+  display: none;
+  position: relative;
+}
+@media (max-width: 600px) {
+  .navbarfirst {
+    display: none;
+  }
+  .navbarlast {
+    flex-direction: row-reverse;
+  }
+  .navbarrespo {
+    display: block;
+  }
+
+  .openmenurespo {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    z-index: 5;
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    top: 56px;
+    gap: 3vh;
+    background-color: aliceblue;
+  }
+  .openmenurespo a {
+    align-items: center;
+    background-color: #e3e3e3;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    color: black;
+    height: 35px;
+  }
+}
+.burgermenu {
+  color: white;
+  font-size: 25px;
 }
