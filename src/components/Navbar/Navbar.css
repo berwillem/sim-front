@@ -3,13 +3,12 @@
   justify-content: space-between;
 
   align-items: center;
-  background-color: #db011c;
+  background-color: var(--primary-color);
   padding: 10px 6vw;
 }
 .navbar a {
   color: white;
   text-decoration: none;
-  /* margin-right: 10px; */
 }
 .navbarlast {
   display: flex;
@@ -18,7 +17,7 @@
 }
 .navbarlast button {
   background-color: white;
-  color: #db011c;
+  color: var(--primary-color);
   border: none;
   padding: 10px;
   border-radius: 5px;
