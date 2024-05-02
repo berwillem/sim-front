@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { CiGlobe, CiMenuBurger } from "react-icons/ci";
 import Logo from "../../assets/logo.png";
@@ -13,10 +13,10 @@ export default function Navbar() {
       <nav className="navbar">
         <div className="navbarfirst">
           <img src={Logo} alt="Logo" />
-          <Link>Home</Link>
-          <Link>About us</Link>
-          <Link>Products</Link>
-          <Link>Contact us</Link>
+          <NavLink>Home</NavLink>
+          <NavLink>About us</NavLink>
+          <NavLink>Products</NavLink>
+          <NavLink>Contact us</NavLink>
         </div>
         <div className="navbarlast">
           <CiGlobe
@@ -52,10 +52,10 @@ export default function Navbar() {
         </div>
         {menuOpen ? (
           <div className="openmenurespo">
-            <Link>Home</Link>
-            <Link>About us</Link>
-            <Link>Products</Link>
-            <Link>Contact us</Link>
+            <NavLink>Home</NavLink>
+            <NavLink>About us</NavLink>
+            <NavLink>Products</NavLink>
+            <NavLink>Contact us</NavLink>
           </div>
         ) : (
           ""

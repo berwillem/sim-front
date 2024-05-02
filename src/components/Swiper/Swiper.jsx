@@ -5,42 +5,33 @@ import "swiper/css/effect-fade";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import { Autoplay, EffectFade, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, Navigation, EffectFlip } from "swiper/modules";
 import { SwiperSlide, Swiper } from "swiper/react";
-
-// // init Swiper:
-// const swiper = new Swiper(".swiper", {
-//   modules: [Navigation, Pagination],
-// });
+import toolImage1 from "../../assets/sliderImages/tool1.jpg";
+import toolImage2 from "../../assets/sliderImages/tool2.webp";
 
 export default function App() {
   return (
     <div className="forswiper">
       <Swiper
         spaceBetween={30}
-        effect={"fade"}
+        slidesPerView={1}
+        loop={true}
+        effect={"Flip"}
+        speed={1000}
         autoplay={{
-          delay: 2500,
+          delay: 3000,
           disableOnInteraction: false,
         }}
-        // pagination={{
-        //   clickable: true,
-        // }}
         navigation={true}
-        modules={[EffectFade, Navigation, Pagination, Autoplay]}
+        modules={[EffectFlip, Navigation, Autoplay]}
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src="https://timelinecovers.pro/facebook-cover/download/morning-road-facebook-cover.jpg" />
+          <img src={toolImage1} className="slider-image" />
         </SwiperSlide>
         <SwiperSlide>
-          <img src="https://timelinecovers.pro/facebook-cover/download/forest_in_the_morning-facebook-cover.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://i.pinimg.com/736x/e2/28/0b/e2280b4e7d0786c61098b2f128fbf192.jpg" />
-        </SwiperSlide>
-        <SwiperSlide>
-          <img src="https://www.profilerehab.com/facebook_covers/autumn/Fall_forest_trees_cover_25.jpg" />
+          <img src={toolImage2} className="slider-image" />
         </SwiperSlide>
       </Swiper>
     </div>
