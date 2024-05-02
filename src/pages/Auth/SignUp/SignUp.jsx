@@ -2,11 +2,14 @@ import "./SignUp.css";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { SignUpUser } from "../../../services/authservices";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const schema = yup.object().shape({
-  nom: yup.string().required("Nom est requis"),
-  prenom: yup.string().required("Prénom est requis"),
+  FirstName: yup.string().required("Prénom est requis"),
+  LastName: yup.string().required("Nom est requis"),
   email: yup.string().email("Email invalide").required("Email est requis"),
   password: yup
     .string()
@@ -22,9 +25,15 @@ export default function SignUp() {
   } = useForm({
     resolver: yupResolver(schema),
   });
-
+  const navigate = useNavigate();
+  // register function :
   const onSubmit = (data) => {
-    console.log("Form data:", data);
+    SignUpUser(data)
+      .then((res) => {
+        toast.success(res.data?.message);
+        navigate("/");
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -37,20 +46,27 @@ export default function SignUp() {
         <div className="forlabelsignin">
           <div className="labelSignUphalf">
             <div>
-              <label htmlFor="nom">Nom </label>
-              <input type="text" id="nom" placeholder="" {...register("nom")} />
-              {errors.nom && <p className="error">{errors.nom.message}</p>}
-            </div>
-            <div>
-              <label htmlFor="prenom">Prénom </label>
+              <label htmlFor="FirstName">Prénom </label>
               <input
                 type="text"
-                id="prenom"
+                id="FirstName"
                 placeholder=""
-                {...register("prenom")}
+                {...register("FirstName")}
               />
-              {errors.prenom && (
-                <p className="error">{errors.prenom.message}</p>
+              {errors.FirstName && (
+                <p className="error">{errors.FirstName.message}</p>
+              )}
+            </div>
+            <div>
+              <label htmlFor="LastName">Nom </label>
+              <input
+                type="text"
+                id="LastName"
+                placeholder=""
+                {...register("LastName")}
+              />
+              {errors.LastName && (
+                <p className="error">{errors.LastName.message}</p>
               )}
             </div>
           </div>
@@ -69,6 +85,9 @@ export default function SignUp() {
             placeholder=""
             {...register("password")}
           />
+          {errors.password && (
+            <p className="error">{errors.password.message}</p>
+          )}
         </div>
         <div>
           <button type="submit">Continuer</button>

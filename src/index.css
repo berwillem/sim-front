@@ -8,3 +8,7 @@
 :root {
   --primary-color: #db011c;
 }
+.container {
+  margin-left: 100px;
+  margin-right: 100px;
+}
