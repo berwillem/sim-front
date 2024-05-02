@@ -1,11 +1,13 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import { CiGlobe } from "react-icons/ci";
+import { CiGlobe, CiMenuBurger } from "react-icons/ci";
 import Logo from "../../assets/logo.png";
 import { useState } from "react";
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const [isOpen, setisOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
       <nav className="navbar">
@@ -26,18 +28,38 @@ export default function Navbar() {
           />
           {isOpen ? (
             <select name="" id="">
-              <option value="Fr">
-                <img src="" alt="" />
-              </option>
-              <option value="En">
-                <img src="" alt="" />
-              </option>
+              <option value="Fr">option1</option>
+              <option value="En">option2</option>
             </select>
           ) : (
             ""
           )}
-          <button>Sign in/sign up</button>
+          <button
+            onClick={() => {
+              navigate("/auth/signin");
+            }}
+          >
+            Sign in/sign up
+          </button>
         </div>
+        <div className="navbarrespo">
+          <CiMenuBurger
+            className="burgermenu"
+            onClick={() => {
+              setMenuOpen(!menuOpen);
+            }}
+          />
+        </div>
+        {menuOpen ? (
+          <div className="openmenurespo">
+            <Link>Home</Link>
+            <Link>About us</Link>
+            <Link>Products</Link>
+            <Link>Contact us</Link>
+          </div>
+        ) : (
+          ""
+        )}
       </nav>
     </>
   );
