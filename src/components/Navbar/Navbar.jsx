@@ -12,7 +12,7 @@ export default function Navbar() {
     <>
       <nav className="navbar">
         <div className="navbarfirst">
-          <img src={Logo} alt="Logo" />
+          <img src={Logo} alt="Logo" className="main-logo" />
           <NavLink>Home</NavLink>
           <NavLink>About us</NavLink>
           <NavLink>Products</NavLink>

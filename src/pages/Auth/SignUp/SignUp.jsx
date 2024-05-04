@@ -9,6 +9,9 @@ import { IoMdEyeOff } from "react-icons/io";
 import { IoEye } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { login } from "../../../redux/slices/authSlice";
+
 
 const schema = yup.object().shape({
   FirstName: yup.string().required("Prénom est requis"),
@@ -29,11 +32,13 @@ export default function SignUp() {
     resolver: yupResolver(schema),
   });
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   // register function :
   const onSubmit = (data) => {
     SignUpUser(data)
       .then((res) => {
         toast.success(res.data?.message);
+        dispatch(login(res.data.user));
         navigate("/");
       })
       .catch((err) => console.log(err));
