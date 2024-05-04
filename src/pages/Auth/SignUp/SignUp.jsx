@@ -5,7 +5,10 @@ import * as yup from "yup";
 import { Link, useNavigate } from "react-router-dom";
 import { SignUpUser } from "../../../services/authservices";
 import { toast } from "react-toastify";
+import { IoMdEyeOff } from "react-icons/io";
+import { IoEye } from "react-icons/io5";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
 
 const schema = yup.object().shape({
   FirstName: yup.string().required("Prénom est requis"),
@@ -35,7 +38,7 @@ export default function SignUp() {
       })
       .catch((err) => console.log(err));
   };
-
+  const [show, setShow] = useState(false);
   return (
     <>
       <p>
@@ -50,7 +53,7 @@ export default function SignUp() {
               <input
                 type="text"
                 id="FirstName"
-                placeholder=""
+                placeholder="prénom"
                 {...register("FirstName")}
               />
               {errors.FirstName && (
@@ -62,7 +65,7 @@ export default function SignUp() {
               <input
                 type="text"
                 id="LastName"
-                placeholder=""
+                placeholder="Nom "
                 {...register("LastName")}
               />
               {errors.LastName && (
@@ -74,22 +77,50 @@ export default function SignUp() {
           <input
             type="email"
             id="email"
-            placeholder=""
+            placeholder="Email"
             {...register("email")}
           />
           {errors.email && <p className="error">{errors.email.message}</p>}
           <label htmlFor="password">Mot de passe</label>
-          <input
-            type="password"
-            id="password"
-            placeholder=""
-            {...register("password")}
-          />
-          {errors.password && (
-            <p className="error">{errors.password.message}</p>
+          {show ? (
+            <div className="passinputcontainer">
+              <input
+                type="password"
+                id="password"
+                placeholder="mot de passe"
+                {...register("password")}
+              />
+              {errors.password && (
+                <p className="error">{errors.password.message}</p>
+              )}
+
+              <IoEye
+                onClick={() => setShow(!show)}
+                fontSize={"25px"}
+                cursor={"pointer"}
+              />
+            </div>
+          ) : (
+            <div className="passinputcontainer">
+              <input
+                type="text"
+                id="password"
+                placeholder="mot de passe"
+                {...register("password")}
+              />
+              {errors.password && (
+                <p className="error">{errors.password.message}</p>
+              )}
+
+              <IoMdEyeOff
+                onClick={() => setShow(!show)}
+                fontSize={"25px"}
+                cursor={"pointer"}
+              />
+            </div>
           )}
         </div>
-        <div>
+        <div className="middivsignin">
           <button type="submit">Continuer</button>
         </div>
         <div className="text-center">
