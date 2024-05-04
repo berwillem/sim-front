@@ -24,6 +24,7 @@
   margin-bottom: 10px;
   font-size: 2rem;
   font-weight: bold;
+  margin-bottom: 12px;
 }
 
 .sign-in p {
@@ -33,6 +34,7 @@
 
 .sign-in form {
   margin-top: 30px;
+  width: 100%;
 }
 
 .sign-in label {
@@ -41,6 +43,24 @@
   font-size: 0.8rem;
   color: #333; /* Dark grey text */
   font-weight: bold;
+}
+.passinputcontainer {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  padding-right: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  margin-bottom: 5px;
+  align-items: center;
+  justify-content: center;
+}
+.passinputcontainer input {
+  width: 80%;
+  border: none !important;
+  height: 100% !important;
+  margin: 0 !important;
 }
 
 .sign-in input {
@@ -51,6 +71,7 @@
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 0.8rem;
+  margin-bottom: 20px;
 }
 
 .sign-in button {
@@ -65,7 +86,7 @@
 }
 
 .sign-in button:hover {
-  background-color: #c2184a; /* Darker red on hover */
+  background-color: #ff0020;
 }
 
 .sign-in .text-center {
@@ -80,7 +101,7 @@
 }
 
 .sign-in a:hover {
-  color: #c2184a; /* Darker red on hover */
+  color: #ff0020;
 }
 
 .containerSignin {

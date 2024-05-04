@@ -1,0 +1,13 @@
+.middivsignin {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.middivsignin a {
+  font-size: smaller;
+  margin-bottom: 8px;
+}
+
+.middivsignin button {
+  width: 100%;
+}
