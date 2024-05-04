@@ -1,0 +1,133 @@
+/* clip-path: polygon(0 0, 100% 0, 100% 47%, 70% 65%, 0 47%); */
+
+.aboutus {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 100px;
+}
+.aboutusimg {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.aboutusimg img {
+  width: 100%;
+}
+.aboutustext {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.aboutustext h2 {
+  font-size: 18px;
+  display: block;
+  margin-bottom: 10px;
+  color: #e63619;
+  text-transform: uppercase;
+}
+
+.aboutustext h1 {
+  font-size: 30px;
+  display: block;
+  margin-bottom: 10px;
+}
+.aboutustext p {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 10px;
+}
+.aboutusfirst {
+  display: flex;
+  gap: 5%;
+  padding: 0 10% 0 10%;
+}
+.aboutussecond {
+  display: flex;
+  gap: 5%;
+  width: 100%;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+  position: relative;
+  margin-top: 55px;
+  cursor: pointer;
+}
+.clip-path {
+  clip-path: polygon(0 0, 100% 0, 100% 80%, 69% 100%, 0 85%);
+  background-color: black;
+  height: 75vh;
+  width: 70vw;
+  opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.goplay {
+  z-index: 2;
+  margin-left: 75px;
+}
+.clip-path h1 {
+  color: white;
+  font-size: 18px;
+  margin: 10px 0 55px 75px;
+}
+.aboutussecondbox h1 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  width: 90%;
+}
+.aboutussecondbox h2 {
+  font-size: 13px;
+  margin-bottom: 50px;
+  color: #e63619;
+  text-transform: uppercase;
+}
+.aboutussecondbox {
+  height: 60%;
+  width: 35%;
+  border-bottom: #e63619 solid 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 35px;
+  box-shadow: -9px -1px 95px 5px rgba(0, 0, 0, 0.75);
+  position: absolute;
+  left: 280px;
+  top: 40px;
+  z-index: 1;
+  background-color: white;
+  cursor: default;
+}
+
+.aboutussecondboximg {
+  display: flex;
+  justify-content: center;
+  gap: 5%;
+  align-items: center;
+}
+.react-player {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  z-index: 1008;
+  background-color: black;
+}
+.liabuttonexit {
+  position: absolute;
+  top: 25px;
+  left: -45%;
+  width: 55px;
+  height: 55px;
+  cursor: pointer;
+  color: white;
+}
+
+.react-player * {
+  width: 100%;
+}
