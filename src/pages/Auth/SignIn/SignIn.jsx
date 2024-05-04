@@ -44,43 +44,31 @@ export default function SignIn() {
           />
           {errors.email && <p className="error">{errors.email.message}</p>}
           <label htmlFor="password">Mot de passe</label>
-          {show ? (
-            <div className="passinputcontainer">
-              <input
-                type="text"
-                id="password"
-                placeholder="mot de passe"
-                {...register("password")}
-              />
-              {errors.password && (
-                <p className="error">{errors.password.message}</p>
-              )}
 
-              <IoEye
-                onClick={() => setShow(!show)}
-                fontSize={"25px"}
-                cursor={"pointer"}
-              />
-            </div>
-          ) : (
-            <div className="passinputcontainer">
-              <input
-                type="password"
-                id="password"
-                placeholder="mot de passe"
-                {...register("password")}
-              />
-              {errors.password && (
-                <p className="error">{errors.password.message}</p>
-              )}
-
+          <div className="passinputcontainer">
+            <input
+              type={show ? "text" : "password"}
+              id="password"
+              placeholder="mot de passe"
+              {...register("password")}
+            />
+            {errors.password && (
+              <p className="error">{errors.password.message}</p>
+            )}
+            {!show ? (
               <IoMdEyeOff
                 onClick={() => setShow(!show)}
                 fontSize={"25px"}
                 cursor={"pointer"}
               />
-            </div>
-          )}
+            ) : (
+              <IoEye
+                onClick={() => setShow(!show)}
+                fontSize={"25px"}
+                cursor={"pointer"}
+              />
+            )}
+          </div>
         </div>
         <div className="middivsignin">
           <Link to="/passwordReset">Mot de passe oublié? </Link>
