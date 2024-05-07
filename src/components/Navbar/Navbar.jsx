@@ -1,12 +1,11 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import { CiGlobe, CiMenuBurger } from "react-icons/ci";
+import { CiMenuBurger } from "react-icons/ci";
 import Logo from "../../assets/logo.png";
 import { useState } from "react";
-
+import Popover from "../Popover/Menu";
 export default function Navbar() {
   const navigate = useNavigate();
-  const [isOpen, setisOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
@@ -16,24 +15,11 @@ export default function Navbar() {
           <NavLink>Home</NavLink>
           <NavLink>About us</NavLink>
           <NavLink>Products</NavLink>
-          <NavLink>Contact us</NavLink>
+          <NavLink to={"/contact"}>Contact us</NavLink>
         </div>
         <div className="navbarlast">
-          <CiGlobe
-            size={25}
-            className="globe"
-            onClick={() => {
-              setisOpen(!isOpen);
-            }}
-          />
-          {isOpen ? (
-            <select name="" id="">
-              <option value="Fr">option1</option>
-              <option value="En">option2</option>
-            </select>
-          ) : (
-            ""
-          )}
+          <Popover />
+
           <button
             onClick={() => {
               navigate("/auth/signin");

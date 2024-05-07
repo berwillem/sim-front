@@ -1,28 +1,27 @@
 import "./Footer.css";
-
-// import Loogo from "../../../public/logo.png";
+import image from "../../assets/logo.png";
 export default function Component() {
   return (
     <footer>
       <div className="footercontainer">
         <div className="footerfirstsection">
           <div className="iconfooter">
-            {/* <Loogo></Loogo> */}
-            <img
-              src="
-            https://maxshine.com/wp-content/uploads/2022/03/logo.png"
-              alt="maxshine logo"
-            />
+            <img src={image} alt="maxshine logo" />
           </div>
           <p>
             Maxshine is a professional company that specializes in the
             development of long-throw dual-action polishers and other detailing
             tools.
           </p>
-          <div className="foooterfirts-button">
-            <button className="">Maxshine USA</button>
-            <button className="">Maxshine Distributor</button>
-          </div>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12804.047822820745!2d3.0104879!3d36.650163!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa900102f4291%3A0xd520d24d966c55c3!2sSYM%20INDUSTRIE!5e0!3m2!1sfr!2sdz!4v1715023450160!5m2!1sfr!2sdz"
+            width="200"
+            height="200"
+            style={{ border: 0 }}
+            allowfullscreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
         </div>
         <div className="footeraboutsection">
           <h3 className="">About Maxshine</h3>

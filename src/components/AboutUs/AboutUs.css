@@ -115,13 +115,13 @@
   width: 100vw;
   height: 100vh;
   object-fit: cover;
-  z-index: 1008;
+  z-index: 3;
   background-color: black;
 }
 .liabuttonexit {
   position: absolute;
   top: 25px;
-  left: -45%;
+  right: -45%;
   width: 55px;
   height: 55px;
   cursor: pointer;

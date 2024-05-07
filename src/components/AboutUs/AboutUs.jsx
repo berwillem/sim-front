@@ -39,12 +39,14 @@ const AboutUs = () => {
           <ReactPlayer
             controls={true}
             playing={true}
-            // muted={true}
             height={"100%"}
             width={"100%"}
             url="https://media.istockphoto.com/id/1365349814/video/slow-motion-camera-follows-woman-hiker-in-yellow-raincoat-with-backpack-attractive-happy.mp4?s=mp4-640x640-is&k=20&c=3RWzbMiChuoIE6J6wVg3K28n3K7kHfBeI52JVUuZCPo="
           />
-          <LiaTimesCircleSolid onClick={() => setPlay(false)} className="liabuttonexit" />
+          <LiaTimesCircleSolid
+            onClick={() => setPlay(false)}
+            className="liabuttonexit"
+          />
         </div>
       )}
 

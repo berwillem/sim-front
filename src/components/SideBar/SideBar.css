@@ -1,6 +1,6 @@
 .sidebar {
   background-color: var(--primary-color);
-  height: 96vh;
+  height: 100vh;
   width: 20%;
   display: flex;
   flex-direction: column;
@@ -38,4 +38,7 @@
   color: white;
   font-size: 20px;
   letter-spacing: 1px;
+}
+.active *{
+  background-color: grey !important;
 }
