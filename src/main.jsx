@@ -52,6 +52,10 @@ const router = createBrowserRouter([
     element: <PasswordReset />,
   },
   {
+    path: "/contact",
+    element: <Contact />,
+  },
+  {
     path: "*",
     element: <NotFound />,
   },

@@ -12,3 +12,11 @@
   margin-left: 100px;
   margin-right: 100px;
 }
+input:focus,
+textarea:focus {
+  outline: none;
+}
+body,
+#root {
+  min-height: 100vh;
+}
