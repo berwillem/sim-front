@@ -121,7 +121,7 @@
 .liabuttonexit {
   position: absolute;
   top: 25px;
-  left: -45%;
+  right: -45%;
   width: 55px;
   height: 55px;
   cursor: pointer;

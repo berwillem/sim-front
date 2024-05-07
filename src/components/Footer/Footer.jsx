@@ -1,18 +1,12 @@
 import "./Footer.css";
-
-// import Loogo from "../../../public/logo.png";
+import image from "../../assets/logo.png";
 export default function Component() {
   return (
     <footer>
       <div className="footercontainer">
         <div className="footerfirstsection">
           <div className="iconfooter">
-            {/* <Loogo></Loogo> */}
-            <img
-              src="
-            https://maxshine.com/wp-content/uploads/2022/03/logo.png"
-              alt="maxshine logo"
-            />
+            <img src={image} alt="maxshine logo" />
           </div>
           <p>
             Maxshine is a professional company that specializes in the

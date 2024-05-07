@@ -39,3 +39,6 @@
   font-size: 20px;
   letter-spacing: 1px;
 }
+.active *{
+  background-color: grey !important;
+}
