@@ -82,7 +82,7 @@ export default function SignIn() {
           </div>
         </div>
         <div className="middivsignin">
-          <Link to="/passwordReset">Mot de passe oublié? </Link>
+          <Link to="/passwordForgot">Mot de passe oublié? </Link>
           <button type="submit">Continuer</button>
         </div>{" "}
         <div className="text-center">

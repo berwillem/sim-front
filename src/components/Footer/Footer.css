@@ -18,11 +18,14 @@ footer {
   width: 90% !important;
   padding-top: 25px;
   padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 .footerfirstsection p {
   width: 80%;
 }
-.foooterfirts-button {
+/* .foooterfirts-button {
   gap: 10px;
   margin-top: 15px;
   margin-left: 35px;
@@ -38,7 +41,7 @@ footer {
   cursor: pointer;
   padding: 15px;
   font-size: 0.9rem;
-}
+} */
 footer li {
   list-style-type: none;
   display: flex;

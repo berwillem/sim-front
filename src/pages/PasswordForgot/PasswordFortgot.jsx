@@ -1,7 +1,9 @@
 import "./PasswordForgot.css";
 import passForgotImage from "../../assets/svg/passforgot.svg";
+import { useNavigate } from "react-router-dom";
 const PasswordFortgot = () => {
-  const handleResetPassword = () => {
+  const navigate = useNavigate();
+  const handleResetPassword = (e) => {
     e.preventDefault();
     console.log("test");
   };
@@ -16,7 +18,10 @@ const PasswordFortgot = () => {
           <form onSubmit={handleResetPassword}>
             <label htmlFor="user_login">Saisissez votre email :</label>
             <input type="email" id="user_login" name="user_login" required />
-            <button type="submit"> Réinitialiser le mot de passe.</button>
+            <button type="submit" onClick={() => navigate("/passwordreset")}>
+              {" "}
+              Réinitialiser le mot de passe.
+            </button>
           </form>
         </div>
       </div>
