@@ -5,9 +5,8 @@ export default function Component() {
     <footer>
       <div className="footercontainer">
         <div className="footerfirstsection">
-          <div className="iconfooter">
-            <img src={image} alt="maxshine logo" />
-          </div>
+          <img src={image} alt="maxshine logo" className="iconfooter" />
+
           <p>
             Maxshine is a professional company that specializes in the
             development of long-throw dual-action polishers and other detailing

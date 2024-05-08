@@ -1,10 +1,15 @@
+import { useNavigate } from "react-router-dom";
 import "./Admin.css";
 const Admin = () => {
+  const navigate = useNavigate();
   return (
     <>
       <div className="admin-home">
-        <h1>welcome to your admin panel</h1>
-        <p>here you can manage your stats , users,products, categories</p>
+        <div className="highadmin">
+          <h1>welcome to your admin panel</h1>
+          <p>here you can manage your stats , users,products, categories</p>
+        </div>
+        <button onClick={() => navigate("/")}>Go back home</button>
       </div>
     </>
   );
