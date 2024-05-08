@@ -8,7 +8,8 @@ import "swiper/css/pagination";
 import { Autoplay, Navigation, EffectFlip } from "swiper/modules";
 import { SwiperSlide, Swiper } from "swiper/react";
 import toolImage1 from "../../assets/sliderImages/tool1.jpg";
-import toolImage2 from "../../assets/sliderImages/tool2.webp";
+import toolImage2 from "../../assets/sliderImages/tool2.jpg";
+import toolImage3 from "../../assets/sliderImages/tool3.jpg";
 
 export default function App() {
   return (
@@ -32,6 +33,9 @@ export default function App() {
         </SwiperSlide>
         <SwiperSlide>
           <img src={toolImage2} className="slider-image" />
+        </SwiperSlide>
+        <SwiperSlide>
+          <img src={toolImage3} className="slider-image" />
         </SwiperSlide>
       </Swiper>
     </div>

@@ -25,23 +25,10 @@ footer {
 .footerfirstsection p {
   width: 80%;
 }
-/* .foooterfirts-button {
-  gap: 10px;
-  margin-top: 15px;
-  margin-left: 35px;
-  display: flex;
-  flex-direction: column;
+.iconfooter {
+  width: 100px;
+  border-radius: 15px;
 }
-.foooterfirts-button button {
-  max-width: 40%;
-  background-color: var(--primary-color);
-  color: white;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 15px;
-  font-size: 0.9rem;
-} */
 footer li {
   list-style-type: none;
   display: flex;

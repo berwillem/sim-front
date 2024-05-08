@@ -17,24 +17,40 @@ import PasswordReset from "./pages/PasswordReset/PasswordReset.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
+import AdminUsers from "./pages/AdminUsers/Users.jsx";
+import AdminProducts from "./pages/AdminProducts/Products.jsx";
+import AdminCategories from "./pages/AdminCaterogies/Categories.jsx";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    children: [
-      { path: "/", element: <App /> },
-      {
-        path: "contact",
-        element: <Contact />,
-      },
-    ],
+    children: [{ path: "/", element: <App /> }],
+  },
+  {
+    path: "contact",
+    element: <Contact />,
   },
   {
     path: "/admin",
     element: <AdminLayout />,
-    children: [{ path: "home", element: <Admin /> }],
+    children: [
+      { path: "home", element: <Admin /> },
+      {
+        path: "users",
+        element: <AdminUsers />,
+      },
+      {
+        path: "products",
+        element: <AdminProducts />,
+      },
+      {
+        path: "categories",
+        element: <AdminCategories />,
+      },
+    ],
   },
+
   {
     path: "/auth",
     element: <MainAuth />,
