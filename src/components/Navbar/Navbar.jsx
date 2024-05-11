@@ -11,10 +11,15 @@ export default function Navbar() {
     <>
       <nav className="navbar">
         <div className="navbarfirst">
-          <img src={Logo} alt="Logo" className="main-logo" />
-          <NavLink>Home</NavLink>
-          <NavLink>About us</NavLink>
-          <NavLink>Products</NavLink>
+          <img
+            src={Logo}
+            alt="Logo"
+            className="main-logo"
+            onClick={() => navigate("/")}
+          />
+          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to="/#aboutus">About us</NavLink>
+          <NavLink to={"/products"}>Products</NavLink>
           <NavLink to={"/contact"}>Contact us</NavLink>
         </div>
         <div className="navbarlast">

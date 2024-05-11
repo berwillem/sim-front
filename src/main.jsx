@@ -20,6 +20,7 @@ import Admin from "./pages/Admin/Admin.jsx";
 import AdminUsers from "./pages/AdminUsers/Users.jsx";
 import AdminProducts from "./pages/AdminProducts/Products.jsx";
 import AdminCategories from "./pages/AdminCaterogies/Categories.jsx";
+import Products from "./pages/Products/Products.jsx";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +75,10 @@ const router = createBrowserRouter([
   {
     path: "*",
     element: <NotFound />,
+  },
+  {
+    path: "/products",
+    element: <Products />,
   },
 ]);
 
