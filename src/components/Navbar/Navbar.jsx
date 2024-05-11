@@ -4,8 +4,16 @@ import { CiMenuBurger } from "react-icons/ci";
 import Logo from "../../assets/logo.png";
 import { useState } from "react";
 import Popover from "../Popover/Menu";
+import { useSelector } from "react-redux";
 export default function Navbar() {
   const navigate = useNavigate();
+  const isauth = useSelector((state) => console.log(state.auth?.isLoggedIn));
+  const lastname = useSelector((state) =>
+    console.log(state.auth?.user?.LastName)
+  );
+  const fistname = useSelector((state) =>
+    console.log(state.auth?.user?.FirstName)
+  );
   const [menuOpen, setMenuOpen] = useState(false);
   return (
     <>
