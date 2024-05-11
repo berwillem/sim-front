@@ -1,0 +1,29 @@
+/* AdminMiniCard.css */
+
+.mini-card {
+  border: 3px solid black;
+  padding: 50px 100px;
+  border-radius: 10px;
+  text-align: center;
+  width: 20%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.mini-card h2 {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.mini-card p {
+  font-size: 30px;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+}
+
+.icon-container svg {
+  transform: scale(2.5);
+}
