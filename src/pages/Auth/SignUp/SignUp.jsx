@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/slices/authSlice";
-
+import { CiMail } from "react-icons/ci";
 
 const schema = yup.object().shape({
   FirstName: yup.string().required("Prénom est requis"),
@@ -79,13 +79,17 @@ export default function SignUp() {
             </div>
           </div>
           <label htmlFor="email">Adresse courriel</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Email"
-            {...register("email")}
-          />
-          {errors.email && <p className="error">{errors.email.message}</p>}
+          <div className="passinputcontainer">
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              {...register("email")}
+            />
+            <CiMail size={25} fontSize={"35px"} fontWeight={"bold"} />
+
+            {errors.email && <p className="error">{errors.email.message}</p>}
+          </div>
           <label htmlFor="password">Mot de passe</label>
           {show ? (
             <div className="passinputcontainer">
