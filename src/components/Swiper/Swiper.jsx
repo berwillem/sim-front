@@ -29,13 +29,46 @@ export default function App() {
         className="mySwiper"
       >
         <SwiperSlide>
-          <img src={toolImage1} className="slider-image" />
+          <div className="iamtesting">
+            <img src={toolImage1} className="slider-image" />
+            <div className="iamtestinginside">
+              <h2>BRAND HOT PRODUCTS</h2>
+              <h1>SNOW MASTER FOAM GUN V2</h1>
+              <p>
+                No pressure washer needed! Easily attach to standard garden hose
+                or quick connect
+              </p>
+              <button>Learn more</button>
+            </div>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={toolImage2} className="slider-image" />
+          <div className="iamtesting">
+            <img src={toolImage2} className="slider-image" />
+            <div className="iamtestinginside">
+              <h2>BRAND HOT PRODUCTS</h2>
+              <h1>SNOW MASTER FOAM GUN V2</h1>
+              <p>
+                No pressure washer needed! Easily attach to standard garden hose
+                or quick connect
+              </p>
+              <button>Learn more</button>
+            </div>
+          </div>
         </SwiperSlide>
         <SwiperSlide>
-          <img src={toolImage3} className="slider-image" />
+          <div className="iamtesting">
+            <img src={toolImage3} className="slider-image" />
+            <div className="iamtestinginside">
+              <h2>BRAND HOT PRODUCTS</h2>
+              <h1>SNOW MASTER FOAM GUN V2</h1>
+              <p>
+                No pressure washer needed! Easily attach to standard garden hose
+                or quick connect
+              </p>
+              <button>Learn more</button>
+            </div>
+          </div>
         </SwiperSlide>
       </Swiper>
     </div>

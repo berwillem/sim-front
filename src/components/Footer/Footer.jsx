@@ -12,6 +12,7 @@ export default function Component() {
             development of long-throw dual-action polishers and other detailing
             tools.
           </p>
+          <div className="forIframe">
           <iframe
             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12804.047822820745!2d3.0104879!3d36.650163!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa900102f4291%3A0xd520d24d966c55c3!2sSYM%20INDUSTRIE!5e0!3m2!1sfr!2sdz!4v1715023450160!5m2!1sfr!2sdz"
             width="200"
@@ -20,6 +21,7 @@ export default function Component() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
+          </div>
         </div>
         <div className="footeraboutsection">
           <h3 className="">About Maxshine</h3>

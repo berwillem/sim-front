@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../../redux/slices/authSlice";
+import { CiMail } from "react-icons/ci";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -47,13 +48,16 @@ export default function SignIn() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="forlabelsignin">
           <label htmlFor="email">Adresse courriel</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="Email"
-            {...register("email")}
-          />
-          {errors.email && <p className="error">{errors.email.message}</p>}
+          <div className="passinputcontainer">
+            <input
+              type="email"
+              id="email"
+              placeholder="Email"
+              {...register("email")}
+            />
+            <CiMail size={25} fontSize={"35px"} fontWeight={"bold"} />
+            {errors.email && <p className="error">{errors.email.message}</p>}
+          </div>
           <label htmlFor="password">Mot de passe</label>
 
           <div className="passinputcontainer">

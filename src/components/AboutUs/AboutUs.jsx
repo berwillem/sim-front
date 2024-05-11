@@ -8,7 +8,7 @@ const AboutUs = () => {
   const [play, setPlay] = useState(false);
 
   return (
-    <section className="aboutus">
+    <section className="aboutus" id="aboutus">
       <div className="aboutusfirst">
         <div className="aboutusimg">
           <img
