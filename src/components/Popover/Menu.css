@@ -95,4 +95,15 @@ button {
   background: none !important;
   padding: 0 !important;
   color: var(--primary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.DropdownMenuItem {
+  padding: 5px !important;
+  color: rgb(16, 16, 16);
+  font-weight: 600;
+}
+.DropdownMenuItem:hover {
+  background-color: rgb(204, 196, 196);
 }

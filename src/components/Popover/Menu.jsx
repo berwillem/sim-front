@@ -1,24 +1,30 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 
 import "./Menu.css";
-import { CiGlobe } from "react-icons/ci";
+import { CiLogout } from "react-icons/ci";
+// import { CiGlobe } from "react-icons/ci";
 
-const DropdownMenuDemo = () => {
+const DropdownMenuDemo = ({ title1, title2, icon, rightslot, rightslot2 }) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
         <button className="IconButton" aria-label="Customise options">
-          <CiGlobe size={25} className="globe" />
+          {icon}
         </button>
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
         <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
           <DropdownMenu.Item className="DropdownMenuItem">
-            Français <div className="RightSlot">⌘+T</div>
+            {title1}
+            <div className="RightSlot">{rightslot}</div>
           </DropdownMenu.Item>
           <DropdownMenu.Item className="DropdownMenuItem">
-            English <div className="RightSlot">⌘+N</div>
+            {title2}
+            <div className="RightSlot">
+              {rightslot2}
+              {/* <CiLogout size={18} /> */}
+            </div>
           </DropdownMenu.Item>
 
           <DropdownMenu.Arrow className="DropdownMenuArrow" />
