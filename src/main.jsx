@@ -21,6 +21,8 @@ import AdminUsers from "./pages/AdminUsers/Users.jsx";
 import AdminProducts from "./pages/AdminProducts/Products.jsx";
 import AdminCategories from "./pages/AdminCaterogies/Categories.jsx";
 import Products from "./pages/Products/Products.jsx";
+import Profile from "./pages/Profile/Profile.jsx";
+import AdminOrders from "./pages/AdminOrders/Orders.jsx";
 
 const router = createBrowserRouter([
   {
@@ -49,6 +51,10 @@ const router = createBrowserRouter([
         path: "categories",
         element: <AdminCategories />,
       },
+      {
+        path: "orders",
+        element: <AdminOrders />,
+      },  
     ],
   },
 
@@ -79,6 +85,10 @@ const router = createBrowserRouter([
   {
     path: "/products",
     element: <Products />,
+  },
+  {
+    path: "/profile",
+    element: <Profile />,
   },
 ]);
 

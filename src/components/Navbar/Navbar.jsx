@@ -5,8 +5,9 @@ import Logo from "../../assets/logo.png";
 import { FaUser } from "react-icons/fa";
 import { useState } from "react";
 import Popover from "../Popover/Menu";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineProfile } from "react-icons/ai";
+import { logout } from "../../redux/slices/authSlice";
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -15,6 +16,8 @@ export default function Navbar() {
   // const lastname = useSelector((state) => state.auth?.user?.LastName);
   const fistname = useSelector((state) => state.auth?.user?.FirstName);
   const [menuOpen, setMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+
   return (
     <>
       <nav className="navbar">
@@ -58,7 +61,18 @@ export default function Navbar() {
                 title2={"Sign out"}
                 rightslot={<AiOutlineProfile size={20} />}
                 rightslot2={<CiLogout size={18} />}
+                userClicked={() => {
+                  navigate("/profile");
+                }}
+                userClicked2={() => {
+                  dispatch(logout());
+                }}
               ></Popover>
+
+              {/* <button
+                onClick={() => {
+                  dispatch(logout());
+                }}/> */}
             </div>
           )}
         </div>
