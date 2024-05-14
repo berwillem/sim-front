@@ -6,7 +6,7 @@ import "./Products.css";
 import { useEffect, useState } from "react";
 import {
   getAllUsers,
-  getTotalUserCount,
+  // getTotalUserCount,
   deleteUser,
 } from "../../services/usersServices";
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
@@ -14,7 +14,7 @@ import Swal from "sweetalert2";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
-  const [totalUserCount, setTotalUserCount] = useState(0);
+  // const [totalUserCount, setTotalUserCount] = useState(0);
   const fetchUsers = (page) => {
     getAllUsers(page)
       .then((res) => {
@@ -46,11 +46,11 @@ const Users = () => {
         });
       });
   };
-  useEffect(() => {
-    getTotalUserCount().then((res) => {
-      setTotalUserCount(res.data.count);
-    });
-  }, [handleDelet]);
+  // useEffect(() => {
+  //   getTotalUserCount().then((res) => {
+  //     setTotalUserCount(res.data.count);
+  //   });
+  // }, [handleDelet]);
   return (
     <>
       <div className="admin-stat">
