@@ -1,6 +1,8 @@
 import { IoHome } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { FaTools } from "react-icons/fa";
+import { BsBorderStyle } from "react-icons/bs";
+
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./SideBar.css";
@@ -12,6 +14,7 @@ const SideBar = () => {
     { icon: <FaUser />, text: "Users", link: "users" },
     { icon: <FaTools />, text: "Products", link: "products" },
     { icon: <BiSolidCategoryAlt />, text: "Categories", link: "categories" },
+    { icon: <BsBorderStyle />, text: "Orders", link: "orders" },
   ];
   const navigate = useNavigate();
   return (

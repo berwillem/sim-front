@@ -13,14 +13,15 @@ export default function Component() {
             tools.
           </p>
           <div className="forIframe">
-          <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12804.047822820745!2d3.0104879!3d36.650163!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa900102f4291%3A0xd520d24d966c55c3!2sSYM%20INDUSTRIE!5e0!3m2!1sfr!2sdz!4v1715023450160!5m2!1sfr!2sdz"
-            width="200"
-            height="200"
-            style={{ border: 0 }}
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-          ></iframe>
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d200.06322235412017!2d3.010298157147679!3d36.65017257577152!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa900102f4291%3A0xd520d24d966c55c3!2s!5e0!3m2!1sfr!2sdz!4v1715539255265!5m2!1sfr!2sdz"
+              width="200"
+              height="200"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            ></iframe>
           </div>
         </div>
         <div className="footeraboutsection">

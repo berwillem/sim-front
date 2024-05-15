@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import AdminMiniCard from "../../components/AdminMiniCard/AdminMiniCard";
 import { FaUsers } from "react-icons/fa6";
 import "./Users.css";
@@ -25,11 +26,6 @@ const Users = () => {
   useEffect(() => {
     fetchUsers();
   }, []);
-  useEffect(() => {
-    getTotalUserCount().then((res) => {
-      setTotalUserCount(res.data.count);
-    });
-  }, []);
 
   const handleDelet = (userId) => {
     deleteUser(userId)
@@ -49,7 +45,11 @@ const Users = () => {
         });
       });
   };
-
+  useEffect(() => {
+    getTotalUserCount().then((res) => {
+      setTotalUserCount(res.data.count);
+    });
+  }, [handleDelet]);
   return (
     <>
       <div className="admin-stat">
