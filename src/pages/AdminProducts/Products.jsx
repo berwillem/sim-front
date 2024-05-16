@@ -1,56 +1,26 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import AdminMiniCard from "../../components/AdminMiniCard/AdminMiniCard";
 import { BsBorderStyle } from "react-icons/bs";
-
 import "./Products.css";
 import { useEffect, useState } from "react";
-import {
-  getAllUsers,
-  // getTotalUserCount,
-  deleteUser,
-} from "../../services/usersServices";
-import DeleteButon from "../../components/DeleteButton/DeleteButon";
-import Swal from "sweetalert2";
+import Addbutton from "../../components/AddButton/Addbutton";
+import { getAllProducts } from "../../services/productsServices";
 
 const Users = () => {
-  const [users, setUsers] = useState([]);
-  // const [totalUserCount, setTotalUserCount] = useState(0);
-  const fetchUsers = (page) => {
-    getAllUsers(page)
+  const [products, setProducts] = useState([]);
+  const fetchProducts = (page) => {
+    getAllProducts(page)
       .then((res) => {
-        setUsers(res.data);
+        setProducts(res.data);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
   };
   useEffect(() => {
-    fetchUsers();
+    fetchProducts();
   }, []);
 
-  const handleDelet = (userId) => {
-    deleteUser(userId)
-      .then(() => {
-        Swal.fire({
-          title: "Good job!",
-          text: "user deleted succefuly",
-          icon: "success",
-        });
-        fetchUsers();
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: err.message,
-        });
-      });
-  };
-  // useEffect(() => {
-  //   getTotalUserCount().then((res) => {
-  //     setTotalUserCount(res.data.count);
-  //   });
-  // }, [handleDelet]);
   return (
     <>
       <div className="admin-stat">
@@ -60,6 +30,12 @@ const Users = () => {
             title={"Products"}
             // stat={totalUserCount}
           />
+          <div className="foraddbutton">
+            <Addbutton
+              title={"Add Product"}
+              navigate={"/admin/products/addproduct"}
+            ></Addbutton>
+          </div>
         </div>
         <div className="table-stat">
           <div className="titre-stat">
@@ -73,22 +49,12 @@ const Users = () => {
                 <li>gamme</li>
                 <li>category</li>
               </div>
-              <li>action</li>
+              <li>preview</li>
             </ul>
           </div>
-
-          {users?.map((user, index) => (
+          {products?.map((product, index) => (
             <ul key={index} className="stores">
-              <li className="ligne">
-                <span>{user._id}</span>
-                <span>
-                  {user.LastName} {user.FirstName}
-                </span>
-                <span>{user.email}</span>
-                <DeleteButon
-                  handledelet={() => handleDelet(user._id)}
-                ></DeleteButon>
-              </li>
+              <Productitem product={product} />
             </ul>
           ))}
         </div>
@@ -98,3 +64,34 @@ const Users = () => {
 };
 
 export default Users;
+
+const Productitem = ({ product, index }) => {
+  const [showid, setShowid] = useState(false);
+
+  return (
+    <li key={index} className="ligne">
+      {!showid ? (
+        <button
+          className="showid"
+          key={index}
+          onClick={() => setShowid(!showid)}
+        >
+          Show id
+        </button>
+      ) : (
+        <span onClick={() => setShowid(!showid)}>{product._id}</span>
+      )}
+      <span> {product.title}</span>
+      <span>{product.price}</span>
+      <span>{product.description}</span>
+      <span>{product.marque.title}</span>
+      <span>{product.gamme.title}</span>
+      <span>{product.category.title}</span>
+      <span>
+        {product.images.map((image) => (
+          <img key={image} src={image} alt="store" className="store-image" />
+        ))}
+      </span>
+    </li>
+  );
+};

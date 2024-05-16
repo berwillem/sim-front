@@ -4,12 +4,7 @@ import AdminMiniCard from "../../components/AdminMiniCard/AdminMiniCard";
 import { BsBorderStyle } from "react-icons/bs";
 import "./Categories.css";
 import { useEffect, useState } from "react";
-import {
-  // getAllUsers,
-  // getTotalUserCount,
-  // deleteUser,
-  getTotalUserCount,
-} from "../../services/usersServices";
+import { getTotalUserCount } from "../../services/usersServices";
 import {
   getAllCategories,
   CreateCategory,
@@ -20,11 +15,12 @@ import {
 } from "../../services/categoriesServices";
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import Swal from "sweetalert2";
+import { getTotalProductsCount } from "../../services/productsServices";
+import Addbutton from "../../components/AddButton/Addbutton";
 
 const categories = () => {
   const [categories, setCategories] = useState([]);
-  const [totalUserCount, setTotalUserCount] = useState(0);
-  console.log(totalUserCount);
+  const [totalProductCount, setTotalProductCount] = useState(0);
   const fetchCategories = (page) => {
     getAllCategories(page)
       .then((res) => {
@@ -37,7 +33,6 @@ const categories = () => {
   useEffect(() => {
     fetchCategories();
   }, []);
-  console.log(categories);
 
   const addcategory = () => {
     CreateCategory()
@@ -58,19 +53,27 @@ const categories = () => {
       });
   };
   useEffect(() => {
-    getTotalUserCount().then((res) => {
-      setTotalUserCount(res.data.count);
+    getTotalProductsCount().then((res) => {
+      setTotalProductCount(res.data.count);
+      console.log(res);
     });
-  }, [addcategory]);
+  }, [totalProductCount]);
+  console.log(getTotalProductsCount);
   return (
     <>
       <div className="admin-stat">
         <div className="mini-cards">
           <AdminMiniCard
             icon={<BsBorderStyle />}
-            title={"Products"}
-            // stat={totalUserCount}
+            title={"Categories"}
+            stat={totalProductCount}
           />
+          <div className="foraddbutton">
+            <Addbutton
+              title={"Add Category"}
+              navigate={"/addcategory"}
+            ></Addbutton>
+          </div>
         </div>
         <div className="table-stat">
           <div className="titre-stat">
@@ -94,9 +97,7 @@ const categories = () => {
                 <span>{categories._id}</span>
                 <span>{categories.title}</span>
                 <span> {categories.gamme.title}</span>
-                <DeleteButon
-                  handledelet={() => addcategory(categories._id)}
-                ></DeleteButon>
+                <DeleteButon></DeleteButon>
               </li>
             </ul>
           ))}
