@@ -1,7 +1,8 @@
 .mySwiper2 {
-  margin: 100px auto;
+  /* margin: 100px auto; */
   width: 320px;
   height: 240px;
+  /* cursor: pointer; */
 }
 
 .swiper-slide {

@@ -15,6 +15,7 @@ export default function SwiperProduct({ previews }) {
     <>
       <Swiper
         grabCursor={true}
+        
         effect={"creative"}
         pagination={{ clickable: true }}
         creativeEffect={{
