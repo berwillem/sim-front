@@ -47,7 +47,7 @@ const AddProduct = () => {
         <h2>Add Image:</h2>
         <label htmlFor="inputfileimage"> here</label>
         <input type="file" id="inputfileimage" onChange={handleChange} />
-        <SwiperProduct previews={file? file : }></SwiperProduct>
+        <SwiperProduct previews={file ? file : "heeyy"}></SwiperProduct>
       </div>
     );
   }
@@ -57,8 +57,7 @@ const AddProduct = () => {
       <div className="admin-stat">
         <div className="fortable-stat">
           <div className="table-stat" id="table-statadd">
-              <ImageUpload />
-            
+            <ImageUpload />
 
             <div className="titre-stat">
               <div className="ligne">

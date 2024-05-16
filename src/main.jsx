@@ -99,7 +99,7 @@ const router = createBrowserRouter([
     element: <Products />,
   },
   {
-    path: "/profile",
+    path: "/profile/:userId",
     element: <Profile />,
   },
 ]);
