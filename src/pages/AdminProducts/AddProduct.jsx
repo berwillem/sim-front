@@ -54,9 +54,11 @@ const AddProduct = () => {
         </div>
 
         <input type="file" id="inputfileimage" onChange={handleChange} />
+
         <SwiperProduct
           previews={file.length != 0 ? file : [Placeholder]}
         ></SwiperProduct>
+
       </div>
     );
   }

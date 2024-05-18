@@ -19,6 +19,9 @@ export default function Navbar() {
   const navigate = useNavigate();
   const isauth = useSelector((state) => state.auth?.isLoggedIn);
   console.log(isauth);
+
+  const userId = useSelector((state) => state.auth?.user?._id);
+
   const fistname = useSelector((state) => state.auth?.user?.FirstName);
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
@@ -75,7 +78,7 @@ export default function Navbar() {
                 rightslot={<AiOutlineProfile size={20} />}
                 rightslot2={<CiLogout size={18} />}
                 userClicked={() => {
-                  navigate("/profile");
+                  navigate(`/profile/${userId}`);
                 }}
                 userClicked2={() => {
                   dispatch(logout());
