@@ -3,10 +3,10 @@ import "./AboutUs.css";
 import { GoPlay } from "react-icons/go";
 import ReactPlayer from "react-player";
 import { LiaTimesCircleSolid } from "react-icons/lia";
+import bgimg from "../../assets/sliderImages/tool1.jpg";
 
 const AboutUs = () => {
   const [play, setPlay] = useState(false);
-
   return (
     <section className="aboutus" id="aboutus">
       <div className="aboutusfirst">
@@ -41,7 +41,7 @@ const AboutUs = () => {
             playing={true}
             height={"100%"}
             width={"100%"}
-            url="https://media.istockphoto.com/id/1365349814/video/slow-motion-camera-follows-woman-hiker-in-yellow-raincoat-with-backpack-attractive-happy.mp4?s=mp4-640x640-is&k=20&c=3RWzbMiChuoIE6J6wVg3K28n3K7kHfBeI52JVUuZCPo="
+            url="https://maxshine.cn/wp-content/themes/maxshinecn/about-maxshine.mp4"
           />
           <LiaTimesCircleSolid
             onClick={() => setPlay(false)}
@@ -52,6 +52,8 @@ const AboutUs = () => {
 
       <div className="aboutussecond">
         <div className="clip-path" onClick={() => setPlay(true)}>
+          <img src={bgimg} alt="" className="imgoverlay" />
+          <div className="overlayimgabout"></div>
           <GoPlay className="goplay" size={100} color="white"></GoPlay>
           <h1>Play video</h1>
         </div>

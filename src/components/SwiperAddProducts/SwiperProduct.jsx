@@ -11,11 +11,11 @@ import "./SwiperProduct.css";
 import { EffectCreative, Pagination } from "swiper/modules";
 
 export default function SwiperProduct({ previews }) {
+  console.log(previews);
   return (
     <>
       <Swiper
         grabCursor={true}
-        
         effect={"creative"}
         pagination={{ clickable: true }}
         creativeEffect={{
