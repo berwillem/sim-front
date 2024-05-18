@@ -1,3 +1,6 @@
+.clip-path * {
+  z-index: 3;
+}
 .aboutus {
   width: 100%;
   display: flex;
@@ -54,14 +57,31 @@
 }
 .clip-path {
   clip-path: polygon(0 0, 100% 0, 100% 80%, 69% 100%, 0 85%);
-  background-color: black;
+  background-color: rgb(184, 18, 18);
   height: 75vh;
   width: 70vw;
-  opacity: 0.8;
+  opacity: 0.9;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  position: relative;
+}
+.overlayimgabout {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
+  opacity: 0.3;
+  background-color: #e63619;
+  top: 0;
+  left: 0;
+}
+.imgoverlay {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  z-index: 2;
 }
 .goplay {
   z-index: 2;
@@ -131,4 +151,48 @@
 
 .react-player * {
   width: 100%;
+}
+
+@media screen and (max-width: 600px) {
+  .aboutusfirst {
+    flex-direction: column;
+    padding: 0;
+    justify-content: center;
+    align-items: center;
+  }
+  .aboutusimg {
+    width: 92%;
+  }
+  .aboutustext {
+    width: 92%;
+    align-items: center;
+    text-align: center;
+  }
+  .clip-path {
+    width: 100%;
+    margin-bottom: 190px;
+  }
+  .clip-path h1 {
+    margin: 0 0 130px 0;
+  }
+  .goplay {
+    margin: 0;
+  }
+  .aboutussecondbox {
+    left: 5%;
+    width: 90%;
+    bottom: 0 !important;
+    height: fit-content;
+    top: 320px;
+    box-shadow: 0px 0px 54px 9px rgba(0, 0, 0, 0.75);
+  }
+  .imgoverlay {
+    object-fit: cover;
+  }
+  .aboutussecondboximg img {
+    width: 30%;
+  }
+  .allcardsmain {
+    margin-top: 0 !important;
+  }
 }

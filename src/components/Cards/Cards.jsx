@@ -1,6 +1,7 @@
 import "./Cards.css";
 import Maximg from "../../assets/max.webp";
 import Milimg from "../../assets/mil.jpg";
+import Fixation from "../../assets/fixation.webp";
 import { useNavigate } from "react-router-dom";
 
 export default function Cards() {
@@ -8,27 +9,21 @@ export default function Cards() {
   const products = [
     {
       id: 1,
-      title: "Maxshine",
-      image: Maximg,
-      navigate: "/maxshine",
+      title: "Fixation",
+      image: Fixation,
+      navigate: "/Fixation",
     },
     {
       id: 2,
-      title: "Milwaukee",
+      title: "outillages",
       image: Milimg,
-      navigate: "/milwaukee",
+      navigate: "/outillages",
     },
     {
       id: 3,
-      title: "Maxshine",
+      title: "Detailling tools",
       image: Maximg,
-      navigate: "/maxshine",
-    },
-    {
-      id: 4,
-      title: "Milwaukee",
-      image: Milimg,
-      navigate: "/milwaukee",
+      navigate: "/detailling-tools",
     },
   ];
   const all = products.map((product) => {

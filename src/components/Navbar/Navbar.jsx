@@ -10,10 +10,18 @@ import { AiOutlineProfile } from "react-icons/ai";
 import { logout } from "../../redux/slices/authSlice";
 
 export default function Navbar() {
+  const scrollTo = () => {
+    window.scrollTo({
+      top: 500,
+      behavior: "smooth",
+    });
+  };
   const navigate = useNavigate();
   const isauth = useSelector((state) => state.auth?.isLoggedIn);
   console.log(isauth);
+
   const userId = useSelector((state) => state.auth?.user?._id);
+
   const fistname = useSelector((state) => state.auth?.user?.FirstName);
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
@@ -29,7 +37,14 @@ export default function Navbar() {
             onClick={() => navigate("/")}
           />
           <NavLink to={"/"}>Home</NavLink>
-          <NavLink to="/#aboutus">About us</NavLink>
+          <NavLink
+            onClick={async () => {
+              await navigate("/");
+              scrollTo();
+            }}
+          >
+            About us
+          </NavLink>
           <NavLink to={"/products"}>Products</NavLink>
           <NavLink to={"/contact"}>Contact us</NavLink>
         </div>
@@ -39,6 +54,7 @@ export default function Navbar() {
             title1={"francais"}
             title2={"english"}
             rightslot={"🇫🇷"}
+            rightslot2={"🇺🇸"}
           />
           {!isauth ? (
             <button
@@ -81,10 +97,24 @@ export default function Navbar() {
         </div>
         {menuOpen ? (
           <div className="openmenurespo">
-            <NavLink>Home</NavLink>
-            <NavLink>About us</NavLink>
-            <NavLink>Products</NavLink>
-            <NavLink>Contact us</NavLink>
+            <NavLink to={"/"} onClick={() => setMenuOpen(false)}>
+              Home
+            </NavLink>
+            <NavLink
+              onClick={async () => {
+                setMenuOpen(false);
+                await navigate("/");
+                scrollTo();
+              }}
+            >
+              About us
+            </NavLink>
+            <NavLink to={"/products"} onClick={() => setMenuOpen(false)}>
+              Products
+            </NavLink>
+            <NavLink to={"/contact"} onClick={() => setMenuOpen(false)}>
+              Contact us
+            </NavLink>
           </div>
         ) : (
           ""
