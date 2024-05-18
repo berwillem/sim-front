@@ -5,7 +5,7 @@ import Cards from "../../components/Cards/Cards";
 export default function Home() {
   return (
     <>
-      <Swiper></Swiper>
+      <Swiper ></Swiper>
       <AboutUs></AboutUs>
       <Cards title={"Maxshine"}></Cards>
     </>

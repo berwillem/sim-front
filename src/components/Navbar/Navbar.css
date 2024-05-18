@@ -1,7 +1,9 @@
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: rgba(246, 247, 252, 255);
   background-color: var(--primary-color);
   position: sticky;
   padding: 10px 6vw;
@@ -23,6 +25,8 @@
   display: flex;
   align-items: center;
   gap: 1.5vw;
+  justify-content: center;
+  gap: 20px;
 }
 .navbarlast button {
   background-color: white;
@@ -97,3 +101,14 @@
 /* .navbarfirst .active {
   background-color: #dc3b4d;
 } */
+.userisconnected h1 {
+  color: white;
+  font-size: 15px;
+  font-weight: 200;
+}
+.userisconnected {
+  display: flex;
+  gap: 9px;
+  align-items: center;
+  margin-left: 10px;
+}

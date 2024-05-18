@@ -1,6 +1,8 @@
 import { IoHome } from "react-icons/io5";
 import { FaUser } from "react-icons/fa";
 import { FaTools } from "react-icons/fa";
+import { BsBorderStyle } from "react-icons/bs";
+
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./SideBar.css";
@@ -10,31 +12,35 @@ const SideBar = () => {
   const infos = [
     { icon: <IoHome />, text: "Home", link: "/admin/home" },
     { icon: <FaUser />, text: "Users", link: "users" },
-    { icon: <FaTools />, text: "Products", link: "products" },
+    { icon: <FaTools />, text: "Products", link: "products/all" },
     { icon: <BiSolidCategoryAlt />, text: "Categories", link: "categories" },
+    { icon: <BsBorderStyle />, text: "Orders", link: "orders" },
   ];
   const navigate = useNavigate();
   return (
-    <div className="sidebar">
-      <img
-        src={Logo}
-        alt="Logo"
-        className="admin-logo"
-        onClick={() => navigate("/")}
-      />
-      <ul className="sidebar-items">
-        {infos.map((info, index) => (
-          <li key={index} className="sidebar-item">
-            <NavLink to={info.link}>
-              <div className="side-bar-content">
-                <span className="sidebar-icons">{info.icon}</span>{" "}
-                <span className="sidebar-texts">{info.text}</span>
-              </div>
-            </NavLink>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <>
+      <div className="forsidebar"></div>
+      <div className="sidebar">
+        <img
+          src={Logo}
+          alt="Logo"
+          className="admin-logo"
+          onClick={() => navigate("/")}
+        />
+        <ul className="sidebar-items">
+          {infos.map((info, index) => (
+            <li key={index} className="sidebar-item">
+              <NavLink to={info.link}>
+                <div className="side-bar-content">
+                  <span className="sidebar-icons">{info.icon}</span>{" "}
+                  <span className="sidebar-texts">{info.text}</span>
+                </div>
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </>
   );
 };
 

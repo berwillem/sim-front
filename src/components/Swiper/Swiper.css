@@ -1,14 +1,14 @@
 .forswiper {
-  width: 100vw;
-  max-height: 71vh;
+  width: 100vw !important;
+  max-height: 71vh !important;
   /* min-height: 20vh; */
   overflow: hidden;
-  max-width: 100%;
+  max-width: 100% !important;
 }
 
-.swiper {
-  width: 100%;
-  height: 100%;
+.mySwiper {
+  width: 100% !important;
+  height: 100% !important;
   overflow: hidden;
 }
 
@@ -26,6 +26,7 @@
 }
 .slider-image {
   width: 100%;
+  object-fit: cover;
 }
 .swiper-button-prev,
 .swiper-button-next {
@@ -107,5 +108,26 @@
   to {
     opacity: 1;
     transform: translatex(0px);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .swiper-button-prev,
+  .swiper-button-next {
+    visibility: hidden;
+  }
+  .iamtestinginside h2 {
+    font-size: 1rem;
+    margin-top: 100px;
+  }
+  .iamtestinginside h1 {
+    font-size: 1.2rem;
+  }
+  .iamtestinginside p {
+    font-size: 0.8rem;
+  }
+  .iamtestinginside button {
+    padding: 10px;
+    font-size: 0.7rem;
   }
 }

@@ -1,20 +1,31 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
-import { CiMenuBurger } from "react-icons/ci";
+import { CiGlobe, CiLogout, CiMenuBurger } from "react-icons/ci";
 import Logo from "../../assets/logo.png";
+import { FaUser } from "react-icons/fa";
 import { useState } from "react";
 import Popover from "../Popover/Menu";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { AiOutlineProfile } from "react-icons/ai";
+import { logout } from "../../redux/slices/authSlice";
+
 export default function Navbar() {
+  const scrollTo = () => {
+    window.scrollTo({
+      top: 500,
+      behavior: "smooth",
+    });
+  };
   const navigate = useNavigate();
-  const isauth = useSelector((state) => console.log(state.auth?.isLoggedIn));
-  const lastname = useSelector((state) =>
-    console.log(state.auth?.user?.LastName)
-  );
-  const fistname = useSelector((state) =>
-    console.log(state.auth?.user?.FirstName)
-  );
+  const isauth = useSelector((state) => state.auth?.isLoggedIn);
+  console.log(isauth);
+
+  const userId = useSelector((state) => state.auth?.user?._id);
+
+  const fistname = useSelector((state) => state.auth?.user?.FirstName);
   const [menuOpen, setMenuOpen] = useState(false);
+  const dispatch = useDispatch();
+
   return (
     <>
       <nav className="navbar">
@@ -26,20 +37,55 @@ export default function Navbar() {
             onClick={() => navigate("/")}
           />
           <NavLink to={"/"}>Home</NavLink>
-          <NavLink to="/#aboutus">About us</NavLink>
+          <NavLink
+            onClick={async () => {
+              await navigate("/");
+              scrollTo();
+            }}
+          >
+            About us
+          </NavLink>
           <NavLink to={"/products"}>Products</NavLink>
           <NavLink to={"/contact"}>Contact us</NavLink>
         </div>
         <div className="navbarlast">
-          <Popover />
-
-          <button
-            onClick={() => {
-              navigate("/auth/signin");
-            }}
-          >
-            Sign in/sign up
-          </button>
+          <Popover
+            icon={<CiGlobe size={25} className="globe" />}
+            title1={"francais"}
+            title2={"english"}
+            rightslot={"🇫🇷"}
+            rightslot2={"🇺🇸"}
+          />
+          {!isauth ? (
+            <button
+              onClick={() => {
+                navigate("/auth/signin");
+              }}
+            >
+              Sign in/sign up
+            </button>
+          ) : (
+            <div>
+              <Popover
+                icon={
+                  <div className="userisconnected">
+                    <FaUser size={20} color="white" />
+                    <h1>{fistname}</h1>
+                  </div>
+                }
+                title1={"Profile"}
+                title2={"Sign out"}
+                rightslot={<AiOutlineProfile size={20} />}
+                rightslot2={<CiLogout size={18} />}
+                userClicked={() => {
+                  navigate(`/profile/${userId}`);
+                }}
+                userClicked2={() => {
+                  dispatch(logout());
+                }}
+              ></Popover>
+            </div>
+          )}
         </div>
         <div className="navbarrespo">
           <CiMenuBurger
@@ -51,10 +97,24 @@ export default function Navbar() {
         </div>
         {menuOpen ? (
           <div className="openmenurespo">
-            <NavLink>Home</NavLink>
-            <NavLink>About us</NavLink>
-            <NavLink>Products</NavLink>
-            <NavLink>Contact us</NavLink>
+            <NavLink to={"/"} onClick={() => setMenuOpen(false)}>
+              Home
+            </NavLink>
+            <NavLink
+              onClick={async () => {
+                setMenuOpen(false);
+                await navigate("/");
+                scrollTo();
+              }}
+            >
+              About us
+            </NavLink>
+            <NavLink to={"/products"} onClick={() => setMenuOpen(false)}>
+              Products
+            </NavLink>
+            <NavLink to={"/contact"} onClick={() => setMenuOpen(false)}>
+              Contact us
+            </NavLink>
           </div>
         ) : (
           ""

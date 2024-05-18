@@ -1,0 +1,29 @@
+.side-button {
+  width: 270px;
+  height: min-content;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 2px solid #c1c1c1;
+  overflow: hidden;
+  box-shadow: 0 0 30px 1px #00000026;
+}
+.side-button li {
+  padding: 10px;
+  list-style: none;
+  border-bottom: 1px solid #cccccc;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  height: 46px;
+}
+.side-button a {
+  color: black;
+}
+.side-button li:hover {
+  background: #f5f5f5;
+}
+.side-button li:last-child {
+  border-bottom: none;
+}

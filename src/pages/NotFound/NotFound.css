@@ -1,11 +1,11 @@
 .error-404 {
   text-align: center;
-  margin-top: 100px;
-  height: 100vh;
-}
-.error-404 {
+  padding-top: 20vh;
+  height: 80vh;
   letter-spacing: 1px;
+  box-sizing: border-box;
 }
+
 .error-404 img {
   height: 330px;
   margin-top: 20px;
