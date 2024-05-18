@@ -8,7 +8,9 @@ import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { createProduct } from "../../services/productsServices";
 import SwiperProduct from "../../components/SwiperAddProducts/SwiperProduct";
+import { CiCirclePlus } from "react-icons/ci";
 import { useState } from "react";
+import Placeholder from "../../assets/svg/Placeholder.svg";
 const schema = yup.object().shape({
   Marque: yup.string().required("Marque est requis"),
   Gamme: yup.string().required("Gamme est requis"),
@@ -35,19 +37,26 @@ const AddProduct = () => {
       .catch((err) => console.log(err));
   };
   const [file, setFile] = useState([]);
+  console.log(file, "fileeee");
 
   function ImageUpload() {
     function handleChange(e) {
       setFile([...file, window.URL.createObjectURL(e.target.files[0])]);
-      console.log(file);
     }
 
     return (
       <div className="App">
-        <h2>Add Image:</h2>
-        <label htmlFor="inputfileimage"> here</label>
+        <div className="Appplus">
+          <h2>Add Image</h2>
+          <label htmlFor="inputfileimage"  className="inputfilecircle">
+            <CiCirclePlus size={50} className="pluscircle" />
+          </label>
+        </div>
+
         <input type="file" id="inputfileimage" onChange={handleChange} />
-        <SwiperProduct previews={file? file : }></SwiperProduct>
+        <SwiperProduct
+          previews={file.length != 0 ? file : [Placeholder]}
+        ></SwiperProduct>
       </div>
     );
   }
@@ -57,8 +66,7 @@ const AddProduct = () => {
       <div className="admin-stat">
         <div className="fortable-stat">
           <div className="table-stat" id="table-statadd">
-              <ImageUpload />
-            
+            <ImageUpload />
 
             <div className="titre-stat">
               <div className="ligne">
@@ -66,7 +74,6 @@ const AddProduct = () => {
                   <div className="forlabelsignin">
                     <div className="labelSignUphalf">
                       <div>
-                        <label htmlFor="FirstName">Gamme </label>
                         <input
                           type="text"
                           id="FirstName"
@@ -75,7 +82,6 @@ const AddProduct = () => {
                         />
                       </div>
                       <div>
-                        <label htmlFor="LastName">Marque </label>
                         <input
                           type="text"
                           id="LastName"
@@ -88,7 +94,6 @@ const AddProduct = () => {
                   <div className="forlabelsignin">
                     <div className="labelSignUphalf">
                       <div>
-                        <label htmlFor="FirstName">Categorie </label>
                         <input
                           type="text"
                           id="FirstName"
@@ -97,7 +102,6 @@ const AddProduct = () => {
                         />
                       </div>
                       <div>
-                        <label htmlFor="LastName">title </label>
                         <input
                           type="text"
                           id="LastName"
@@ -110,7 +114,6 @@ const AddProduct = () => {
                   <div className="forlabelsignin">
                     <div className="labelSignUphalf">
                       <div>
-                        <label htmlFor="FirstName">Description </label>
                         <input
                           type="text"
                           id="FirstName"
@@ -119,7 +122,6 @@ const AddProduct = () => {
                         />
                       </div>
                       <div>
-                        <label htmlFor="LastName">Marque </label>
                         <input
                           type="text"
                           id="LastName"
@@ -129,8 +131,10 @@ const AddProduct = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="middivsignin">
-                    <button type="submit">Continuer</button>
+                  <div className="forlabeladd">
+                    <button type="submit" className="btnred">
+                      Continuer
+                    </button>
                   </div>
                   <div className="text-center"></div>
                 </form>

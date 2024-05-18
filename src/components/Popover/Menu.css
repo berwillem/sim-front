@@ -43,6 +43,7 @@ button {
   margin-left: auto;
   padding-left: 20px;
   color: var(--mauve-11);
+  /* font-family: Noto Color Emoji, sans-serif; */
 }
 [data-highlighted] > .RightSlot {
   color: white;
