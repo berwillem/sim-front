@@ -10,22 +10,28 @@ import {
 } from "../../services/usersServices";
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import Swal from "sweetalert2";
+import Pagination from "@mui/material/Pagination";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [totalUserCount, setTotalUserCount] = useState(0);
+
   const fetchUsers = (page) => {
     getAllUsers(page)
       .then((res) => {
-        setUsers(res.data);
+        setUsers(res.data.users);
+        setTotalPages(res.data.totalPages);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
   };
+  console.log(users);
   useEffect(() => {
-    fetchUsers();
-  }, []);
+    fetchUsers(page);
+  }, [page]);
 
   const handleDelet = (userId) => {
     deleteUser(userId)
@@ -50,6 +56,10 @@ const Users = () => {
       setTotalUserCount(res.data.count);
     });
   }, [handleDelet]);
+  // pagination :
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
   return (
     <>
       <div className="admin-stat">
@@ -87,6 +97,11 @@ const Users = () => {
             </ul>
           ))}
         </div>
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
+        />
       </div>
     </>
   );
