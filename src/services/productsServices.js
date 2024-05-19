@@ -1,8 +1,8 @@
 import { BASE_API_URL } from "../config/api";
 import axios from "axios";
 
-export const getAllProducts = () => {
-  return axios.get(`${BASE_API_URL}/products`);
+export const getAllProducts = (page) => {
+  return axios.get(`${BASE_API_URL}/products?page=${page}`);
 };
 export const getProductById = (productId) => {
   return axios.get(`${BASE_API_URL}/products/${productId}`);

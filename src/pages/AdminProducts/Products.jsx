@@ -4,23 +4,39 @@ import { BsBorderStyle } from "react-icons/bs";
 import "./Products.css";
 import { useEffect, useState } from "react";
 import Addbutton from "../../components/AddButton/Addbutton";
-import { getAllProducts } from "../../services/productsServices";
+import {
+  getAllProducts,
+  getTotalProductsCount,
+} from "../../services/productsServices";
+import { Pagination } from "@mui/material";
 
 const Users = () => {
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
   const [products, setProducts] = useState([]);
+  const [totalProductCount, setTotalProductCount] = useState(0);
+  console.log(products, "products");
   const fetchProducts = (page) => {
     getAllProducts(page)
       .then((res) => {
         setProducts(res.data);
+        setTotalPages(res.data.totalPages);
       })
       .catch((error) => {
-        console.error("Error fetching users:", error);
+        console.error("Error fetching products:", error);
       });
   };
   useEffect(() => {
-    fetchProducts();
-  }, []);
-
+    fetchProducts(page);
+  }, [page]);
+  useEffect(() => {
+    getTotalProductsCount().then((res) => {
+      setTotalProductCount(res.data);
+    });
+  }, [totalProductCount]);
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
   return (
     <>
       <div className="admin-stat">
@@ -28,7 +44,7 @@ const Users = () => {
           <AdminMiniCard
             icon={<BsBorderStyle />}
             title={"Products"}
-            // stat={totalUserCount}
+            stat={totalProductCount}
           />
           <div className="foraddbutton">
             <Addbutton
@@ -58,6 +74,11 @@ const Users = () => {
             </ul>
           ))}
         </div>
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
+        />
       </div>
     </>
   );

@@ -12,25 +12,36 @@ import {
   deleteCommande,
   getAllCommandes,
   getTotalCommandesCount,
+  getPendingCommandesCount,
+  getValidCommandesCount,
 } from "../../services/commandeservices";
+import Pagination from "@mui/material/Pagination";
 
 const Orders = () => {
-  const [Commandes, setCommandes] = useState([]);
+  const [Commandes, setCommandes] = useState();
   const [TotalCommandesCount, setTotalCommandesCount] = useState(0);
   const [validCommandesCount, setValidCommandesCount] = useState(0);
   const [pendingCommandesCount, setPendingCommandesCount] = useState(0);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  console.log(Commandes, "commandes");
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
   const fetchCommandes = (page) => {
     getAllCommandes(page)
       .then((res) => {
-        setCommandes(res.data);
+        setCommandes(res.data.commandes);
+        setTotalPages(res.data.totalPages);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
   };
   useEffect(() => {
-    fetchCommandes();
-  }, []);
+    fetchCommandes(page);
+  }, [page]);
 
   const handleDelet = (CommandeId) => {
     deleteCommande(CommandeId)
@@ -55,6 +66,18 @@ const Orders = () => {
       setTotalCommandesCount(res.data.count);
     });
   }, [handleDelet]);
+
+  useEffect(() => {
+    getPendingCommandesCount().then((res) => {
+      setPendingCommandesCount(res.data.count);
+    });
+  }, [handleDelet]);
+
+  useEffect(() => {
+    getValidCommandesCount().then((res) => {
+      setValidCommandesCount(res.data.count);
+    });
+  }, [handleDelet]);
   return (
     <>
       <div className="admin-stat">
@@ -67,17 +90,17 @@ const Orders = () => {
           <AdminMiniCard
             icon={<CiSquareCheck />}
             title={"Commandes validées"}
-            stat={TotalCommandesCount}
+            stat={validCommandesCount}
           />
           <AdminMiniCard
             icon={<IoIosTimer />}
             title={"Commandes en attente"}
-            stat={TotalCommandesCount}
+            stat={pendingCommandesCount}
           />
           <AdminMiniCard
             icon={<TbGitBranchDeleted />}
             title={"Commandes supprimées"}
-            stat={TotalCommandesCount}
+            stat={"0"}
           />
         </div>
         <div className="table-stat">
@@ -93,7 +116,6 @@ const Orders = () => {
           </div>
 
           {Commandes?.map((Commande, index) => {
-            console.log(Commande);
             return (
               <ul key={index} className="stores">
                 <li className="ligne">
@@ -103,7 +125,7 @@ const Orders = () => {
                     {Commande.user.LastName}
                   </span>
                   <span>{Commande.quantity}</span>
-                  
+
                   <DeleteButon
                     handledelet={() => handleDelet(Commande._id)}
                   ></DeleteButon>
@@ -112,6 +134,11 @@ const Orders = () => {
             );
           })}
         </div>
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
+        />
       </div>
     </>
   );

@@ -1,8 +1,8 @@
 import { BASE_API_URL } from "../config/api";
 import axios from "axios";
 
-export const getAllCommandes = () => {
-  return axios.get(`${BASE_API_URL}/commandes`);
+export const getAllCommandes = (page) => {
+  return axios.get(`${BASE_API_URL}/commandes?page=${page}`);
 };
 
 export const getCommandeById = (orderId) => {
@@ -23,4 +23,12 @@ export const deleteCommande = (orderId) => {
 
 export const getTotalCommandesCount = () => {
   return axios.get(`${BASE_API_URL}/commandes/count`);
+};
+
+export const getValidCommandesCount = () => {
+  return axios.get(`${BASE_API_URL}/commandes/validatedcount`);
+};
+
+export const getPendingCommandesCount = () => {
+  return axios.get(`${BASE_API_URL}/commandes/pendingcount`);
 };

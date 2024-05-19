@@ -25,7 +25,6 @@ import Profile from "./pages/Profile/Profile.jsx";
 import AdminOrders from "./pages/AdminOrders/Orders.jsx";
 import MainProducts from "./pages/AdminProducts/MainProducts.jsx";
 import AddProduct from "./pages/AdminProducts/AddProduct.jsx";
-
 const router = createBrowserRouter([
   {
     path: "/",
