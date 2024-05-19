@@ -19,6 +19,7 @@ const Users = () => {
   const fetchProducts = (page) => {
     getAllProducts(page)
       .then((res) => {
+        console.log(res.data);
         setProducts(res.data);
         setTotalPages(res.data.totalPages);
       })
@@ -60,10 +61,11 @@ const Users = () => {
                 <li>title</li>
                 <li>price</li>
                 <li>desc.</li>
-                <li>image</li>
+                <li>famille</li>
+                <li>category</li>
+                <li>type</li>
                 <li>marque</li>
                 <li>gamme</li>
-                <li>category</li>
               </div>
               <li>preview</li>
             </ul>
@@ -87,27 +89,16 @@ const Users = () => {
 export default Users;
 
 const Productitem = ({ product, index }) => {
-  const [showid, setShowid] = useState(false);
-
   return (
     <li key={index} className="ligne">
-      {!showid ? (
-        <button
-          className="showid"
-          key={index}
-          onClick={() => setShowid(!showid)}
-        >
-          Show id
-        </button>
-      ) : (
-        <span onClick={() => setShowid(!showid)}>{product._id}</span>
-      )}
-      <span> {product.title}</span>
-      <span>{product.price}</span>
-      <span>{product.description}</span>
-      <span>{product.marque.title}</span>
-      <span>{product.gamme.title}</span>
-      <span>{product.category.title}</span>
+      <span> {product?.title}</span>
+      <span>{product?.price}</span>
+      <span>{product?.description}</span>
+      <span>{product?.famille?.title}</span>
+      <span>{product?.category?.title}</span>
+      <span>{product?.type?.title}</span>
+      <span>{product?.marque}</span>
+      <span>{product?.gamme}</span>
       <span>
         {product.images.map((image) => (
           <img key={image} src={image} alt="store" className="store-image" />
