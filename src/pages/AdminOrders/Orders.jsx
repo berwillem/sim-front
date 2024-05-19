@@ -99,7 +99,7 @@ const Orders = () => {
                 <li className="ligne">
                   <span>{Commande._id}</span>
                   <span>
-                    {Commande.product.title} {Commande.user.FirstName}
+                    {Commande.product?.title} {Commande.user.FirstName}
                     {Commande.user.LastName}
                   </span>
                   <span>{Commande.quantity}</span>
