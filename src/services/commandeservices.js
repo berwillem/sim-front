@@ -14,7 +14,7 @@ export const createCommande = (data) => {
 };
 
 export const updateCommande = (orderId) => {
-  return axios.get(`${BASE_API_URL}/commandes/${orderId}`);
+  return axios.get(`${BASE_API_URL}/commandes/validate/${orderId}`);
 };
 
 export const deleteCommande = (orderId) => {

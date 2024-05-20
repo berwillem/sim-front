@@ -22,12 +22,12 @@
   font-size: 30px;
   letter-spacing: 1px;
 }
-.parametres-card button {
+.parametres-card a {
   background-color: white;
   padding: 10px;
   border-radius: 10px;
 }
-.parametres-card button a {
+.parametres-card  a {
   text-decoration: none;
   color: var(--primary-color);
   font-weight: 600;
