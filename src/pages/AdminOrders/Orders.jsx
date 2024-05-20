@@ -18,17 +18,16 @@ import {
 import Pagination from "@mui/material/Pagination";
 
 const Orders = () => {
-  const [Commandes, setCommandes] = useState();
+  const [Commandes, setCommandes] = useState([]);
   const [TotalCommandesCount, setTotalCommandesCount] = useState(0);
   const [validCommandesCount, setValidCommandesCount] = useState(0);
   const [pendingCommandesCount, setPendingCommandesCount] = useState(0);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  console.log(Commandes, "commandes");
-
-  const handlePageChange = (event, value) => {
-    setPage(value);
-  };
+  console.log(totalPages, "commandes");
+  useEffect(() => {
+    fetchCommandes(page);
+  }, [page]);
   const fetchCommandes = (page) => {
     getAllCommandes(page)
       .then((res) => {
@@ -39,10 +38,10 @@ const Orders = () => {
         console.error("Error fetching users:", error);
       });
   };
-  useEffect(() => {
-    fetchCommandes(page);
-  }, [page]);
 
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
   const handleDelet = (CommandeId) => {
     deleteCommande(CommandeId)
       .then(() => {

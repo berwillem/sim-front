@@ -8,7 +8,9 @@ import {
   getAllProducts,
   getTotalProductsCount,
 } from "../../services/productsServices";
-import { Pagination } from "@mui/material";
+import { Pagination as MuiPagination } from "@mui/material";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCreative, Navigation } from "swiper/modules";
 
 const Users = () => {
   const [page, setPage] = useState(1);
@@ -16,11 +18,12 @@ const Users = () => {
   const [products, setProducts] = useState([]);
   const [totalProductCount, setTotalProductCount] = useState(0);
   console.log(products, "products");
+
   const fetchProducts = (page) => {
     getAllProducts(page)
       .then((res) => {
         console.log(res.data);
-        setProducts(res.data);
+        setProducts(res.data.products);
         setTotalPages(res.data.totalPages);
       })
       .catch((error) => {
@@ -32,7 +35,8 @@ const Users = () => {
   }, [page]);
   useEffect(() => {
     getTotalProductsCount().then((res) => {
-      setTotalProductCount(res.data);
+      setTotalProductCount(res.data.count);
+      console.log(res.data, "dataaaaaa");
     });
   }, [totalProductCount]);
   const handlePageChange = (event, value) => {
@@ -76,7 +80,7 @@ const Users = () => {
             </ul>
           ))}
         </div>
-        <Pagination
+        <MuiPagination
           count={totalPages}
           page={page}
           onChange={handlePageChange}
@@ -100,9 +104,35 @@ const Productitem = ({ product, index }) => {
       <span>{product?.marque}</span>
       <span>{product?.gamme}</span>
       <span>
-        {product.images.map((image) => (
-          <img key={image} src={image} alt="store" className="store-image" />
-        ))}
+        <Swiper
+          grabCursor={true}
+          effect={"creative"}
+          navigation={true}
+          creativeEffect={{
+            prev: {
+              shadow: true,
+              translate: ["-120%", 0, -500],
+            },
+            next: {
+              shadow: true,
+              translate: ["120%", 0, -500],
+            },
+          }}
+          modules={[EffectCreative, Navigation]}
+          loop={true}
+          className="mySwiper2"
+        >
+          {product.images.map((image, idx) => (
+            <SwiperSlide key={idx}>
+              <img
+                key={image}
+                src={image}
+                alt="store"
+                className="store-image"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </span>
     </li>
   );

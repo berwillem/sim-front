@@ -1,6 +1,8 @@
 .labelSignUphalf {
   display: flex;
+  margin-bottom: 10px;
   gap: 5%;
+  width: 100%;
 }
 .labelSignUphalf div {
   display: flex;

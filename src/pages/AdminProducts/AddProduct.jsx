@@ -1,5 +1,4 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
 import "./Products.css";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
@@ -9,11 +8,24 @@ import * as yup from "yup";
 import { createProduct } from "../../services/productsServices";
 import SwiperProduct from "../../components/SwiperAddProducts/SwiperProduct";
 import { CiCirclePlus } from "react-icons/ci";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Placeholder from "../../assets/svg/Placeholder.svg";
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import {
+  getAllCategories,
+  getAllFamilles,
+  getAllTypes,
+} from "../../services/categoriesServices";
+
 const schema = yup.object().shape({
   Marque: yup.string().required("Marque est requis"),
   Gamme: yup.string().required("Gamme est requis"),
+  Famille: yup.string().required("Famille est requis"),
+  Type: yup.string().required("Type est requis"),
+  image: yup.object().shape({
+    attachment: yup.mixed(),
+  }),
   Categorie: yup.string().required("Categorie est requis"),
   description: yup.string().required("Description est requis"),
   price: yup.number().required("Prix est requis"),
@@ -21,6 +33,43 @@ const schema = yup.object().shape({
 });
 
 const AddProduct = () => {
+  const [categories, setCategories] = useState([]);
+  const [familles, setFamilles] = useState([]);
+  const [types, setTypes] = useState([]);
+  console.log(familles, "familles");
+  const fetchCategories = (page) => {
+    getAllCategories(page)
+      .then((res) => {
+        setCategories(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  };
+  const fetchFamilles = (page) => {
+    getAllFamilles(page)
+      .then((res) => {
+        setFamilles(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching familles:", error);
+      });
+  };
+  const fetchTypes = (page) => {
+    getAllTypes(page)
+      .then((res) => {
+        setTypes(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching type:", error);
+      });
+  };
+  useEffect(() => {
+    fetchCategories();
+    fetchFamilles();
+    fetchTypes();
+  }, []);
+
   const { register, handleSubmit } = useForm({
     resolver: yupResolver(schema),
   });
@@ -37,7 +86,6 @@ const AddProduct = () => {
       .catch((err) => console.log(err));
   };
   const [file, setFile] = useState([]);
-  console.log(file, "fileeee");
 
   function ImageUpload() {
     function handleChange(e) {
@@ -48,7 +96,7 @@ const AddProduct = () => {
       <div className="App">
         <div className="Appplus">
           <h2>Add Image</h2>
-          <label htmlFor="inputfileimage"  className="inputfilecircle">
+          <label htmlFor="inputfileimage" className="inputfilecircle">
             <CiCirclePlus size={50} className="pluscircle" />
           </label>
         </div>
@@ -58,7 +106,6 @@ const AddProduct = () => {
         <SwiperProduct
           previews={file.length != 0 ? file : [Placeholder]}
         ></SwiperProduct>
-
       </div>
     );
   }
@@ -75,62 +122,65 @@ const AddProduct = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="forlabelsignin">
                     <div className="labelSignUphalf">
-                      <div>
+                      <ComboBox
+                        label="Famille"
+                        options={
+                          familles
+                            ? familles.map((famille) => famille.title)
+                            : []
+                        }
+                      ></ComboBox>
+                      <ComboBox
+                        label="Categorie"
+                        options={
+                          categories
+                            ? categories.map((categorie) => categorie.title)
+                            : []
+                        }
+                      ></ComboBox>
+                    </div>
+                    <div className="labelSignUphalf">
+                      <div className="hadtmekhriga">
+                        <ComboBox
+                          label="Type"
+                          options={types ? types.map((type) => type.title) : []}
+                        ></ComboBox>
+                      </div>
+                      <div className="hadtmekhriga labelSignUphalfinput" id="">
                         <input
                           type="text"
-                          id="FirstName"
+                          id=""
+                          placeholder="Titre"
+                          {...register("Titre")}
+                        />
+                      </div>
+                    </div>
+                    <div className="labelSignUphalf">
+                      <div className="labelSignUphalfinput">
+                        <input
+                          type="text"
+                          id=""
                           placeholder="Gamme"
                           {...register("Gamme")}
                         />
                       </div>
-                      <div>
+                      <div className="labelSignUphalfinput">
                         <input
                           type="text"
-                          id="LastName"
-                          placeholder="Marque"
-                          {...register("Marque")}
+                          id=""
+                          placeholder="Prix"
+                          {...register("Prix")}
                         />
                       </div>
                     </div>
-                  </div>
-                  <div className="forlabelsignin">
+
                     <div className="labelSignUphalf">
-                      <div>
-                        <input
-                          type="text"
-                          id="FirstName"
-                          placeholder="Categorie"
-                          {...register("Categorie")}
-                        />
-                      </div>
-                      <div>
-                        <input
-                          type="text"
-                          id="LastName"
-                          placeholder="title"
-                          {...register("title")}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="forlabelsignin">
-                    <div className="labelSignUphalf">
-                      <div>
-                        <input
-                          type="text"
-                          id="FirstName"
-                          placeholder="Description"
-                          {...register("Description")}
-                        />
-                      </div>
-                      <div>
-                        <input
-                          type="text"
-                          id="LastName"
-                          placeholder="Marque"
-                          {...register("Marque")}
-                        />
-                      </div>
+                      <textarea
+                        name=""
+                        className="descriptioncontact"
+                        placeholder="Description"
+                        {...register("Description")}
+                      ></textarea>
                     </div>
                   </div>
                   <div className="forlabeladd">
@@ -150,3 +200,25 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
+
+const ComboBox = ({ label, options }) => {
+  return (
+    <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      options={options}
+      sx={{ width: "100%" }}
+      renderInput={(params) => <TextField {...params} label={label} />}
+      className="muiautocompleter"
+      slotProps={{
+        paper: {
+          sx: {
+            "& .MuiAutocomplete-option": {
+              width: "100%",
+            },
+          },
+        },
+      }}
+    />
+  );
+};

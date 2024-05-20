@@ -8,10 +8,6 @@ import { getTotalUserCount } from "../../services/usersServices";
 import {
   getAllCategories,
   CreateCategory,
-  CreateGamme,
-  CreateMarque,
-  getAllGammes,
-  getAllMarques,
 } from "../../services/categoriesServices";
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import Swal from "sweetalert2";
@@ -21,10 +17,11 @@ import Addbutton from "../../components/AddButton/Addbutton";
 const categories = () => {
   const [categories, setCategories] = useState([]);
   const [totalProductCount, setTotalProductCount] = useState(0);
+
   const fetchCategories = (page) => {
     getAllCategories(page)
       .then((res) => {
-        setCategories(res.data);
+        setCategories(res.data.categories);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
@@ -55,10 +52,8 @@ const categories = () => {
   useEffect(() => {
     getTotalProductsCount().then((res) => {
       setTotalProductCount(res.data.count);
-      console.log(res);
     });
   }, [totalProductCount]);
-  console.log(getTotalProductsCount);
   return (
     <>
       <div className="admin-stat">
