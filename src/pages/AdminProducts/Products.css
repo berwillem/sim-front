@@ -105,7 +105,11 @@
   justify-content: center;
   width: 180px;
 }
-
+.foraddbutton {
+  position: absolute;
+  right: 25px;
+  bottom: 0;
+}
 .fortable-stat {
   display: flex;
   gap: 10px;

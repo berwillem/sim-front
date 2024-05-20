@@ -72,13 +72,13 @@ const Users = () => {
         </div>
         <div className="table-stat">
           <div className="titre-stat">
-            <ul className="ligne">
-              <div className="info-stat">
+            <ul className="ligne" id="ligneuser">
+              <div className="info-stat" id="info-statuser">
                 <li>id</li>
                 <li>name</li>
                 <li>email</li>
               </div>
-              <li>action</li>
+              <li id="actionuser">action</li>
             </ul>
           </div>
 

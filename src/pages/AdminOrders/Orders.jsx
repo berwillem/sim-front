@@ -6,6 +6,8 @@ import { CiSquareCheck } from "react-icons/ci";
 import { IoIosTimer } from "react-icons/io";
 import { TbGitBranchDeleted } from "react-icons/tb";
 import { useEffect, useState } from "react";
+import { RiPassValidFill, RiPassValidLine } from "react-icons/ri";
+
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import Swal from "sweetalert2";
 import {
@@ -14,6 +16,7 @@ import {
   getTotalCommandesCount,
   getPendingCommandesCount,
   getValidCommandesCount,
+  updateCommande,
 } from "../../services/commandeservices";
 import Pagination from "@mui/material/Pagination";
 
@@ -48,6 +51,24 @@ const Orders = () => {
         Swal.fire({
           title: "Good job!",
           text: "user deleted succefuly",
+          icon: "success",
+        });
+        fetchCommandes();
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.message,
+        });
+      });
+  };
+  const updateOrder = (CommandeId) => {
+    updateCommande(CommandeId)
+      .then(() => {
+        Swal.fire({
+          title: "Good job!",
+          text: "commande updated succefuly",
           icon: "success",
         });
         fetchCommandes();
@@ -116,7 +137,10 @@ const Orders = () => {
 
           {Commandes?.map((Commande, index) => {
             return (
-              <ul key={index} className="stores">
+              <ul
+                key={index}
+                className={Commande.isValid ? "stores backgreen" : "stores backred"}
+              >
                 <li className="ligne">
                   <span>{Commande._id}</span>
                   <span>
@@ -124,6 +148,20 @@ const Orders = () => {
                     {Commande.user.LastName}
                   </span>
                   <span>{Commande.quantity}</span>
+
+                  <span>
+                    {Commande.isValid ? (
+                      <RiPassValidLine
+                        size={30}
+                        onClick={() => updateOrder(Commande._id)}
+                      />
+                    ) : (
+                      <RiPassValidFill
+                        size={30}
+                        onClick={() => updateOrder(Commande._id)}
+                      />
+                    )}
+                  </span>
 
                   <DeleteButon
                     handledelet={() => handleDelet(Commande._id)}
