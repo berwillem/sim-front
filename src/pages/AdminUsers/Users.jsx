@@ -28,7 +28,7 @@ const Users = () => {
         console.error("Error fetching users:", error);
       });
   };
-  console.log(users);
+
   useEffect(() => {
     fetchUsers(page);
   }, [page]);

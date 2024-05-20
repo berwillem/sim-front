@@ -13,7 +13,7 @@ const SideBar = () => {
     { icon: <IoHome />, text: "Home", link: "/admin/home" },
     { icon: <FaUser />, text: "Users", link: "users" },
     { icon: <FaTools />, text: "Products", link: "products/all" },
-    { icon: <BiSolidCategoryAlt />, text: "Categories", link: "categories" },
+    { icon: <BiSolidCategoryAlt />, text: "Parmetres", link: "parametres" },
     { icon: <BsBorderStyle />, text: "Orders", link: "orders" },
   ];
   const navigate = useNavigate();

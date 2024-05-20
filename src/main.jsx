@@ -19,12 +19,18 @@ import AdminLayout from "./layouts/AdminLayout.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
 import AdminUsers from "./pages/AdminUsers/Users.jsx";
 import AdminProducts from "./pages/AdminProducts/Products.jsx";
-import AdminCategories from "./pages/AdminCaterogies/Categories.jsx";
+import AdminParametres from "./pages/AdminParametres/Parametres.jsx";
 import Products from "./pages/Products/Products.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
 import AdminOrders from "./pages/AdminOrders/Orders.jsx";
 import MainProducts from "./pages/AdminProducts/MainProducts.jsx";
 import AddProduct from "./pages/AdminProducts/AddProduct.jsx";
+import AdminFamille from "./pages/AdminParametre/AdminFamille.jsx";
+import AdminCategory from "./pages/AdminParametre/AdminCategory.jsx";
+import AdminType from "./pages/AdminParametre/AdminType.jsx";
+import AddFamille from "./pages/AdminAddParametre/AddFamille.jsx";
+import AddCategory from "./pages/AdminAddParametre/AddCategory.jsx";
+import AddType from "./pages/AdminAddParametre/AddType.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -59,8 +65,32 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: "categories",
-        element: <AdminCategories />,
+        path: "parametres",
+        element: <AdminParametres />,
+      },
+      {
+        path: "parametres/famille",
+        element: <AdminFamille />,
+      },
+      {
+        path: "parametres/category",
+        element: <AdminCategory />,
+      },
+      {
+        path: "parametres/type",
+        element: <AdminType />,
+      },
+      {
+        path: "parametres/addfamille",
+        element: <AddFamille />,
+      },
+      {
+        path: "parametres/addcategory",
+        element: <AddCategory />,
+      },
+      {
+        path: "parametres/addtype",
+        element: <AddType />,
       },
       {
         path: "orders",

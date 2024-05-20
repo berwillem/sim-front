@@ -15,12 +15,11 @@ const Users = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [products, setProducts] = useState([]);
   const [totalProductCount, setTotalProductCount] = useState(0);
-  console.log(products, "products");
   const fetchProducts = (page) => {
     getAllProducts(page)
       .then((res) => {
         console.log(res.data);
-        setProducts(res.data);
+        setProducts(res.data.products);
         setTotalPages(res.data.totalPages);
       })
       .catch((error) => {
@@ -32,9 +31,10 @@ const Users = () => {
   }, [page]);
   useEffect(() => {
     getTotalProductsCount().then((res) => {
-      setTotalProductCount(res.data);
+      setTotalProductCount(res.data.count);
     });
   }, [totalProductCount]);
+
   const handlePageChange = (event, value) => {
     setPage(value);
   };
