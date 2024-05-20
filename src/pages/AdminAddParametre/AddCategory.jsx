@@ -10,10 +10,14 @@ const AddCategory = () => {
   const [title, setTitle] = useState("");
   const [familles, setFamilles] = useState([]);
   const [selectedFamille, setSelectedFamille] = useState("");
+  console.log(familles + "familles");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createCategory({ title, famille: selectedFamille })
+    createCategory({
+      title,
+      famille: selectedFamille,
+    })
       .then(() => {
         Swal.fire({
           title: "Good job!",
@@ -36,7 +40,7 @@ const AddCategory = () => {
   useEffect(() => {
     getAllFamilles()
       .then((res) => {
-        setFamilles(res.data);
+        setFamilles(res.data.familles);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -62,11 +66,12 @@ const AddCategory = () => {
             Sélectionner une famille
           </option>
           {familles.map((famille) => (
-            <option key={famille.id} value={famille.id}>
+            <option key={famille._id} value={famille._id}>
               {famille.title}
             </option>
           ))}
         </select>
+
         <button type="submit">Envoyer</button>
       </form>
     </div>

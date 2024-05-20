@@ -11,7 +11,7 @@ import {
   getTotalFamillesCount,
 } from "../../services/parametresServices";
 import Swal from "sweetalert2";
-import Addbutton from "../../components/AddButton/Addbutton";
+import Addbutton from "../../components/AddButton/Addbutton.jsx";
 const AdminFamille = () => {
   const [familles, setFamille] = useState([]);
   const [page, setPage] = useState(1);
