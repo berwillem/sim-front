@@ -16,19 +16,33 @@ export const createType = (data) => {
   return axios.post(`${BASE_API_URL}/parametres/type`, data);
 };
 
-// Service to get all familles
-export const getAllFamilles = () => {
-  return axios.get(`${BASE_API_URL}/parametres/famille`);
+export const getAllFamilles = (pagination = false, page = 1) => {
+  return axios.get(`${BASE_API_URL}/parametres/famille`, {
+    params: {
+      pagination: pagination.toString(),
+      page,
+    },
+  });
 };
 
 // Service to get all categories
-export const getAllCategories = () => {
-  return axios.get(`${BASE_API_URL}/parametres/category`);
+export const getAllCategories = (pagination = false, page = 1) => {
+  return axios.get(`${BASE_API_URL}/parametres/category`, {
+    params: {
+      pagination: pagination.toString(),
+      page,
+    },
+  });
 };
 
 // Service to get all types
-export const getAllTypes = () => {
-  return axios.get(`${BASE_API_URL}/parametres/type`);
+export const getAllTypes = (pagination = false, page = 1) => {
+  return axios.get(`${BASE_API_URL}/parametres/type`, {
+    params: {
+      pagination: pagination.toString(),
+      page,
+    },
+  });
 };
 
 // Service to delete a famille

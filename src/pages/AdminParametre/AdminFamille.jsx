@@ -18,11 +18,11 @@ const AdminFamille = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [totalFamillesCount, setTotalFamillesCount] = useState(0);
 
-  const fetchFamille = () => {
-    getAllFamilles()
+  const fetchFamille = (pagination = "false", page = 1) => {
+    getAllFamilles(pagination, page)
       .then((res) => {
         setFamille(res.data.familles);
-        setTotalPages(res.data.totalPages);
+        setTotalPages(res.data.totalPages || 1);
 
         console.log(res.data, "familles");
       })
@@ -32,7 +32,7 @@ const AdminFamille = () => {
   };
 
   useEffect(() => {
-    fetchFamille(page);
+    fetchFamille("true", page);
   }, [page]);
   useEffect(() => {
     getTotalFamillesCount().then((res) => {

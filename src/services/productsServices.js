@@ -10,6 +10,7 @@ const createProductFormData = (data) => {
   fd.append("category", data.Categorie);
   fd.append("type", data.Type);
   fd.append("gamme", data.Gamme);
+  fd.append("marque", data.Marque);
   data.images.forEach((image) => {
     fd.append("images", image.file);
   });

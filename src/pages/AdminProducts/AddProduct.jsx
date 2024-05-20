@@ -14,7 +14,18 @@ import {
   getAllFamilles,
   getAllTypes,
 } from "../../services/parametresServices";
-
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
+const schema = yup.object().shape({
+  Titre: yup.string().required("Titre is required"),
+  Gamme: yup.string(),
+  Marque: yup.string(),
+  Description: yup.string().required("Description is required"),
+  Prix: yup
+    .number()
+    .required("Prix is required")
+    .positive("Prix must be a positive number"),
+});
 const AddProduct = () => {
   const [categories, setCategories] = useState([]);
   const [familles, setFamilles] = useState([]);
@@ -27,7 +38,8 @@ const AddProduct = () => {
   const fetchCategories = (page) => {
     getAllCategories(page)
       .then((res) => {
-        setCategories(res.data);
+        setCategories(res.data.categories);
+        console.log(res.data);
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
@@ -36,7 +48,7 @@ const AddProduct = () => {
   const fetchFamilles = (page) => {
     getAllFamilles(page)
       .then((res) => {
-        setFamilles(res.data);
+        setFamilles(res.data.familles);
       })
       .catch((error) => {
         console.error("Error fetching familles:", error);
@@ -45,7 +57,7 @@ const AddProduct = () => {
   const fetchTypes = (page) => {
     getAllTypes(page)
       .then((res) => {
-        setTypes(res.data);
+        setTypes(res.data.types);
       })
       .catch((error) => {
         console.error("Error fetching type:", error);
@@ -62,6 +74,7 @@ const AddProduct = () => {
     defaultValues: {
       Titre: "",
       Gamme: "",
+      Marque: "",
       Famille: "",
       Type: "",
       Categorie: "",
@@ -172,6 +185,7 @@ const AddProduct = () => {
                           {...register("Gamme")}
                         />
                       </div>
+
                       <div className="labelSignUphalfinput">
                         <input
                           type="text"
@@ -181,7 +195,14 @@ const AddProduct = () => {
                         />
                       </div>
                     </div>
-
+                    <div className="labelSignUphalfinput">
+                      <input
+                        type="text"
+                        id=""
+                        placeholder="Marque"
+                        {...register("Marque")}
+                      />
+                    </div>
                     <div className="labelSignUphalf">
                       <textarea
                         name=""
