@@ -7,7 +7,6 @@ import { IoIosTimer } from "react-icons/io";
 import { TbGitBranchDeleted } from "react-icons/tb";
 import { useEffect, useState } from "react";
 import { RiPassValidFill, RiPassValidLine } from "react-icons/ri";
-
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import Swal from "sweetalert2";
 import {
@@ -139,7 +138,9 @@ const Orders = () => {
             return (
               <ul
                 key={index}
-                className={Commande.isValid ? "stores backgreen" : "stores backred"}
+                className={
+                  Commande.isValid ? "stores backgreen" : "stores backred"
+                }
               >
                 <li className="ligne">
                   <span>{Commande._id}</span>
@@ -151,15 +152,24 @@ const Orders = () => {
 
                   <span>
                     {Commande.isValid ? (
-                      <RiPassValidLine
-                        size={30}
-                        onClick={() => updateOrder(Commande._id)}
-                      />
+                      <>
+                        {"valide  "}
+                        {""}
+                        <RiPassValidLine
+                          size={30}
+                          onClick={() => updateOrder(Commande._id)}
+                          color="green"
+                        />
+                      </>
                     ) : (
-                      <RiPassValidFill
-                        size={30}
-                        onClick={() => updateOrder(Commande._id)}
-                      />
+                      <>
+                        {" non valide  "}{" "}
+                        <RiPassValidFill
+                          size={30}
+                          onClick={() => updateOrder(Commande._id)}
+                          color="red"
+                        />
+                      </>
                     )}
                   </span>
 

@@ -8,6 +8,7 @@ const AddType = () => {
   const [familles, setFamilles] = useState([]);
   const [selectedFamille, setSelectedFamille] = useState(null);
   const [selectedCategorie, setSelectedCategorie] = useState("");
+  console.log(familles + "familles");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +36,7 @@ const AddType = () => {
   useEffect(() => {
     getAllFamilles()
       .then((res) => {
-        setFamilles(res.data);
+        setFamilles(res.data.familles);
       })
       .catch((err) => console.log(err));
   }, []);
