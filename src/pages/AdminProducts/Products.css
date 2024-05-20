@@ -152,6 +152,7 @@
   justify-content: center;
   font-size: 14px;
   margin-top: 10px;
+  cursor: pointer;
 }
 .forlabeladd {
   display: flex;
