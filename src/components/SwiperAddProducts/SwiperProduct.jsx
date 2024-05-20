@@ -11,7 +11,6 @@ import "./SwiperProduct.css";
 import { EffectCreative, Pagination } from "swiper/modules";
 
 export default function SwiperProduct({ previews }) {
-  console.log(previews);
   return (
     <>
       <Swiper

@@ -138,6 +138,9 @@
   padding: 0 10px;
   font-size: 14px;
 }
+.labelSignUphalf textarea {
+  height: 100px;
+}
 .btnred {
   width: 70%;
   background-color: var(--primary-color);
@@ -157,8 +160,10 @@
   flex-direction: column;
   gap: 20px;
   width: 100%;
+
   box-sizing: content-box;
 }
+
 .pluscircle {
   transition: transform 0.3s ease-in-out;
 }
@@ -166,4 +171,42 @@
   cursor: pointer;
   opacity: 0.7;
   transform: rotate(180deg);
+}
+#combo-box-demo {
+  width: 100%;
+  height: 8px;
+  /* margin-bottom: 10px; */
+}
+#combo-box-demo > input {
+  width: 100%;
+  height: 20px !important;
+}
+
+.labelSignUphalfinput > input {
+  width: 100%;
+  padding: 0 24px 0 11.5px;
+  border: 1px solid rgba(62, 62, 62, 0.452);
+  border-radius: 4px;
+  font-size: 16px;
+  height: 50px;
+}
+.labelSignUphalfinputoui > input {
+  width: 50% !important;
+}
+
+.hadtmekhriga {
+  width: 50%;
+}
+.descriptioncontact {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 14px;
+  border: 1px solid rgba(62, 62, 62, 0.452);
+  resize: none;
+}
+.muiautocompleter > div > div {
+  height: 50px;
+  max-width: 220px;
 }
