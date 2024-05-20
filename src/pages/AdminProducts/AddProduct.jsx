@@ -16,7 +16,7 @@ import {
   getAllCategories,
   getAllFamilles,
   getAllTypes,
-} from "../../services/categoriesServices";
+} from "../../services/parametresServices";
 
 const schema = yup.object().shape({
   Marque: yup.string().required("Marque est requis"),
