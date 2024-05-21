@@ -12,17 +12,6 @@ export default function Component() {
             development of long-throw dual-action polishers and other detailing
             tools.
           </p>
-          <div className="forIframe">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d200.06322235412017!2d3.010298157147679!3d36.65017257577152!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa900102f4291%3A0xd520d24d966c55c3!2s!5e0!3m2!1sfr!2sdz!4v1715539255265!5m2!1sfr!2sdz"
-              width="200"
-              height="200"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
-          </div>
         </div>
         <div className="footeraboutsection">
           <h3 className="">About Maxshine</h3>
@@ -49,7 +38,8 @@ export default function Component() {
             </li>
           </ul>
         </div>
-        <div className="footerblogrollsection">
+
+        {/* <div className="footerblogrollsection">
           <h3 className="">Blogroll</h3>
           <ul className="">
             <li>
@@ -77,7 +67,7 @@ export default function Component() {
               Pro Foam Lance
             </li>
           </ul>
-        </div>
+        </div> */}
         <div className="footercontactsection">
           <h3 className="">Talk with our support</h3>
           <ul className="">
@@ -87,6 +77,18 @@ export default function Component() {
             <li>Monday - Friday, 9AM - 6PM,UTC+8</li>
           </ul>
         </div>
+        <div className="forIframe">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d200.06322235412017!2d3.010298157147679!3d36.65017257577152!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa900102f4291%3A0xd520d24d966c55c3!2s!5e0!3m2!1sfr!2sdz!4v1715539255265!5m2!1sfr!2sdz"
+            width="400"
+            height="400"
+            style={{ border: 0 }}
+            allowFullScreen=""
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          ></iframe>
+        </div>
+        <div className="foriframeunder"></div>
       </div>
       <div className="footercopyright">
         <p>Copyright © 2024 SYM INDUSTRIE. All rights reserved.</p>
