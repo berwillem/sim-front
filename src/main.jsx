@@ -31,6 +31,7 @@ import AdminType from "./pages/AdminParametre/AdminType.jsx";
 import AddFamille from "./pages/AdminAddParametre/AddFamille.jsx";
 import AddCategory from "./pages/AdminAddParametre/AddCategory.jsx";
 import AddType from "./pages/AdminAddParametre/AddType.jsx";
+import AdminNewsletter from "./pages/AdminNewsletter/AdminNewsletter.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -95,6 +96,10 @@ const router = createBrowserRouter([
       {
         path: "orders",
         element: <AdminOrders />,
+      },
+      {
+        path: "newsletter",
+        element: <AdminNewsletter />,
       },
     ],
   },

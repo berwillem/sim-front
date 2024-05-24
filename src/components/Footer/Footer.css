@@ -4,6 +4,7 @@ footer {
   margin-top: 25px;
   height: 400px;
   position: relative;
+  overflow: hidden;
 }
 .footercontainer {
   display: flex;
@@ -81,15 +82,27 @@ footer li {
 }
 @media (max-width: 600px) {
   .footercontainer {
-    /* flex-direction: column; */
     flex-wrap: wrap;
+  }
+  footer {
+    height: auto;
   }
   .footercontainer > * {
     width: 40%;
     margin-left: 15px;
     padding-left: 0;
   }
+
   .forIframe {
-    display: none;
+    display: none !important;
+  }
+  .foriframeunder {
+    display: none !important;
+  }
+  .footercopyright {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    padding: 120px 0 40px 0;
   }
 }

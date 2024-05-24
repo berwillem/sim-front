@@ -1,0 +1,94 @@
+.newslettercontainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  margin-bottom: 50px;
+}
+.newsletter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  width: 35%;
+  box-shadow: 0 0 30px 1px #00000026;
+}
+.newsletter h1 {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.newsletter p {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.newsletter {
+  width: 50%;
+}
+.newslettertext {
+  width: 50%;
+}
+.newslettertop {
+  display: flex;
+  padding: 60px 45px 35px 45px;
+  justify-content: center;
+  gap: 50px;
+}
+.newsletterbottom {
+  display: flex;
+  justify-content: flex-start;
+  border: 1px solid rgba(87, 87, 87, 0.274);
+  border-radius: 10px;
+  box-shadow: 0 0 15px 1px #00000026;
+  width: 80%;
+  margin-bottom: 60px;
+  padding: 3px;
+  position: relative;
+  overflow: hidden;
+}
+.newsletterbottom input {
+  height: 40px;
+  width: 80%;
+  padding-left: 10px;
+  border: none;
+}
+.newsletterbottom button {
+  height: 46px;
+  width: 20%;
+  border-radius: 4px;
+  background-color: red;
+  text-align: center;
+  color: white;
+  font-style: oblique;
+  position: absolute;
+  right: 0;
+  top: 0;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+  .newslettercontainer {
+    flex-direction: column;
+  }
+  .newsletter {
+    width: 100%;
+  }
+  .newslettertext {
+    width: 80%;
+  }
+  .newslettertop {
+    flex-direction: column;
+    align-items: center;
+    padding: 45px 0 15px 0;
+  }
+  .newsletterbottom {
+    width: 80%;
+  }
+  .newsletterbottom input {
+    width: 70%;
+  }
+  .newsletterbottom button {
+    width: 30%;
+  }
+}
