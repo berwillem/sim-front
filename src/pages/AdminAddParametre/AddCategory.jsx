@@ -7,24 +7,35 @@ import {
 import Swal from "sweetalert2";
 
 const AddCategory = () => {
-  const [title, setTitle] = useState("");
+  const [titlefr, setTitlefr] = useState("");
+  const [titleen, setTitleen] = useState("");
   const [familles, setFamilles] = useState([]);
+  const [image, setImage] = useState(null);
   const [selectedFamille, setSelectedFamille] = useState("");
-  console.log(familles + "familles");
+
+  const handleImageChange = (e) => {
+    setImage(e.target.files[0]);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createCategory({
-      title,
-      famille: selectedFamille,
-    })
+    const formData = new FormData();
+    formData.append("titlefr", titlefr);
+    formData.append("titleen", titleen);
+    formData.append("familleId", selectedFamille);
+    if (image) {
+      formData.append("image", image);
+    }
+
+    createCategory(formData)
       .then(() => {
         Swal.fire({
           title: "Good job!",
           text: "Category created successfully",
           icon: "success",
         });
-        setTitle("");
+        setTitlefr("");
+        setTitleen("");
         setSelectedFamille("");
       })
       .catch((err) => {
@@ -52,10 +63,18 @@ const AddCategory = () => {
         <input
           type="text"
           required
-          placeholder="Titre"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Titre en fr"
+          value={titlefr}
+          onChange={(e) => setTitlefr(e.target.value)}
         />
+        <input
+          type="text"
+          required
+          placeholder="Titre en en"
+          value={titleen}
+          onChange={(e) => setTitleen(e.target.value)}
+        />
+
         <select
           value={selectedFamille}
           onChange={(e) => setSelectedFamille(e.target.value)}
@@ -67,11 +86,17 @@ const AddCategory = () => {
           </option>
           {familles.map((famille) => (
             <option key={famille._id} value={famille._id}>
-              {famille.title}
+              {famille.titleen}
             </option>
           ))}
         </select>
-
+        <input
+          type="file"
+          accept="image/*"
+          onChange={handleImageChange}
+          required
+          className="image-input"
+        />
         <button type="submit">Envoyer</button>
       </form>
     </div>

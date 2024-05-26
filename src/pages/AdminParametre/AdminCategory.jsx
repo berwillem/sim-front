@@ -86,7 +86,8 @@ const AdminCategory = () => {
             <ul className="ligne">
               <div className="info-stat">
                 <li>id</li>
-                <li>name</li>
+                <li>name fr</li>
+                <li>name en</li>
               </div>
               <li>action</li>
             </ul>
@@ -96,7 +97,8 @@ const AdminCategory = () => {
             <ul key={category._id} className="stores">
               <li className="ligne">
                 <span>{category._id}</span>
-                <span>{category.title}</span>
+                <span>{category.titlefr}</span>
+                <span>{category.titleen}</span>
                 <DeleteButton handleDelete={() => handleDelete(category._id)} />
               </li>
             </ul>

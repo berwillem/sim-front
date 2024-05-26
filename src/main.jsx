@@ -28,10 +28,10 @@ import AddProduct from "./pages/AdminProducts/AddProduct.jsx";
 import AdminFamille from "./pages/AdminParametre/AdminFamille.jsx";
 import AdminCategory from "./pages/AdminParametre/AdminCategory.jsx";
 import AdminType from "./pages/AdminParametre/AdminType.jsx";
-import AddFamille from "./pages/AdminAddParametre/AddFamille.jsx";
 import AddCategory from "./pages/AdminAddParametre/AddCategory.jsx";
 import AddType from "./pages/AdminAddParametre/AddType.jsx";
 import AdminNewsletter from "./pages/AdminNewsletter/AdminNewsletter.jsx";
+import ProductsList from "./pages/ProductsList/ProductsList.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -82,10 +82,6 @@ const router = createBrowserRouter([
         element: <AdminType />,
       },
       {
-        path: "parametres/addfamille",
-        element: <AddFamille />,
-      },
-      {
         path: "parametres/addcategory",
         element: <AddCategory />,
       },
@@ -131,6 +127,10 @@ const router = createBrowserRouter([
   {
     path: "/products",
     element: <Products />,
+  },
+  {
+    path: "/products/:famillId",
+    element: <ProductsList />,
   },
   {
     path: "/profile/:userId",
