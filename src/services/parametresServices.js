@@ -24,6 +24,9 @@ export const getAllFamilles = (pagination = false, page = 1) => {
     },
   });
 };
+export const getFamilleById = (familleId) => {
+  return axios.get(`${BASE_API_URL}/parametres/famille/${familleId}`);
+};
 
 // Service to get all categories
 export const getAllCategories = (pagination = false, page = 1) => {

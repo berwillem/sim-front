@@ -18,10 +18,7 @@ export default function Navbar() {
   };
   const navigate = useNavigate();
   const isauth = useSelector((state) => state.auth?.isLoggedIn);
-  console.log(isauth);
-
   const userId = useSelector((state) => state.auth?.user?._id);
-
   const fistname = useSelector((state) => state.auth?.user?.FirstName);
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();

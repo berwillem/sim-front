@@ -1,17 +1,14 @@
 import { FaUsers } from "react-icons/fa6";
 import AdminMiniCard from "../../components/AdminMiniCard/AdminMiniCard";
-import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import { Pagination } from "@mui/material";
 import { useEffect, useState } from "react";
 import "./Para.css";
 
 import {
-  deleteFamille,
   getAllFamilles,
   getTotalFamillesCount,
 } from "../../services/parametresServices";
-import Swal from "sweetalert2";
-import Addbutton from "../../components/AddButton/Addbutton.jsx";
+
 const AdminFamille = () => {
   const [familles, setFamille] = useState([]);
   const [page, setPage] = useState(1);
@@ -42,25 +39,7 @@ const AdminFamille = () => {
   const handlePageChange = (event, value) => {
     setPage(value);
   };
-  const handleDelet = () => {
-    console.log("deleted");
-    deleteFamille()
-      .then(() => {
-        Swal.fire({
-          title: "Good job!",
-          text: "user deleted succefuly",
-          icon: "success",
-        });
-        fetchFamille();
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: err.message,
-        });
-      });
-  };
+
   return (
     <>
       <div className="admin-stat">
@@ -70,12 +49,6 @@ const AdminFamille = () => {
             title={"Total Familles"}
             stat={totalFamillesCount}
           />
-          <div className="foraddbutton">
-            <Addbutton
-              title={"Add Famille"}
-              navigate={"/admin/parametres/addfamille"}
-            ></Addbutton>
-          </div>
         </div>
 
         <div className="table-stat">
@@ -83,9 +56,9 @@ const AdminFamille = () => {
             <ul className="ligne">
               <div className="info-stat">
                 <li>id</li>
-                <li>name</li>
+                <li>name fr</li>
+                <li>name en</li>
               </div>
-              <li>action</li>
             </ul>
           </div>
 
@@ -93,8 +66,8 @@ const AdminFamille = () => {
             <ul key={famille._id} className="stores">
               <li className="ligne">
                 <span>{famille._id}</span>
-                <span>{famille.title}</span>
-                <DeleteButon handledelet={() => handleDelet()}></DeleteButon>
+                <span>{famille.titlefr}</span>
+                <span>{famille.titleen}</span>
               </li>
             </ul>
           ))}
