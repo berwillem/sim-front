@@ -39,35 +39,6 @@ export default function Component() {
           </ul>
         </div>
 
-        {/* <div className="footerblogrollsection">
-          <h3 className="">Blogroll</h3>
-          <ul className="">
-            <li>
-              <ChevronRightIcon className="" />
-              Maxshine Polisher
-            </li>
-            <li>
-              <ChevronRightIcon className="" />
-              Maxshine Private Label
-            </li>
-            <li>
-              <ChevronRightIcon className="" />
-              Pro Car Dryer
-            </li>
-            <li>
-              <ChevronRightIcon className="" />
-              MaxClean Brush
-            </li>
-            <li>
-              <ChevronRightIcon className="" />
-              Pro Clay Bar
-            </li>
-            <li>
-              <ChevronRightIcon className="" />
-              Pro Foam Lance
-            </li>
-          </ul>
-        </div> */}
         <div className="footercontactsection">
           <h3 className="">Talk with our support</h3>
           <ul className="">

@@ -7,6 +7,7 @@ import { BiSolidCategoryAlt } from "react-icons/bi";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./SideBar.css";
 import Logo from "../../assets/logo.png";
+import { LuNewspaper } from "react-icons/lu";
 
 const SideBar = () => {
   const infos = [
@@ -15,6 +16,7 @@ const SideBar = () => {
     { icon: <FaTools />, text: "Products", link: "products/all" },
     { icon: <BiSolidCategoryAlt />, text: "Parmetres", link: "parametres" },
     { icon: <BsBorderStyle />, text: "Orders", link: "orders" },
+    { icon: <LuNewspaper />, text: "Newsletter", link: "newsletter" },
   ];
   const navigate = useNavigate();
   return (
