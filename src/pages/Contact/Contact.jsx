@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import "./Contact.css";
 import { CiMail } from "react-icons/ci";
 import Navbar from "../../components/Navbar/Navbar";

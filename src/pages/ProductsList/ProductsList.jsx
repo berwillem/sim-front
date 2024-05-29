@@ -3,6 +3,8 @@ import Navbar from "../../components/Navbar/Navbar";
 import { useEffect, useState } from "react";
 import { getFamilleById } from "../../services/parametresServices";
 import "./ProductsList.css";
+import { PiKeyReturnLight } from "react-icons/pi";
+
 const ProductsList = () => {
   const { famillId } = useParams();
   const [famille, setFamille] = useState([]);
@@ -15,16 +17,73 @@ const ProductsList = () => {
         console.error("Error fetching products:", error);
       });
   }, [famillId]);
+  console.log(famille);
   return (
     <>
       <Navbar></Navbar>
       <div className="famille-header">
         <div className="gobackproduct">
           <Link to="/products">
-            <h2>PRODUCTS</h2>
+            <PiKeyReturnLight size={30} />
+            PRODUCTS
           </Link>
         </div>
-        <h1>Fasteners</h1>
+        <div className="familycont">
+          <h1>{famille.titlefr}</h1>
+          <h2
+            style={{
+              color: "#5D6164",
+              fontSize: "16px",
+              width: "40%",
+
+              fontWeight: "100",
+            }}
+          >
+            {famille?.categories?.map((category) => {
+              return (
+                <>
+                  {category.titlefr} /{category.titlefr} /{category.titlefr} /
+                  {category.titlefr} /{category.titlefr} /{category.titlefr} /
+                  {category.titlefr} /{category.titlefr}
+                </>
+              );
+            })}
+          </h2>
+        </div>
+      </div>
+
+      <div className="gridfamille">
+        {famille?.categories?.map((category) => {
+          return (
+            <>
+              <div key={category._id} className="productitempreview">
+                <img src={category.image} alt="item preview" />
+                <h1>{category.titlefr}</h1>
+                <Link to={category._id}>Read more </Link>
+              </div>
+              <div key={category._id} className="productitempreview">
+                <img src={category.image} alt="item preview" />
+                <h1>{category.titlefr}</h1>
+                <Link to={category._id}>Read more </Link>
+              </div>
+              <div key={category._id} className="productitempreview">
+                <img src={category.image} alt="item preview" />
+                <h1>{category.titlefr}</h1>
+                <Link to={category._id}>Read more </Link>
+              </div>
+              <div key={category._id} className="productitempreview">
+                <img src={category.image} alt="item preview" />
+                <h1>{category.titlefr}</h1>
+                <Link to={category._id}>Read more </Link>
+              </div>
+              <div key={category._id} className="productitempreview">
+                <img src={category.image} alt="item preview" />
+                <h1>{category.titlefr}</h1>
+                <Link to={category._id}>Read more </Link>
+              </div>
+            </>
+          );
+        })}
       </div>
     </>
   );
