@@ -215,3 +215,7 @@
   height: 50px;
   max-width: 220px;
 }
+#labelSignUphalfinputmarque > input {
+  width: 95%;
+  margin-bottom: 10px;
+}

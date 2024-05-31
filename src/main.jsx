@@ -32,6 +32,7 @@ import AddCategory from "./pages/AdminAddParametre/AddCategory.jsx";
 import AddType from "./pages/AdminAddParametre/AddType.jsx";
 import AdminNewsletter from "./pages/AdminNewsletter/AdminNewsletter.jsx";
 import ProductsList from "./pages/ProductsList/ProductsList.jsx";
+import CategoriesList from "./pages/CategoriesList/CategoriesList.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -132,6 +133,7 @@ const router = createBrowserRouter([
     path: "/products/:famillId",
     element: <ProductsList />,
   },
+  { path: "/products/categorie/:categoryId", element: <CategoriesList /> },
   {
     path: "/profile/:userId",
     element: <Profile />,

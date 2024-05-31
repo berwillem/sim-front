@@ -11,10 +11,11 @@
   gap: 45px;
   border: 3px solid black;
   border-radius: 10px;
-  padding: 30px;
+  padding: 65px 30px;
   width: 60vw;
   height: 60vh;
   flex-direction: column;
+  box-sizing: content-box;
 }
 .add-parametre form input {
   padding: 10px;
@@ -53,4 +54,7 @@
   border-color: var(--primary-color);
   box-shadow: 0 0 5px var(--primary-color);
   outline: none;
+}
+.imgpreviewcat {
+  max-width: 100px;
 }

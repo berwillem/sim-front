@@ -35,18 +35,11 @@ const ProductsList = () => {
               color: "#5D6164",
               fontSize: "16px",
               width: "40%",
-
               fontWeight: "100",
             }}
           >
             {famille?.categories?.map((category) => {
-              return (
-                <>
-                  {category.titlefr} /{category.titlefr} /{category.titlefr} /
-                  {category.titlefr} /{category.titlefr} /{category.titlefr} /
-                  {category.titlefr} /{category.titlefr}
-                </>
-              );
+              return `${category.titlefr} / `;
             })}
           </h2>
         </div>
@@ -58,28 +51,12 @@ const ProductsList = () => {
             <>
               <div key={category._id} className="productitempreview">
                 <img src={category.image} alt="item preview" />
-                <h1>{category.titlefr}</h1>
-                <Link to={category._id}>Read more </Link>
-              </div>
-              <div key={category._id} className="productitempreview">
-                <img src={category.image} alt="item preview" />
-                <h1>{category.titlefr}</h1>
-                <Link to={category._id}>Read more </Link>
-              </div>
-              <div key={category._id} className="productitempreview">
-                <img src={category.image} alt="item preview" />
-                <h1>{category.titlefr}</h1>
-                <Link to={category._id}>Read more </Link>
-              </div>
-              <div key={category._id} className="productitempreview">
-                <img src={category.image} alt="item preview" />
-                <h1>{category.titlefr}</h1>
-                <Link to={category._id}>Read more </Link>
-              </div>
-              <div key={category._id} className="productitempreview">
-                <img src={category.image} alt="item preview" />
-                <h1>{category.titlefr}</h1>
-                <Link to={category._id}>Read more </Link>
+                <div >
+                  <h1>{category.titlefr}</h1>
+                  <Link to={`/products/categorie/${category._id}`}>
+                    Read more{" "}
+                  </Link>
+                </div>
               </div>
             </>
           );
