@@ -112,6 +112,13 @@ export default function Navbar() {
             <NavLink to={"/contact"} onClick={() => setMenuOpen(false)}>
               Contact us
             </NavLink>
+            <a
+              href="https://maps.app.goo.gl/qMZ3dPB5rzpWC9Kk6"
+              target="_blank"
+              onClick={() => setMenuOpen(false)}
+            >
+              Localisation
+            </a>
           </div>
         ) : (
           ""

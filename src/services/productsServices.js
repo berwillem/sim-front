@@ -35,3 +35,8 @@ export const deleteProduct = (productId) => {
 export const getTotalProductsCount = () => {
   return axios.get(`${BASE_API_URL}/products/count`);
 };
+
+// Service to get products by category
+export const getProductsByCategory = (categoryId) => {
+  return axios.get(`${BASE_API_URL}/products/category/${categoryId}`);
+};

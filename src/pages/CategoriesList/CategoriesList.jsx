@@ -1,35 +1,40 @@
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../../components/Navbar/Navbar";
 import { useEffect, useState } from "react";
-import { getFamilleById } from "../../services/parametresServices";
 import "./CategoriesList.css";
 import { PiKeyReturnLight } from "react-icons/pi";
+import { getProductsByCategory } from "../../services/productsServices";
 
 const CategoriesList = () => {
   const { CategoryId } = useParams();
-  const [Categorie, setCategory] = useState([]);
+  const [products, setProducts] = useState([]);
+
   useEffect(() => {
-    getFamilleById(CategoryId)
+    getProductsByCategory(CategoryId)
       .then((res) => {
-        setCategory(res.data);
+        setProducts(res.data.products);
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
       });
   }, [CategoryId]);
-  console.log(Categorie);
+
   return (
     <>
       <Navbar></Navbar>
-      <div className="famille-header">
-        <div className="gobackproduct">
+      <div className="famille-header-final">
+        <div className="gobackproduct-final">
           <Link to="/products">
             <PiKeyReturnLight size={30} />
-            BROOOOOOOOOODUCT NIGGA im teesting
+            Products
           </Link>
         </div>
-        <div className="familycont">
-          <h1>{Categorie.titlefr}</h1>
+        <div className="familycont-final">
+          <h1>
+            {products.length < 1
+              ? "aucun produit disponible"
+              : "Produits disponibles"}
+          </h1>
           <h2
             style={{
               color: "#5D6164",
@@ -39,21 +44,22 @@ const CategoriesList = () => {
               fontWeight: "100",
             }}
           >
-            {Categorie?.categories?.map((category) => {
-              return <>{`${category.titlefr} `}</>;
+            {products?.map((category) => {
+              return <>{`${category.title} / `}</>;
             })}
           </h2>
         </div>
       </div>
 
-      <div className="gridfamille">
-        {Categorie?.categories?.map((category) => {
+      <div className="gridfamille-final">
+        {products?.map((item) => {
           return (
             <>
-              <div key={category._id} className="productitempreview">
-                <img src={category.image} alt="item preview" />
-                <h1>{category.titlefr}</h1>
-                <Link to={`/products/${category._id}`}>Read more </Link>
+              <div key={item._id} className="productitempreview-final">
+                <img src={item.images[0]} alt="item preview-final" />
+                <h1>{item.title}</h1>
+                <h2>{item.price} DA</h2>
+                <Link to={`/products/achat/${item._id}`}>Achat </Link>
               </div>
             </>
           );

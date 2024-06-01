@@ -20,17 +20,14 @@ const AboutUs = () => {
           <h2>About us</h2>
           <h1>A propos de SYM INDUSTRIE</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum,
-            autem! Doloremque modi quos ea architecto enim maxime laboriosam
-            quasi! Saepe, nesciunt nostrum delectus eveniet cum minus, minima
-            sed dolores consequuntur et labore assumenda nobis, voluptate
-            necessitatibus suscipit non vero sapiente error earum mollitia.
-            Placeat quasi vel doloremque ut cum quaerat, eum similique odio
-            temporibus natus reprehenderit itaque quae dolor debitis libero
-            neque ducimus consectetur? Aliquid ut fugiat laudantium, molestias
-            eaque quasi illo harum magni amet autem nostrum deserunt
-            repellendus, libero quidem sunt quae nisi laborum quam esse ab
-            accusamus. Impedit ipsum rem quod, facilis sit modi non magni ab ea.
+            SYM est une entreprise dynamique basée à Alger, en Algérie Nous
+            sommes fiers de proposer à nos clients une gamme exceptionnelle de
+            matériel et {`d'outillage`} allemand, spécialisés dans les travaux
+            de chantier et la tolerie de voiture. Notre entreprise est ancrée
+            dans un engagement inébranlable envers la qualité et la quantité.
+            Que ce soit pour nos clients B2B ou B2C, nous nous efforçons de
+            fournir des produits de la plus haute qualité, répondant aux normes
+            rigoureuses de {`l'industrie`} allemande.
           </p>
         </div>
       </div>
@@ -59,7 +56,7 @@ const AboutUs = () => {
         </div>
 
         <div className="aboutussecondbox">
-          <h1>IN PURSUIT OF AUTOMOTIVE PERFECTION SINCE 2006</h1>
+          <h1>IN PURSUIT OF AUTOMOTIVE PERFECTION SINCE 2016</h1>
           <h2>POLISHERS AND OTHER AUTO DETAILING PRODUCTS</h2>
           <div className="aboutussecondboximg">
             <img

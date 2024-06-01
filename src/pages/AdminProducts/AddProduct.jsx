@@ -195,7 +195,7 @@ const AddProduct = () => {
                         />
                       </div>
                     </div>
-                    <div className="labelSignUphalfinput">
+                    <div className="labelSignUphalfinput labelSignUphalfinputspecial ">
                       <input
                         type="text"
                         id=""

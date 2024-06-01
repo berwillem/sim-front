@@ -61,13 +61,13 @@ const Users = () => {
         <div className="table-stat">
           <div className="titre-stat">
             <ul className="ligne">
-              <div className="info-stat">
+              <div className="info-stat temporary">
                 <li>title</li>
                 <li>price</li>
                 <li>desc.</li>
-                <li>famille</li>
+                {/* <li>famille</li>
                 <li>category</li>
-                <li>type</li>
+                <li>type</li> */}
                 <li>marque</li>
                 <li>gamme</li>
               </div>
@@ -98,9 +98,9 @@ const Productitem = ({ product, index }) => {
       <span> {product?.title}</span>
       <span>{product?.price}</span>
       <span>{product?.description}</span>
-      <span>{product?.famille?.title}</span>
+      {/* <span>{product?.famille?.title}</span>
       <span>{product?.category?.title}</span>
-      <span>{product?.type?.title}</span>
+      <span>{product?.type?.title}</span> */}
       <span>{product?.marque}</span>
       <span>{product?.gamme}</span>
       <span>

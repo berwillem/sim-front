@@ -77,3 +77,4 @@ export const getTotalCategoriesCount = () => {
 export const getTotalTypesCount = () => {
   return axios.get(`${BASE_API_URL}/parametres/type/count`);
 };
+

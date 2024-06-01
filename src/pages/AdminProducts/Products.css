@@ -219,3 +219,10 @@
   width: 95%;
   margin-bottom: 10px;
 }
+.labelSignUphalfinputspecial > input {
+  padding-right: 12px;
+  margin-bottom: 10px;
+}
+.temporary {
+  gap: 40px;
+}
