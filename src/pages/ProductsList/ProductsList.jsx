@@ -1,6 +1,5 @@
-import { Link, useParams } from "react-router-dom";
-import Navbar from "../../components/Navbar/Navbar";
 import { useEffect, useState } from "react";
+import Navbar from "../../components/Navbar/Navbar";
 import "./ProductsList.css";
 import { PiKeyReturnLight } from "react-icons/pi";
 import { getProductsByCategory } from "../../services/productsServices";
@@ -65,6 +64,7 @@ const ProductsList = () => {
           );
         })}
       </div>
+
     </>
   );
 };

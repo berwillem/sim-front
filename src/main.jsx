@@ -1,6 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { Provider } from "react-redux";
+import { persistor, store } from "./redux/store";
+import { PersistGate } from "redux-persist/integration/react";
+import { ToastContainer } from "react-toastify";
+import i18n from "./i18n/i18n.js";
+import { I18nextProvider } from "react-i18next";
 import App from "./pages/Home/Home.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
 import "./index.css";
@@ -8,10 +14,6 @@ import SignIn from "./pages/Auth/SignIn/SignIn.jsx";
 import SignUp from "./pages/Auth/SignUp/SignUp.jsx";
 import MainAuth from "./pages/Auth/MainAuth/MainAuth.jsx";
 import Contact from "./pages/Contact/Contact.jsx";
-import { Provider } from "react-redux";
-import { persistor, store } from "./redux/store";
-import { PersistGate } from "redux-persist/integration/react";
-import { ToastContainer } from "react-toastify";
 import PasswordFortgot from "./pages/PasswordForgot/PasswordFortgot.jsx";
 import PasswordReset from "./pages/PasswordReset/PasswordReset.jsx";
 import NotFound from "./pages/NotFound/NotFound.jsx";
@@ -31,8 +33,9 @@ import AdminType from "./pages/AdminParametre/AdminType.jsx";
 import AddCategory from "./pages/AdminAddParametre/AddCategory.jsx";
 import AddType from "./pages/AdminAddParametre/AddType.jsx";
 import AdminNewsletter from "./pages/AdminNewsletter/AdminNewsletter.jsx";
-import ProductsList from "./pages/ProductsList/ProductsList.jsx";
 import CategoriesList from "./pages/CategoriesList/CategoriesList.jsx";
+import ProductsList from "./pages/ProductsList/ProductsList.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -132,10 +135,14 @@ const router = createBrowserRouter([
     element: <Products />,
   },
   {
+    path: "/productsList",
+    element: <ProductsList />,
+  },
+  { path: "/products/categorie/:CategoryId", element: <ProductsList /> },
+  {
     path: "/products/:famillId",
     element: <CategoriesList />,
   },
-  { path: "/products/categorie/:CategoryId", element: <ProductsList /> },
   {
     path: "/profile/:userId",
     element: <Profile />,
@@ -147,7 +154,9 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <Provider store={store}>
       <PersistGate persistor={persistor} loading={null}>
         <ToastContainer></ToastContainer>
-        <RouterProvider router={router} />
+        <I18nextProvider i18n={i18n}>
+          <RouterProvider router={router} />
+        </I18nextProvider>
       </PersistGate>
     </Provider>
   </React.StrictMode>

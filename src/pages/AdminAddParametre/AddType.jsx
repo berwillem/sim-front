@@ -4,7 +4,8 @@ import { createType, getAllFamilles } from "../../services/parametresServices";
 import Swal from "sweetalert2";
 
 const AddType = () => {
-  const [title, setTitle] = useState("");
+  const [titlefr, setTitlefr] = useState("");
+  const [titleen, setTitleen] = useState("");
   const [familles, setFamilles] = useState([]);
   const [selectedFamille, setSelectedFamille] = useState(null);
   const [selectedCategorie, setSelectedCategorie] = useState("");
@@ -12,14 +13,15 @@ const AddType = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createType({ title, category: selectedCategorie })
+    createType({ titlefr, titleen, category: selectedCategorie })
       .then(() => {
         Swal.fire({
           title: "Good job!",
           text: "Type created successfully",
           icon: "success",
         });
-        setTitle("");
+        setTitlefr("");
+        setTitleen("");
         setSelectedFamille(null);
         setSelectedCategorie("");
       })
@@ -48,9 +50,16 @@ const AddType = () => {
         <input
           type="text"
           required
-          placeholder="Titre"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
+          placeholder="Titre en fr"
+          value={titlefr}
+          onChange={(e) => setTitlefr(e.target.value)}
+        />
+        <input
+          type="text"
+          required
+          placeholder="Titre en en"
+          value={titleen}
+          onChange={(e) => setTitleen(e.target.value)}
         />
         <select
           value={selectedFamille ? selectedFamille.id : ""}

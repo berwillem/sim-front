@@ -13,6 +13,7 @@
 .famille-header h1 {
   color: var(--primary-color);
   margin-top: 40px;
+  gap: 50px;
 }
 .gobackproduct a {
   margin-top: 30px;
@@ -92,3 +93,4 @@
     padding-left: 11%;
   }
 }
+

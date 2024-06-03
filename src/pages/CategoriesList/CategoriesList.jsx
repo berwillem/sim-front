@@ -17,7 +17,7 @@ const CategoriesList = () => {
         console.error("Error fetching products:", error);
       });
   }, [famillId]);
-  console.log(famille);
+
   return (
     <>
       <Navbar></Navbar>
