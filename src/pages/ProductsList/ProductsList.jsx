@@ -3,6 +3,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import "./ProductsList.css";
 import { PiKeyReturnLight } from "react-icons/pi";
 import { getProductsByCategory } from "../../services/productsServices";
+import { Link, useParams } from "react-router-dom";
 
 const ProductsList = () => {
   const { CategoryId } = useParams();
@@ -64,7 +65,6 @@ const ProductsList = () => {
           );
         })}
       </div>
-
     </>
   );
 };
