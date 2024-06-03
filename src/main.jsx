@@ -133,9 +133,9 @@ const router = createBrowserRouter([
   },
   {
     path: "/products/:famillId",
-    element: <ProductsList />,
+    element: <CategoriesList />,
   },
-  { path: "/products/categorie/:CategoryId", element: <CategoriesList /> },
+  { path: "/products/categorie/:CategoryId", element: <ProductsList /> },
   {
     path: "/profile/:userId",
     element: <Profile />,
