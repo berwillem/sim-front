@@ -1,18 +1,11 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-
 import "./Menu.css";
-import { CiLogout } from "react-icons/ci";
-// import { CiGlobe } from "react-icons/ci";
-
-const DropdownMenuDemo = ({
-  title1,
-  title2,
-  icon,
-  rightslot,
-  rightslot2,
-  userClicked,
-  userClicked2,
-}) => {
+import { useTranslation } from "react-i18next";
+const DropdownMenuDemo = ({ title1, title2, icon, rightslot, rightslot2 }) => {
+  const { t, i18n } = useTranslation();
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -20,14 +13,11 @@ const DropdownMenuDemo = ({
           {icon}
         </button>
       </DropdownMenu.Trigger>
-
       <DropdownMenu.Portal>
         <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
           <DropdownMenu.Item
             className="DropdownMenuItem"
-            onClick={() => {
-              userClicked();
-            }}
+            onClick={() => changeLanguage("fr")}
           >
             {title1}
             <div className="RightSlot">{rightslot}</div>
@@ -35,7 +25,7 @@ const DropdownMenuDemo = ({
           <DropdownMenu.Item
             className="DropdownMenuItem"
             onClick={() => {
-              userClicked2();
+              changeLanguage("en");
             }}
           >
             {title2}
