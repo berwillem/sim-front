@@ -29,9 +29,9 @@ export default function AdminNewsletter() {
         const pageResponse = await getAllNewsletters(i);
         allFetchedNewsletters.push(...pageResponse.data.newsletters);
       }
-      setAllNewsletters(allFetchedNewsletters); // Store all fetched newsletters
+      setAllNewsletters(allFetchedNewsletters);
       setTotalPages(total);
-      setPage(1); // Reset to first page after fetching all newsletters
+      setPage(1);
     } catch (error) {
       console.error("Error fetching newsletters:", error);
     }

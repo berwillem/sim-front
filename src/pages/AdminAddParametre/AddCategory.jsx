@@ -5,6 +5,7 @@ import {
   getAllFamilles,
 } from "../../services/parametresServices";
 import Swal from "sweetalert2";
+import { CiCirclePlus } from "react-icons/ci";
 
 const AddCategory = () => {
   const [titlefr, setTitlefr] = useState("");
@@ -12,9 +13,11 @@ const AddCategory = () => {
   const [familles, setFamilles] = useState([]);
   const [image, setImage] = useState(null);
   const [selectedFamille, setSelectedFamille] = useState("");
+  const [file, setFile] = useState("");
 
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
+    setFile(URL.createObjectURL(e.target.files[0]));
   };
 
   const handleSubmit = (e) => {
@@ -37,6 +40,7 @@ const AddCategory = () => {
         setTitlefr("");
         setTitleen("");
         setSelectedFamille("");
+        setFile("");
       })
       .catch((err) => {
         console.log(err);
@@ -90,13 +94,23 @@ const AddCategory = () => {
             </option>
           ))}
         </select>
+        <div className="Appplus31">
+          <h2>Add Image</h2>
+          <label htmlFor="inputfileimage" className="inputfilecircle">
+            <CiCirclePlus size={50} className="pluscircle" />
+          </label>
+          <img src={file} alt="" className="imgpreviewcat" />
+        </div>
+
         <input
           type="file"
           accept="image/*"
+          id="inputfileimage"
           onChange={handleImageChange}
           required
           className="image-input"
         />
+
         <button type="submit">Envoyer</button>
       </form>
     </div>

@@ -67,6 +67,14 @@
   text-transform: uppercase;
   font-weight: bolder;
 }
+.user-card-container {
+  width: 100vw;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
 @media screen and (max-width: 1400px) {
   .user-info {
     column-gap: 200px;

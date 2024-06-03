@@ -99,7 +99,7 @@ const AdminCategory = () => {
                 <span>{category._id}</span>
                 <span>{category.titlefr}</span>
                 <span>{category.titleen}</span>
-                <DeleteButton handleDelete={() => handleDelete(category._id)} />
+                <DeleteButton handledelet={() => handleDelete(category._id)} />
               </li>
             </ul>
           ))}

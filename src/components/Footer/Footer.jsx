@@ -8,9 +8,10 @@ export default function Component() {
           <img src={image} alt="maxshine logo" className="iconfooter" />
 
           <p>
-            Maxshine is a professional company that specializes in the
-            development of long-throw dual-action polishers and other detailing
-            tools.
+            SYM est une entreprise dynamique basée à Alger, en Algérie Nous
+            sommes fiers de proposer à nos clients une gamme exceptionnelle de
+            matériel et {`d'outillage`} allemand, spécialisés dans les travaux
+            de chantier et la tolerie de voiture.
           </p>
         </div>
         <div className="footeraboutsection">
@@ -45,12 +46,11 @@ export default function Component() {
             <li>+86 553 499 6266</li>
             <li>+86 553 393 2199</li>
             <li>sales@maxshine.cn</li>
-            <li>Monday - Friday, 9AM - 6PM,UTC+8</li>
           </ul>
         </div>
         <div className="forIframe">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d200.06322235412017!2d3.010298157147679!3d36.65017257577152!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa900102f4291%3A0xd520d24d966c55c3!2s!5e0!3m2!1sfr!2sdz!4v1715539255265!5m2!1sfr!2sdz"
+            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3201.0070507539035!2d3.0103239999999998!3d36.650281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzbCsDM5JzAxLjAiTiAzwrAwMCczNy4yIkU!5e0!3m2!1sfr!2sdz!4v1717162530808!5m2!1sfr!2sdz"
             width="400"
             height="400"
             style={{ border: 0 }}

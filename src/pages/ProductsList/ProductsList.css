@@ -1,0 +1,98 @@
+.famille-header-final {
+  background-color: rgb(230, 230, 230);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+.famille-header-final h1 {
+  color: var(--primary-color);
+  margin-top: 20px;
+}
+.gobackproduct-final a {
+  margin-top: 30px;
+  margin-right: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: rgb(93, 97, 100);
+  margin-left: 40px;
+}
+
+.gobackproduct-final h2 {
+  color: rgb(93, 97, 100);
+  font-size: 16px;
+  font-weight: 200;
+}
+.gobackproduct-final a:hover {
+  color: var(--primary-color);
+  transition: 350ms;
+}
+
+.gridfamille-final {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 0px;
+  grid-row-gap: 60px;
+  justify-items: center;
+  margin-top: 60px;
+  margin-bottom: 100px;
+  padding: 0 60px 0 60px;
+}
+.familycont-final {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  padding-left: 5%;
+}
+.productitempreview-final {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0px 150px 133px -177px rgba(0, 0, 0, 0.75) inset;
+  -webkit-box-shadow: 0px 150px 133px -177px rgba(0, 0, 0, 0.75) inset;
+  -moz-box-shadow: 0px 150px 133px -177px rgba(0, 0, 0, 0.75) inset;
+  border: 1px solid rgba(110, 110, 110, 0.464);
+  padding-bottom: 10px;
+  border-radius: 2px;
+}
+.productitempreview-final div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+}
+.productitempreview-final a {
+  background-color: var(--primary-color);
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  border-radius: 4px;
+}
+.productitempreview-final img {
+  padding: 25px;
+  width: 250px;
+}
+@media screen and (max-width: 600px) {
+  .gridfamille-final {
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .gobackproduct-final a {
+    margin-right: 0;
+  }
+}
+

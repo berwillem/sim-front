@@ -6,7 +6,7 @@ import { IoHomeSharp } from "react-icons/io5";
 export default function Profile() {
   const labels = [{ name: "home", link: "/", icon: <IoHomeSharp /> }];
   return (
-    <div>
+    <div className="userprofile">
       <SideCard Labels={labels}></SideCard>
       <UserCard></UserCard>
     </div>

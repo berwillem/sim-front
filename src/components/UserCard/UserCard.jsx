@@ -11,7 +11,7 @@ const UserCard = () => {
         <div className="user-card">
           <h2>
             {user && user.FirstName && user.LastName
-              ? user.LastName + user.FirstName
+              ? user.LastName + " " + user.FirstName
               : ""}
           </h2>
           <div className="user-info">
@@ -22,9 +22,6 @@ const UserCard = () => {
 
             <div className="info-user">
               <span>Number:</span> <span>0763636325</span>
-            </div>
-            <div className="info-user">
-              <span>Birthdate:</span> <span>2001-08-10</span>
             </div>
           </div>
         </div>

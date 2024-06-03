@@ -33,9 +33,9 @@ import AdminType from "./pages/AdminParametre/AdminType.jsx";
 import AddCategory from "./pages/AdminAddParametre/AddCategory.jsx";
 import AddType from "./pages/AdminAddParametre/AddType.jsx";
 import AdminNewsletter from "./pages/AdminNewsletter/AdminNewsletter.jsx";
-
 import CategoriesList from "./pages/CategoriesList/CategoriesList.jsx";
 import ProductsList from "./pages/ProductsList/ProductsList.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -47,6 +47,7 @@ const router = createBrowserRouter([
     path: "contact",
     element: <Contact />,
   },
+
   {
     path: "/admin",
     element: <AdminLayout />,
@@ -137,6 +138,7 @@ const router = createBrowserRouter([
     path: "/productsList",
     element: <ProductsList />,
   },
+  { path: "/products/categorie/:CategoryId", element: <ProductsList /> },
   {
     path: "/products/:famillId",
     element: <CategoriesList />,
