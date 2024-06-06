@@ -8,8 +8,11 @@ import Popover from "../Popover/Menu";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineProfile } from "react-icons/ai";
 import { logout } from "../../redux/slices/authSlice";
+import { changeLanguage } from "i18next";
+import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
+  const { t } = useTranslation();
   const scrollTo = () => {
     window.scrollTo({
       top: 500,
@@ -33,17 +36,17 @@ export default function Navbar() {
             className="main-logo"
             onClick={() => navigate("/")}
           />
-          <NavLink to={"/"}>Home</NavLink>
+          <NavLink to={"/"}>{t("homeNav")}</NavLink>
           <NavLink
             onClick={async () => {
               await navigate("/");
               scrollTo();
             }}
           >
-            About us
+            {t("about-usNav")}
           </NavLink>
-          <NavLink to={"/products"}>Products</NavLink>
-          <NavLink to={"/contact"}>Contact us</NavLink>
+          <NavLink to={"/products"}>{t("productsNav")}</NavLink>
+          <NavLink to={"/contact"}>{t("contact-usNav")}</NavLink>
         </div>
         <div className="navbarlast">
           <Popover
@@ -52,6 +55,8 @@ export default function Navbar() {
             title2={"english"}
             rightslot={"🇫🇷"}
             rightslot2={"🇺🇸"}
+            userClicked={() => changeLanguage("fr")}
+            userClicked2={() => changeLanguage("en")}
           />
           {!isauth ? (
             <button
@@ -71,7 +76,7 @@ export default function Navbar() {
                   </div>
                 }
                 title1={"Profile"}
-                title2={"Sign out"}
+                title2={t("signout")}
                 rightslot={<AiOutlineProfile size={20} />}
                 rightslot2={<CiLogout size={18} />}
                 userClicked={() => {
@@ -95,7 +100,7 @@ export default function Navbar() {
         {menuOpen ? (
           <div className="openmenurespo">
             <NavLink to={"/"} onClick={() => setMenuOpen(false)}>
-              Home
+              {t("homeNav")}
             </NavLink>
             <NavLink
               onClick={async () => {
@@ -104,13 +109,13 @@ export default function Navbar() {
                 scrollTo();
               }}
             >
-              About us
+              {t("about-usNav")}
             </NavLink>
             <NavLink to={"/products"} onClick={() => setMenuOpen(false)}>
-              Products
+              {t("productsNav")}
             </NavLink>
             <NavLink to={"/contact"} onClick={() => setMenuOpen(false)}>
-              Contact us
+              {t("contact-usNav")}
             </NavLink>
             <a
               href="https://maps.app.goo.gl/qMZ3dPB5rzpWC9Kk6"

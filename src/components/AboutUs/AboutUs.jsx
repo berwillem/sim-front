@@ -4,8 +4,10 @@ import { GoPlay } from "react-icons/go";
 import ReactPlayer from "react-player";
 import { LiaTimesCircleSolid } from "react-icons/lia";
 import bgimg from "../../assets/sliderImages/tool1.jpg";
+import { useTranslation } from "react-i18next";
 
 const AboutUs = () => {
+  const { t, i18n } = useTranslation();
   const [play, setPlay] = useState(false);
   return (
     <section className="aboutus" id="aboutus">
@@ -17,18 +19,9 @@ const AboutUs = () => {
           />
         </div>
         <div className="aboutustext">
-          <h2>About us</h2>
-          <h1>A propos de SYM INDUSTRIE</h1>
-          <p>
-            SYM est une entreprise dynamique basée à Alger, en Algérie Nous
-            sommes fiers de proposer à nos clients une gamme exceptionnelle de
-            matériel et {`d'outillage`} allemand, spécialisés dans les travaux
-            de chantier et la tolerie de voiture. Notre entreprise est ancrée
-            dans un engagement inébranlable envers la qualité et la quantité.
-            Que ce soit pour nos clients B2B ou B2C, nous nous efforçons de
-            fournir des produits de la plus haute qualité, répondant aux normes
-            rigoureuses de {`l'industrie`} allemande.
-          </p>
+          <h2>{t("aboutushomeh2")}</h2>
+          <h1>{t("aboutushomeh1")}</h1>
+          <p>{t("aboutushomep")}</p>
         </div>
       </div>
       {play && (

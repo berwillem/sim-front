@@ -1,11 +1,14 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import "./Menu.css";
-import { useTranslation } from "react-i18next";
-const DropdownMenuDemo = ({ title1, title2, icon, rightslot, rightslot2 }) => {
-  const { t, i18n } = useTranslation();
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-  };
+const DropdownMenuDemo = ({
+  title1,
+  title2,
+  icon,
+  rightslot,
+  rightslot2,
+  userClicked,
+  userClicked2,
+}) => {
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
@@ -17,7 +20,7 @@ const DropdownMenuDemo = ({ title1, title2, icon, rightslot, rightslot2 }) => {
         <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
           <DropdownMenu.Item
             className="DropdownMenuItem"
-            onClick={() => changeLanguage("fr")}
+            onClick={() => userClicked()}
           >
             {title1}
             <div className="RightSlot">{rightslot}</div>
@@ -25,7 +28,7 @@ const DropdownMenuDemo = ({ title1, title2, icon, rightslot, rightslot2 }) => {
           <DropdownMenu.Item
             className="DropdownMenuItem"
             onClick={() => {
-              changeLanguage("en");
+              userClicked2();
             }}
           >
             {title2}
