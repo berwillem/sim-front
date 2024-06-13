@@ -4,8 +4,10 @@ import { GoPlay } from "react-icons/go";
 import ReactPlayer from "react-player";
 import { LiaTimesCircleSolid } from "react-icons/lia";
 import bgimg from "../../assets/sliderImages/tool1.jpg";
+import { useTranslation } from "react-i18next";
 
 const AboutUs = () => {
+  const { t, i18n } = useTranslation();
   const [play, setPlay] = useState(false);
   return (
     <section className="aboutus" id="aboutus">
@@ -17,21 +19,9 @@ const AboutUs = () => {
           />
         </div>
         <div className="aboutustext">
-          <h2>About us</h2>
-          <h1>A propos de SYM INDUSTRIE</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum,
-            autem! Doloremque modi quos ea architecto enim maxime laboriosam
-            quasi! Saepe, nesciunt nostrum delectus eveniet cum minus, minima
-            sed dolores consequuntur et labore assumenda nobis, voluptate
-            necessitatibus suscipit non vero sapiente error earum mollitia.
-            Placeat quasi vel doloremque ut cum quaerat, eum similique odio
-            temporibus natus reprehenderit itaque quae dolor debitis libero
-            neque ducimus consectetur? Aliquid ut fugiat laudantium, molestias
-            eaque quasi illo harum magni amet autem nostrum deserunt
-            repellendus, libero quidem sunt quae nisi laborum quam esse ab
-            accusamus. Impedit ipsum rem quod, facilis sit modi non magni ab ea.
-          </p>
+          <h2>{t("aboutushomeh2")}</h2>
+          <h1>{t("aboutushomeh1")}</h1>
+          <p>{t("aboutushomep")}</p>
         </div>
       </div>
       {play && (
@@ -59,7 +49,7 @@ const AboutUs = () => {
         </div>
 
         <div className="aboutussecondbox">
-          <h1>IN PURSUIT OF AUTOMOTIVE PERFECTION SINCE 2006</h1>
+          <h1>IN PURSUIT OF AUTOMOTIVE PERFECTION SINCE 2016</h1>
           <h2>POLISHERS AND OTHER AUTO DETAILING PRODUCTS</h2>
           <div className="aboutussecondboximg">
             <img

@@ -1,0 +1,60 @@
+.add-parametre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.add-parametre form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 45px;
+  border: 3px solid black;
+  border-radius: 10px;
+  padding: 65px 30px;
+  width: 60vw;
+  height: 60vh;
+  flex-direction: column;
+  box-sizing: content-box;
+}
+.add-parametre form input {
+  padding: 10px;
+  width: 50%;
+  border-radius: 5px;
+  border: 3px solid black;
+}
+.add-parametre form input::placeholder {
+  color: black;
+  font-weight: 600;
+}
+.add-parametre form button {
+  background-color: var(--primary-color);
+  padding: 10px;
+  width: 20%;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+.parametre-select {
+  width: 50%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.parametre-select:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px var(--primary-color);
+  outline: none;
+}
+.imgpreviewcat {
+  max-width: 100px;
+}

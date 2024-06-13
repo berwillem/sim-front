@@ -6,32 +6,44 @@ import { CiSquareCheck } from "react-icons/ci";
 import { IoIosTimer } from "react-icons/io";
 import { TbGitBranchDeleted } from "react-icons/tb";
 import { useEffect, useState } from "react";
+import { RiPassValidFill, RiPassValidLine } from "react-icons/ri";
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import Swal from "sweetalert2";
 import {
   deleteCommande,
   getAllCommandes,
   getTotalCommandesCount,
+  getPendingCommandesCount,
+  getValidCommandesCount,
+  updateCommande,
 } from "../../services/commandeservices";
+import Pagination from "@mui/material/Pagination";
 
 const Orders = () => {
   const [Commandes, setCommandes] = useState([]);
   const [TotalCommandesCount, setTotalCommandesCount] = useState(0);
   const [validCommandesCount, setValidCommandesCount] = useState(0);
   const [pendingCommandesCount, setPendingCommandesCount] = useState(0);
+  const [page, setPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+  console.log(totalPages, "commandes");
+  useEffect(() => {
+    fetchCommandes(page);
+  }, [page]);
   const fetchCommandes = (page) => {
     getAllCommandes(page)
       .then((res) => {
-        setCommandes(res.data);
+        setCommandes(res.data.commandes);
+        setTotalPages(res.data.totalPages);
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
       });
   };
-  useEffect(() => {
-    fetchCommandes();
-  }, []);
 
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
   const handleDelet = (CommandeId) => {
     deleteCommande(CommandeId)
       .then(() => {
@@ -50,9 +62,39 @@ const Orders = () => {
         });
       });
   };
+  const updateOrder = (CommandeId) => {
+    updateCommande(CommandeId)
+      .then(() => {
+        Swal.fire({
+          title: "Good job!",
+          text: "commande updated succefuly",
+          icon: "success",
+        });
+        fetchCommandes();
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.message,
+        });
+      });
+  };
   useEffect(() => {
     getTotalCommandesCount().then((res) => {
       setTotalCommandesCount(res.data.count);
+    });
+  }, [handleDelet]);
+
+  useEffect(() => {
+    getPendingCommandesCount().then((res) => {
+      setPendingCommandesCount(res.data.count);
+    });
+  }, [handleDelet]);
+
+  useEffect(() => {
+    getValidCommandesCount().then((res) => {
+      setValidCommandesCount(res.data.count);
     });
   }, [handleDelet]);
   return (
@@ -67,17 +109,17 @@ const Orders = () => {
           <AdminMiniCard
             icon={<CiSquareCheck />}
             title={"Commandes validées"}
-            stat={TotalCommandesCount}
+            stat={validCommandesCount}
           />
           <AdminMiniCard
             icon={<IoIosTimer />}
             title={"Commandes en attente"}
-            stat={TotalCommandesCount}
+            stat={pendingCommandesCount}
           />
           <AdminMiniCard
             icon={<TbGitBranchDeleted />}
             title={"Commandes supprimées"}
-            stat={TotalCommandesCount}
+            stat={"0"}
           />
         </div>
         <div className="table-stat">
@@ -93,17 +135,44 @@ const Orders = () => {
           </div>
 
           {Commandes?.map((Commande, index) => {
-            console.log(Commande);
             return (
-              <ul key={index} className="stores">
+              <ul
+                key={index}
+                className={
+                  Commande.isValid ? "stores backgreen" : "stores backred"
+                }
+              >
                 <li className="ligne">
                   <span>{Commande._id}</span>
                   <span>
-                    {Commande.product.title} {Commande.user.FirstName}
-                    {Commande.user.LastName}
+                    {Commande.product?.title} {Commande.user?.FirstName}
+                    {Commande.user?.LastName}
                   </span>
                   <span>{Commande.quantity}</span>
-                  
+
+                  <span>
+                    {Commande.isValid ? (
+                      <>
+                        {"valide  "}
+                        {""}
+                        <RiPassValidLine
+                          size={30}
+                          onClick={() => updateOrder(Commande._id)}
+                          color="green"
+                        />
+                      </>
+                    ) : (
+                      <>
+                        {" non valide  "}{" "}
+                        <RiPassValidFill
+                          size={30}
+                          onClick={() => updateOrder(Commande._id)}
+                          color="red"
+                        />
+                      </>
+                    )}
+                  </span>
+
                   <DeleteButon
                     handledelet={() => handleDelet(Commande._id)}
                   ></DeleteButon>
@@ -112,6 +181,11 @@ const Orders = () => {
             );
           })}
         </div>
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
+        />
       </div>
     </>
   );

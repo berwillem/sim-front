@@ -1,9 +1,5 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-
 import "./Menu.css";
-import { CiLogout } from "react-icons/ci";
-// import { CiGlobe } from "react-icons/ci";
-
 const DropdownMenuDemo = ({
   title1,
   title2,
@@ -20,14 +16,11 @@ const DropdownMenuDemo = ({
           {icon}
         </button>
       </DropdownMenu.Trigger>
-
       <DropdownMenu.Portal>
         <DropdownMenu.Content className="DropdownMenuContent" sideOffset={5}>
           <DropdownMenu.Item
             className="DropdownMenuItem"
-            onClick={() => {
-              userClicked();
-            }}
+            onClick={() => userClicked()}
           >
             {title1}
             <div className="RightSlot">{rightslot}</div>
