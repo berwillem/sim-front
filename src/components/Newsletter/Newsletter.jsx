@@ -4,14 +4,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { createNewsletter } from "../../services/Newsletterservices";
-import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { useTranslation } from "react-i18next";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
 });
 
 export default function Newsletter() {
+  const { t } = useTranslation();
   const { register, handleSubmit, reset } = useForm({
     resolver: yupResolver(schema),
   });
@@ -42,17 +43,17 @@ export default function Newsletter() {
         <div className="newslettertop">
           <img src={Newpng} alt="" />
           <div className="newslettertext">
-            <h1>Subscribe to our newsletter</h1>
-            <p>Get our latest news and updates in your inbox</p>
+            <h1>{t("newsletterh1")}</h1>
+            <p>{t("newsletterp")}</p>
           </div>
         </div>
         <form className="newsletterbottom" onSubmit={handleSubmit(onSubmit)}>
           <input
             type="email"
-            placeholder="Enter your email"
+            placeholder={t("newsletterpholder")}
             {...register("email")}
           />
-          <button type="submit">Subscribe</button>
+          <button type="submit">{t("subscribe")}</button>
         </form>
       </div>
     </div>
