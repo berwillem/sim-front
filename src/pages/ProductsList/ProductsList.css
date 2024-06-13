@@ -75,12 +75,13 @@
   align-items: center;
   gap: 7px;
 }
-.productitempreview-final a {
+.productitempreview-final h3 {
   background-color: var(--primary-color);
   color: white;
   text-decoration: none;
   padding: 5px 10px;
   border-radius: 4px;
+  cursor: pointer;
 }
 .productitempreview-final img {
   padding: 25px;
@@ -95,4 +96,3 @@
     margin-right: 0;
   }
 }
-

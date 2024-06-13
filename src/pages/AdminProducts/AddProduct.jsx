@@ -14,18 +14,8 @@ import {
   getAllFamilles,
   getAllTypes,
 } from "../../services/parametresServices";
-import * as yup from "yup";
-import { yupResolver } from "@hookform/resolvers/yup";
-const schema = yup.object().shape({
-  Titre: yup.string().required("Titre is required"),
-  Gamme: yup.string(),
-  Marque: yup.string(),
-  Description: yup.string().required("Description is required"),
-  Prix: yup
-    .number()
-    .required("Prix is required")
-    .positive("Prix must be a positive number"),
-});
+import { useNavigate } from "react-router-dom";
+
 const AddProduct = () => {
   const [categories, setCategories] = useState([]);
   const [familles, setFamilles] = useState([]);
@@ -34,9 +24,10 @@ const AddProduct = () => {
   const [selectedCategorie, setSelectedCategorie] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
   const [images, setImages] = useState([]);
+  const navigate = useNavigate();
 
-  const fetchCategories = (page) => {
-    getAllCategories(page)
+  const fetchCategories = () => {
+    getAllCategories()
       .then((res) => {
         setCategories(res.data.categories);
         console.log(res.data);
@@ -45,8 +36,8 @@ const AddProduct = () => {
         console.error("Error fetching categories:", error);
       });
   };
-  const fetchFamilles = (page) => {
-    getAllFamilles(page)
+  const fetchFamilles = () => {
+    getAllFamilles()
       .then((res) => {
         setFamilles(res.data.familles);
       })
@@ -54,8 +45,8 @@ const AddProduct = () => {
         console.error("Error fetching familles:", error);
       });
   };
-  const fetchTypes = (page) => {
-    getAllTypes(page)
+  const fetchTypes = () => {
+    getAllTypes()
       .then((res) => {
         setTypes(res.data.types);
       })
@@ -92,6 +83,7 @@ const AddProduct = () => {
     createProduct(data)
       .then((res) => {
         toast.success(res.data?.message);
+        navigate("/admin/products/all");
       })
       .catch((err) => console.log(err));
   };
@@ -236,7 +228,7 @@ const ComboBox = ({ label, options, value, onChange }) => {
       disablePortal
       id="combo-box-demo"
       options={options}
-      getOptionLabel={(option) => option.title}
+      getOptionLabel={(option) => option.titlefr}
       value={value}
       onChange={(event, newValue) => onChange(newValue)}
       sx={{ width: "100%" }}

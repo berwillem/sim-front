@@ -7,6 +7,7 @@ import { Link, useParams } from "react-router-dom";
 
 const ProductsList = () => {
   const { CategoryId } = useParams();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
@@ -18,7 +19,9 @@ const ProductsList = () => {
         console.error("Error fetching products:", error);
       });
   }, [CategoryId]);
-
+  const handleClick = () => {
+    setIsMenuOpen(true);
+  };
   return (
     <>
       <Navbar></Navbar>
@@ -50,7 +53,6 @@ const ProductsList = () => {
           </h2>
         </div>
       </div>
-
       <div className="gridfamille-final">
         {products?.map((item) => {
           return (
@@ -59,7 +61,7 @@ const ProductsList = () => {
                 <img src={item.images[0]} alt="item preview-final" />
                 <h1>{item.title}</h1>
                 <h2>{item.price} DA</h2>
-                <Link to={`/products/achat/${item._id}`}>Achat </Link>
+                <h3 onClick={handleClick}>Achat </h3>
               </div>
             </>
           );

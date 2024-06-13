@@ -36,7 +36,6 @@ import AdminNewsletter from "./pages/AdminNewsletter/AdminNewsletter.jsx";
 import CategoriesList from "./pages/CategoriesList/CategoriesList.jsx";
 import ProductsList from "./pages/ProductsList/ProductsList.jsx";
 
-
 const router = createBrowserRouter([
   {
     path: "/",

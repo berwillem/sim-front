@@ -54,7 +54,7 @@ const CategoriesList = () => {
                 <div>
                   <h1>{category.titlefr}</h1>
                   <Link to={`/products/categorie/${category._id}`}>
-                    Read more{" "}
+                    See more{" "}
                   </Link>
                 </div>
               </div>
