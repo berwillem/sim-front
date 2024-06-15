@@ -45,7 +45,7 @@
   justify-items: center;
   margin-top: 60px;
   margin-bottom: 100px;
-  padding: 0 60px 0 60px;
+  width: 100%;
 }
 .familycont-final {
   width: 100%;
@@ -94,5 +94,18 @@
   }
   .gobackproduct-final a {
     margin-right: 0;
+  }
+}
+
+  
+.productslist-final {
+  display: flex;
+}
+@keyframes herbet {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

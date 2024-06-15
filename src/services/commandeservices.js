@@ -10,7 +10,7 @@ export const getCommandeById = (orderId) => {
 };
 
 export const createCommande = (data) => {
-  return axios.post(`${BASE_API_URL}/commandes`, data);
+  return axios.post(`${BASE_API_URL}/commandes/create`, data);
 };
 
 export const updateCommande = (orderId) => {
