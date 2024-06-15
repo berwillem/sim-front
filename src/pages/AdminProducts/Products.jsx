@@ -65,9 +65,6 @@ const Users = () => {
                 <li>title</li>
                 <li>price</li>
                 <li>desc.</li>
-                {/* <li>famille</li>
-                <li>category</li>
-                <li>type</li> */}
                 <li>marque</li>
                 <li>gamme</li>
               </div>
