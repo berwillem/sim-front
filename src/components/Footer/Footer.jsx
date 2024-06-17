@@ -1,18 +1,16 @@
 import "./Footer.css";
 import image from "../../assets/logo.png";
+import { useTranslation } from "react-i18next";
 export default function Component() {
+  const { t } = useTranslation();
+
   return (
     <footer>
       <div className="footercontainer">
         <div className="footerfirstsection">
           <img src={image} alt="maxshine logo" className="iconfooter" />
 
-          <p>
-            SYM est une entreprise dynamique basée à Alger, en Algérie Nous
-            sommes fiers de proposer à nos clients une gamme exceptionnelle de
-            matériel et {`d'outillage`} allemand, spécialisés dans les travaux
-            de chantier et la tolerie de voiture.
-          </p>
+          <p>{t("footerAbout")}</p>
         </div>
         <div className="footeraboutsection">
           <h3 className="">About Maxshine</h3>
@@ -62,7 +60,7 @@ export default function Component() {
         <div className="foriframeunder"></div>
       </div>
       <div className="footercopyright">
-        <p>Copyright © 2024 SYM INDUSTRIE. All rights reserved.</p>
+        <p>{t("copyright")}</p>
       </div>
     </footer>
   );

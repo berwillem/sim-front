@@ -7,7 +7,7 @@ import bgimg from "../../assets/sliderImages/tool1.jpg";
 import { useTranslation } from "react-i18next";
 
 const AboutUs = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [play, setPlay] = useState(false);
   return (
     <section className="aboutus" id="aboutus">

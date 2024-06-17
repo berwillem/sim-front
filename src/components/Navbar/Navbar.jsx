@@ -64,7 +64,7 @@ export default function Navbar() {
                 navigate("/auth/signin");
               }}
             >
-              Sign in/sign up
+              {t("btnNav")}
             </button>
           ) : (
             <div>
