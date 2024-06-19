@@ -2,7 +2,7 @@
 import "./Products.css";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { createProduct } from "../../services/productsServices";
+import { getProductById, updateProduct } from "../../services/productsServices";
 import SwiperProduct from "../../components/SwiperAddProducts/SwiperProduct";
 import { CiCirclePlus } from "react-icons/ci";
 import { useEffect, useState } from "react";
@@ -14,16 +14,30 @@ import {
   getAllFamilles,
   getAllTypes,
 } from "../../services/parametresServices";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
-const AddProduct = () => {
+const EditProduct = () => {
   const [categories, setCategories] = useState([]);
   const [familles, setFamilles] = useState([]);
   const [types, setTypes] = useState([]);
   const [selectedFamille, setSelectedFamille] = useState(null);
   const [selectedCategorie, setSelectedCategorie] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
+  const [product, setProduct] = useState({});
   const [images, setImages] = useState([]);
+  console.log(images, "images");
+
+  const { productid } = useParams();
+  useEffect(() => {
+    getProductById(productid)
+      .then(async (res) => {
+        setProduct(res.data);
+        setImages(res?.data?.images?.map((image) => image));
+      })
+      .catch((error) => {
+        console.error("Error fetching products:", error);
+      });
+  }, [productid]);
   const navigate = useNavigate();
 
   const fetchCategories = () => {
@@ -63,15 +77,15 @@ const AddProduct = () => {
 
   const { register, handleSubmit } = useForm({
     defaultValues: {
-      Titre: "",
-      Gamme: "",
-      Marque: "",
-      Famille: "",
-      Type: "",
-      Categorie: "",
-      Description: "",
-      Prix: "",
-      images: [],
+      titre: product?.title,
+      gamme: product?.gamme,
+      marque: product?.marque,
+      famille: product?.famille,
+      type: product?.type,
+      categorie: product?.category,
+      description: product?.description,
+      prix: product?.price,
+      images: "",
     },
   });
 
@@ -80,10 +94,10 @@ const AddProduct = () => {
     data.Categorie = selectedCategorie?._id;
     data.Type = selectedType?._id;
     data.images = images;
-    createProduct(data)
+    updateProduct(productid, data)
       .then((res) => {
         toast.success(res.data?.message);
-        navigate("/admin/products/all");
+        navigate("/admin/products");
       })
       .catch((err) => console.log(err));
   };
@@ -118,7 +132,9 @@ const AddProduct = () => {
 
         <SwiperProduct
           previews={
-            images.length !== 0 ? images.map((img) => img.url) : [Placeholder]
+            images.length !== 0
+              ? images.map((img) => (img.url ? img.url : img))
+              : [Placeholder]
           }
         ></SwiperProduct>
       </div>
@@ -130,8 +146,7 @@ const AddProduct = () => {
       <div className="admin-stat">
         <div className="fortable-stat">
           <div className="table-stat" id="table-statadd">
-            <ImageUpload />
-
+            <ImageUpload />{" "}
             <div className="titre-stat">
               <div className="ligne">
                 <form onSubmit={handleSubmit(onSubmit)}>
@@ -147,7 +162,7 @@ const AddProduct = () => {
                         label="Categorie"
                         options={categories}
                         value={selectedCategorie}
-                        onChange={setSelectedCategorie}                 
+                        onChange={setSelectedCategorie}
                       />
                     </div>
                     <div className="labelSignUphalf">
@@ -164,7 +179,8 @@ const AddProduct = () => {
                           type="text"
                           id=""
                           placeholder="Titre"
-                          {...register("Titre")}
+                          {...register("titre")}
+                          defaultValue={product?.title}
                         />
                       </div>
                     </div>
@@ -174,7 +190,8 @@ const AddProduct = () => {
                           type="text"
                           id=""
                           placeholder="Gamme"
-                          {...register("Gamme")}
+                          {...register("gamme")}
+                          defaultValue={product?.gamme}
                         />
                       </div>
 
@@ -183,7 +200,8 @@ const AddProduct = () => {
                           type="text"
                           id=""
                           placeholder="Prix"
-                          {...register("Prix")}
+                          {...register("prix")}
+                          defaultValue={product?.price}
                         />
                       </div>
                     </div>
@@ -192,7 +210,8 @@ const AddProduct = () => {
                         type="text"
                         id=""
                         placeholder="Marque"
-                        {...register("Marque")}
+                        {...register("marque")}
+                        defaultValue={product?.marque}
                       />
                     </div>
                     <div className="labelSignUphalf">
@@ -200,13 +219,14 @@ const AddProduct = () => {
                         name=""
                         className="descriptioncontact"
                         placeholder="Description"
-                        {...register("Description")}
+                        {...register("description")}
+                        defaultValue={product?.description}
                       ></textarea>
                     </div>
                   </div>
                   <div className="forlabeladd">
                     <button type="submit" className="btnred">
-                      Continuer
+                      Edit product
                     </button>
                   </div>
                   <div className="text-center"></div>
@@ -220,7 +240,7 @@ const AddProduct = () => {
   );
 };
 
-export default AddProduct;
+export default EditProduct;
 
 const ComboBox = ({ label, options, value, onChange }) => {
   return (

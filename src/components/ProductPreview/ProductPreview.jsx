@@ -19,7 +19,6 @@ export default function App({ product, functio }) {
   const userId = useSelector((state) => state.auth?.user?._id);
   console.log(userId, "userid");
   const [thumbsSwiper, setThumbsSwiper] = useState();
-  console.log(product, "product");
   return (
     <>
       <div className="menuopenforfinal">
