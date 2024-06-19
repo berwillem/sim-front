@@ -38,7 +38,7 @@ export default function SignUp() {
     SignUpUser(data)
       .then((res) => {
         toast.success(res.data?.message);
-        dispatch(login(res.data.user));
+        dispatch(login(res.data));
         navigate("/");
       })
       .catch((err) => console.log(err));

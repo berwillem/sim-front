@@ -32,8 +32,12 @@ export default function SignIn() {
     SignInUser(data)
       .then((res) => {
         toast.success(res.data?.message);
-        dispatch(login(res.data?.user));
-        navigate("/");
+        dispatch(login(res.data));
+        if (res.data?.user?.role === "admin") {
+          navigate("/admin/home");
+        } else {
+          navigate("/");
+        }
       })
       .catch((err) => console.log(err));
   };

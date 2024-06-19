@@ -12,14 +12,18 @@ import "swiper/css/thumbs";
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { LiaTimesCircleSolid } from "react-icons/lia";
-import { useSelector } from "react-redux";
-import { createCommande } from "../../services/commandeservices";
+import OrderModal from "../OrderModal/OrderModal";
 
 export default function App({ product, functio }) {
-  const userId = useSelector((state) => state.auth?.user?._id);
-  console.log(userId, "userid");
   const [thumbsSwiper, setThumbsSwiper] = useState("null");
-  console.log(product, "product");
+  const [openModal, setOpenModal] = useState(false);
+  const handleOpenModal = () => {
+    setOpenModal(true);
+  };
+  const handleCloseModal = () => {
+    setOpenModal(false);
+  };
+
   return (
     <>
       <div className="menuopen-final">
@@ -64,14 +68,13 @@ export default function App({ product, functio }) {
         <h1> {product?.title} </h1>
         <p className="textpreview">{product?.description}</p>
         <h2>{product?.price}</h2>
-        <button
-          onClick={() => {
-            createCommande({ user: userId, product: product?._id });
-          }}
-        >
-          Acheter
-        </button>
+        <button onClick={handleOpenModal}>Acheter</button>
       </div>
+      <OrderModal
+        open={openModal}
+        onClose={handleCloseModal}
+        product={product}
+      />
     </>
   );
 }

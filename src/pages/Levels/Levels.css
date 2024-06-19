@@ -1,0 +1,73 @@
+.levels {
+  margin-top: 30px;
+}
+.level-explain {
+  display: flex;
+  gap: 30px;
+}
+.level-explain .level {
+  height: 250px;
+  width: 250px;
+  position: relative;
+  clip-path: polygon(
+    30% 0%,
+    70% 0%,
+    100% 30%,
+    100% 70%,
+    70% 100%,
+    30% 100%,
+    0% 70%,
+    0% 30%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  transition: transform 0.3s ease;
+}
+.level img {
+  height: 55px;
+  width: 55px;
+}
+.level-explain .level:nth-child(1) {
+  background-color: #cd7f32;
+}
+
+.level-explain .level:nth-child(2) {
+  background-color: #c0c0c0;
+}
+
+.level-explain .level:nth-child(3) {
+  background-color: #ffd700;
+}
+
+.level-explain .level:nth-child(4) {
+  background-color: #b9f2ff;
+}
+.level-explain .level:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+.level-explain .level:hover h1,
+.level-explain .level:hover img {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.level-explain .level::before {
+  content: attr(data-hover-text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: black;
+  font-size: 20px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.level-explain .level:hover::before {
+  opacity: 1;
+}

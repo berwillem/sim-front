@@ -19,7 +19,6 @@ i18n.use(initReactI18next).init({
   interpolation: {
     escapeValue: false,
   },
-  debug: true,
 });
 
 export default i18n;
