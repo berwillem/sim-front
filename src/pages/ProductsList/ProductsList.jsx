@@ -49,11 +49,7 @@ const ProductsList = () => {
 
               fontWeight: "100",
             }}
-          >
-            {products?.map((category) => {
-              return <>{`${category.title} / `}</>;
-            })}
-          </h2>
+          ></h2>
         </div>
       </div>
       <div className="productslist-final">

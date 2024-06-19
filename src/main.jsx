@@ -36,6 +36,9 @@ import AdminNewsletter from "./pages/AdminNewsletter/AdminNewsletter.jsx";
 import CategoriesList from "./pages/CategoriesList/CategoriesList.jsx";
 import ProductsList from "./pages/ProductsList/ProductsList.jsx";
 import EditProduct from "./pages/AdminProducts/EditProduct.jsx";
+import Levels from "./pages/Levels/Levels.jsx";
+import ProfileLayout from "./pages/Profile/ProfileLayout.jsx";
+import UserCommandes from "./pages/UserCommandes/UserCommandes.jsx";
 
 const router = createBrowserRouter([
   {
@@ -149,7 +152,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/profile/:userId",
-    element: <Profile />,
+    element: <ProfileLayout />,
+    children: [
+      { path: "", element: <Profile /> },
+      { path: "levels", element: <Levels /> },
+      { path: "commandes", element: <UserCommandes /> },
+    ],
   },
 ]);
 
