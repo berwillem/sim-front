@@ -18,6 +18,7 @@ import {
   updateCommande,
 } from "../../services/commandeservices";
 import Pagination from "@mui/material/Pagination";
+import moment from "moment";
 
 const Orders = () => {
   const [Commandes, setCommandes] = useState([]);
@@ -49,7 +50,7 @@ const Orders = () => {
       .then(() => {
         Swal.fire({
           title: "Good job!",
-          text: "user deleted succefuly",
+          text: "order deleted succefuly",
           icon: "success",
         });
         fetchCommandes();
@@ -124,17 +125,21 @@ const Orders = () => {
         </div>
         <div className="table-stat">
           <div className="titre-stat">
-            <ul className="ligne">
-              <div className="info-stat">
-                <li>id</li>
-                <li>name</li>
-                <li>email</li>
+            <ul className="ligne commandeslist">
+              <div className="info-stat ">
+                <li>Product</li>
+                <li>Fullname</li>
+                <li>Email</li>
+                <li>Quantity</li>
+                <li>createdAt</li>
+                <li>Status</li>
               </div>
               <li>action</li>
             </ul>
           </div>
 
           {Commandes?.map((Commande, index) => {
+            console.log(Commande, "commande");
             return (
               <ul
                 key={index}
@@ -143,13 +148,17 @@ const Orders = () => {
                 }
               >
                 <li className="ligne">
-                  <span>{Commande._id}</span>
+                  <span>{Commande.product?.title}</span>{" "}
                   <span>
-                    {Commande.product?.title} {Commande.user?.FirstName}
+                    {Commande.user?.FirstName}
+                    {"  "}
                     {Commande.user?.LastName}
-                  </span>
+                  </span>{" "}
+                  <span>{Commande.user.email}</span>
                   <span>{Commande.quantity}</span>
-
+                  <span>
+                    {moment(Commande.createdAt).format("DD MMM YYYY")}
+                  </span>
                   <span>
                     {Commande.isValid ? (
                       <>
@@ -172,7 +181,6 @@ const Orders = () => {
                       </>
                     )}
                   </span>
-
                   <DeleteButon
                     handledelet={() => handleDelet(Commande._id)}
                   ></DeleteButon>

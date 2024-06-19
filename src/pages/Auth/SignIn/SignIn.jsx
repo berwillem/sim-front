@@ -12,6 +12,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../../redux/slices/authSlice";
 import { CiMail } from "react-icons/ci";
+import { useTranslation } from "react-i18next";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -19,6 +20,7 @@ const schema = yup.object().shape({
 });
 
 export default function SignIn() {
+  const { t } = useTranslation();
   const {
     register,
     handleSubmit,
@@ -45,13 +47,10 @@ export default function SignIn() {
 
   return (
     <>
-      <p>
-        Connectez-vous à SYM Industrie afin de continuer pour
-        {" <website>"}.com.
-      </p>
+      <p>{t("connectezvous")}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="forlabelsignin">
-          <label htmlFor="email">Adresse courriel</label>
+          <label htmlFor="email">{t("email")}</label>
           <div className="passinputcontainer">
             <input
               type="email"
@@ -62,13 +61,13 @@ export default function SignIn() {
             <CiMail size={25} fontSize={"35px"} fontWeight={"bold"} />
             {errors.email && <p className="error">{errors.email.message}</p>}
           </div>
-          <label htmlFor="password">Mot de passe</label>
+          <label htmlFor="password">{t("password")}</label>
 
           <div className="passinputcontainer">
             <input
               type={show ? "text" : "password"}
               id="password"
-              placeholder="mot de passe"
+              placeholder={t("password")}
               {...register("password")}
             />
             {errors.password && (
@@ -90,13 +89,13 @@ export default function SignIn() {
           </div>
         </div>
         <div className="middivsignin">
-          <Link to="/passwordForgot">Mot de passe oublié? </Link>
-          <button type="submit">Continuer</button>
+          <Link to="/passwordForgot">{t("motdepasseoublie")} </Link>
+          <button type="submit">{t("Continuer")} </button>
         </div>{" "}
         <div className="text-center">
           <p>
-            {"Vous n'avez pas de compte ?"}{" "}
-            <Link to="/auth/signup">{"S'inscrire"}</Link>
+            {t("pasdecompte")}
+            <Link to="/auth/signup">{t("S'inscrire")}</Link>
           </p>
         </div>
       </form>

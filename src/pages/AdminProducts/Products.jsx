@@ -5,12 +5,17 @@ import "./Products.css";
 import { useEffect, useState } from "react";
 import Addbutton from "../../components/AddButton/Addbutton";
 import {
+  deleteProduct,
   getAllProducts,
   getTotalProductsCount,
 } from "../../services/productsServices";
 import { Pagination as MuiPagination } from "@mui/material";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { EffectCreative, Navigation } from "swiper/modules";
+import { CiEdit } from "react-icons/ci";
+import DeleteButon from "../../components/DeleteButton/DeleteButon";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 const Users = () => {
   const [page, setPage] = useState(1);
@@ -18,7 +23,7 @@ const Users = () => {
   const [products, setProducts] = useState([]);
   const [totalProductCount, setTotalProductCount] = useState(0);
   console.log(products, "products");
-
+  const navigate = useNavigate();
   const fetchProducts = (page) => {
     getAllProducts(page)
       .then((res) => {
@@ -42,6 +47,25 @@ const Users = () => {
   const handlePageChange = (event, value) => {
     setPage(value);
   };
+  const handleDelet = (CommandeId) => {
+    deleteProduct(CommandeId)
+      .then(() => {
+        Swal.fire({
+          title: "Good job!",
+          text: "order deleted succefuly",
+          icon: "success",
+        });
+        fetchProducts();
+      })
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err.message,
+        });
+      });
+  };
+
   return (
     <>
       <div className="admin-stat">
@@ -73,6 +97,15 @@ const Users = () => {
           </div>
           {products?.map((product, index) => (
             <ul key={index} className="stores">
+              <div className="flex">
+                <CiEdit
+                  size={40}
+                  onClick={() => navigate(`editproduct/${product._id}`)}
+                />
+                <DeleteButon
+                  handledelet={() => handleDelet(product._id)}
+                ></DeleteButon>
+              </div>{" "}
               <Productitem product={product} />
             </ul>
           ))}
@@ -95,9 +128,6 @@ const Productitem = ({ product, index }) => {
       <span> {product?.title}</span>
       <span>{product?.price}</span>
       <span>{product?.description}</span>
-      {/* <span>{product?.famille?.title}</span>
-      <span>{product?.category?.title}</span>
-      <span>{product?.type?.title}</span> */}
       <span>{product?.marque}</span>
       <span>{product?.gamme}</span>
       <span>

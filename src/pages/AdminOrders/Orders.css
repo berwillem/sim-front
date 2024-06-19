@@ -5,3 +5,14 @@
 .backgreen {
   background-color: rgba(85, 160, 85, 0.521);
 }
+.commandeslist .info-stat {
+  justify-content: space-between;
+  margin-left: 20px;
+  gap: 40px;
+}
+.commandeslist > li {
+  width: 10%;
+}
+.commandeslist li {
+  padding: 20px 0 20px 0 !important;
+}

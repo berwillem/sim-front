@@ -35,6 +35,7 @@ import AddType from "./pages/AdminAddParametre/AddType.jsx";
 import AdminNewsletter from "./pages/AdminNewsletter/AdminNewsletter.jsx";
 import CategoriesList from "./pages/CategoriesList/CategoriesList.jsx";
 import ProductsList from "./pages/ProductsList/ProductsList.jsx";
+import EditProduct from "./pages/AdminProducts/EditProduct.jsx";
 import Levels from "./pages/Levels/Levels.jsx";
 import ProfileLayout from "./pages/Profile/ProfileLayout.jsx";
 import UserCommandes from "./pages/UserCommandes/UserCommandes.jsx";
@@ -64,12 +65,16 @@ const router = createBrowserRouter([
         element: <MainProducts />,
         children: [
           {
-            path: "all",
+            path: "",
             element: <AdminProducts />,
           },
           {
             path: "addproduct",
             element: <AddProduct />,
+          },
+          {
+            path: "editproduct/:productid",
+            element: <EditProduct />,
           },
         ],
       },

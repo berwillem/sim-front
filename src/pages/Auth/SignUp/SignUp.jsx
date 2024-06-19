@@ -12,6 +12,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { login } from "../../../redux/slices/authSlice";
 import { CiMail } from "react-icons/ci";
+import { useTranslation } from "react-i18next";
 
 const schema = yup.object().shape({
   FirstName: yup.string().required("Prénom est requis"),
@@ -44,21 +45,19 @@ export default function SignUp() {
       .catch((err) => console.log(err));
   };
   const [show, setShow] = useState(true);
+  const { t } = useTranslation();
   return (
     <>
-      <p>
-        Ouvrez une session pour SYM Industrie afin de continuer pour
-        {" <website>"}.com.
-      </p>
+      <p>{t("signupP")} </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="forlabelsignin">
           <div className="labelSignUphalf">
             <div>
-              <label htmlFor="FirstName">Prénom </label>
+              <label htmlFor="FirstName">{t("firstname")} </label>
               <input
                 type="text"
                 id="FirstName"
-                placeholder="prénom"
+                placeholder={t("firstname")}
                 {...register("FirstName")}
               />
               {errors.FirstName && (
@@ -66,11 +65,11 @@ export default function SignUp() {
               )}
             </div>
             <div>
-              <label htmlFor="LastName">Nom </label>
+              <label htmlFor="LastName">{t("lastname")} </label>
               <input
                 type="text"
                 id="LastName"
-                placeholder="Nom "
+                placeholder={t("lastname")}
                 {...register("LastName")}
               />
               {errors.LastName && (
@@ -78,25 +77,24 @@ export default function SignUp() {
               )}
             </div>
           </div>
-          <label htmlFor="email">Adresse courriel</label>
+          <label htmlFor="email">{t("email")}</label>
           <div className="passinputcontainer">
             <input
               type="email"
               id="email"
-              placeholder="Email"
+              placeholder={t("email")}
               {...register("email")}
             />
             <CiMail size={25} fontSize={"35px"} fontWeight={"bold"} />
 
             {errors.email && <p className="error">{errors.email.message}</p>}
           </div>
-          <label htmlFor="password">Mot de passe</label>
-
+          <label htmlFor="password">{t("password")}</label>
           <div className="passinputcontainer">
             <input
               type={show ? "password" : "text"}
               id="password"
-              placeholder="mot de passe"
+              placeholder={t("password")}
               {...register("password")}
             />
             {errors.password && (
@@ -118,12 +116,12 @@ export default function SignUp() {
           </div>
         </div>
         <div className="middivsignin">
-          <button type="submit">Continuer</button>
+          <button type="submit">{t("Continuer")}</button>
         </div>
         <div className="text-center">
           <p>
-            {"Vous avez déjà un compte ?"}{" "}
-            <Link to="/auth/signin">{"Se connecter"}</Link>
+            {t("dejauncompte")}
+            <Link to="/auth/signin">{t("seconnecter")}</Link>
           </p>
         </div>
       </form>

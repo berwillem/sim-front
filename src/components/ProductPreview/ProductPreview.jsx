@@ -15,6 +15,8 @@ import { LiaTimesCircleSolid } from "react-icons/lia";
 import OrderModal from "../OrderModal/OrderModal";
 
 export default function App({ product, functio }) {
+
+  const userId = useSelector((state) => state.auth?.user?._id);
   const [thumbsSwiper, setThumbsSwiper] = useState("null");
   const [openModal, setOpenModal] = useState(false);
   const handleOpenModal = () => {
@@ -23,47 +25,58 @@ export default function App({ product, functio }) {
   const handleCloseModal = () => {
     setOpenModal(false);
   };
-
   return (
     <>
-      <div className="menuopen-final">
-        <LiaTimesCircleSolid className="liabuttonexit2" onClick={functio} />
-        <div className="forswiperwrapper">
-          <Swiper
-            style={{
-              "--swiper-navigation-color": "#fff",
-              "--swiper-pagination-color": "#fff",
-            }}
-            loop={true}
-            spaceBetween={10}
-            navigation={true}
-            thumbs={{ swiper: thumbsSwiper }}
-            modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper22"
-          >
-            {product?.images?.map((image, index) => (
-              <SwiperSlide key={index}>
-                <img src={image} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+      <div className="menuopenforfinal">
+        <div className="menuopen-final">
+          <LiaTimesCircleSolid className="liabuttonexit2" onClick={functio} />
+          <div className="forswiperwrapper">
+            <Swiper
+              style={{
+                "--swiper-navigation-color": "#fff",
+                "--swiper-pagination-color": "#fff",
+              }}
+              loop={true}
+              spaceBetween={10}
+              navigation={true}
+              thumbs={{ swiper: thumbsSwiper ? thumbsSwiper : "null" }}
+              modules={[FreeMode, Navigation, Thumbs]}
+              className="mySwiper22"
+            >
+              {product?.images?.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <img src={image} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
 
-          <Swiper
-            onSwiper={setThumbsSwiper}
-            loop={true}
-            spaceBetween={10}
-            slidesPerView={4}
-            freeMode={true}
-            watchSlidesProgress={true}
-            modules={[FreeMode, Navigation, Thumbs]}
-            className="mySwiper11"
+            <Swiper
+              onSwiper={setThumbsSwiper}
+              loop={true}
+              spaceBetween={10}
+              slidesPerView={4}
+              freeMode={true}
+              watchSlidesProgress={true}
+              modules={[FreeMode, Navigation, Thumbs]}
+              className="mySwiper11"
+            >
+              {product?.images?.map((image, index) => (
+                <SwiperSlide key={index}>
+                  <img src={image} />
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </div>
+          <h1> {product?.title} </h1>
+          <p className="textpreview">{product?.description}</p>
+          <h2>{product?.price}</h2>
+          <button
+            onClick={() => {
+              createCommande({ user: userId, product: product?._id });
+            }}
           >
-            {product?.images?.map((image, index) => (
-              <SwiperSlide key={index}>
-                <img src={image} />
-              </SwiperSlide>
-            ))}
-          </Swiper>
+            Acheter
+          </button>
         </div>
         <h1> {product?.title} </h1>
         <p className="textpreview">{product?.description}</p>

@@ -63,11 +63,16 @@ export default function AdminNewsletter() {
   return (
     <div className="admin-stat">
       <div className="mini-cards">
-        <AdminMiniCard icon={<FaUsers />} title={"All Emails registered"} />
+        <AdminMiniCard
+          icon={<FaUsers />}
+          title={"All Emails registered"}
+          stat={allNewsletters.length}
+        />
+
         <div className="foraddbutton">
           <button type="button" className="button" onClick={handleDownloadAll}>
             <h1 className="button__text" id="downloadbuttontext">
-              {"Download All Emails"}
+              Download All Emails
             </h1>
             <span className="button__icon">
               <svg
@@ -90,6 +95,14 @@ export default function AdminNewsletter() {
         </div>
       </div>
       <div className="table-stat">
+        <div className="titre-stat">
+          <ul className="ligne">
+            <div className="info-stat newsletterli">
+              <li>email</li>
+            </div>
+            <li>joined at</li>
+          </ul>
+        </div>
         {newsletters.map((newsletter) => (
           <ul className="stores" id="storesnews" key={newsletter._id}>
             <h1>{newsletter.email}</h1>

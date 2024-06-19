@@ -13,7 +13,7 @@ const SideBar = () => {
   const infos = [
     { icon: <IoHome />, text: "Home", link: "/admin/home" },
     { icon: <FaUser />, text: "Users", link: "users" },
-    { icon: <FaTools />, text: "Products", link: "products/all" },
+    { icon: <FaTools />, text: "Products", link: "products" },
     { icon: <BiSolidCategoryAlt />, text: "Parmetres", link: "parametres" },
     { icon: <BsBorderStyle />, text: "Orders", link: "orders" },
     { icon: <LuNewspaper />, text: "Newsletter", link: "newsletter" },

@@ -1,10 +1,11 @@
 {
-  "welcome": "Welcome to React and react-i18next",
+  "welcome": "Welcome",
   "hello": "Hello",
   "goodbye": "Goodbye",
   "homeNav": "Home",
   "about-usNav": "About us",
   "productsNav": "Products",
+  "btnNav": "Sign in/sign up",
   "contact-usNav": "Contact us",
   "newsletterh1": "Subscribe to our newsletter",
   "newsletterp": "Get our latest news and updates in your inbox",
@@ -13,5 +14,19 @@
   "aboutushomeh2": "About us",
   "aboutushomeh1": "About SYM INDUSTRIE",
   "aboutushomep": "SYM is a dynamic company based in Algiers, Algeria. We are proud to offer our clients an exceptional range of German equipment and tools, specializing in construction site work and car bodywork. Our company is rooted in an unwavering commitment to quality and quantity. Whether for our B2B or B2C clients, we strive to provide the highest quality products, meeting the rigorous standards of the German industry.",
-  "signout": "Sign out"
+  "signout": "Sign out",
+  "copyright": "Copyright © 2024 SYM INDUSTRIE. All rights reserved.",
+  "footerAbout": "SYM is a dynamic company based in Algiers, Algeria. We are proud to offer our clients an exceptional range of German equipment and tools, specializing in construction site work and car bodywork.",
+  "email": "Email",
+  "connectezvous": "Connect to SYM Industrie to continue for <website>.com.",
+  "password": "Password",
+  "motdepasseoublie": "Forgot password",
+  "Continuer": "Continue",
+  "pasdecompte": "Don't have an account?",
+  "signupP": "Log in to SYM Industrie to continue for <website>.com.",
+  "firstname": "First name",
+  "lastname": "Last name",
+  "dejauncompte": "Already have an account?",
+  "seconnecter": "Log in",
+  "S'inscrire": "Sign up"
 }
