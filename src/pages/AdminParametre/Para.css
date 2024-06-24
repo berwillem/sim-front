@@ -1,0 +1,15 @@
+.categoryligne img {
+  border: 1px solid rgba(109, 109, 109, 0.586);
+}
+
+.buttondeleteabsolute {
+  position: absolute;
+}
+.categoryinfostat {
+  justify-content: flex-start;
+  gap: 17%;
+}
+
+.categoryinfostat:first-child {
+  margin-left: 25px;
+}

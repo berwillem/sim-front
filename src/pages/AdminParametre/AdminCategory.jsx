@@ -84,10 +84,10 @@ const AdminCategory = () => {
         <div className="table-stat">
           <div className="titre-stat">
             <ul className="ligne">
-              <div className="info-stat">
-                <li>id</li>
+              <div className="info-stat categoryinfostat">
                 <li>name fr</li>
                 <li>name en</li>
+                <li>famille</li>
               </div>
               <li>action</li>
             </ul>
@@ -95,11 +95,18 @@ const AdminCategory = () => {
 
           {categories?.map((category) => (
             <ul key={category._id} className="stores">
-              <li className="ligne">
-                <span>{category._id}</span>
+              <div className="buttondeleteabsolute">
+                <DeleteButton handledelet={() => handleDelete(category._id)} />
+              </div>
+
+              <li className="ligne categoryligne">
                 <span>{category.titlefr}</span>
                 <span>{category.titleen}</span>
-                <DeleteButton handledelet={() => handleDelete(category._id)} />
+                <span>{category.famille.titlefr}</span>
+
+                <span>
+                  <img src={category.image} alt="" />{" "}
+                </span>
               </li>
             </ul>
           ))}

@@ -232,6 +232,10 @@
   align-items: center;
   position: absolute;
 }
+
+.titre-stat {
+  gap: 10px;
+}
 .filter{
   display: flex;
   align-items: center;
