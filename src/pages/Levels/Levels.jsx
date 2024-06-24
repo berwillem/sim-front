@@ -19,7 +19,9 @@ const Levels = () => {
   }, []);
   return (
     <>
-      <LevelBar level={levelData}></LevelBar>
+    <div className="bar">
+    <LevelBar level={levelData}></LevelBar> <span>{levelData?.points} points</span>
+    </div>
       <div className="levels">
         <div className="level-explain">
           <div className="level" data-hover-text="réduction 1%">
@@ -39,6 +41,11 @@ const Levels = () => {
             <h1>Diamond</h1>
             <img src={diamond} alt="" />
           </div>
+        </div>
+        <div className="remarque">
+          <p>
+          <span>Remarque</span>: chaque 10000 da = 1 point
+          </p>
         </div>
       </div>
     </>

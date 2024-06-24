@@ -5,23 +5,34 @@ import ReactPlayer from "react-player";
 import { LiaTimesCircleSolid } from "react-icons/lia";
 import bgimg from "../../assets/sliderImages/tool1.jpg";
 import { useTranslation } from "react-i18next";
-
+import ScrollAnimation from "react-animate-on-scroll";
+import "animate.css/animate.compat.css"
+import { LazyLoadImage } from "react-lazy-load-image-component";
 const AboutUs = () => {
   const { t } = useTranslation();
   const [play, setPlay] = useState(false);
   return (
     <section className="aboutus" id="aboutus">
       <div className="aboutusfirst">
+     
         <div className="aboutusimg">
+        <ScrollAnimation animateOnce={true} duration={2}  animateIn='bounceInLeft'
+  >
           <img
             src="https://maxshine.cn/wp-content/themes/maxshinecn/assets/img/about-1.jpg"
             alt="loading"
           />
+           </ScrollAnimation>
         </div>
+       
         <div className="aboutustext">
-          <h2>{t("aboutushomeh2")}</h2>
+        <ScrollAnimation animateOnce={true} duration={2}  animateIn='bounceInRight'
+  >
+        <h2>{t("aboutushomeh2")}</h2>
           <h1>{t("aboutushomeh1")}</h1>
           <p>{t("aboutushomep")}</p>
+         </ScrollAnimation>
+         
         </div>
       </div>
       {play && (
@@ -42,30 +53,32 @@ const AboutUs = () => {
 
       <div className="aboutussecond">
         <div className="clip-path" onClick={() => setPlay(true)}>
-          <img src={bgimg} alt="" className="imgoverlay" />
+          <LazyLoadImage src={bgimg} alt="" className="imgoverlay" />
           <div className="overlayimgabout"></div>
           <GoPlay className="goplay" size={100} color="white"></GoPlay>
           <h1>Play video</h1>
         </div>
-
+        <ScrollAnimation duration={2.5} className="box" animateOnce={true}  animateIn='bounceInLeft' >
         <div className="aboutussecondbox">
           <h1>IN PURSUIT OF AUTOMOTIVE PERFECTION SINCE 2016</h1>
           <h2>POLISHERS AND OTHER AUTO DETAILING PRODUCTS</h2>
           <div className="aboutussecondboximg">
-            <img
+            <LazyLoadImage
               src="https://maxshine.cn/wp-content/themes/maxshinecn/assets/img/img-video-thumb-1.jpg"
               alt=""
             />
-            <img
+            <LazyLoadImage
               src="https://maxshine.cn/wp-content/themes/maxshinecn/assets/img/img-video-thumb-1.jpg"
               alt=""
             />
-            <img
+            <LazyLoadImage
               src="https://maxshine.cn/wp-content/themes/maxshinecn/assets/img/img-video-thumb-1.jpg"
               alt=""
             />
           </div>
         </div>
+        </ScrollAnimation>
+  
       </div>
     </section>
   );
