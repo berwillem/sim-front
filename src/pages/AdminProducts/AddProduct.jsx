@@ -30,7 +30,7 @@ const AddProduct = () => {
     getAllCategories()
       .then((res) => {
         setCategories(res.data.categories);
-        console.log(res.data);
+        console.log(categories);
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
@@ -39,7 +39,8 @@ const AddProduct = () => {
   const fetchFamilles = () => {
     getAllFamilles()
       .then((res) => {
-        setFamilles(res.data.familles);
+        setFamilles(res.data.familles); 
+        
       })
       .catch((error) => {
         console.error("Error fetching familles:", error);
@@ -144,9 +145,10 @@ const AddProduct = () => {
                         value={selectedFamille}
                         onChange={setSelectedFamille}
                       />
+                      
                       <ComboBox
                         label="Categorie"
-                        options={categories}
+                        options={selectedFamille?.categories?selectedFamille?.categories:[]}
                         value={selectedCategorie}
                         onChange={setSelectedCategorie}
                       />
@@ -155,7 +157,8 @@ const AddProduct = () => {
                       <div className="hadtmekhriga">
                         <ComboBox
                           label="Type"
-                          options={types}
+                          options={categories.find(cat => cat?._id === selectedCategorie?._id)?.types}
+
                           value={selectedType}
                           onChange={setSelectedType}
                         />
