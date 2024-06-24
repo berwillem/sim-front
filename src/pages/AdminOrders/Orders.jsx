@@ -19,7 +19,11 @@ import {
 } from "../../services/commandeservices";
 import Pagination from "@mui/material/Pagination";
 import moment from "moment";
+
+import { LuUserX } from "react-icons/lu";
+
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+
 
 
 const Orders = () => {
@@ -152,8 +156,9 @@ const Orders = () => {
               <div className="info-stat ">
                 <li>Product</li>
                 <li>Fullname</li>
-                <li>Email</li>
+                <li>Number</li>
                 <li>Quantity</li>
+                <li>Total Price</li>
                 <li>createdAt</li>
                 <li>Status</li>
               </div>
@@ -173,12 +178,20 @@ const Orders = () => {
                 <li className="ligne">
                   <span>{Commande.product?.titlefr}</span>{" "}
                   <span>
-                    {Commande.user?.FirstName}
-                    {"  "}
-                    {Commande.user?.LastName}
-                  </span>{" "}
-                  <span>{Commande.user?.email}</span>
+
+                    {Commande.user ? (
+                      Commande.user.FirstName + " " + Commande.user.LastName
+                    ) : (
+                      <div className="flex">
+                        {" "}
+                        {Commande.client} <LuUserX />
+                      </div>
+                    )}
+                  </span>
+                  <span>{Commande.phoneNumber}</span>
+
                   <span>{Commande.quantity}</span>
+                  <span>{Commande.totalPrice}</span>
                   <span>
                     {moment(Commande.createdAt).format("DD MMM YYYY")}
                   </span>
