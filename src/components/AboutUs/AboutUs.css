@@ -177,10 +177,14 @@
     padding: 0;
     justify-content: center;
     align-items: center;
+    
+  }
+  .topScroll{
+    margin-top: 160px;
   }
   .aboutusimg {
     width: 92%;
-    margin-top: 100px;
+ 
   }
   .aboutustext {
     width: 92%;
@@ -207,6 +211,9 @@
   }
   .box{
     width: 90%;
+    left: 1%;
+    top: 70px;
+   position: absolute;
   }
   .imgoverlay {
     object-fit: cover;

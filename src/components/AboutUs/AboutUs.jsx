@@ -13,7 +13,7 @@ const AboutUs = () => {
   const [play, setPlay] = useState(false);
   return (
     <section className="aboutus" id="aboutus">
-       <ScrollAnimation animateOnce={true} duration={2}  animateIn='fadeInRight'
+       <ScrollAnimation className="topScroll" animateOnce={true} duration={2}  animateIn='fadeInRight'
   >
       <div className="aboutusfirst">
      
