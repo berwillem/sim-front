@@ -82,6 +82,84 @@ const Users = () => {
             ></Addbutton>
           </div>
         </div>
+
+     <div className="filter">
+     <Grid container spacing={2} sx={{alignItems:"center"}}>
+          <Grid item xs={12} sm={4}>
+            <FormControl fullWidth variant="outlined">
+              <InputLabel>Famille</InputLabel>
+              <Select
+                value={selectedFamille}
+                onChange={(e) => setSelectedFamille(e.target.value)}
+                label="Famille"
+              >
+                <MenuItem value="all">All</MenuItem>
+                {familles.map((famille) => (
+                  <MenuItem key={famille._id} value={famille._id}>
+                    {famille.titlefr}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <FormControl fullWidth variant="outlined">
+              <InputLabel>Category</InputLabel>
+              <Select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                label="Category"
+              >
+                <MenuItem value="all">All</MenuItem>
+                {categories.map((category) => (
+                  <MenuItem key={category._id} value={category._id}>
+                    {category.titlefr}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+          <Grid item xs={12} sm={4}>
+            <FormControl fullWidth variant="outlined">
+              <InputLabel>Type</InputLabel>
+              <Select
+                value={selectedType}
+                onChange={(e) => setSelectedType(e.target.value)}
+                label="Type"
+              >
+                <MenuItem value="all">All</MenuItem>
+                {types.map((type) => (
+                  <MenuItem key={type._id} value={type._id}>
+                    {type.titlefr}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Grid>
+        </Grid>
+  <div className="btns">
+  <Button
+          variant="contained"
+          color="primary"
+          onClick={handleFilterApply}
+          style={{  marginRight: "10px" ,backgroundColor:"red",height:"55px",fontSize:"13px"
+          }}
+        >
+          Apply Filters
+        </Button>
+        {filtersApplied && (
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={handleFilterClear}
+            style={{ color:"red",border:"red 1px solid",height:"55px",fontSize:"13px" }}
+          >
+            Clear Filters
+          </Button>
+        )}
+  </div>
+     </div>
+
         <div className="table-stat">
           <div className="titre-stat">
             <ul className="ligne">
