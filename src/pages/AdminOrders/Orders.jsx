@@ -148,7 +148,7 @@ const Orders = () => {
                 }
               >
                 <li className="ligne">
-                  <span>{Commande.product?.title}</span>{" "}
+                  <span>{Commande.product?.titlefr}</span>{" "}
                   <span>
                     {Commande.user?.FirstName}
                     {"  "}

@@ -1,7 +1,9 @@
 import axios from "axios";
 import { BASE_API_URL } from "../config/api";
 const token = localStorage.getItem("token");
+
 if(token) axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
 export const getTotalUserCount = () => {
   return axios.get(`${BASE_API_URL}/users/count`);
 };
