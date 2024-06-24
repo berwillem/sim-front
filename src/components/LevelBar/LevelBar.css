@@ -1,0 +1,68 @@
+.level-bar{
+    width: 50%;
+    position: relative;
+    margin: 50px;
+   
+    
+}
+.level-bar img{
+   position: absolute;
+   height: 25px;
+   bottom: 20px;
+}
+.level-bar p{
+   position: absolute;
+   font-weight: 600;
+   top: 20px;
+}
+.level-bar .silver1{
+
+   left:32%;
+}
+.level-bar .gold1{
+
+   left:65%;
+}
+.level-bar .diamond1{
+
+   left:97%;
+}
+.level-bar progress{
+    width: 100%;
+
+}
+
+
+progress {
+    border: none;
+    width: 400px;
+    height: 15px;
+    
+    border-radius: 15px;
+  }
+  
+
+  
+  
+  
+   .bronze::-webkit-progress-value {
+    background: brown;
+    border-radius: 15px;
+  }
+  .silver::-webkit-progress-value {
+    background: silver;
+    border-radius: 15px;
+  }
+  .gold::-webkit-progress-value {
+    background: gold;
+    border-radius: 15px;
+  }
+  .diamond::-webkit-progress-value {
+    background: skyblue;
+    border-radius: 15px;
+  }
+  
+  progress::-webkit-progress-bar {
+    background: ghostwhite;
+    border-radius: 15px;
+  }
