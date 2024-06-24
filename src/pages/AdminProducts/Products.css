@@ -232,3 +232,26 @@
   align-items: center;
   position: absolute;
 }
+.filter{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+.btns{
+  display: flex;
+  align-items: center;
+
+ 
+}
+.Mui-focused{
+
+  color: red !important;
+}
+.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
+  
+}
+.MuiOutlinedInput-notchedOutline{
+  border: red 1px solid !important;
+  
+}

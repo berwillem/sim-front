@@ -150,7 +150,8 @@ const Products = () => {
             ></Addbutton>
           </div>
         </div>
-        <Grid container spacing={2}>
+     <div className="filter">
+     <Grid container spacing={2} sx={{alignItems:"center"}}>
           <Grid item xs={12} sm={4}>
             <FormControl fullWidth variant="outlined">
               <InputLabel>Famille</InputLabel>
@@ -203,11 +204,13 @@ const Products = () => {
             </FormControl>
           </Grid>
         </Grid>
-        <Button
+  <div className="btns">
+  <Button
           variant="contained"
           color="primary"
           onClick={handleFilterApply}
-          style={{ marginTop: "10px", marginRight: "10px" }}
+          style={{  marginRight: "10px" ,backgroundColor:"red",height:"55px",fontSize:"13px"
+          }}
         >
           Apply Filters
         </Button>
@@ -216,11 +219,13 @@ const Products = () => {
             variant="outlined"
             color="secondary"
             onClick={handleFilterClear}
-            style={{ marginTop: "10px" }}
+            style={{ color:"red",border:"red 1px solid",height:"55px",fontSize:"13px" }}
           >
             Clear Filters
           </Button>
         )}
+  </div>
+     </div>
         <div className="table-stat">
           <div className="titre-stat">
             <ul className="ligne">

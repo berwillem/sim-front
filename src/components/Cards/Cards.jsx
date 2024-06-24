@@ -12,26 +12,26 @@ export default function Cards() {
       title: "Fixation",
       image: Fixation,
       navigate: "/664e87fc4cf5a42abd0b5e33",
-      animateIn:"bounceInLeft"
+      animateIn:"fadeInLeft"
     },
     {
       id: 2,
       title: "outillages",
       image: Milimg,
       navigate: "/664e88294cf5a42abd0b5e35",
-      animateIn:"bounceIn"
+      animateIn:"fadeIn"
     },
     {
       id: 3,
       title: "Detailling tools",
       image: Maximg,
       navigate: "/664e88294cf5a42abd0b5e35",
-      animateIn:"bounceInRight"
+      animateIn:" fadeInRight"
     },
   ];
   const all = products.map((product) => {
     return (
-      <ScrollAnimation initiallyVisible={true} animateOnce={true} className="productAnim"  key={product.id} duration={2}   animateIn={product.animateIn}>
+      <ScrollAnimation initiallyVisible={true} animateOnce={true} className="productAnim"  key={product.id} duration={1.5}   animateIn={product.animateIn}>
  <div className="cardsmain" >
         <div
           className="cardscard"
