@@ -13,6 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../../redux/slices/authSlice";
 import { CiMail } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
+import axios from "axios";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -35,6 +36,9 @@ export default function SignIn() {
       .then((res) => {
         toast.success(res.data?.message);
         dispatch(login(res.data));
+        const token = localStorage.getItem("token");
+        if (token)
+          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         if (res.data?.user?.role === "admin") {
           navigate("/admin/home");
         } else {

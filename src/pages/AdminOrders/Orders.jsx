@@ -18,21 +18,21 @@ import {
   updateCommande,
 } from "../../services/commandeservices";
 import Pagination from "@mui/material/Pagination";
+import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import moment from "moment";
 
 const Orders = () => {
+  // states ::
   const [Commandes, setCommandes] = useState([]);
   const [TotalCommandesCount, setTotalCommandesCount] = useState(0);
   const [validCommandesCount, setValidCommandesCount] = useState(0);
   const [pendingCommandesCount, setPendingCommandesCount] = useState(0);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  console.log(totalPages, "commandes");
-  useEffect(() => {
-    fetchCommandes(page);
-  }, [page]);
-  const fetchCommandes = (page) => {
-    getAllCommandes(page)
+  const [filter, setFilter] = useState("");
+  // functions ::
+  const fetchCommandes = (page, filter) => {
+    getAllCommandes(page, filter)
       .then((res) => {
         setCommandes(res.data.commandes);
         setTotalPages(res.data.totalPages);
@@ -44,6 +44,7 @@ const Orders = () => {
 
   const handlePageChange = (event, value) => {
     setPage(value);
+    fetchCommandes(value, filter);
   };
   const handleDelet = (CommandeId) => {
     deleteCommande(CommandeId)
@@ -81,23 +82,23 @@ const Orders = () => {
         });
       });
   };
+  // effects :
+  useEffect(() => {
+    fetchCommandes(page, filter);
+  }, [page, filter]);
   useEffect(() => {
     getTotalCommandesCount().then((res) => {
       setTotalCommandesCount(res.data.count);
     });
-  }, [handleDelet]);
-
-  useEffect(() => {
     getPendingCommandesCount().then((res) => {
       setPendingCommandesCount(res.data.count);
     });
-  }, [handleDelet]);
-
-  useEffect(() => {
     getValidCommandesCount().then((res) => {
       setValidCommandesCount(res.data.count);
     });
   }, [handleDelet]);
+
+  //  component start ::
   return (
     <>
       <div className="admin-stat">
@@ -123,6 +124,21 @@ const Orders = () => {
             stat={"0"}
           />
         </div>
+        <FormControl variant="outlined" style={{ minWidth: 120 }}>
+          <InputLabel>Status</InputLabel>
+          <Select
+            value={filter}
+            onChange={(e) => {
+              setFilter(e.target.value);
+              fetchCommandes(page, e.target.value);
+            }}
+            label="Status"
+          >
+            <MenuItem value="all">All</MenuItem>
+            <MenuItem value="true">Valid</MenuItem>
+            <MenuItem value="false">Not Valid</MenuItem>
+          </Select>
+        </FormControl>
         <div className="table-stat">
           <div className="titre-stat">
             <ul className="ligne commandeslist">

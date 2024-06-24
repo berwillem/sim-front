@@ -17,8 +17,18 @@ const createProductFormData = (data) => {
   });
   return fd;
 };
-export const getAllProducts = (page) => {
-  return axios.get(`${BASE_API_URL}/products?page=${page}`);
+export const getAllProducts = (page, familleId, categoryId, typeId) => {
+  let url = `${BASE_API_URL}/products?page=${page}`;
+  if (familleId) {
+    url += `&famille=${familleId}`;
+  }
+  if (categoryId) {
+    url += `&category=${categoryId}`;
+  }
+  if (typeId) {
+    url += `&type=${typeId}`;
+  }
+  return axios.get(url);
 };
 export const getProductById = (productId) => {
   return axios.get(`${BASE_API_URL}/products/${productId}`);

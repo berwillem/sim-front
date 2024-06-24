@@ -76,7 +76,7 @@ const AddType = () => {
           </option>
           {familles.map((famille) => (
             <option key={famille.id} value={famille.id}>
-              {famille.title}
+              {famille.titlefr}
             </option>
           ))}
         </select>
