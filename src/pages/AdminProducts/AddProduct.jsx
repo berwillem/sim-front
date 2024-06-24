@@ -157,7 +157,8 @@ const AddProduct = () => {
                       <div className="hadtmekhriga">
                         <ComboBox
                           label="Type"
-                          options={categories.find(cat => cat?._id === selectedCategorie?._id)?.types}
+                          options={categories.find(cat => cat?._id === selectedCategorie?._id)?.types?categories.find(cat => cat?._id === selectedCategorie?._id)?.types:[]}
+
 
                           value={selectedType}
                           onChange={setSelectedType}
