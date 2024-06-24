@@ -34,8 +34,6 @@ export default function SignUp() {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [error, setError] = useState(null);
-
   // register function :
   const onSubmit = (data) => {
     SignUpUser(data)
@@ -44,9 +42,8 @@ export default function SignUp() {
         dispatch(login(res.data));
         navigate("/");
       })
-      .catch((err) => setError(err.response?.data.message));
+      .catch((err) => console.log(err));
   };
-
   const [show, setShow] = useState(true);
   const { t } = useTranslation();
   return (
@@ -54,7 +51,7 @@ export default function SignUp() {
       <p>{t("signupP")} </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="forlabelsignin">
-          <div className="labelSignUphalf forsignup">
+          <div className="labelSignUphalf">
             <div>
               <label htmlFor="FirstName">{t("firstname")} </label>
               <input
@@ -119,21 +116,6 @@ export default function SignUp() {
           </div>
         </div>
         <div className="middivsignin">
-          {error && (
-            <h3
-              style={{
-                color: "red",
-                textAlign: "center",
-                fontSize: "18px",
-                border: "0.5px solid red",
-                padding: "4px",
-                borderRadius: "5px",
-                marginBottom: "10px",
-              }}
-            >
-              {error}
-            </h3>
-          )}
           <button type="submit">{t("Continuer")}</button>
         </div>
         <div className="text-center">

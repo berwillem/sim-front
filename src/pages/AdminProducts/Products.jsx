@@ -125,15 +125,7 @@ export default Users;
 const Productitem = ({ product, index }) => {
   return (
     <li key={index} className="ligne">
-      <span>
-        <div>
-          <div style={{ marginBottom: "7px" }}>
-            {" "}
-            Francais: {product?.titlefr}
-          </div>
-          <div> Anglais: {product?.titleen}</div>
-        </div>
-      </span>
+      <span> {product?.title}</span>
       <span>{product?.price}</span>
       <span>{product?.description}</span>
       <span>{product?.marque}</span>

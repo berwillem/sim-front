@@ -84,7 +84,7 @@ const AddProduct = () => {
     createProduct(data)
       .then((res) => {
         toast.success(res.data?.message);
-        navigate("/admin/products");
+        navigate("/admin/products/all");
       })
       .catch((err) => console.log(err));
   };
@@ -160,7 +160,7 @@ const AddProduct = () => {
                           onChange={setSelectedType}
                         />
                       </div>
-                      {/* titre fr */}
+                        {/* titre fr */}
                       <div className="hadtmekhriga labelSignUphalfinput" id="">
                         <input
                           type="text"
@@ -175,8 +175,8 @@ const AddProduct = () => {
                         <input
                           type="text"
                           id=""
-                          placeholder="Titre anglais"
-                          {...register("Titre2")}
+                          placeholder="Gamme"
+                          {...register("Gamme")}
                         />
                       </div>
 
@@ -189,25 +189,23 @@ const AddProduct = () => {
                         />
                       </div>
                     </div>
-                    <div className="labelSignUphalf  ">
-                      <div className="labelSignUphalfinput">
-                        <input
-                          type="text"
-                          id=""
-                          placeholder="Marque"
-                          {...register("Marque")}
-                        />
-                      </div>
-                      <div className="labelSignUphalfinput">
-                        <input
-                          type="text"
-                          id=""
-                          placeholder="Gamme"
-                          {...register("Gamme")}
-                        />
-                      </div>
+                    <div className="labelSignUphalfinput labelSignUphalfinputspecial ">
+                      <input
+                        type="text"
+                        id=""
+                        placeholder="Marque"
+                        {...register("Marque")}
+                      />
                     </div>
-
+                    {/* titre anglais */}
+                    <div className="hadtmekhriga labelSignUphalfinput" id="">
+                      <input
+                        type="text"
+                        id=""
+                        placeholder="Titre anglais"
+                        {...register("Titre2")}
+                      />
+                    </div> 
                     <div className="labelSignUphalf">
                       <textarea
                         name=""
