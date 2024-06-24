@@ -142,6 +142,9 @@
   padding: 0 10px;
   font-size: 14px;
 }
+.titre-stat {
+  gap: 10px;
+}
 .labelSignUphalf textarea {
   height: 100px;
 }
@@ -231,4 +234,9 @@
   gap: 10px;
   align-items: center;
   position: absolute;
+}
+
+.flexonly {
+  display: flex;
+  flex-wrap: nowrap;
 }

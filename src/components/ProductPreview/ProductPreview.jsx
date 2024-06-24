@@ -14,7 +14,7 @@ import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { LiaTimesCircleSolid } from "react-icons/lia";
 import OrderModal from "../OrderModal/OrderModal";
 
-export default function App({ product, functio }) {
+export default function App({ product, functio, language }) {
   const [thumbsSwiper, setThumbsSwiper] = useState("null");
   const [openModal, setOpenModal] = useState(false);
   const handleOpenModal = () => {
@@ -65,9 +65,13 @@ export default function App({ product, functio }) {
               ))}
             </Swiper>
           </div>
-          <h1> {product?.title} </h1>
-          <p className="textpreview">{product?.description}</p>
-          <h2>{product?.price}</h2>
+          <h1> {language === "fr" ? product?.titlefr : product?.titleen} </h1>
+          <h3>Gamme : {product?.gamme}</h3>
+          <h3>Marque : {product?.marque}</h3>
+          <h3>Type : {product?.type.titlefr}</h3>
+          <p className="textpreview">Description : {product?.description}</p>
+          <h2>{product?.price} DA</h2>
+
           <button onClick={handleOpenModal}>Acheter</button>
         </div>
       </div>

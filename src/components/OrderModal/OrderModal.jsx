@@ -8,7 +8,8 @@ import Swal from "sweetalert2";
 import "./OrderModal.css";
 
 const style = {
-  width: "500px",
+  width: "36%",
+  minWidth: "350px",
   height: "auto",
   position: "absolute",
   top: "50%",
