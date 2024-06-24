@@ -13,7 +13,6 @@ import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../../redux/slices/authSlice";
 import { CiMail } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -31,21 +30,19 @@ export default function SignIn() {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const [error, setError] = useState(null);
   const onSubmit = (data) => {
     SignInUser(data)
       .then((res) => {
         toast.success(res.data?.message);
         dispatch(login(res.data));
-        const token = localStorage.getItem("token");
-        if (token)
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         if (res.data?.user?.role === "admin") {
           navigate("/admin/home");
         } else {
           navigate("/");
         }
       })
-      .catch((err) => console.log(err));
+      .catch((err) => setError(err.response?.data.message));
   };
   const [show, setShow] = useState(false);
 
@@ -62,8 +59,8 @@ export default function SignIn() {
               placeholder="Email"
               {...register("email")}
             />
-            <CiMail size={25} fontSize={"35px"} fontWeight={"bold"} />
             {errors.email && <p className="error">{errors.email.message}</p>}
+            <CiMail size={25} fontSize={"35px"} fontWeight={"bold"} />
           </div>
           <label htmlFor="password">{t("password")}</label>
 
@@ -77,6 +74,7 @@ export default function SignIn() {
             {errors.password && (
               <p className="error">{errors.password.message}</p>
             )}
+
             {!show ? (
               <IoMdEyeOff
                 onClick={() => setShow(!show)}
@@ -93,6 +91,21 @@ export default function SignIn() {
           </div>
         </div>
         <div className="middivsignin">
+          {error && (
+            <h3
+              style={{
+                color: "red",
+                textAlign: "center",
+                fontSize: "18px",
+                border: "0.5px solid red",
+                padding: "4px",
+                borderRadius: "5px",
+                marginBottom: "10px",
+              }}
+            >
+              {error}
+            </h3>
+          )}
           <Link to="/passwordForgot">{t("motdepasseoublie")} </Link>
           <button type="submit">{t("Continuer")} </button>
         </div>{" "}
