@@ -154,7 +154,7 @@ const Orders = () => {
                     {"  "}
                     {Commande.user?.LastName}
                   </span>{" "}
-                  <span>{Commande.user.email}</span>
+                  <span>{Commande.user?.email}</span>
                   <span>{Commande.quantity}</span>
                   <span>
                     {moment(Commande.createdAt).format("DD MMM YYYY")}
