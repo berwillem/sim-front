@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./MiniNav.css";
 import { FaRegUser } from "react-icons/fa";
 import { GrDeliver } from "react-icons/gr";
@@ -6,12 +6,9 @@ import { GrUpgrade } from "react-icons/gr";
 import { getUserById, updateUserTour } from "../../services/usersServices";
 import Joyride from "react-joyride";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 const MiniNav = () => {
   const { userId } = useParams();
-  const useridCheck = useSelector((state) => state?.auth?.user?._id);
   const [tour, setTour] = useState(true);
-  const navigate = useNavigate();
   const steps = [
     {
       target: ".my-first-step",
@@ -30,7 +27,7 @@ const MiniNav = () => {
   useEffect(() => {
     getUserById(userId).then((res) => setTour(res.data.tour));
   }, []);
-  if (useridCheck !== userId) return navigate("/notfound");
+  
   return (
     <>
       {!tour && (
