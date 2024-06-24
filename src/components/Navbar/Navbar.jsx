@@ -83,6 +83,7 @@ export default function Navbar() {
                   navigate(`/profile/${userId}`);
                 }}
                 userClicked2={() => {
+                  navigate("/");
                   dispatch(logout());
                 }}
               ></Popover>
