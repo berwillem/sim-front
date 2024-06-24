@@ -236,26 +236,20 @@
 .titre-stat {
   gap: 10px;
 }
-.filter{
+.filter {
   display: flex;
   align-items: center;
   width: 100%;
   gap: 10px;
 }
-.btns{
+.btns {
   display: flex;
   align-items: center;
-
- 
 }
-.Mui-focused{
-
+.Mui-focused {
   color: red !important;
 }
-.css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root{
-  
-}
-.MuiOutlinedInput-notchedOutline{
+
+.MuiOutlinedInput-notchedOutline {
   border: red 1px solid !important;
-  
 }
