@@ -146,7 +146,7 @@ const OrderModal = ({ open, onClose, product }) => {
               value={quantity}
               onChange={(e) => setQuantity(parseInt(e.target.value))}
             />
-            <h2>Total Price: {totalPrice} DA</h2>
+            <h2>Total Price: {totalPrice ? totalPrice : 0} DA</h2>
             <button type="submit" style={buttonStyle}>
               {t("submit")}
             </button>

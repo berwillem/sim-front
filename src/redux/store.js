@@ -5,9 +5,8 @@ import { persistReducer, persistStore } from "redux-persist";
 import { thunk } from "redux-thunk";
 
 const persistConfig = {
-  key: "root",
+  key: "sym",
   storage,
-  blacklist: ["menu"],
 };
 
 const persistedReducer = persistReducer(
