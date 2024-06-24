@@ -30,3 +30,17 @@
   border-radius: 10px;
   transition: 0.5s;
 }
+
+@media screen and (max-width: 600px) {
+  .mini-nav {
+    /* width: 95vw; */
+  }
+
+  .mini-nav li {
+    padding: 11px;
+  }
+  .mini-nav-ul {
+    justify-content: space-between;
+    min-height: 80px;
+  }
+}

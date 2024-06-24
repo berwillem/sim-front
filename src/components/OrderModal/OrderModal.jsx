@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { createCommande } from "../../services/commandeservices";
 import Swal from "sweetalert2";
+import "./OrderModal.css";
 
 const style = {
   width: "500px",
@@ -94,14 +95,9 @@ const OrderModal = ({ open, onClose, product }) => {
     <Modal open={open} onClose={onClose}>
       <>
         {!isAuth && (
-          <div>
-            <h1>
-              Login before making an order and benefit from a discount on our
-              products
-            </h1>
-            <Link to="/auth/signin">
-              <button>Sign in</button>
-            </Link>
+          <div className="h1header">
+            <h1> {t("loginbefore")} </h1>
+            <Link to="/auth/signin">{"S'inscrire"}</Link>
           </div>
         )}
         <div style={style}>
