@@ -1,0 +1,36 @@
+.imgprevieforcommande {
+  width: 100px !important;
+  height: 100px !important;
+  border: 1px solid rgba(135, 132, 132, 0.553);
+  border-radius: 5px;
+}
+.imgprevieforcommandespan {
+  max-width: 120px;
+}
+.infostat2 {
+  margin: 0 39px 0 0 !important ;
+}
+.titrestat2 {
+  padding: 0 !important;
+}
+.forphone {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .forpc {
+    display: none;
+  }
+  .forphone {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .commandeslist * {
+    display: none;
+  }
+  .admin-stat {
+    padding: 0 !important;
+  }
+}

@@ -71,3 +71,38 @@
 .level-explain .level:hover::before {
   opacity: 1;
 }
+
+@media screen and (max-width: 600px) {
+  .level-explain {
+    flex-direction: column;
+  }
+  .level {
+    border-radius: 5px;
+  }
+  .level-explain .level {
+    clip-path: none;
+    height: 100px;
+    gap: 5px;
+    padding-left: 8px;
+  }
+  .level-explain .level h1 {
+    font-size: 18px;
+  }
+  .level img {
+    width: 30px;
+    height: 30px;
+  }
+  .level-explain .level::after {
+    content: attr(data-hover-text);
+  }
+  .level-explain .level::before {
+    content: none;
+  }
+  .level-explain .level:hover h1,
+  .level-explain .level:hover img {
+    opacity: 1;
+  }
+  .flexi {
+    display: flex;
+  }
+}

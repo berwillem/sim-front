@@ -109,6 +109,7 @@
   }
   .user-card h2 {
     margin-top: 70px;
+    font-size: 18px;
   }
   .user-info {
     grid-template-columns: auto;

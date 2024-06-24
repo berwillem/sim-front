@@ -132,7 +132,8 @@
   .menuopenforfinal {
     width: 100vw;
     height: 100vh;
-    z-index: 5000;
+    left: 0;
+    z-index: 10;
     position: fixed;
     top: 0;
     display: flex;
