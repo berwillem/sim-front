@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { getUserLevelInfos } from "../../services/usersServices";
 import { useParams } from "react-router-dom";
+import LevelBar from "../../components/LevelBar/LevelBar";
 
 const Levels = () => {
   const [levelData, setLeveldata] = useState();
@@ -18,6 +19,7 @@ const Levels = () => {
   }, []);
   return (
     <>
+      <LevelBar level={levelData}></LevelBar>
       <div className="levels">
         <div className="level-explain">
           <div className="level" data-hover-text="réduction 1%">
@@ -37,7 +39,6 @@ const Levels = () => {
             <h1>Diamond</h1>
             <img src={diamond} alt="" />
           </div>
-          <div className="progress-bar"></div>
         </div>
       </div>
     </>

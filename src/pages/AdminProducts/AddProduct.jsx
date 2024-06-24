@@ -64,6 +64,7 @@ const AddProduct = () => {
   const { register, handleSubmit } = useForm({
     defaultValues: {
       Titre: "",
+      Titre2: "",
       Gamme: "",
       Marque: "",
       Famille: "",
@@ -147,7 +148,7 @@ const AddProduct = () => {
                         label="Categorie"
                         options={categories}
                         value={selectedCategorie}
-                        onChange={setSelectedCategorie}                 
+                        onChange={setSelectedCategorie}
                       />
                     </div>
                     <div className="labelSignUphalf">
@@ -159,11 +160,12 @@ const AddProduct = () => {
                           onChange={setSelectedType}
                         />
                       </div>
+                        {/* titre fr */}
                       <div className="hadtmekhriga labelSignUphalfinput" id="">
                         <input
                           type="text"
                           id=""
-                          placeholder="Titre"
+                          placeholder="Titre francais"
                           {...register("Titre")}
                         />
                       </div>
@@ -195,6 +197,15 @@ const AddProduct = () => {
                         {...register("Marque")}
                       />
                     </div>
+                    {/* titre anglais */}
+                    <div className="hadtmekhriga labelSignUphalfinput" id="">
+                      <input
+                        type="text"
+                        id=""
+                        placeholder="Titre anglais"
+                        {...register("Titre2")}
+                      />
+                    </div> 
                     <div className="labelSignUphalf">
                       <textarea
                         name=""

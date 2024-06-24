@@ -15,7 +15,10 @@ const UserCommandes = () => {
     getUserCommandes(userId)
       .then((res) => {
         setCommandes(res.data);
+
         console.log(res.data, "daaaaaa");
+
+
       })
       .catch((error) => {
         Swal.fire({

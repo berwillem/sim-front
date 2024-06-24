@@ -21,3 +21,6 @@ export const deleteUser = (userId) => {
 export const getUserLevelInfos = (userId) => {
   return axios.get(`${BASE_API_URL}/users/level/${userId}`);
 };
+export const updateUserTour = (userId) => {
+  return axios.put(`${BASE_API_URL}/users/tour/${userId}`);
+};

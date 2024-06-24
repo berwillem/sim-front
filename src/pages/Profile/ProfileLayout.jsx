@@ -7,7 +7,7 @@ const ProfileLayout = () => {
     <>
       <Navbar></Navbar>
       <div className="userprofile">
-        <MiniNav></MiniNav>
+        <MiniNav tour={false}></MiniNav>
         <Outlet></Outlet>
       </div>
     </>
