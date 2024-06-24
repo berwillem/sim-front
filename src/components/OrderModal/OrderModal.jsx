@@ -77,7 +77,7 @@ const OrderModal = ({ open, onClose, product }) => {
           text: "Your order has been placed successfully",
         });
         if (isAuth) {
-          navigate(`/profile/${user._id}/oders`);
+          navigate(`/profile/${user._id}/commandes`);
         } else {
           navigate(`/`);
         }
