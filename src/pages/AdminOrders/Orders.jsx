@@ -19,6 +19,8 @@ import {
 } from "../../services/commandeservices";
 import Pagination from "@mui/material/Pagination";
 import moment from "moment";
+import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+
 
 const Orders = () => {
   const [Commandes, setCommandes] = useState([]);
@@ -27,13 +29,13 @@ const Orders = () => {
   const [pendingCommandesCount, setPendingCommandesCount] = useState(0);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [filter, setFilter] = useState("");
   console.log(totalPages, "commandes");
-  useEffect(() => {
-    fetchCommandes(page);
-  }, [page]);
-  const fetchCommandes = (page) => {
-    getAllCommandes(page)
+  
+  const fetchCommandes = (page, filter) => {
+    getAllCommandes(page, filter)
       .then((res) => {
+        console.log(res.data.commandes)
         setCommandes(res.data.commandes);
         setTotalPages(res.data.totalPages);
       })
@@ -44,6 +46,7 @@ const Orders = () => {
 
   const handlePageChange = (event, value) => {
     setPage(value);
+    fetchCommandes(value, filter);
   };
   const handleDelet = (CommandeId) => {
     deleteCommande(CommandeId)
@@ -81,6 +84,9 @@ const Orders = () => {
         });
       });
   };
+  useEffect(() => {
+    fetchCommandes(page, filter);
+  }, [page, filter]);
   useEffect(() => {
     getTotalCommandesCount().then((res) => {
       setTotalCommandesCount(res.data.count);
@@ -123,6 +129,23 @@ const Orders = () => {
             stat={"0"}
           />
         </div>
+        <FormControl variant="outlined" style={{ minWidth: 120 }}>
+          <InputLabel>Status</InputLabel>
+          <Select
+            value={filter}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setFilter(e.target.value);
+              fetchCommandes(page, e.target.value);
+            }}
+            label="Status"
+          >
+            <MenuItem value="all">All</MenuItem>
+            <MenuItem value="true">Valid</MenuItem>
+            <MenuItem value="false">Not Valid</MenuItem>
+          </Select>
+        </FormControl>
+
         <div className="table-stat">
           <div className="titre-stat">
             <ul className="ligne commandeslist">
@@ -139,7 +162,7 @@ const Orders = () => {
           </div>
 
           {Commandes?.map((Commande, index) => {
-            console.log(Commande, "commande");
+            // console.log(Commande, "commande");
             return (
               <ul
                 key={index}

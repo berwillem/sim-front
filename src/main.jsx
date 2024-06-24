@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -14,33 +14,31 @@ import SignIn from "./pages/Auth/SignIn/SignIn.jsx";
 import SignUp from "./pages/Auth/SignUp/SignUp.jsx";
 import MainAuth from "./pages/Auth/MainAuth/MainAuth.jsx";
 import Contact from "./pages/Contact/Contact.jsx";
-import PasswordFortgot from "./pages/PasswordForgot/PasswordFortgot.jsx";//lazy
-import PasswordReset from "./pages/PasswordReset/PasswordReset.jsx";//lazy
-import NotFound from "./pages/NotFound/NotFound.jsx";//lazy
+import PasswordFortgot from "./pages/PasswordForgot/PasswordFortgot.jsx";
+import PasswordReset from "./pages/PasswordReset/PasswordReset.jsx";
+import NotFound from "./pages/NotFound/NotFound.jsx";
+import AdminLayout from "./layouts/AdminLayout.jsx";
+import Admin from "./pages/Admin/Admin.jsx";
+import AdminUsers from "./pages/AdminUsers/Users.jsx";
+import AdminProducts from "./pages/AdminProducts/Products.jsx";
+import AdminParametres from "./pages/AdminParametres/Parametres.jsx";
 import Products from "./pages/Products/Products.jsx";
 import Profile from "./pages/Profile/Profile.jsx";
+import AdminOrders from "./pages/AdminOrders/Orders.jsx";
+import MainProducts from "./pages/AdminProducts/MainProducts.jsx";
+import AddProduct from "./pages/AdminProducts/AddProduct.jsx";
+import AdminFamille from "./pages/AdminParametre/AdminFamille.jsx";
+import AdminCategory from "./pages/AdminParametre/AdminCategory.jsx";
+import AdminType from "./pages/AdminParametre/AdminType.jsx";
+import AddCategory from "./pages/AdminAddParametre/AddCategory.jsx";
+import AddType from "./pages/AdminAddParametre/AddType.jsx";
+import AdminNewsletter from "./pages/AdminNewsletter/AdminNewsletter.jsx";
 import CategoriesList from "./pages/CategoriesList/CategoriesList.jsx";
 import ProductsList from "./pages/ProductsList/ProductsList.jsx";
+import EditProduct from "./pages/AdminProducts/EditProduct.jsx";
 import Levels from "./pages/Levels/Levels.jsx";
 import ProfileLayout from "./pages/Profile/ProfileLayout.jsx";
 import UserCommandes from "./pages/UserCommandes/UserCommandes.jsx";
-import EditProduct from "./pages/AdminProducts/EditProduct.jsx";
-
-// Lazy load components
-const AdminLayout = lazy(() => import("./layouts/AdminLayout.jsx"));
-const Admin = lazy(() => import("./pages/Admin/Admin.jsx"));
-const AdminUsers = lazy(() => import("./pages/AdminUsers/Users.jsx"));
-const AdminProducts = lazy(() => import("./pages/AdminProducts/Products.jsx"));
-const AdminParametres = lazy(() => import("./pages/AdminParametres/Parametres.jsx"));
-const AdminOrders = lazy(() => import("./pages/AdminOrders/Orders.jsx"));
-const MainProducts = lazy(() => import("./pages/AdminProducts/MainProducts.jsx"));
-const AddProduct = lazy(() => import("./pages/AdminProducts/AddProduct.jsx"));
-const AdminFamille = lazy(() => import("./pages/AdminParametre/AdminFamille.jsx"));
-const AdminCategory = lazy(() => import("./pages/AdminParametre/AdminCategory.jsx"));
-const AdminType = lazy(() => import("./pages/AdminParametre/AdminType.jsx"));
-const AddCategory = lazy(() => import("./pages/AdminAddParametre/AddCategory.jsx"));
-const AddType = lazy(() => import("./pages/AdminAddParametre/AddType.jsx"));
-const AdminNewsletter = lazy(() => import("./pages/AdminNewsletter/AdminNewsletter.jsx"));
 
 const router = createBrowserRouter([
   {
@@ -52,130 +50,69 @@ const router = createBrowserRouter([
     path: "contact",
     element: <Contact />,
   },
+
   {
     path: "/admin",
-    element: (
-      <Suspense fallback={<div>Loading...</div>}>
-        <AdminLayout />
-      </Suspense>
-    ),
+    element: <AdminLayout />,
     children: [
-      {
-        path: "home",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <Admin />
-          </Suspense>
-        ),
-      },
+      { path: "home", element: <Admin /> },
       {
         path: "users",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <AdminUsers />
-          </Suspense>
-        ),
+        element: <AdminUsers />,
       },
       {
         path: "products",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <MainProducts />
-          </Suspense>
-        ),
+        element: <MainProducts />,
         children: [
           {
             path: "",
-            element: (
-              <Suspense fallback={<div>Loading...</div>}>
-                <AdminProducts />
-              </Suspense>
-            ),
+            element: <AdminProducts />,
           },
           {
             path: "addproduct",
-            element: (
-              <Suspense fallback={<div>Loading...</div>}>
-                <AddProduct />
-              </Suspense>
-            ),
+            element: <AddProduct />,
           },
           {
             path: "editproduct/:productid",
-            element: (
-              <Suspense fallback={<div>Loading...</div>}>
-                <EditProduct />
-              </Suspense>
-            ),
+            element: <EditProduct />,
           },
         ],
       },
       {
         path: "parametres",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <AdminParametres />
-          </Suspense>
-        ),
+        element: <AdminParametres />,
       },
       {
         path: "parametres/famille",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <AdminFamille />
-          </Suspense>
-        ),
+        element: <AdminFamille />,
       },
       {
         path: "parametres/category",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <AdminCategory />
-          </Suspense>
-        ),
+        element: <AdminCategory />,
       },
       {
         path: "parametres/type",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <AdminType />
-          </Suspense>
-        ),
+        element: <AdminType />,
       },
       {
         path: "parametres/addcategory",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <AddCategory />
-          </Suspense>
-        ),
+        element: <AddCategory />,
       },
       {
         path: "parametres/addtype",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <AddType />
-          </Suspense>
-        ),
+        element: <AddType />,
       },
       {
         path: "orders",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <AdminOrders />
-          </Suspense>
-        ),
+        element: <AdminOrders />,
       },
       {
         path: "newsletter",
-        element: (
-          <Suspense fallback={<div>Loading...</div>}>
-            <AdminNewsletter />
-          </Suspense>
-        ),
+        element: <AdminNewsletter />,
       },
     ],
   },
+
   {
     path: "/auth",
     element: <MainAuth />,

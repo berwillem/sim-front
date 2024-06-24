@@ -40,16 +40,9 @@ const Products = () => {
   const [selectedFamille, setSelectedFamille] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedType, setSelectedType] = useState("");
-  const [filtersApplied, setFiltersApplied] = useState(false); // State to track if filters are applied
+  const [filtersApplied, setFiltersApplied] = useState(false);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    fetchProducts(page);
-    fetchCategories();
-    fetchFamilles();
-    fetchTypes();
-  }, [page]);
 
   useEffect(() => {
     getTotalProductsCount().then((res) => {
@@ -98,6 +91,12 @@ const Products = () => {
         console.error("Error fetching types:", error);
       });
   };
+  useEffect(() => {
+    fetchProducts(page);
+    fetchCategories();
+    fetchFamilles();
+    fetchTypes();
+  }, [page]);
 
   const handleDelet = (productId) => {
     deleteProduct(productId)
