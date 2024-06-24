@@ -1,0 +1,29 @@
+import { Outlet, useParams } from "react-router-dom";
+import MiniNav from "../../components/MiniNav/MiniNav";
+import Navbar from "../../components/Navbar/Navbar";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
+
+const ProfileLayout = () => {
+  const navigate = useNavigate();
+  const { userId } = useParams();
+  const useridCheck = useSelector((state) => state?.auth?.user?._id);
+  useEffect(()=>{
+    if (useridCheck !== userId) {
+      console.log("user not found");
+      return navigate("/notfound")
+    }
+  },[])
+  return (
+    <>
+      <Navbar></Navbar>
+      <div className="userprofile">
+        <MiniNav tour={false}></MiniNav>
+        <Outlet></Outlet>
+      </div>
+    </>
+  );
+};
+
+export default ProfileLayout;

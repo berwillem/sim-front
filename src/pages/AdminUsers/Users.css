@@ -33,11 +33,24 @@
   align-items: center;
   padding: 0 20px;
 }
+#info-statuser {
+  width: 75%;
+  display: flex;
+  justify-content: space-between;
+}
+#ligneuser {
+  display: flex;
+  justify-content: space-between;
+  padding-right: 0;
+}
 
 .titre-stat {
   width: 100%;
-  padding: 0 40px;
+  padding: 0 5px 0 20px !important;
   border: none !important;
+}
+#actionuser {
+  text-align: right;
 }
 .titre-stat li,
 .ligne span {

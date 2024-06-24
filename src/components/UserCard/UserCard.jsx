@@ -1,17 +1,36 @@
-import { useSelector } from "react-redux";
 import "./UserCard.css";
+import { useEffect, useState } from "react";
+import { getUserById } from "../../services/usersServices";
+import { useParams } from "react-router-dom";
 
 const UserCard = () => {
-  const user = useSelector((state) => state.auth?.user);
-  console.log(user);
+  const [user, setUser] = useState({});
+  const { userId } = useParams();
+  useEffect(() => {
+    getUserById(userId).then((res) => setUser(res.data));
+  }, []);
+  const getUserLevelClass = (levelName) => {
+    switch (levelName) {
+      case "bronze":
+        return "bronze";
+      case "silver":
+        return "silver";
+      case "gold":
+        return "gold";
+      case "diamond":
+        return "diamond";
+      default:
+        return "";
+    }
+  };
 
   return (
     <>
       <div className="user-card-container">
-        <div className="user-card">
+        <div className={`user-card ${getUserLevelClass(user.level?.name)}`}>
           <h2>
             {user && user.FirstName && user.LastName
-              ? user.LastName + user.FirstName
+              ? user.LastName + " " + user.FirstName
               : ""}
           </h2>
           <div className="user-info">
@@ -21,10 +40,7 @@ const UserCard = () => {
             </div>
 
             <div className="info-user">
-              <span>Number:</span> <span>0763636325</span>
-            </div>
-            <div className="info-user">
-              <span>Birthdate:</span> <span>2001-08-10</span>
+              <span>level:</span> <span> {user.level?.name}</span>
             </div>
           </div>
         </div>

@@ -1,0 +1,144 @@
+.mySwiper22 .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mySwiper22 .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* .swiper {
+  width: 100%;
+  height: 300px;
+  margin-left: auto;
+  margin-right: auto;
+} */
+
+.mySwiper22 .swiper-wrapper {
+  max-height: 250px;
+}
+.mySwiper11 .swiper-wrapper {
+  height: 55px;
+}
+.mySwiper11 .swiper-slide:nth-child(1n),
+.mySwiper22 .swiper-slide:nth-child(1n) {
+  background: none !important;
+  border: 1px solid rgba(164, 158, 158, 0.245) !important;
+}
+.mySwiper22 {
+  width: 100%;
+}
+.mySwiper22 .swiper-button-prev {
+  color: black !important;
+}
+
+.mySwiper22 .swiper-button-next {
+  color: black !important;
+}
+
+.mySwiper11 {
+  box-sizing: border-box;
+  padding: 0;
+  margin-top: 5px;
+}
+
+.mySwiper11 .swiper-slide {
+  width: 25%;
+  height: 100%;
+  opacity: 0.4;
+}
+
+.mySwiper11 .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.mySwiper22 .swiper-slide img,
+.mySwiper11 .swiper-slide img {
+  display: block;
+
+  max-height: 250px;
+  object-fit: contain;
+}
+
+.swiperproductpreview {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  width: 100%;
+}
+.menuopen-final {
+  animation: herbet 0.8s ease-in-out forwards;
+  transform: translatex(0);
+  opacity: 0;
+  margin-top: 60px !important;
+  max-width: 380px;
+  height: fit-content;
+  padding: 50px;
+  margin: 5px;
+  margin-left: 15px;
+  border: 1px solid rgba(132, 128, 128, 0.345);
+  position: relative;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 10px;
+  position: sticky;
+  top: 100px;
+}
+.liabuttonexit2 {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  color: black;
+  width: 40px;
+  height: 40px;
+}
+
+.forswiperwrapper {
+  width: 230px;
+  /* height: 200px; */
+}
+.menuopen-final button {
+  background-color: var(--primary-color);
+  color: white;
+  font-size: 1.17em;
+  padding: 8px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+@media screen and (max-width: 620px) {
+  .productslist-final {
+    flex-direction: column;
+    align-items: center;
+  }
+  .menuopen-final {
+    margin: 0;
+    margin-top: 0 !important;
+  }
+  .menuopenforfinal {
+    width: 100vw;
+    height: 100vh;
+    left: 0;
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+  }
+}

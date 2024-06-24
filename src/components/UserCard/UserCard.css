@@ -1,6 +1,6 @@
 .user-card {
   height: 300px;
-  width: 60%;
+  width: 65%;
   border-radius: 10px;
   border: 2px solid #c1c1c1;
   box-shadow: 0 0 30px 1px #00000026;
@@ -11,6 +11,7 @@
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  background-image: url(../../assets/bg-texture.png);
 }
 .pen-edit-magasin {
   font-size: 30px;
@@ -67,6 +68,29 @@
   text-transform: uppercase;
   font-weight: bolder;
 }
+.user-card-container {
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.user-card.bronze {
+  background-color: #cd7f32;
+}
+
+.user-card.silver {
+  background-color: #c0c0c0;
+}
+
+.user-card.gold {
+  background-color: #ffd700;
+}
+
+.user-card.diamond {
+  background-color: #b9f2ff;
+}
 @media screen and (max-width: 1400px) {
   .user-info {
     column-gap: 200px;
@@ -85,6 +109,7 @@
   }
   .user-card h2 {
     margin-top: 70px;
+    font-size: 18px;
   }
   .user-info {
     grid-template-columns: auto;

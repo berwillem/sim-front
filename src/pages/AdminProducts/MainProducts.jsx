@@ -7,5 +7,6 @@ export default function MainProducts() {
     <>
       <Outlet></Outlet>
     </>
+    // jnjjn
   );
 }

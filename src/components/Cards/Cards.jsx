@@ -11,19 +11,19 @@ export default function Cards() {
       id: 1,
       title: "Fixation",
       image: Fixation,
-      navigate: "/Fixation",
+      navigate: "/664e87fc4cf5a42abd0b5e33",
     },
     {
       id: 2,
       title: "outillages",
       image: Milimg,
-      navigate: "/outillages",
+      navigate: "/664e88294cf5a42abd0b5e35",
     },
     {
       id: 3,
       title: "Detailling tools",
       image: Maximg,
-      navigate: "/detailling-tools",
+      navigate: "/664e88294cf5a42abd0b5e35",
     },
   ];
   const all = products.map((product) => {

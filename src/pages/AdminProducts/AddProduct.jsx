@@ -1,64 +1,127 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-
 import "./Products.css";
-import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
-import * as yup from "yup";
 import { createProduct } from "../../services/productsServices";
 import SwiperProduct from "../../components/SwiperAddProducts/SwiperProduct";
 import { CiCirclePlus } from "react-icons/ci";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Placeholder from "../../assets/svg/Placeholder.svg";
-const schema = yup.object().shape({
-  Marque: yup.string().required("Marque est requis"),
-  Gamme: yup.string().required("Gamme est requis"),
-  Categorie: yup.string().required("Categorie est requis"),
-  description: yup.string().required("Description est requis"),
-  price: yup.number().required("Prix est requis"),
-  title: yup.string().required("Titre est requis"),
-});
+import TextField from "@mui/material/TextField";
+import Autocomplete from "@mui/material/Autocomplete";
+import {
+  getAllCategories,
+  getAllFamilles,
+  getAllTypes,
+} from "../../services/parametresServices";
+import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
-  const { register, handleSubmit } = useForm({
-    resolver: yupResolver(schema),
-  });
+  const [categories, setCategories] = useState([]);
+  const [familles, setFamilles] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [selectedFamille, setSelectedFamille] = useState(null);
+  const [selectedCategorie, setSelectedCategorie] = useState(null);
+  const [selectedType, setSelectedType] = useState(null);
+  const [images, setImages] = useState([]);
   const navigate = useNavigate();
-  // register function :
+
+  const fetchCategories = () => {
+    getAllCategories()
+      .then((res) => {
+        setCategories(res.data.categories);
+        console.log(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  };
+  const fetchFamilles = () => {
+    getAllFamilles()
+      .then((res) => {
+        setFamilles(res.data.familles);
+      })
+      .catch((error) => {
+        console.error("Error fetching familles:", error);
+      });
+  };
+  const fetchTypes = () => {
+    getAllTypes()
+      .then((res) => {
+        setTypes(res.data.types);
+      })
+      .catch((error) => {
+        console.error("Error fetching type:", error);
+      });
+  };
+
+  useEffect(() => {
+    fetchCategories();
+    fetchFamilles();
+    fetchTypes();
+  }, []);
+
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      Titre: "",
+      Titre2: "",
+      Gamme: "",
+      Marque: "",
+      Famille: "",
+      Type: "",
+      Categorie: "",
+      Description: "",
+      Prix: "",
+      images: [],
+    },
+  });
+
   const onSubmit = (data) => {
-    createProduct(data);
-    console
-      .log(data + " " + file)
+    data.Famille = selectedFamille?._id;
+    data.Categorie = selectedCategorie?._id;
+    data.Type = selectedType?._id;
+    data.images = images;
+    createProduct(data)
       .then((res) => {
         toast.success(res.data?.message);
-        navigate("/");
+        navigate("/admin/products");
       })
       .catch((err) => console.log(err));
   };
-  const [file, setFile] = useState([]);
-  console.log(file, "fileeee");
 
   function ImageUpload() {
     function handleChange(e) {
-      setFile([...file, window.URL.createObjectURL(e.target.files[0])]);
+      const fileList = Array.from(e.target.files);
+      setImages((prevImages) => [
+        ...prevImages,
+        ...fileList.map((file) => ({
+          file,
+          url: window.URL.createObjectURL(file),
+        })),
+      ]);
     }
 
     return (
       <div className="App">
         <div className="Appplus">
           <h2>Add Image</h2>
-          <label htmlFor="inputfileimage"  className="inputfilecircle">
+          <label htmlFor="inputfileimage" className="inputfilecircle">
             <CiCirclePlus size={50} className="pluscircle" />
           </label>
         </div>
 
-        <input type="file" id="inputfileimage" onChange={handleChange} />
+        <input
+          type="file"
+          id="inputfileimage"
+          onChange={handleChange}
+          multiple
+        />
 
         <SwiperProduct
-          previews={file.length != 0 ? file : [Placeholder]}
+          previews={
+            images.length !== 0 ? images.map((img) => img.url) : [Placeholder]
+          }
         ></SwiperProduct>
-
       </div>
     );
   }
@@ -75,62 +138,83 @@ const AddProduct = () => {
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="forlabelsignin">
                     <div className="labelSignUphalf">
-                      <div>
+                      <ComboBox
+                        label="Famille"
+                        options={familles}
+                        value={selectedFamille}
+                        onChange={setSelectedFamille}
+                      />
+                      <ComboBox
+                        label="Categorie"
+                        options={categories}
+                        value={selectedCategorie}
+                        onChange={setSelectedCategorie}
+                      />
+                    </div>
+                    <div className="labelSignUphalf">
+                      <div className="hadtmekhriga">
+                        <ComboBox
+                          label="Type"
+                          options={types}
+                          value={selectedType}
+                          onChange={setSelectedType}
+                        />
+                      </div>
+                      {/* titre fr */}
+                      <div className="hadtmekhriga labelSignUphalfinput" id="">
                         <input
                           type="text"
-                          id="FirstName"
+                          id=""
+                          placeholder="Titre francais"
+                          {...register("Titre")}
+                        />
+                      </div>
+                    </div>
+                    <div className="labelSignUphalf">
+                      <div className="labelSignUphalfinput">
+                        <input
+                          type="text"
+                          id=""
+                          placeholder="Titre anglais"
+                          {...register("Titre2")}
+                        />
+                      </div>
+
+                      <div className="labelSignUphalfinput">
+                        <input
+                          type="text"
+                          id=""
+                          placeholder="Prix"
+                          {...register("Prix")}
+                        />
+                      </div>
+                    </div>
+                    <div className="labelSignUphalf  ">
+                      <div className="labelSignUphalfinput">
+                        <input
+                          type="text"
+                          id=""
+                          placeholder="Marque"
+                          {...register("Marque")}
+                        />
+                      </div>
+                      <div className="labelSignUphalfinput">
+                        <input
+                          type="text"
+                          id=""
                           placeholder="Gamme"
                           {...register("Gamme")}
                         />
                       </div>
-                      <div>
-                        <input
-                          type="text"
-                          id="LastName"
-                          placeholder="Marque"
-                          {...register("Marque")}
-                        />
-                      </div>
                     </div>
-                  </div>
-                  <div className="forlabelsignin">
+
                     <div className="labelSignUphalf">
-                      <div>
-                        <input
-                          type="text"
-                          id="FirstName"
-                          placeholder="Categorie"
-                          {...register("Categorie")}
-                        />
-                      </div>
-                      <div>
-                        <input
-                          type="text"
-                          id="LastName"
-                          placeholder="title"
-                          {...register("title")}
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div className="forlabelsignin">
-                    <div className="labelSignUphalf">
-                      <div>
-                        <input
-                          type="text"
-                          id="FirstName"
-                          placeholder="Description"
-                          {...register("Description")}
-                        />
-                      </div>
-                      <div>
-                        <input
-                          type="text"
-                          id="LastName"
-                          placeholder="Marque"
-                          {...register("Marque")}
-                        />
-                      </div>
+                      <textarea
+                        name=""
+                        className="descriptioncontact"
+                        placeholder="Description"
+                        {...register("Description")}
+                      ></textarea>
                     </div>
                   </div>
                   <div className="forlabeladd">
@@ -150,3 +234,28 @@ const AddProduct = () => {
 };
 
 export default AddProduct;
+
+const ComboBox = ({ label, options, value, onChange }) => {
+  return (
+    <Autocomplete
+      disablePortal
+      id="combo-box-demo"
+      options={options}
+      getOptionLabel={(option) => option.titlefr}
+      value={value}
+      onChange={(event, newValue) => onChange(newValue)}
+      sx={{ width: "100%" }}
+      renderInput={(params) => <TextField {...params} label={label} />}
+      className="muiautocompleter"
+      slotProps={{
+        paper: {
+          sx: {
+            "& .MuiAutocomplete-option": {
+              width: "100%",
+            },
+          },
+        },
+      }}
+    />
+  );
+};

@@ -1,14 +1,24 @@
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import translations from "./translation.json";
+import enTranslations from "./en.json";
+import frTranslations from "./fr.json";
+
+const resources = {
+  en: {
+    translation: enTranslations,
+  },
+  fr: {
+    translation: frTranslations,
+  },
+};
 
 i18n.use(initReactI18next).init({
-  fallbackLng: "en",
+  resources: resources,
+  lng: "fr",
+  fallbackLng: "fr",
   interpolation: {
     escapeValue: false,
   },
-  resources: translations,
-  defaultNS: "common",
 });
 
 export default i18n;
