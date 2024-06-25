@@ -41,7 +41,6 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedType, setSelectedType] = useState("");
   const [filtersApplied, setFiltersApplied] = useState(false);
-
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -278,7 +277,7 @@ export default Products;
 const Productitem = ({ product, index }) => {
   return (
     <li key={index} className="ligne">
-      <span> {product?.title}</span>
+      <span> {product?.titlefr}</span>
       <span>{product?.price}</span>
       <span>{product?.description}</span>
       <span>{product?.marque}</span>
