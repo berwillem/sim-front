@@ -12,14 +12,12 @@ import Autocomplete from "@mui/material/Autocomplete";
 import {
   getAllCategories,
   getAllFamilles,
-  getAllTypes,
 } from "../../services/parametresServices";
 import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const [categories, setCategories] = useState([]);
   const [familles, setFamilles] = useState([]);
-  const [types, setTypes] = useState([]);
   const [selectedFamille, setSelectedFamille] = useState(null);
   const [selectedCategorie, setSelectedCategorie] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
@@ -39,27 +37,16 @@ const AddProduct = () => {
   const fetchFamilles = () => {
     getAllFamilles()
       .then((res) => {
-        setFamilles(res.data.familles); 
-        
+        setFamilles(res.data.familles);
       })
       .catch((error) => {
         console.error("Error fetching familles:", error);
-      });
-  };
-  const fetchTypes = () => {
-    getAllTypes()
-      .then((res) => {
-        setTypes(res.data.types);
-      })
-      .catch((error) => {
-        console.error("Error fetching type:", error);
       });
   };
 
   useEffect(() => {
     fetchCategories();
     fetchFamilles();
-    fetchTypes();
   }, []);
 
   const { register, handleSubmit } = useForm({
@@ -145,10 +132,14 @@ const AddProduct = () => {
                         value={selectedFamille}
                         onChange={setSelectedFamille}
                       />
-                      
+
                       <ComboBox
                         label="Categorie"
-                        options={selectedFamille?.categories?selectedFamille?.categories:[]}
+                        options={
+                          selectedFamille?.categories
+                            ? selectedFamille?.categories
+                            : []
+                        }
                         value={selectedCategorie}
                         onChange={setSelectedCategorie}
                       />
@@ -157,9 +148,15 @@ const AddProduct = () => {
                       <div className="hadtmekhriga">
                         <ComboBox
                           label="Type"
-                          options={categories.find(cat => cat?._id === selectedCategorie?._id)?.types?categories.find(cat => cat?._id === selectedCategorie?._id)?.types:[]}
-
-
+                          options={
+                            categories.find(
+                              (cat) => cat?._id === selectedCategorie?._id
+                            )?.types
+                              ? categories.find(
+                                  (cat) => cat?._id === selectedCategorie?._id
+                                )?.types
+                              : []
+                          }
                           value={selectedType}
                           onChange={setSelectedType}
                         />
