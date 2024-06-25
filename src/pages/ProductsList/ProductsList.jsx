@@ -6,6 +6,9 @@ import { getProductsByCategory } from "../../services/productsServices";
 import { Link, useParams } from "react-router-dom";
 import ProductPreview from "../../components/ProductPreview/ProductPreview";
 import i18n from "../../i18n/i18n";
+import Fixation from "../../assets/fasteners-banner.webp";
+import Outillage from "../../assets/outillage.jpg";
+import Detailling from "../../assets/detailling.jpg";
 
 const ProductsList = () => {
   const currentLanguage = i18n.language;
@@ -27,12 +30,23 @@ const ProductsList = () => {
   const handleClick = () => {
     setIsMenuOpen(true);
   };
-
   return (
     <>
       <Navbar></Navbar>
 
-      <div className="famille-header-final">
+      <div
+        className="famille-header-final"
+        style={{
+          backgroundImage: `url(${
+            (products[0]?.famille._id === "664e87fc4cf5a42abd0b5e33" &&
+              Fixation) ||
+            (products[0]?.famille._id === "664e88294cf5a42abd0b5e35" &&
+              Outillage) ||
+            (products[0]?.famille._id === "664e88614cf5a42abd0b5e37" &&
+              Detailling)
+          }) `,
+        }}
+      >
         <div className="gobackproduct-final">
           <Link to="/products">
             <PiKeyReturnLight size={30} />
@@ -50,7 +64,6 @@ const ProductsList = () => {
               color: "#5D6164",
               fontSize: "16px",
               width: "40%",
-
               fontWeight: "100",
             }}
           ></h2>

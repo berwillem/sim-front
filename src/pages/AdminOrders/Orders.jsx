@@ -24,8 +24,6 @@ import { LuUserX } from "react-icons/lu";
 
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 
-
-
 const Orders = () => {
   const [Commandes, setCommandes] = useState([]);
   const [TotalCommandesCount, setTotalCommandesCount] = useState(0);
@@ -35,11 +33,11 @@ const Orders = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [filter, setFilter] = useState("");
   console.log(totalPages, "commandes");
-  
+
   const fetchCommandes = (page, filter) => {
     getAllCommandes(page, filter)
       .then((res) => {
-        console.log(res.data.commandes)
+        console.log(res.data.commandes);
         setCommandes(res.data.commandes);
         setTotalPages(res.data.totalPages);
       })
@@ -176,9 +174,12 @@ const Orders = () => {
                 }
               >
                 <li className="ligne">
-                  <span>{Commande.product?.titlefr}</span>{" "}
                   <span>
-
+                    {Commande.product
+                      ? Commande.product?.titlefr
+                      : "Produit supprimé"}
+                  </span>{" "}
+                  <span>
                     {Commande.user ? (
                       Commande.user.FirstName + " " + Commande.user.LastName
                     ) : (
@@ -189,7 +190,6 @@ const Orders = () => {
                     )}
                   </span>
                   <span>{Commande.phoneNumber}</span>
-
                   <span>{Commande.quantity}</span>
                   <span>{Commande.totalPrice}</span>
                   <span>

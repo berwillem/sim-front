@@ -4,6 +4,9 @@ import { useEffect, useState } from "react";
 import { getFamilleById } from "../../services/parametresServices";
 import "./CategoriesList.css";
 import { PiKeyReturnLight } from "react-icons/pi";
+import Fixation from "../../assets/fasteners-banner.webp";
+import Outillage from "../../assets/outillage.jpg";
+import Detailling from "../../assets/detailling.jpg";
 
 const CategoriesList = () => {
   const { famillId } = useParams();
@@ -17,11 +20,20 @@ const CategoriesList = () => {
         console.error("Error fetching products:", error);
       });
   }, [famillId]);
-
+  console.log(famille);
   return (
     <>
       <Navbar></Navbar>
-      <div className="famille-header">
+      <div
+        className="famille-header"
+        style={{
+          backgroundImage: `url(${
+            (famille.titlefr === "Fixation" && Fixation) ||
+            (famille.titlefr === "Outillage" && Outillage) ||
+            (famille._id === "664e88614cf5a42abd0b5e37" && Detailling)
+          }) `,
+        }}
+      >
         <div className="gobackproduct">
           <Link to="/products">
             <PiKeyReturnLight size={30} />

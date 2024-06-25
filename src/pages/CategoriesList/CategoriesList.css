@@ -1,5 +1,4 @@
 .famille-header {
-  background-image: url("../../assets/fasteners-banner.webp");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -88,6 +87,7 @@
   .gridfamille-final {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
   }
   .familycont {
     padding-left: 11%;
