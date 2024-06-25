@@ -178,9 +178,9 @@ const EditProduct = () => {
                         <input
                           type="text"
                           id=""
-                          placeholder="Titre"
-                          {...register("titre")}
-                          defaultValue={product?.title}
+                          placeholder="Titre Aglais"
+                          {...register("titreen")}
+                          defaultValue={product?.titleen}
                         />
                       </div>
                     </div>
@@ -189,9 +189,9 @@ const EditProduct = () => {
                         <input
                           type="text"
                           id=""
-                          placeholder="Gamme"
-                          {...register("gamme")}
-                          defaultValue={product?.gamme}
+                          placeholder="Title Francais"
+                          {...register("titlefr")}
+                          defaultValue={product?.titlefr}
                         />
                       </div>
 
@@ -205,14 +205,25 @@ const EditProduct = () => {
                         />
                       </div>
                     </div>
-                    <div className="labelSignUphalfinput labelSignUphalfinputspecial ">
-                      <input
-                        type="text"
-                        id=""
-                        placeholder="Marque"
-                        {...register("marque")}
-                        defaultValue={product?.marque}
-                      />
+                    <div className="labelSignUphalf">
+                      <div className="labelSignUphalfinput">
+                        <input
+                          type="text"
+                          id=""
+                          placeholder="Marque"
+                          {...register("marque")}
+                          defaultValue={product?.marque}
+                        />
+                      </div>
+                      <div className="labelSignUphalfinput">
+                        <input
+                          type="text"
+                          id=""
+                          placeholder="Gamme"
+                          {...register("gamme")}
+                          defaultValue={product?.gamme}
+                        />
+                      </div>
                     </div>
                     <div className="labelSignUphalf">
                       <textarea
