@@ -2,9 +2,15 @@ import { useState } from "react";
 import "./PasswordReset.css";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
+import { PasswordReseting } from "../../services/authservices";
+import { useNavigate } from "react-router-dom";
 const PasswordReset = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const urlParams = new URLSearchParams(window.location.search);
+  const token = urlParams.get("token");
+  const id = urlParams.get("id");
+  const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
@@ -14,8 +20,23 @@ const PasswordReset = () => {
         text: "rentrez a nouveau le mot de pass!",
       });
       return;
+    } else {
+      PasswordReseting({ password, token, id })
+        .then(() => {
+          Swal.fire({
+            icon: "success",
+            title: "Mot de passe modifier avec succes",
+          });
+          navigate("/");
+        })
+        .catch((error) => {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.response.data.message,
+          });
+        });
     }
-    console.log("test");
   };
   return (
     <>

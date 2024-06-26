@@ -10,6 +10,10 @@ import { getAllTypes } from "../../services/parametresServices";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import Products from "../Products/Products";
 import { Helmet } from "react-helmet";
+import Fixation from "../../assets/fasteners-banner.webp";
+import Outillage from "../../assets/outillage.jpg";
+import Detailling from "../../assets/detailling.jpg";
+
 
 const ProductsList = () => {
   const currentLanguage = i18n.language;
@@ -35,6 +39,7 @@ const ProductsList = () => {
   const handleClick = () => {
     setIsMenuOpen(true);
   };
+
   //types
   const fetchTypes = () => {
     getAllTypes()
@@ -90,7 +95,6 @@ const ProductsList = () => {
               color: "#5D6164",
               fontSize: "16px",
               width: "40%",
-
               fontWeight: "100",
             }}
           ></h2>

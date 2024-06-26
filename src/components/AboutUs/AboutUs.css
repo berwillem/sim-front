@@ -29,14 +29,12 @@
   margin-bottom: 10px;
   color: #e63619;
   text-transform: uppercase;
-
 }
 
 .aboutustext h1 {
   font-size: 30px;
   display: block;
   margin-bottom: 10px;
-
 }
 .aboutustext p {
   font-size: 14px;
@@ -58,6 +56,7 @@
   margin-top: 55px;
   cursor: pointer;
   overflow-x: hidden;
+  padding-top: 70px;
 }
 .clip-path {
   clip-path: polygon(0 0, 100% 0, 100% 80%, 69% 100%, 0 85%);
@@ -100,14 +99,12 @@
   font-size: 24px;
   margin-bottom: 15px;
   width: 90%;
- 
 }
 .aboutussecondbox h2 {
   font-size: 13px;
   margin-bottom: 3vh;
   color: #e63619;
   text-transform: uppercase;
-  
 }
 .aboutussecondbox {
   height: 60%;
@@ -125,7 +122,7 @@
   background-color: white;
   cursor: default;
 }
-.box{
+.box {
   width: 35%;
 }
 
@@ -177,14 +174,12 @@
     padding: 0;
     justify-content: center;
     align-items: center;
-    
   }
-  .topScroll{
+  .topScroll {
     margin-top: 160px;
   }
   .aboutusimg {
     width: 92%;
- 
   }
   .aboutustext {
     width: 92%;
@@ -209,11 +204,11 @@
     top: 320px;
     box-shadow: 0px 0px 54px 9px rgba(0, 0, 0, 0.75);
   }
-  .box{
+  .box {
     width: 90%;
     left: 1%;
     top: 70px;
-   position: absolute;
+    position: absolute;
   }
   .imgoverlay {
     object-fit: cover;

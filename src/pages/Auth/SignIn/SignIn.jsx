@@ -37,11 +37,10 @@ export default function SignIn() {
     SignInUser(data)
       .then((res) => {
         const token = localStorage.getItem("token");
-        if (token)
-          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
         toast.success(res.data?.message);
         dispatch(login(res.data));
-        
+
         if (res.data?.user?.role === "admin") {
           navigate("/admin/home");
         } else {
