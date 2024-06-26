@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -7,16 +7,15 @@ import { PersistGate } from "redux-persist/integration/react";
 import { ToastContainer } from "react-toastify";
 import i18n from "./i18n/i18n.js";
 import { I18nextProvider } from "react-i18next";
+import "./index.css";
+import "react-toastify/dist/ReactToastify.css";
+
+// Regular imports for components that are not lazily loaded
 import App from "./pages/Home/Home.jsx";
 import MainLayout from "./layouts/MainLayout.jsx";
-import "./index.css";
 import SignIn from "./pages/Auth/SignIn/SignIn.jsx";
 import SignUp from "./pages/Auth/SignUp/SignUp.jsx";
 import MainAuth from "./pages/Auth/MainAuth/MainAuth.jsx";
-import Contact from "./pages/Contact/Contact.jsx";
-import PasswordFortgot from "./pages/PasswordForgot/PasswordFortgot.jsx";
-import PasswordReset from "./pages/PasswordReset/PasswordReset.jsx";
-import NotFound from "./pages/NotFound/NotFound.jsx";
 import AdminLayout from "./layouts/AdminLayout.jsx";
 import Admin from "./pages/Admin/Admin.jsx";
 import AdminUsers from "./pages/AdminUsers/Users.jsx";
@@ -40,6 +39,12 @@ import Levels from "./pages/Levels/Levels.jsx";
 import ProfileLayout from "./pages/Profile/ProfileLayout.jsx";
 import UserCommandes from "./pages/UserCommandes/UserCommandes.jsx";
 
+// Lazy imports for pages to be lazy loaded
+const Contact = lazy(() => import("./pages/Contact/Contact.jsx"));
+const PasswordForgot = lazy(() => import("./pages/PasswordForgot/PasswordFortgot.jsx"));
+const PasswordReset = lazy(() => import("./pages/PasswordReset/PasswordReset.jsx"));
+const NotFound = lazy(() => import("./pages/NotFound/NotFound.jsx"));
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -48,9 +53,12 @@ const router = createBrowserRouter([
   },
   {
     path: "contact",
-    element: <Contact />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <Contact />
+      </Suspense>
+    ),
   },
-
   {
     path: "/admin",
     element: <AdminLayout />,
@@ -112,7 +120,6 @@ const router = createBrowserRouter([
       },
     ],
   },
-
   {
     path: "/auth",
     element: <MainAuth />,
@@ -123,19 +130,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/passwordForgot",
-    element: <PasswordFortgot />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <PasswordForgot />
+      </Suspense>
+    ),
   },
   {
     path: "/passwordReset",
-    element: <PasswordReset />,
-  },
-  {
-    path: "/contact",
-    element: <Contact />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <PasswordReset />
+      </Suspense>
+    ),
   },
   {
     path: "*",
-    element: <NotFound />,
+    element: (
+      <Suspense fallback={<div>Loading...</div>}>
+        <NotFound />
+      </Suspense>
+    ),
   },
   {
     path: "/products",
