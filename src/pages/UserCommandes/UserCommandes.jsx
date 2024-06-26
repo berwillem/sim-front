@@ -17,8 +17,6 @@ const UserCommandes = () => {
         setCommandes(res.data);
 
         console.log(res.data, "daaaaaa");
-
-
       })
       .catch((error) => {
         Swal.fire({
@@ -89,12 +87,17 @@ const UserCommandes = () => {
                 <li className="ligne forpc">
                   <span className="imgprevieforcommandespan">
                     <img
-                      src={Commande.product.images[0]}
+                      src={Commande.product?.images[0]}
                       alt=""
                       className="imgprevieforcommande"
                     />{" "}
                   </span>{" "}
-                  <span> {Commande.product?.title}</span>{" "}
+                  <span>
+                    {" "}
+                    {Commande.product
+                      ? Commande.product.titlefr
+                      : "Produit supprimé"}
+                  </span>{" "}
                   <span>{Commande.quantity}</span>
                   <span>
                     {moment(Commande.createdAt).format("DD MMM YYYY")}
@@ -120,12 +123,12 @@ const UserCommandes = () => {
                 <li className="ligne forphone">
                   <span className="imgprevieforcommandespan">
                     <img
-                      src={Commande.product.images[0]}
+                      src={Commande.product?.images[0]}
                       alt=""
                       className="imgprevieforcommande"
                     />{" "}
                   </span>
-                  <span>product title : {Commande.product?.title}</span>{" "}
+                  <span>product title : {Commande.product?.titlefr}</span>{" "}
                   <span>quantité :{Commande.quantity}</span>
                   <span>
                     createdAt :

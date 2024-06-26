@@ -9,7 +9,6 @@ const AddType = () => {
   const [familles, setFamilles] = useState([]);
   const [selectedFamille, setSelectedFamille] = useState(null);
   const [selectedCategorie, setSelectedCategorie] = useState("");
-  console.log(familles + "familles");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -62,18 +61,18 @@ const AddType = () => {
           onChange={(e) => setTitleen(e.target.value)}
         />
         <select
-          value={selectedFamille ? selectedFamille.id : ""}
+          value={selectedFamille ? selectedFamille.titlefr : ""}
           onChange={(e) => {
-            const famille = familles.find((f) => f.id === e.target.value);
-            setSelectedFamille(famille);
-            setSelectedCategorie(""); // Reset category when family changes
+            setSelectedFamille(
+              familles.find((famille) => famille.titlefr === e.target.value)
+            );
+            console.log(e.target.value);
+            setSelectedCategorie(""); 
           }}
           required
           className="parametre-select"
         >
-          <option value="" disabled>
-            Sélectionner une famille
-          </option>
+          <option value="">Sélectionner une famille</option>
           {familles.map((famille) => (
             <option key={famille.id} value={famille.id}>
               {famille.titlefr}
@@ -92,7 +91,7 @@ const AddType = () => {
           </option>
           {selectedFamille?.categories?.map((categorie) => (
             <option key={categorie.id} value={categorie.id}>
-              {categorie.title}
+              {categorie.titlefr}
             </option>
           ))}
         </select>
