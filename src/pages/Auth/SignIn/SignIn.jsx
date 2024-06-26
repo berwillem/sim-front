@@ -13,7 +13,8 @@ import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../../redux/slices/authSlice";
 import { CiMail } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
-import axios from "axios";
+import axios from 'axios';
+import { Helmet } from "react-helmet";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -52,6 +53,10 @@ export default function SignIn() {
 
   return (
     <>
+       <Helmet>
+            <title>signin </title>
+         
+        </Helmet>
       <p>{t("connectezvous")}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="forlabelsignin">

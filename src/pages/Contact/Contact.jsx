@@ -4,6 +4,7 @@ import { CiMail } from "react-icons/ci";
 import Navbar from "../../components/Navbar/Navbar";
 import emailjs from "emailjs-com";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const Contact = () => {
   const [email, setEmail] = useState("");
@@ -46,6 +47,10 @@ const Contact = () => {
 
   return (
     <div>
+        <Helmet>
+            <title>Contact</title>
+         
+        </Helmet>
       <Navbar />
       <div className="maincontact" id="maincontact1">
         <div className="contactuscarre">

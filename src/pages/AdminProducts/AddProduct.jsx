@@ -23,7 +23,18 @@ const AddProduct = () => {
   const [selectedType, setSelectedType] = useState(null);
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
+// test
+const handleFamilleChange = (newFamille) => {
+  setSelectedFamille(newFamille);
+  setSelectedCategorie(null);
+  setSelectedType(null);
+};
 
+const handleCategorieChange = (newCategorie) => {
+  setSelectedCategorie(newCategorie);
+  setSelectedType(null);
+};
+//test
   const fetchCategories = () => {
     getAllCategories()
       .then((res) => {
@@ -130,7 +141,7 @@ const AddProduct = () => {
                         label="Famille"
                         options={familles}
                         value={selectedFamille}
-                        onChange={setSelectedFamille}
+                        onChange={handleFamilleChange}
                       />
 
                       <ComboBox
@@ -141,7 +152,7 @@ const AddProduct = () => {
                             : []
                         }
                         value={selectedCategorie}
-                        onChange={setSelectedCategorie}
+                        onChange={handleCategorieChange}
                       />
                     </div>
                     <div className="labelSignUphalf">

@@ -16,3 +16,26 @@
 .commandeslist li {
   padding: 20px 0 20px 0 !important;
 }
+.button-d {
+  width: 60px;
+}
+
+.filterParent {
+  display: flex;
+  
+  width: 100%;
+ 
+}
+.filterParent .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root	{
+ width: 200px !important;
+}
+
+
+.filterParent .Mui-focused {
+  color: red !important;
+}
+
+.filterParent .MuiOutlinedInput-notchedOutline {
+  border: red 1px solid !important;
+}
+

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./PasswordReset.css";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 import { PasswordReseting } from "../../services/authservices";
 import { useNavigate } from "react-router-dom";
 const PasswordReset = () => {
@@ -39,6 +40,10 @@ const PasswordReset = () => {
   };
   return (
     <>
+     <Helmet>
+            <title>Reste Password </title>
+         
+        </Helmet>
       <div className="password-reset">
         <div className="password-reset-header">
           <h1 className="password-reset-title">Reset Password</h1>

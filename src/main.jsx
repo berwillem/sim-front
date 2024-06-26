@@ -39,6 +39,8 @@ import EditProduct from "./pages/AdminProducts/EditProduct.jsx";
 import Levels from "./pages/Levels/Levels.jsx";
 import ProfileLayout from "./pages/Profile/ProfileLayout.jsx";
 import UserCommandes from "./pages/UserCommandes/UserCommandes.jsx";
+import AdminStat from "./pages/AdminStat/AdminStat.jsx";
+
 
 const router = createBrowserRouter([
   {
@@ -56,6 +58,7 @@ const router = createBrowserRouter([
     element: <AdminLayout />,
     children: [
       { path: "home", element: <Admin /> },
+      { path: "stat", element: <AdminStat /> },
       {
         path: "users",
         element: <AdminUsers />,

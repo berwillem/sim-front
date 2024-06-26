@@ -8,6 +8,7 @@ import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import moment from "moment";
 import { deleteCommande } from "../../services/commandeservices";
 import { RiPassValidFill, RiPassValidLine } from "react-icons/ri";
+import { Helmet } from "react-helmet";
 const UserCommandes = () => {
   const [commandes, setCommandes] = useState([]);
   const { userId } = useParams();
@@ -59,6 +60,10 @@ const UserCommandes = () => {
   console.log(commandes);
   return (
     <>
+      <Helmet>
+            <title>User Commandes</title>
+         
+        </Helmet>
       <div className="admin-stat">
         <div className="table-stat">
           <div className="titre-stat titrestat2">

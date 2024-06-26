@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getFamilleById } from "../../services/parametresServices";
 import "./CategoriesList.css";
 import { PiKeyReturnLight } from "react-icons/pi";
+import { Helmet } from "react-helmet";
 import Fixation from "../../assets/fasteners-banner.webp";
 import Outillage from "../../assets/outillage.jpg";
 import Detailling from "../../assets/detailling.jpg";
@@ -23,6 +24,10 @@ const CategoriesList = () => {
   console.log(famille);
   return (
     <>
+      <Helmet>
+            <title>Product Categorie</title>
+         
+        </Helmet>
       <Navbar></Navbar>
       <div
         className="famille-header"

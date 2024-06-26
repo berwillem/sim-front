@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { getUserLevelInfos } from "../../services/usersServices";
 import { useParams } from "react-router-dom";
 import LevelBar from "../../components/LevelBar/LevelBar";
+import { Helmet } from "react-helmet";
 
 const Levels = () => {
   const [levelData, setLeveldata] = useState();
@@ -19,6 +20,10 @@ const Levels = () => {
   }, []);
   return (
     <>
+     <Helmet>
+            <title>User Level</title>
+         
+        </Helmet>
     <div className="bar">
     <LevelBar level={levelData}></LevelBar> <span>{levelData?.points} points</span>
     </div>
