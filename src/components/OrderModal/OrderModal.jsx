@@ -132,7 +132,7 @@ const OrderModal = ({ open, onClose, product }) => {
               type="text"
               placeholder={t("product")}
               style={inputStyle}
-              value={product.title}
+              value={product.titlefr}
               readOnly
             />
             <input

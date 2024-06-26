@@ -11,8 +11,9 @@
   flex-direction: column;
   align-items: center;
   margin-top: 50px;
-  width: 35%;
+  width: 50%;
   box-shadow: 0 0 30px 1px #00000026;
+  min-width: 540px;
 }
 .newsletter h1 {
   font-size: 30px;
@@ -23,9 +24,6 @@
   margin-bottom: 20px;
 }
 
-.newsletter {
-  width: 50%;
-}
 .newslettertext {
   width: 50%;
 }
@@ -73,6 +71,7 @@
   }
   .newsletter {
     width: 100%;
+    min-width: 200px !important;
   }
   .newslettertext {
     width: 80%;
