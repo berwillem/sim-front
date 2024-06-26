@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { getFamilleById } from "../../services/parametresServices";
 import "./CategoriesList.css";
 import { PiKeyReturnLight } from "react-icons/pi";
+import { Helmet } from "react-helmet";
 
 const CategoriesList = () => {
   const { famillId } = useParams();
@@ -20,6 +21,10 @@ const CategoriesList = () => {
 
   return (
     <>
+      <Helmet>
+            <title>Product Categorie</title>
+         
+        </Helmet>
       <Navbar></Navbar>
       <div className="famille-header">
         <div className="gobackproduct">

@@ -8,10 +8,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import "./SideBar.css";
 import Logo from "../../assets/logo.png";
 import { LuNewspaper } from "react-icons/lu";
-
+import { IoMdStats } from "react-icons/io";
 const SideBar = () => {
   const infos = [
     { icon: <IoHome />, text: "Home", link: "/admin/home" },
+    { icon: <IoMdStats />, text: "Stat", link: "/admin/stat" },
     { icon: <FaUser />, text: "Users", link: "users" },
     { icon: <FaTools />, text: "Products", link: "products" },
     { icon: <BiSolidCategoryAlt />, text: "Parmetres", link: "parametres" },

@@ -242,14 +242,14 @@
   width: 100%;
   gap: 10px;
 }
-.btns {
+.filter .btns {
   display: flex;
   align-items: center;
 }
-.Mui-focused {
+.filter .Mui-focused {
   color: red !important;
 }
 
-.MuiOutlinedInput-notchedOutline {
+.filter .MuiOutlinedInput-notchedOutline {
   border: red 1px solid !important;
 }

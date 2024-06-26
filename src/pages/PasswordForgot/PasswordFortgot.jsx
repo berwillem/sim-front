@@ -1,6 +1,7 @@
 import "./PasswordForgot.css";
 import passForgotImage from "../../assets/svg/passforgot.svg";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const PasswordFortgot = () => {
   const navigate = useNavigate();
   const handleResetPassword = (e) => {
@@ -9,6 +10,10 @@ const PasswordFortgot = () => {
   };
   return (
     <>
+     <Helmet>
+            <title>Password forgot </title>
+         
+        </Helmet>
       <div className="pass-forgot-container">
         <div className="pass-forgot-image-container">
           <img src={passForgotImage} alt="Image" />

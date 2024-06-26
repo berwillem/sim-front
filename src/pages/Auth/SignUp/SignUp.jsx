@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../../redux/slices/authSlice";
 import { CiMail } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 
 const schema = yup.object().shape({
   FirstName: yup.string().required("Prénom est requis"),
@@ -48,6 +49,10 @@ export default function SignUp() {
   const { t } = useTranslation();
   return (
     <>
+     <Helmet>
+            <title>signup </title>
+         
+        </Helmet>
       <p>{t("signupP")} </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="forlabelsignin">

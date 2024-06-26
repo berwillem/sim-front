@@ -133,7 +133,7 @@ const Orders = () => {
             stat={"0"}
           />
         </div>
-        <FormControl variant="outlined" style={{ minWidth: 120 }}>
+        <FormControl variant="outlined" style={{ minWidth: 120 }} className="filterParent">
           <InputLabel>Status</InputLabel>
           <Select
             value={filter}
@@ -195,7 +195,7 @@ const Orders = () => {
                   <span>
                     {moment(Commande.createdAt).format("DD MMM YYYY")}
                   </span>
-                  <span>
+                  <span style={{cursor:"pointer"}}>
                     {Commande.isValid ? (
                       <>
                         {"valide  "}

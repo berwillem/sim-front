@@ -50,7 +50,7 @@ const Products = () => {
   }, [totalProductCount]);
 
   const fetchProducts = (page) => {
-    getAllProducts(page, selectedFamille, selectedCategory, selectedType)
+    getAllProducts(page, selectedFamille._id, selectedCategory._id, selectedType._id)
       .then((res) => {
         setProducts(res.data.products);
         setTotalPages(res.data.totalPages);
@@ -155,12 +155,12 @@ const Products = () => {
                 <InputLabel>Famille</InputLabel>
                 <Select
                   value={selectedFamille}
-                  onChange={(e) => setSelectedFamille(e.target.value)}
+                  onChange={(e) => {setSelectedFamille(e.target.value),console.log(selectedFamille);}}
                   label="Famille"
                 >
                   <MenuItem value="all">All</MenuItem>
                   {familles.map((famille) => (
-                    <MenuItem key={famille._id} value={famille._id}>
+                    <MenuItem key={famille._id} value={famille}>
                       {famille.titlefr}
                     </MenuItem>
                   ))}
@@ -172,12 +172,12 @@ const Products = () => {
                 <InputLabel>Category</InputLabel>
                 <Select
                   value={selectedCategory}
-                  onChange={(e) => setSelectedCategory(e.target.value)}
+                  onChange={(e) => {setSelectedCategory(e.target.value)}}
                   label="Category"
                 >
                   <MenuItem value="all">All</MenuItem>
-                  {categories.map((category) => (
-                    <MenuItem key={category._id} value={category._id}>
+                  {selectedFamille?.categories?.map((category) => (
+                    <MenuItem key={category._id} value={category}>
                       {category.titlefr}
                     </MenuItem>
                   ))}
@@ -193,7 +193,7 @@ const Products = () => {
                   label="Type"
                 >
                   <MenuItem value="all">All</MenuItem>
-                  {types.map((type) => (
+                  {categories.find(cat => cat?._id === selectedCategory?._id)?.types.map((type) => (
                     <MenuItem key={type._id} value={type._id}>
                       {type.titlefr}
                     </MenuItem>
