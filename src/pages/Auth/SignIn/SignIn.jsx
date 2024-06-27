@@ -36,8 +36,12 @@ export default function SignIn() {
   const onSubmit = (data) => {
     SignInUser(data)
       .then((res) => {
-        const token = localStorage.getItem("token");
-        axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        
+        
+        setTimeout(() => {
+          const token = localStorage.getItem("token");
+          axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+        }, 50);
         toast.success(res.data?.message);
         dispatch(login(res.data));
 
