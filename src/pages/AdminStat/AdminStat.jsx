@@ -1,12 +1,13 @@
-import React from 'react'
+
 import { PieChart } from '@mui/x-charts/PieChart';
 import "./AdminStat.css"
 import image from "../../assets/Logo_Google_Analytics.svg.png"
 import {LineChart } from '@mui/x-charts';
+import TableStat from '../../components/TableStat/TableStat';
 export default function AdminStat() {
     const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
 const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
-const amtData = [2400, 2210, 2290, 2000, 2181, 2500, 2100];
+
 const xLabels = [
   'Page A',
   'Page B',
@@ -72,6 +73,10 @@ const xLabels = [
         </div>
    </div>
    
+    </div>
+    <div className="table">
+    <TableStat/>
+
     </div>
     </div>
   )

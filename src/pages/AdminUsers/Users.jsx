@@ -11,6 +11,8 @@ import {
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import Swal from "sweetalert2";
 import Pagination from "@mui/material/Pagination";
+import { PiPackageFill } from "react-icons/pi";
+import { Link } from "react-router-dom";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -78,6 +80,7 @@ const Users = () => {
                 <li>name</li>
                 <li>email</li>
               </div>
+              <li id="actionuser">order</li>
               <li id="actionuser">action</li>
             </ul>
           </div>
@@ -90,9 +93,12 @@ const Users = () => {
                   {user.LastName} {user.FirstName}
                 </span>
                 <span>{user.email}</span>
+              <Link to={`/profile/${user._id}/commandes`}>  <span className="orderIcon">  <PiPackageFill /></span></Link>
+              
                 <DeleteButon
                   handledelet={() => handleDelet(user._id)}
                 ></DeleteButon>
+
               </li>
             </ul>
           ))}

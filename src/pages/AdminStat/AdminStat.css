@@ -65,6 +65,9 @@
     justify-content: center;
     
 }
+.table{
+    padding: 0 20px;
+}
 .title{
     padding: 10px 20px;
 }
