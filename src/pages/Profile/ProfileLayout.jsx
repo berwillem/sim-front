@@ -9,11 +9,15 @@ const ProfileLayout = () => {
   const navigate = useNavigate();
   const { userId } = useParams();
   const useridCheck = useSelector((state) => state?.auth?.user?._id);
+  const role = useSelector((state) => state?.auth?.user?.role);
+
   useEffect(()=>{
+  if(role!="admin"){
     if (useridCheck !== userId) {
       console.log("user not found");
       return navigate("/notfound")
     }
+  }
   },[])
   return (
     <>

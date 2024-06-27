@@ -96,6 +96,36 @@
   color: white;
   transition: 0.2s;
 }
+.orderIcon{
+  width: 60px !important;
+  height: 60px;
+  border-radius: 50%;
+  background-color: #141414;
+  cursor: pointer;
+  transition: 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ 
+}
+.ligne a{
+  max-width: 120px;
+  height: 60px;
+  display: flex;
+}
+.orderIcon:hover{
+  width: 120px !important;
+  border-radius: 50px;
+  background-color: orange;
+ 
+ 
+}
+.orderIcon svg{
+ fill: white;
+ width: 20px;
+ height: 20px;
+ 
+}
 .etat:hover {
   opacity: 0.7;
 }

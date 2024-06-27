@@ -8,12 +8,10 @@ import ProductPreview from "../../components/ProductPreview/ProductPreview";
 import i18n from "../../i18n/i18n";
 import { getAllTypes } from "../../services/parametresServices";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import Products from "../Products/Products";
 import { Helmet } from "react-helmet";
 import Fixation from "../../assets/fasteners-banner.webp";
 import Outillage from "../../assets/outillage.jpg";
 import Detailling from "../../assets/detailling.jpg";
-
 
 const ProductsList = () => {
   const currentLanguage = i18n.language;
@@ -30,7 +28,6 @@ const ProductsList = () => {
     getProductsByCategory(CategoryId)
       .then((res) => {
         setProducts(res.data.products);
-  
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
@@ -45,8 +42,6 @@ const ProductsList = () => {
     getAllTypes()
       .then((res) => {
         setTypes(res.data.types);
-      
-      
       })
       .catch((error) => {
         console.error("Error fetching type:", error);
@@ -54,7 +49,6 @@ const ProductsList = () => {
   };
 
   useEffect(() => {
-   
     fetchTypes();
   }, []);
   //filter
@@ -62,22 +56,31 @@ const ProductsList = () => {
     if (!filter || filter === "all") {
       setFilterProducts(products);
     } else {
-      setFilterProducts(products.filter(product => product?.type?._id === filter));
+      setFilterProducts(
+        products.filter((product) => product?.type?._id === filter)
+      );
     }
-   
   }, [filter, products, filterProducts]);
-  
-  
-
 
   return (
     <>
       <Navbar></Navbar>
       <Helmet>
-            <title>Product list</title>
-           
-        </Helmet>
-      <div className="famille-header-final">
+        <title>Product list</title>
+      </Helmet>
+      <div
+        className="famille-header-final"
+        style={{
+          backgroundImage: `url(${
+            (products[0]?.famille._id === "664e87fc4cf5a42abd0b5e33" &&
+              Fixation) ||
+            (products[0]?.famille._id === "664e88294cf5a42abd0b5e35" &&
+              Outillage) ||
+            (products[0]?.famille._id === "664e88614cf5a42abd0b5e37" &&
+              Detailling)
+          }) `,
+        }}
+      >
         <div className="gobackproduct-final">
           <Link to="/products">
             <PiKeyReturnLight size={30} />
@@ -101,21 +104,27 @@ const ProductsList = () => {
         </div>
       </div>
       <div className="filter2">
-      <FormControl variant="outlined" style={{ minWidth: 120 }} className="filterParent">
+        <FormControl
+          variant="outlined"
+          style={{ minWidth: 120 }}
+          className="filterParent"
+        >
           <InputLabel>Type</InputLabel>
           <Select
             value={filter}
             onChange={(e) => {
-             
               setFilter(e.target.value);
             }}
             label="Type"
           >
-            
             <MenuItem value="all">All</MenuItem>
-          {types?.map((type,index)=>{
-            return( <MenuItem key={index} value={type._id}>{type.titlefr}</MenuItem>)
-          })}
+            {types?.map((type, index) => {
+              return (
+                <MenuItem key={index} value={type._id}>
+                  {type.titlefr}
+                </MenuItem>
+              );
+            })}
           </Select>
         </FormControl>
       </div>
