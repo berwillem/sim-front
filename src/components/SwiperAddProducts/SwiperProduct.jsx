@@ -9,11 +9,22 @@ import "./SwiperProduct.css";
 
 // import required modules
 import { EffectCreative, Pagination } from "swiper/modules";
+import { useRef } from "react";
 
-export default function SwiperProduct({ previews }) {
+export default function SwiperProduct({ previews, onImageChange }) {
+  const swiperRef = useRef(null);
+  // const [activeIndex, setActiveIndex] = useState(0);
+
+  const handleSlideChange = () => {
+    if (swiperRef.current && swiperRef.current.swiper) {
+      onImageChange(swiperRef.current.swiper.activeIndex);
+    }
+  };
   return (
     <>
       <Swiper
+        ref={swiperRef}
+        onSlideChange={handleSlideChange}
         grabCursor={true}
         effect={"creative"}
         pagination={{ clickable: true }}
