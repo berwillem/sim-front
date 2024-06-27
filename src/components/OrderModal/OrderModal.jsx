@@ -1,11 +1,12 @@
 import Modal from "@mui/material/Modal";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { createCommande } from "../../services/commandeservices";
 import Swal from "sweetalert2";
 import "./OrderModal.css";
+import { getUserLevelInfos } from "../../services/usersServices";
 
 const style = {
   width: "36%",
@@ -57,7 +58,34 @@ const OrderModal = ({ open, onClose, product }) => {
   const [quantity, setQuantity] = useState(1);
   const [clientName, setClientName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const totalPrice = product?.price * quantity;
+  const [level, setLevel] = useState();
+
+  useEffect(() => {
+    if (isAuth) {
+      getUserLevelInfos(user?._id).then((res) =>
+        setLevel(res.data?.level?.name)
+      );
+    }
+  }, [isAuth, user]);
+
+  const getDiscountedPrice = (price, level) => {
+    switch (level) {
+      case "bronze":
+        return price * 0.99;
+      case "silver":
+        return price * 0.98;
+      case "gold":
+        return price * 0.96;
+      case "diamond":
+        return price * 0.94;
+      default:
+        return price;
+    }
+  };
+
+  const originalPrice = product?.price * quantity || 0;
+  const totalPrice = getDiscountedPrice(originalPrice, level) || 0;
+  const discountAmount = originalPrice - totalPrice;
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -143,7 +171,26 @@ const OrderModal = ({ open, onClose, product }) => {
               value={quantity}
               onChange={(e) => setQuantity(parseInt(e.target.value))}
             />
-            <h2>Total Price: {totalPrice ? totalPrice : 0} DA</h2>
+            <h2>
+              Total Price:{" "}
+              {discountAmount > 0 ? (
+                <>
+                  <span
+                    style={{ textDecoration: "line-through", color: "red" }}
+                  >
+                    {isNaN(originalPrice) ? "0.00" : originalPrice.toFixed(2)}{" "}
+                    DA
+                  </span>{" "}
+                  <span>
+                    {isNaN(totalPrice) ? "0.00" : totalPrice.toFixed(2)} DA
+                  </span>
+                </>
+              ) : (
+                <span>
+                  {isNaN(totalPrice) ? "0.00" : totalPrice.toFixed(2)} DA
+                </span>
+              )}
+            </h2>
             <button type="submit" style={buttonStyle}>
               {t("submit")}
             </button>
