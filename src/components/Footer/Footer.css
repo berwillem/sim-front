@@ -80,7 +80,7 @@ footer li {
   height: 400px;
   min-width: 500px;
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .footercontainer {
     flex-wrap: wrap;
   }
