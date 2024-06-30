@@ -45,7 +45,7 @@ footer li {
   list-style-type: none;
   display: flex;
   align-items: center;
-  margin: 5px 0 5px 0;
+  margin: 6px 0 0 0;
 }
 
 .footeraboutsection li,
@@ -57,6 +57,13 @@ footer li {
 }
 .footercontactsection {
   padding-top: 30px;
+}
+.footercontactsection a {
+  text-decoration: none;
+  color: white;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 .footercontainer > * h3 {
   margin: 20px 0 20px 0;
@@ -80,7 +87,7 @@ footer li {
   height: 400px;
   min-width: 500px;
 }
-@media (max-width: 600px) {
+@media (max-width: 800px) {
   .footercontainer {
     flex-wrap: wrap;
   }

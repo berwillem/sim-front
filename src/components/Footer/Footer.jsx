@@ -1,6 +1,9 @@
 import "./Footer.css";
 import image from "../../assets/logo.png";
 import { useTranslation } from "react-i18next";
+import { BsInstagram } from "react-icons/bs";
+import { FaSquareFacebook } from "react-icons/fa6";
+
 export default function Component() {
   const { t } = useTranslation();
 
@@ -44,6 +47,20 @@ export default function Component() {
             <li>+86 553 499 6266</li>
             <li>+86 553 393 2199</li>
             <li>sales@maxshine.cn</li>
+            <li>
+              <a
+                href="https://web.facebook.com/profile.php?id=61558883573403"
+                target="_blank"
+              >
+                <FaSquareFacebook />
+                Facebook
+              </a>
+            </li>
+            <li>
+              <a href="https://www.instagram.com/symindustrie/" target="_blank">
+                <BsInstagram /> Instagram
+              </a>
+            </li>
           </ul>
         </div>
         <div className="forIframe">

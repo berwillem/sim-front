@@ -82,15 +82,18 @@
   padding: 25px;
   width: 250px;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .gridfamille,
   .gridfamille-final {
     display: flex;
+    gap: 20px;
     flex-wrap: wrap;
     justify-content: center;
   }
   .familycont {
     padding-left: 11%;
   }
+  .gridfamille {
+    padding: 0 0 0 0;
+  }
 }
-

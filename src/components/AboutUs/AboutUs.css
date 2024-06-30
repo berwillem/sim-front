@@ -168,7 +168,7 @@
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
   .aboutusfirst {
     flex-direction: column;
     padding: 0;

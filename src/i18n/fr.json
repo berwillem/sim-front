@@ -29,5 +29,8 @@
   "dejauncompte": "Vous avez déjà un compte ?",
   "seconnecter": "Se connecter",
   "S'inscrire": "S'inscrire",
-  "loginbefore": "Connectez-vous avant de passer une commande et bénéficiez d'une réduction sur nos produits."
+  "loginbefore": "Connectez-vous avant de passer une commande et bénéficiez d'une réduction sur nos produits.",
+  "makeorder": "Faire une commande",
+  "totalprice": "Prix total: ",
+  "phonenumber": "Numéro de téléphone"
 }
