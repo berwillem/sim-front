@@ -8,6 +8,7 @@ import { useEffect } from "react";
 import { getUserLevelInfos } from "../../services/usersServices";
 import { useParams } from "react-router-dom";
 import LevelBar from "../../components/LevelBar/LevelBar";
+import { Helmet } from "react-helmet";
 
 const Levels = () => {
   const [levelData, setLeveldata] = useState();
@@ -19,7 +20,13 @@ const Levels = () => {
   }, []);
   return (
     <>
-      <LevelBar level={levelData}></LevelBar>
+     <Helmet>
+            <title>User Level</title>
+         
+        </Helmet>
+    <div className="bar">
+    <LevelBar level={levelData}></LevelBar> <span>{levelData?.points} points</span>
+    </div>
       <div className="levels">
         <div className="level-explain">
           <div className="level" data-hover-text="réduction 1%">
@@ -39,6 +46,11 @@ const Levels = () => {
             <h1>Diamond</h1>
             <img src={diamond} alt="" />
           </div>
+        </div>
+        <div className="remarque">
+          <p>
+          <span>Remarque</span>: chaque 10000 da = 1 point
+          </p>
         </div>
       </div>
     </>

@@ -12,25 +12,34 @@ import Autocomplete from "@mui/material/Autocomplete";
 import {
   getAllCategories,
   getAllFamilles,
-  getAllTypes,
 } from "../../services/parametresServices";
 import { useNavigate } from "react-router-dom";
 
 const AddProduct = () => {
   const [categories, setCategories] = useState([]);
   const [familles, setFamilles] = useState([]);
-  const [types, setTypes] = useState([]);
   const [selectedFamille, setSelectedFamille] = useState(null);
   const [selectedCategorie, setSelectedCategorie] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
   const [images, setImages] = useState([]);
   const navigate = useNavigate();
+// test
+const handleFamilleChange = (newFamille) => {
+  setSelectedFamille(newFamille);
+  setSelectedCategorie(null);
+  setSelectedType(null);
+};
 
+const handleCategorieChange = (newCategorie) => {
+  setSelectedCategorie(newCategorie);
+  setSelectedType(null);
+};
+//test
   const fetchCategories = () => {
     getAllCategories()
       .then((res) => {
         setCategories(res.data.categories);
-        console.log(res.data);
+        console.log(categories);
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
@@ -45,20 +54,10 @@ const AddProduct = () => {
         console.error("Error fetching familles:", error);
       });
   };
-  const fetchTypes = () => {
-    getAllTypes()
-      .then((res) => {
-        setTypes(res.data.types);
-      })
-      .catch((error) => {
-        console.error("Error fetching type:", error);
-      });
-  };
 
   useEffect(() => {
     fetchCategories();
     fetchFamilles();
-    fetchTypes();
   }, []);
 
   const { register, handleSubmit } = useForm({
@@ -142,20 +141,33 @@ const AddProduct = () => {
                         label="Famille"
                         options={familles}
                         value={selectedFamille}
-                        onChange={setSelectedFamille}
+                        onChange={handleFamilleChange}
                       />
+
                       <ComboBox
                         label="Categorie"
-                        options={categories}
+                        options={
+                          selectedFamille?.categories
+                            ? selectedFamille?.categories
+                            : []
+                        }
                         value={selectedCategorie}
-                        onChange={setSelectedCategorie}
+                        onChange={handleCategorieChange}
                       />
                     </div>
                     <div className="labelSignUphalf">
                       <div className="hadtmekhriga">
                         <ComboBox
                           label="Type"
-                          options={types}
+                          options={
+                            categories.find(
+                              (cat) => cat?._id === selectedCategorie?._id
+                            )?.types
+                              ? categories.find(
+                                  (cat) => cat?._id === selectedCategorie?._id
+                                )?.types
+                              : []
+                          }
                           value={selectedType}
                           onChange={setSelectedType}
                         />

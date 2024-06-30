@@ -88,13 +88,24 @@ const EditProduct = () => {
       images: "",
     },
   });
-
+  const [activeImage, setActiveImage] = useState(0)
   const onSubmit = (data) => {
-    data.Famille = selectedFamille?._id;
-    data.Categorie = selectedCategorie?._id;
-    data.Type = selectedType?._id;
-    data.images = images;
-    updateProduct(productid, data)
+    const form = new FormData();
+    form.append("famille", selectedFamille?._id);
+    form.append("categorie", selectedCategorie?._id);
+    form.append("type", selectedType?._id);
+    images.forEach((image) => form.append("images", image.file||image));
+    form.append("titleen", data.titleen);
+    console.log(form.getAll("images"));
+    form.append("titlefr", data.titlefr);
+    form.append("prix", data.prix);
+    form.append("marque", data.marque);
+    form.append("gamme", data.gamme);
+    form.append("description", data.description);
+
+    console.log(form.getAll("images"))
+    
+    updateProduct(productid, form)
       .then((res) => {
         toast.success(res.data?.message);
         navigate("/admin/products");
@@ -129,8 +140,9 @@ const EditProduct = () => {
           onChange={handleChange}
           multiple
         />
-
+        <button className="delete-image-button" onClick={() => setImages((state)=>state.filter((_,index)=>(index!==activeImage)))}>Delete</button>
         <SwiperProduct
+          onImageChange={setActiveImage}
           previews={
             images.length !== 0
               ? images.map((img) => (img.url ? img.url : img))
@@ -178,9 +190,9 @@ const EditProduct = () => {
                         <input
                           type="text"
                           id=""
-                          placeholder="Titre"
-                          {...register("titre")}
-                          defaultValue={product?.title}
+                          placeholder="Titre Aglais"
+                          {...register("titleen")}
+                          defaultValue={product?.titleen}
                         />
                       </div>
                     </div>
@@ -189,9 +201,9 @@ const EditProduct = () => {
                         <input
                           type="text"
                           id=""
-                          placeholder="Gamme"
-                          {...register("gamme")}
-                          defaultValue={product?.gamme}
+                          placeholder="Title Francais"
+                          {...register("titlefr")}
+                          defaultValue={product?.titlefr}
                         />
                       </div>
 
@@ -205,14 +217,25 @@ const EditProduct = () => {
                         />
                       </div>
                     </div>
-                    <div className="labelSignUphalfinput labelSignUphalfinputspecial ">
-                      <input
-                        type="text"
-                        id=""
-                        placeholder="Marque"
-                        {...register("marque")}
-                        defaultValue={product?.marque}
-                      />
+                    <div className="labelSignUphalf">
+                      <div className="labelSignUphalfinput">
+                        <input
+                          type="text"
+                          id=""
+                          placeholder="Marque"
+                          {...register("marque")}
+                          defaultValue={product?.marque}
+                        />
+                      </div>
+                      <div className="labelSignUphalfinput">
+                        <input
+                          type="text"
+                          id=""
+                          placeholder="Gamme"
+                          {...register("gamme")}
+                          defaultValue={product?.gamme}
+                        />
+                      </div>
                     </div>
                     <div className="labelSignUphalf">
                       <textarea

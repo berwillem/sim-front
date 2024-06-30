@@ -3,7 +3,7 @@ import Maximg from "../../assets/max.webp";
 import Milimg from "../../assets/mil.jpg";
 import Fixation from "../../assets/fixation.webp";
 import { useNavigate } from "react-router-dom";
-
+import ScrollAnimation from "react-animate-on-scroll";
 export default function Cards() {
   const navigate = useNavigate();
   const products = [
@@ -12,32 +12,44 @@ export default function Cards() {
       title: "Fixation",
       image: Fixation,
       navigate: "/664e87fc4cf5a42abd0b5e33",
+      animateIn: "fadeInLeft",
     },
     {
       id: 2,
-      title: "outillages",
+      title: "Outillages",
       image: Milimg,
       navigate: "/664e88294cf5a42abd0b5e35",
+      animateIn: "fadeIn",
     },
     {
       id: 3,
       title: "Detailling tools",
       image: Maximg,
-      navigate: "/664e88294cf5a42abd0b5e35",
+      navigate: "/664e88614cf5a42abd0b5e37",
+      animateIn: " fadeInRight",
     },
   ];
   const all = products.map((product) => {
     return (
-      <div className="cardsmain" key={product.id}>
-        <div
-          className="cardscard"
-          style={{ backgroundImage: `url(${product.image})` }}
-        >
-          <h1 onClick={() => navigate(`/products${product.navigate}`)}>
-            {product.title}
-          </h1>
+      <ScrollAnimation
+        initiallyVisible={true}
+        animateOnce={true}
+        className="productAnim"
+        key={product.id}
+        duration={1.5}
+        animateIn={product.animateIn}
+      >
+        <div className="cardsmain">
+          <div
+            className="cardscard"
+            style={{ backgroundImage: `url(${product.image})` }}
+          >
+            <h1 onClick={() => navigate(`/products${product.navigate}`)}>
+              {product.title}
+            </h1>
+          </div>
         </div>
-      </div>
+      </ScrollAnimation>
     );
   });
 

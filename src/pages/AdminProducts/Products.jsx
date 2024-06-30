@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 import AdminMiniCard from "../../components/AdminMiniCard/AdminMiniCard";
 import { BsBorderStyle } from "react-icons/bs";
 import "./Products.css";
@@ -16,46 +15,97 @@ import { CiEdit } from "react-icons/ci";
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import {
+  getAllCategories,
+  getAllFamilles,
+  getAllTypes,
+} from "../../services/parametresServices";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Button,
+  Grid,
+} from "@mui/material";
 
-const Users = () => {
+const Products = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [products, setProducts] = useState([]);
   const [totalProductCount, setTotalProductCount] = useState(0);
-  console.log(products, "products");
+  const [categories, setCategories] = useState([]);
+  const [familles, setFamilles] = useState([]);
+  const [types, setTypes] = useState([]);
+  const [selectedFamille, setSelectedFamille] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const [selectedType, setSelectedType] = useState("");
+  const [filtersApplied, setFiltersApplied] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getTotalProductsCount().then((res) => {
+      setTotalProductCount(res.data.count);
+    });
+  }, [totalProductCount]);
+
   const fetchProducts = (page) => {
-    getAllProducts(page)
+    getAllProducts(page, selectedFamille._id, selectedCategory._id, selectedType._id)
       .then((res) => {
-        console.log(res.data);
         setProducts(res.data.products);
         setTotalPages(res.data.totalPages);
+        setFiltersApplied(true);
       })
       .catch((error) => {
         console.error("Error fetching products:", error);
       });
   };
+
+  const fetchCategories = () => {
+    getAllCategories()
+      .then((res) => {
+        setCategories(res.data.categories);
+      })
+      .catch((error) => {
+        console.error("Error fetching categories:", error);
+      });
+  };
+
+  const fetchFamilles = () => {
+    getAllFamilles()
+      .then((res) => {
+        setFamilles(res.data.familles);
+      })
+      .catch((error) => {
+        console.error("Error fetching familles:", error);
+      });
+  };
+
+  const fetchTypes = () => {
+    getAllTypes()
+      .then((res) => {
+        setTypes(res.data.types);
+      })
+      .catch((error) => {
+        console.error("Error fetching types:", error);
+      });
+  };
   useEffect(() => {
     fetchProducts(page);
+    fetchCategories();
+    fetchFamilles();
+    fetchTypes();
   }, [page]);
-  useEffect(() => {
-    getTotalProductsCount().then((res) => {
-      setTotalProductCount(res.data.count);
-      console.log(res.data, "dataaaaaa");
-    });
-  }, [totalProductCount]);
-  const handlePageChange = (event, value) => {
-    setPage(value);
-  };
-  const handleDelet = (CommandeId) => {
-    deleteProduct(CommandeId)
+
+  const handleDelet = (productId) => {
+    deleteProduct(productId)
       .then(() => {
         Swal.fire({
           title: "Good job!",
-          text: "order deleted succefuly",
+          text: "Product deleted successfully",
           icon: "success",
         });
-        fetchProducts();
+        fetchProducts(page);
       })
       .catch((err) => {
         Swal.fire({
@@ -64,6 +114,22 @@ const Users = () => {
           text: err.message,
         });
       });
+  };
+
+  const handlePageChange = (event, value) => {
+    setPage(value);
+  };
+
+  const handleFilterApply = () => {
+    fetchProducts(page);
+  };
+
+  const handleFilterClear = () => {
+    setSelectedFamille("");
+    setSelectedCategory("");
+    setSelectedType("");
+    setFiltersApplied(false);
+    fetchProducts(page);
   };
 
   return (
@@ -80,6 +146,91 @@ const Users = () => {
               title={"Add Product"}
               navigate={"/admin/products/addproduct"}
             ></Addbutton>
+          </div>
+        </div>
+        <div className="filter">
+          <Grid container spacing={2} sx={{ alignItems: "center" }}>
+            <Grid item xs={12} sm={4}>
+              <FormControl fullWidth variant="outlined">
+                <InputLabel>Famille</InputLabel>
+                <Select
+                  value={selectedFamille}
+                  onChange={(e) => {setSelectedFamille(e.target.value),console.log(selectedFamille);}}
+                  label="Famille"
+                >
+                  <MenuItem value="all">All</MenuItem>
+                  {familles.map((famille) => (
+                    <MenuItem key={famille._id} value={famille}>
+                      {famille.titlefr}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <FormControl fullWidth variant="outlined">
+                <InputLabel>Category</InputLabel>
+                <Select
+                  value={selectedCategory}
+                  onChange={(e) => {setSelectedCategory(e.target.value)}}
+                  label="Category"
+                >
+                  <MenuItem value="all">All</MenuItem>
+                  {selectedFamille?.categories?.map((category) => (
+                    <MenuItem key={category._id} value={category}>
+                      {category.titlefr}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <FormControl fullWidth variant="outlined">
+                <InputLabel>Type</InputLabel>
+                <Select
+                  value={selectedType}
+                  onChange={(e) => setSelectedType(e.target.value)}
+                  label="Type"
+                >
+                  <MenuItem value="all">All</MenuItem>
+                  {categories.find(cat => cat?._id === selectedCategory?._id)?.types.map((type) => (
+                    <MenuItem key={type._id} value={type._id}>
+                      {type.titlefr}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
+          </Grid>
+          <div className="btns">
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={handleFilterApply}
+              style={{
+                marginRight: "10px",
+                backgroundColor: "red",
+                height: "55px",
+                fontSize: "13px",
+              }}
+            >
+              Apply Filters
+            </Button>
+            {filtersApplied && (
+              <Button
+                variant="outlined"
+                color="secondary"
+                onClick={handleFilterClear}
+                style={{
+                  color: "red",
+                  border: "red 1px solid",
+                  height: "55px",
+                  fontSize: "13px",
+                }}
+              >
+                Clear Filters
+              </Button>
+            )}
           </div>
         </div>
         <div className="table-stat">
@@ -114,26 +265,19 @@ const Users = () => {
           count={totalPages}
           page={page}
           onChange={handlePageChange}
+          style={{ marginTop: "10px" }}
         />
       </div>
     </>
   );
 };
 
-export default Users;
+export default Products;
 
 const Productitem = ({ product, index }) => {
   return (
     <li key={index} className="ligne">
-      <span>
-        <div>
-          <div style={{ marginBottom: "7px" }}>
-            {" "}
-            Francais: {product?.titlefr}
-          </div>
-          <div> Anglais: {product?.titleen}</div>
-        </div>
-      </span>
+      <span> {product?.titlefr}</span>
       <span>{product?.price}</span>
       <span>{product?.description}</span>
       <span>{product?.marque}</span>

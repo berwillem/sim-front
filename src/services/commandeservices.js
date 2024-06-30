@@ -1,8 +1,8 @@
 import { BASE_API_URL } from "../config/api";
 import axios from "axios";
 
-export const getAllCommandes = (page) => {
-  return axios.get(`${BASE_API_URL}/commandes?page=${page}`);
+export const getAllCommandes = (page, isValid = "") => {
+  return axios.get(`${BASE_API_URL}/commandes?page=${page}&isValid=${isValid}`);
 };
 
 export const getCommandeById = (orderId) => {

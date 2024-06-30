@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../../../redux/slices/authSlice";
 import { CiMail } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
+import { Helmet } from "react-helmet";
 
 const schema = yup.object().shape({
   FirstName: yup.string().required("Prénom est requis"),
@@ -34,8 +35,6 @@ export default function SignUp() {
   });
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const [error, setError] = useState(null);
-
   // register function :
   const onSubmit = (data) => {
     SignUpUser(data)
@@ -44,17 +43,20 @@ export default function SignUp() {
         dispatch(login(res.data));
         navigate("/");
       })
-      .catch((err) => setError(err.response?.data.message));
+      .catch((err) => console.log(err));
   };
-
   const [show, setShow] = useState(true);
   const { t } = useTranslation();
   return (
     <>
+     <Helmet>
+            <title>signup </title>
+         
+        </Helmet>
       <p>{t("signupP")} </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="forlabelsignin">
-          <div className="labelSignUphalf forsignup">
+          <div className="labelSignUphalf">
             <div>
               <label htmlFor="FirstName">{t("firstname")} </label>
               <input
@@ -119,21 +121,6 @@ export default function SignUp() {
           </div>
         </div>
         <div className="middivsignin">
-          {error && (
-            <h3
-              style={{
-                color: "red",
-                textAlign: "center",
-                fontSize: "18px",
-                border: "0.5px solid red",
-                padding: "4px",
-                borderRadius: "5px",
-                marginBottom: "10px",
-              }}
-            >
-              {error}
-            </h3>
-          )}
           <button type="submit">{t("Continuer")}</button>
         </div>
         <div className="text-center">

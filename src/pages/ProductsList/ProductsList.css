@@ -1,5 +1,5 @@
 .famille-header-final {
-  background-color: rgb(230, 230, 230);
+  /* background-color: rgb(230, 230, 230); */
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -9,6 +9,13 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
+}
+.loading{
+  width: 250px;
+  height: 250px ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .famille-header-final h1 {
   color: var(--primary-color);
@@ -87,6 +94,10 @@
 .productitempreview-final img {
   padding: 25px;
   width: 250px;
+}
+.filter2{
+  display: flex;
+  padding: 20px;
 }
 @media screen and (max-width: 600px) {
   .gridfamille-final {

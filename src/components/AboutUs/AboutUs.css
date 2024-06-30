@@ -6,6 +6,7 @@
   display: flex;
   flex-direction: column;
   overflow-y: hidden;
+  overflow-x: hidden;
 }
 .aboutusimg {
   width: 50%;
@@ -54,6 +55,8 @@
   position: relative;
   margin-top: 55px;
   cursor: pointer;
+  overflow-x: hidden;
+  padding-top: 70px;
 }
 .clip-path {
   clip-path: polygon(0 0, 100% 0, 100% 80%, 69% 100%, 0 85%);
@@ -105,7 +108,7 @@
 }
 .aboutussecondbox {
   height: 60%;
-  width: 35%;
+  width: 100%;
   border-bottom: #e63619 solid 3px;
   display: flex;
   flex-direction: column;
@@ -118,6 +121,9 @@
   z-index: 1;
   background-color: white;
   cursor: default;
+}
+.box {
+  width: 35%;
 }
 
 .aboutussecondboximg {
@@ -153,12 +159,24 @@
   width: 100%;
 }
 
-@media screen and (max-width: 600px) {
+@keyframes moveLeft {
+  from {
+    transform: translateX(100%); /* Démarre à droite */
+  }
+  to {
+    transform: translateX(0%); /* Termine à gauche */
+  }
+}
+
+@media screen and (max-width: 800px) {
   .aboutusfirst {
     flex-direction: column;
     padding: 0;
     justify-content: center;
     align-items: center;
+  }
+  .topScroll {
+    margin-top: 160px;
   }
   .aboutusimg {
     width: 92%;
@@ -180,11 +198,17 @@
   }
   .aboutussecondbox {
     left: 5%;
-    width: 90%;
+    width: 100%;
     bottom: 0 !important;
     height: fit-content;
     top: 320px;
     box-shadow: 0px 0px 54px 9px rgba(0, 0, 0, 0.75);
+  }
+  .box {
+    width: 90%;
+    left: 1%;
+    top: 70px;
+    position: absolute;
   }
   .imgoverlay {
     object-fit: cover;

@@ -20,6 +20,10 @@ import {
 import Pagination from "@mui/material/Pagination";
 import moment from "moment";
 
+import { LuUserX } from "react-icons/lu";
+
+import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+
 const Orders = () => {
   const [Commandes, setCommandes] = useState([]);
   const [TotalCommandesCount, setTotalCommandesCount] = useState(0);
@@ -27,13 +31,13 @@ const Orders = () => {
   const [pendingCommandesCount, setPendingCommandesCount] = useState(0);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [filter, setFilter] = useState("");
   console.log(totalPages, "commandes");
-  useEffect(() => {
-    fetchCommandes(page);
-  }, [page]);
-  const fetchCommandes = (page) => {
-    getAllCommandes(page)
+
+  const fetchCommandes = (page, filter) => {
+    getAllCommandes(page, filter)
       .then((res) => {
+        console.log(res.data.commandes);
         setCommandes(res.data.commandes);
         setTotalPages(res.data.totalPages);
       })
@@ -44,6 +48,7 @@ const Orders = () => {
 
   const handlePageChange = (event, value) => {
     setPage(value);
+    fetchCommandes(value, filter);
   };
   const handleDelet = (CommandeId) => {
     deleteCommande(CommandeId)
@@ -81,6 +86,9 @@ const Orders = () => {
         });
       });
   };
+  useEffect(() => {
+    fetchCommandes(page, filter);
+  }, [page, filter]);
   useEffect(() => {
     getTotalCommandesCount().then((res) => {
       setTotalCommandesCount(res.data.count);
@@ -123,14 +131,32 @@ const Orders = () => {
             stat={"0"}
           />
         </div>
+        <FormControl variant="outlined" style={{ minWidth: 120 }} className="filterParent">
+          <InputLabel>Status</InputLabel>
+          <Select
+            value={filter}
+            onChange={(e) => {
+              console.log(e.target.value);
+              setFilter(e.target.value);
+              fetchCommandes(page, e.target.value);
+            }}
+            label="Status"
+          >
+            <MenuItem value="all">All</MenuItem>
+            <MenuItem value="true">Valid</MenuItem>
+            <MenuItem value="false">Not Valid</MenuItem>
+          </Select>
+        </FormControl>
+
         <div className="table-stat">
           <div className="titre-stat">
             <ul className="ligne commandeslist">
               <div className="info-stat ">
                 <li>Product</li>
                 <li>Fullname</li>
-                <li>Email</li>
+                <li>Number</li>
                 <li>Quantity</li>
+                <li>Total Price</li>
                 <li>createdAt</li>
                 <li>Status</li>
               </div>
@@ -139,7 +165,7 @@ const Orders = () => {
           </div>
 
           {Commandes?.map((Commande, index) => {
-            console.log(Commande, "commande");
+            // console.log(Commande, "commande");
             return (
               <ul
                 key={index}
@@ -148,18 +174,28 @@ const Orders = () => {
                 }
               >
                 <li className="ligne">
-                  <span>{Commande.product?.titlefr}</span>{" "}
                   <span>
-                    {Commande.user?.FirstName}
-                    {"  "}
-                    {Commande.user?.LastName}
+                    {Commande.product
+                      ? Commande.product?.titlefr
+                      : "Produit supprimé"}
                   </span>{" "}
-                  <span>{Commande.user.email}</span>
+                  <span>
+                    {Commande.user ? (
+                      Commande.user.FirstName + " " + Commande.user.LastName
+                    ) : (
+                      <div className="flex">
+                        {" "}
+                        {Commande.client} <LuUserX />
+                      </div>
+                    )}
+                  </span>
+                  <span>{Commande.phoneNumber}</span>
                   <span>{Commande.quantity}</span>
+                  <span>{Commande.totalPrice}</span>
                   <span>
                     {moment(Commande.createdAt).format("DD MMM YYYY")}
                   </span>
-                  <span>
+                  <span style={{cursor:"pointer"}}>
                     {Commande.isValid ? (
                       <>
                         {"valide  "}
