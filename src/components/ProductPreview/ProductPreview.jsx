@@ -66,9 +66,9 @@ export default function App({ product, functio, language }) {
             </Swiper>
           </div>
           <h1> {language === "fr" ? product?.titlefr : product?.titleen} </h1>
-          <h3>Gamme : {product?.gamme}</h3>
-          <h3>Marque : {product?.marque}</h3>
-          <h3>Type : {product?.type.titlefr}</h3>
+          <h4>Gamme : {product?.gamme}</h4>
+          <h4>Marque : {product?.marque}</h4>
+          <h4>Type : {product?.type.titlefr}</h4>
           <p className="textpreview">Description : {product?.description}</p>
           <h2>{product?.price} DA</h2>
 

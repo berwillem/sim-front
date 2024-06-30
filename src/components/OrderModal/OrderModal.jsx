@@ -130,7 +130,7 @@ const OrderModal = ({ open, onClose, product }) => {
           </div>
         )}
         <div style={style}>
-          <h1>Make An Order</h1>
+          <h1>{t("makeorder")} </h1>
           <form
             onSubmit={handleSubmit}
             style={{
@@ -150,7 +150,7 @@ const OrderModal = ({ open, onClose, product }) => {
             />
             <input
               type="tel"
-              placeholder="Phone Number"
+              placeholder={t("phonenumber")}
               style={inputStyle}
               value={phoneNumber}
               onChange={(e) => setPhoneNumber(e.target.value)}
@@ -172,7 +172,7 @@ const OrderModal = ({ open, onClose, product }) => {
               onChange={(e) => setQuantity(parseInt(e.target.value))}
             />
             <h2>
-              Total Price:{" "}
+              {t("totalprice")}
               {discountAmount > 0 ? (
                 <>
                   <span
