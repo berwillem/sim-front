@@ -93,22 +93,23 @@ const Users = () => {
                   {user.LastName} {user.FirstName}
                 </span>
                 <span>{user.email}</span>
-              <Link to={`/profile/${user._id}/commandes`}>  <span className="orderIcon">  <PiPackageFill /></span></Link>
-              
+                <Link to={`/profile/${user._id}/commandes`}>
+                  {" "}
+                  <span className="orderIcon">
+                    {" "}
+                    <PiPackageFill />
+                  </span>
+                </Link>
+
                 <DeleteButon
                   handledelet={() => handleDelet(user._id)}
                 ></DeleteButon>
-
               </li>
             </ul>
           ))}
         </div>
-        <Pagination
-          count={totalPages}
-          page={page}
-          onChange={handlePageChange}
-        />
       </div>
+      <Pagination count={totalPages} page={page} onChange={handlePageChange} />
     </>
   );
 };

@@ -40,11 +40,14 @@ import ProfileLayout from "./pages/Profile/ProfileLayout.jsx";
 import UserCommandes from "./pages/UserCommandes/UserCommandes.jsx";
 import AdminStat from "./pages/AdminStat/AdminStat.jsx";
 
-
 // Lazy imports for pages to be lazy loaded
 const Contact = lazy(() => import("./pages/Contact/Contact.jsx"));
-const PasswordForgot = lazy(() => import("./pages/PasswordForgot/PasswordFortgot.jsx"));
-const PasswordReset = lazy(() => import("./pages/PasswordReset/PasswordReset.jsx"));
+const PasswordForgot = lazy(() =>
+  import("./pages/PasswordForgot/PasswordFortgot.jsx")
+);
+const PasswordReset = lazy(() =>
+  import("./pages/PasswordReset/PasswordReset.jsx")
+);
 const NotFound = lazy(() => import("./pages/NotFound/NotFound.jsx"));
 
 const router = createBrowserRouter([
