@@ -2,13 +2,15 @@ import { useState } from "react";
 import "./UserCommandes.css";
 import { useEffect } from "react";
 import { getUserCommandes } from "../../services/usersServices";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import moment from "moment";
 import { deleteCommande } from "../../services/commandeservices";
 import { RiPassValidFill, RiPassValidLine } from "react-icons/ri";
 import { Helmet } from "react-helmet";
+import { FaPhoneSquare } from "react-icons/fa";
+
 const UserCommandes = () => {
   const [commandes, setCommandes] = useState([]);
   const { userId } = useParams();
@@ -27,6 +29,7 @@ const UserCommandes = () => {
         });
       });
   }, []);
+  const navigate = useNavigate();
 
   const fetchCommandes = () => {
     getUserCommandes(userId)
@@ -61,17 +64,16 @@ const UserCommandes = () => {
   return (
     <>
       <Helmet>
-            <title>User Commandes</title>
-         
-        </Helmet>
+        <title>User Commandes</title>
+      </Helmet>
       <div className="admin-stat">
         <div className="table-stat">
           <div className="titre-stat titrestat2">
             <ul className="ligne commandeslist">
               <div className="info-stat infostat2 ">
                 <li>Product image</li>
+                <li>commande number</li>
                 <li>Product Name</li>
-
                 <li>Quantity</li>
                 <li>createdAt</li>
                 <li>Status</li>
@@ -97,6 +99,7 @@ const UserCommandes = () => {
                       className="imgprevieforcommande"
                     />{" "}
                   </span>{" "}
+                  <span>{Commande.num}</span>
                   <span>
                     {" "}
                     {Commande.product
@@ -121,9 +124,17 @@ const UserCommandes = () => {
                       </>
                     )}
                   </span>
-                  <DeleteButon
-                    handledelet={() => handleDelet(Commande._id)}
-                  ></DeleteButon>
+                  {Commande.isValid ? (
+                    <DeleteButon
+                      handledelet={() => handleDelet(Commande._id)}
+                    ></DeleteButon>
+                  ) : (
+                    <FaPhoneSquare
+                      size={49}
+                      style={{ marginRight: "10px", cursor: "pointer" }}
+                      onClick={() => navigate("/contact")}
+                    />
+                  )}
                 </li>
                 <li className="ligne forphone">
                   <span className="imgprevieforcommandespan">
@@ -138,6 +149,9 @@ const UserCommandes = () => {
                   <span>
                     createdAt :
                     {moment(Commande.createdAt).format("DD MMM YYYY")}
+                  </span>
+                  <span style={{ width: "100%" }}>
+                    commande num: {Commande.num}
                   </span>
                   <span>
                     status :
@@ -154,9 +168,17 @@ const UserCommandes = () => {
                       </>
                     )}
                   </span>
-                  <DeleteButon
-                    handledelet={() => handleDelet(Commande._id)}
-                  ></DeleteButon>
+                  {Commande.isValid ? (
+                    <DeleteButon
+                      handledelet={() => handleDelet(Commande._id)}
+                    ></DeleteButon>
+                  ) : (
+                    <FaPhoneSquare
+                      size={49}
+                      style={{ marginRight: "10px", cursor: "pointer" }}
+                      onClick={() => navigate("/contact")}
+                    />
+                  )}
                 </li>
               </ul>
             );
