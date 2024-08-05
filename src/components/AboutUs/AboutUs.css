@@ -37,7 +37,7 @@
   margin-bottom: 10px;
 }
 .aboutustext p {
-  font-size: 14px;
+  font-size: 1.2em;
   display: block;
   margin-bottom: 10px;
 }
@@ -45,6 +45,7 @@
   display: flex;
   gap: 5%;
   padding: 0 10% 0 10%;
+  align-items: center;
 }
 .aboutussecond {
   display: flex;

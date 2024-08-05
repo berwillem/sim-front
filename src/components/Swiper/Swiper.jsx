@@ -15,26 +15,26 @@ const swiperItems = [
     id: 1,
     image: toolImage1,
     header2: "BRAND HOT PRODUCTS",
-    header1: "MAXSHINE MINI CORDLESS POLISHER V2    ",
+    header1: "Outillage Professionnel de Qualité    ",
     description:
-      "Gain the ability to polish tight areas, complex curves, minute details and anywhere a full-sized machine cannot. ",
+      "SYM Industrie vous offre des outils professionnels de marques prestigieuses comme Milwaukee, garantissant performance et durabilité pour toutes vos applications industrielles. ",
     button: "Learn more",
   },
   {
     id: 2,
     image: toolImage2,
     header2: "BRAND HOT PRODUCTS",
-    header1: "M1300 PRO ROTARY POLISHER",
+    header1: "Solutions de Fixation de Qualité Supérieure",
     description:
-      "Automotive detailers, marine enthusiasts and stone polishers rely on Maxshine polishers for high-quality detailing and polishing.",
+      "SYM Industrie vous offre des systèmes de fixation robustes et fiables pour toutes vos applications industrielles, garantissant performance et durabilité.",
     button: "Learn more",
   },
   {
     id: 3,
     image: toolImage3,
     header2: "BRAND HOT PRODUCTS",
-    header1: "MAXSHINE TWINS MOTOR TOUCHLESS CAR DRYER",
-    description: "Touchless drying prevents scratches and swirls",
+    header1: "Excellence en Detailing Automobile",
+    description: "SYM Industrie fournit des équipements de detailing de marques renommées, assurant une finition parfaite et un entretien supérieur pour vos véhicules.",
     button: "Learn more",
   },
 ];
@@ -60,7 +60,7 @@ export default function App() {
             <div className="iamtesting">
               <img src={item.image} className="slider-image" />
               <div className="iamtestinginside">
-                <h2>{item.header2}</h2>
+                <h2></h2>
                 <h1>{item.header1}</h1>
                 <p>{item.description}</p>
                 <button>{item.button}</button>

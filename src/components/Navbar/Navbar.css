@@ -39,6 +39,7 @@
 .navbar .main-logo {
   height: 4vw;
   border-radius: 5px;
+  background-color: white;
 }
 .navbarfirst {
   display: flex;

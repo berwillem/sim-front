@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.compat.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import image from "../../assets/logo.png"
 const AboutUs = () => {
   const { t } = useTranslation();
   const [play, setPlay] = useState(false);
@@ -22,7 +23,7 @@ const AboutUs = () => {
         <div className="aboutusfirst">
           <div className="aboutusimg">
             <img
-              src="https://maxshine.cn/wp-content/themes/maxshinecn/assets/img/about-1.jpg"
+              src={image}
               alt="loading"
             />
           </div>
