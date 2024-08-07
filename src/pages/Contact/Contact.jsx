@@ -104,7 +104,7 @@ const Contact = () => {
             </div>
             <div className="map">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d3201.0070507539035!2d3.0103239999999998!3d36.650281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMzbCsDM5JzAxLjAiTiAzwrAwMCczNy4yIkU!5e0!3m2!1sfr!2sdz!4v1717162530808!5m2!1sfr!2sdz"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3797.0268939029447!2d3.0101263!3d36.650301299999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x128fa9748ff0cb75%3A0x6dafc944c4d5fb5f!2sEURL%20SYM%20INDUSTRIE!5e1!3m2!1sfr!2sdz!4v1722872342387!5m2!1sfr!2sdz"
                 width="100%"
                 height="360"
                 style={{ border: 0 }}

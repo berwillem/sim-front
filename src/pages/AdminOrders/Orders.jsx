@@ -152,6 +152,7 @@ const Orders = () => {
           <div className="titre-stat">
             <ul className="ligne commandeslist">
               <div className="info-stat ">
+                <li>Command Number</li>
                 <li>Product</li>
                 <li>Fullname</li>
                 <li>Number</li>
@@ -174,6 +175,9 @@ const Orders = () => {
                 }
               >
                 <li className="ligne">
+                  <span>
+                    {Commande.num}
+                  </span>
                   <span>
                     {Commande.product
                       ? Commande.product?.titlefr

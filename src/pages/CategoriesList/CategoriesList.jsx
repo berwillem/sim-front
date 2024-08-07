@@ -7,7 +7,7 @@ import { PiKeyReturnLight } from "react-icons/pi";
 import { Helmet } from "react-helmet";
 import Fixation from "../../assets/fasteners-banner.webp";
 import Outillage from "../../assets/outillage.jpg";
-import Detailling from "../../assets/detailling.jpg";
+// import Detailling from "../../assets/sliderImages/tool2.jpeg";
 
 const CategoriesList = () => {
   const { famillId } = useParams();
@@ -35,7 +35,7 @@ const CategoriesList = () => {
           backgroundImage: `url(${
             (famille.titlefr === "Fixation" && Fixation) ||
             (famille.titlefr === "Outillage" && Outillage) ||
-            (famille._id === "664e88614cf5a42abd0b5e37" && Detailling)
+            (famille._id === "664e88614cf5a42abd0b5e37" && "https://maxshine.cn/wp-content/themes/maxshinecn/assets/img/about-1.jpg")
           }) `,
         }}
       >

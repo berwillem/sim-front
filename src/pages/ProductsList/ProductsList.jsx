@@ -11,7 +11,7 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Helmet } from "react-helmet";
 import Fixation from "../../assets/fasteners-banner.webp";
 import Outillage from "../../assets/outillage.jpg";
-import Detailling from "../../assets/detailling.jpg";
+// import Detailling from "../../assets/detailing.webp";
 
 const ProductsList = () => {
   const currentLanguage = i18n.language;
@@ -77,7 +77,7 @@ const ProductsList = () => {
             (products[0]?.famille._id === "664e88294cf5a42abd0b5e35" &&
               Outillage) ||
             (products[0]?.famille._id === "664e88614cf5a42abd0b5e37" &&
-              Detailling)
+              "https://maxshine.cn/wp-content/themes/maxshinecn/assets/img/about-1.jpg")
           }) `,
         }}
       >

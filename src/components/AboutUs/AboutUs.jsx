@@ -66,7 +66,7 @@ const AboutUs = () => {
           animateIn="fadeInLeft"
         >
           <div className="aboutussecondbox">
-            <h1>IN PURSUIT OF AUTOMOTIVE PERFECTION SINCE 2016</h1>
+            <h1>POUR VOS BESOINS EN OUTILLAGE OU EN DETAILING</h1>
             <h2>POLISHERS AND OTHER AUTO DETAILING PRODUCTS</h2>
             <div className="aboutussecondboximg">
               <LazyLoadImage
