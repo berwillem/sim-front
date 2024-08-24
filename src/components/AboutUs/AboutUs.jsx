@@ -8,7 +8,10 @@ import { useTranslation } from "react-i18next";
 import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.compat.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import image from "../../assets/logo.png"
+import image from "../../assets/logo.png";
+import pic1 from "../../assets/pic1.webp";
+import pic2 from "../../assets/pic2.webp";
+import pic3 from "../../assets/pic3.webp";
 const AboutUs = () => {
   const { t } = useTranslation();
   const [play, setPlay] = useState(false);
@@ -22,10 +25,7 @@ const AboutUs = () => {
       >
         <div className="aboutusfirst">
           <div className="aboutusimg">
-            <img
-              src={image}
-              alt="loading"
-            />
+            <img src={image} alt="loading" />
           </div>
 
           <div className="aboutustext">
@@ -66,21 +66,21 @@ const AboutUs = () => {
           animateIn="fadeInLeft"
         >
           <div className="aboutussecondbox">
-            <h1>POUR VOS BESOINS EN OUTILLAGE OU EN DETAILING</h1>
-            <h2>POLISHERS AND OTHER AUTO DETAILING PRODUCTS</h2>
+            <h1>SYM INDUSTRIE VOTRE PARTENAIRE EN OUTILLAGE</h1>
+            <h2>NOS VALEURS : </h2>
             <div className="aboutussecondboximg">
-              <LazyLoadImage
-                src="https://maxshine.cn/wp-content/themes/maxshinecn/assets/img/img-video-thumb-1.jpg"
-                alt=""
-              />
-              <LazyLoadImage
-                src="https://maxshine.cn/wp-content/themes/maxshinecn/assets/img/img-video-thumb-1.jpg"
-                alt=""
-              />
-              <LazyLoadImage
-                src="https://maxshine.cn/wp-content/themes/maxshinecn/assets/img/img-video-thumb-1.jpg"
-                alt=""
-              />
+              <div className="overlayimg">
+                <LazyLoadImage src={pic1} alt="icon" />
+                <p>ECONOMIQUE</p>
+              </div>
+              <div className="overlayimg">
+                <LazyLoadImage src={pic2} alt="icon" />
+                <p> QUALITY</p>
+              </div>
+              <div className="overlayimg">
+                <LazyLoadImage src={pic3} alt="icon" />
+                <p>TRUST</p>
+              </div>
             </div>
           </div>
         </ScrollAnimation>

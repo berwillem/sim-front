@@ -45,6 +45,7 @@
   display: flex;
   gap: 5%;
   padding: 0 10% 0 10%;
+  margin-top: 80px;
   align-items: center;
 }
 .aboutussecond {
@@ -129,12 +130,26 @@
 
 .aboutussecondboximg {
   display: flex;
-  justify-content: center;
-  gap: 5%;
+  justify-content: space-between;
   align-items: center;
 }
-.aboutussecondboximg img {
-  width: 33%;
+
+.aboutussecondboximg .overlayimg img {
+  width: 100%;
+}
+.aboutussecondboximg .overlayimg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+
+  width: 25%;
+}
+.aboutussecondboximg .overlayimg p {
+  font-size: 15px;
+  color: #e63619;
+  font-weight: 600;
 }
 .react-player {
   position: fixed;
@@ -175,6 +190,7 @@
     padding: 0;
     justify-content: center;
     align-items: center;
+    margin-top: 0;
   }
   .topScroll {
     margin-top: 160px;

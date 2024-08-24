@@ -6,7 +6,7 @@ import "./CategoriesList.css";
 import { PiKeyReturnLight } from "react-icons/pi";
 import { Helmet } from "react-helmet";
 import Fixation from "../../assets/fasteners-banner.webp";
-import Outillage from "../../assets/outillage.jpg";
+import Outillage from "../../assets/outillagelastv.jpg";
 // import Detailling from "../../assets/sliderImages/tool2.jpeg";
 
 const CategoriesList = () => {

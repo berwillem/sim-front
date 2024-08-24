@@ -108,8 +108,12 @@ const Users = () => {
             </ul>
           ))}
         </div>
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
+        />
       </div>
-      <Pagination count={totalPages} page={page} onChange={handlePageChange} />
     </>
   );
 };

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import "./Contact.css";
-
 import Navbar from "../../components/Navbar/Navbar";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
@@ -16,22 +15,25 @@ const Contact = () => {
     country: "Algeria",
     agreement: false,
     activityField: [],
-    requestType: []
+    requestType: [],
   });
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    if (type === "checkbox" && (name === "activityField" || name === "requestType")) {
+    if (
+      type === "checkbox" &&
+      (name === "activityField" || name === "requestType")
+    ) {
       setFormData((prevData) => ({
         ...prevData,
         [name]: checked
           ? [...prevData[name], value]
-          : prevData[name].filter((item) => item !== value)
+          : prevData[name].filter((item) => item !== value),
       }));
     } else {
       setFormData((prevData) => ({
         ...prevData,
-        [name]: type === "checkbox" ? checked : value
+        [name]: type === "checkbox" ? checked : value,
       }));
     }
   };
@@ -40,29 +42,24 @@ const Contact = () => {
     e.preventDefault();
 
     const contactData = {
-      "field": formData.activityField.join(", "),
-      "need": formData.requestType.join(", "),
-      "name": formData.name,
-      "companyName": formData.companyName,
-      "email": formData.email,
-      "country": formData.country,
-      "message": formData.message,
-    
-     
-     
+      field: formData.activityField.join(", "),
+      need: formData.requestType.join(", "),
+      name: formData.name,
+      companyName: formData.companyName,
+      email: formData.email,
+      country: formData.country,
+      message: formData.message,
     };
 
-  
-      createContact(contactData).then(()=>{
+    createContact(contactData)
+      .then(() => {
         Swal.fire({
           icon: "success",
           title: "Message Sent",
           text: "Your message has been sent successfully!",
         });
-     
-      }
-        
-      ).catch((err) => {
+      })
+      .catch((err) => {
         console.log(err);
         Swal.fire({
           icon: "error",
@@ -86,8 +83,12 @@ const Contact = () => {
           <div className="titles">
             <h4>HOW CAN WE HELP YOU?</h4>
             <h2>Contact</h2>
-            <p>Do you have a question for us? We have compiled the most frequently asked questions and answers for you.
-            If you have additional questions or suggestions, please feel free to contact us. We will respond as quickly as possible.</p>
+            <p>
+              Do you have a question for us? We have compiled the most
+              frequently asked questions and answers for you. If you have
+              additional questions or suggestions, please feel free to contact
+              us. We will respond as quickly as possible.
+            </p>
           </div>
           <div className="infos">
             <div className="info1">
@@ -122,34 +123,69 @@ const Contact = () => {
               <ul>
                 <li className="checkTitle">Your field of activity</li>
                 <li>
-                  <input type="checkbox" name="activityField" value="industrial company" onChange={handleChange} />
+                  <input
+                    type="checkbox"
+                    name="activityField"
+                    value="industrial company"
+                    onChange={handleChange}
+                  />
                   <label>industrial company</label>
                 </li>
                 <li>
-                  <input type="checkbox" name="activityField" value="Dealer" onChange={handleChange} />
+                  <input
+                    type="checkbox"
+                    name="activityField"
+                    value="Dealer"
+                    onChange={handleChange}
+                  />
                   <label>Dealer</label>
                 </li>
                 <li>
-                  <input type="checkbox" name="activityField" value="Detailer/Body and paint shop" onChange={handleChange} />
+                  <input
+                    type="checkbox"
+                    name="activityField"
+                    value="Detailer/Body and paint shop"
+                    onChange={handleChange}
+                  />
                   <label>Detailer/Body and paint shop</label>
                 </li>
                 <li>
-                  <input type="checkbox" name="activityField" value="Other" onChange={handleChange} />
+                  <input
+                    type="checkbox"
+                    name="activityField"
+                    value="Other"
+                    onChange={handleChange}
+                  />
                   <label>Other</label>
                 </li>
               </ul>
               <ul>
                 <li className="checkTitle">You want</li>
                 <li>
-                  <input type="checkbox" name="requestType" value="To find a distributor in your area" onChange={handleChange} />
+                  <input
+                    type="checkbox"
+                    name="requestType"
+                    value="To find a distributor in your area"
+                    onChange={handleChange}
+                  />
                   <label>To find a distributor in your area</label>
                 </li>
                 <li>
-                  <input type="checkbox" name="requestType" value="Product information" onChange={handleChange} />
+                  <input
+                    type="checkbox"
+                    name="requestType"
+                    value="Product information"
+                    onChange={handleChange}
+                  />
                   <label>Product information</label>
                 </li>
                 <li>
-                  <input type="checkbox" name="requestType" value="Other" onChange={handleChange} />
+                  <input
+                    type="checkbox"
+                    name="requestType"
+                    value="Other"
+                    onChange={handleChange}
+                  />
                   <label>Other</label>
                 </li>
               </ul>
@@ -190,7 +226,11 @@ const Contact = () => {
                 </div>
                 <div className="inputText">
                   <label>Country*</label>
-                  <select name="country" value={formData.country} onChange={handleChange}>
+                  <select
+                    name="country"
+                    value={formData.country}
+                    onChange={handleChange}
+                  >
                     <option value="Algeria">Algeria</option>
                     {/* Add other country options as needed */}
                   </select>
@@ -217,7 +257,9 @@ const Contact = () => {
                   onChange={handleChange}
                 />
                 <label>
-                  Yes, I agree to Sym storing and processing my data to handle my inquiry and to contact me. You can find more information and revocation instructions in our privacy policy.
+                  Yes, I agree to Sym storing and processing my data to handle
+                  my inquiry and to contact me. You can find more information
+                  and revocation instructions in our privacy policy.
                 </label>
               </div>
               <button type="submit">Submit</button>

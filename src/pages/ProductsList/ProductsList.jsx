@@ -10,7 +10,7 @@ import { getAllTypes } from "../../services/parametresServices";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Helmet } from "react-helmet";
 import Fixation from "../../assets/fasteners-banner.webp";
-import Outillage from "../../assets/outillage.jpg";
+import Outillage from "../../assets/outillagelastv.jpg";
 // import Detailling from "../../assets/detailing.webp";
 
 const ProductsList = () => {

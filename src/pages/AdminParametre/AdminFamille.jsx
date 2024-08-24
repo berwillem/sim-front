@@ -52,9 +52,9 @@ const AdminFamille = () => {
         </div>
 
         <div className="table-stat">
-          <div className="titre-stat">
+          <div className="titre-stat-famille">
             <ul className="ligne">
-              <div className="info-stat">
+              <div className="info-stat-famille">
                 <li>id</li>
                 <li>name fr</li>
                 <li>name en</li>
