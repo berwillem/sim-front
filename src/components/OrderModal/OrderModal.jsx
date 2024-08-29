@@ -75,9 +75,9 @@ const OrderModal = ({ open, onClose, product }) => {
       case "silver":
         return price * 0.98;
       case "gold":
-        return price * 0.96;
+        return price * 0.95;
       case "diamond":
-        return price * 0.94;
+        return price * 0.92;
       default:
         return price;
     }
@@ -86,7 +86,7 @@ const OrderModal = ({ open, onClose, product }) => {
   const originalPrice = product?.price * quantity || 0;
   const totalPrice = getDiscountedPrice(originalPrice, level) || 0;
   const discountAmount = originalPrice - totalPrice;
-
+  console.log(quantity);
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {

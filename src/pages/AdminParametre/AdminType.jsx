@@ -85,8 +85,8 @@ const AdminTypes = () => {
           <div className="titre-stat">
             <ul className="ligne">
               <div className="info-stat">
-                <li>id</li>
-                <li>name</li>
+                <li style={{ width: "22%" }}>id</li>
+                <li style={{ paddingLeft: "380px" }}>name</li>
               </div>
               <li>action</li>
             </ul>
@@ -95,8 +95,8 @@ const AdminTypes = () => {
           {types?.map((type) => (
             <ul key={type._id} className="stores">
               <li className="ligne">
-                <span>{type._id}</span>
-                <span>{type.title}</span>
+                <span>{type.titlefr}</span>
+                <span>{type.titleen}</span>
                 <DeleteButton handleDelete={() => handleDelete(type._id)} />
               </li>
             </ul>

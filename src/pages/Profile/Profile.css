@@ -5,10 +5,11 @@
   display: flex;
   margin-top: 50px;
   flex-direction: column;
-  gap: 20px;
+  gap: 19px;
 }
 @media screen and (max-width: 600px) {
   .userprofile {
-    gap: 30px;
+    gap: 32px;
   }
 }
+

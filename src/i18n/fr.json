@@ -16,7 +16,7 @@
   "aboutushomep": "SYM Industrie est votre partenaire de choix pour des solutions industrielles de haute qualité. Spécialisés dans l’importation et la distribution de marques mondiales, nous nous concentrons sur la fixation et l’outillage professionnel, ainsi que sur le matériel de detailing automobile. Notre engagement envers l’excellence nous permet de fournir des produits fiables et performants, répondant aux standards les plus élevés. Nous nous efforçons de soutenir nos clients avec des solutions innovantes et un service exceptionnel, assurant ainsi le succès de vos projets. Faites confiance à SYM Industrie pour tous vos besoins en équipements industriels.",
   "signout": "Se déconnecter",
   "copyright": "Copyright © 2024 SYM INDUSTRIE. Tous droits réservés.",
-  "footerAbout": "SYM est une entreprise dynamique basée à Alger, en Algérie. Nous sommes fiers de proposer à nos clients une gamme exceptionnelle de matériel et d'outillage allemand, spécialisés dans les travaux de chantier et la tôlerie de voiture.",
+  "footerAbout": "SYM Industrie est votre partenaire de choix pour des solutions industrielles de haute qualité. Spécialisés dans l’importation et la distribution de marques mondiales, nous nous concentrons sur la fixation et l’outillage professionnel, ainsi que sur le matériel de detailing automobile.",
   "email": "Email",
   "connectezvous": "Connectez-vous à SYM Industrie afin de continuer pour <website>.com.",
   "password": "Mot de passe",
@@ -32,5 +32,63 @@
   "loginbefore": "Connectez-vous avant de passer une commande et bénéficiez d'une réduction sur nos produits.",
   "makeorder": "Faire une commande",
   "totalprice": "Prix total: ",
-  "phonenumber": "Numéro de téléphone"
+  "phonenumber": "Numéro de téléphone",
+
+  "pageTitle": "Contact",
+  "header": {
+    "title": "COMMENT POUVONS-NOUS VOUS AIDER ?",
+    "subtitle": "Contact",
+    "description": "Vous avez une question pour nous ? Nous avons compilé pour vous les questions les plus fréquemment posées ainsi que les réponses. Si vous avez des questions ou suggestions supplémentaires, n'hésitez pas à nous contacter. Nous vous répondrons dans les plus brefs délais."
+  },
+  "infoSection": {
+    "title": "Comment nous trouver",
+    "address": {
+      "company": "Sym Industries",
+      "city": "Birtouta",
+      "country": "Algérie"
+    },
+    "button": "Calculer l'itinéraire"
+  },
+  "contactForm": {
+    "title": "Contactez-nous",
+    "fields": {
+      "activityField": {
+        "label": "Votre domaine d'activité",
+        "options": {
+          "industrialCompany": "Société industrielle",
+          "individual": "Particulier",
+          "reseller": "Revendeur",
+          "other": "Autre"
+        }
+      },
+      "requestType": {
+        "label": "Vous souhaitez",
+        "options": {
+          "findDistributor": "Trouver un distributeur dans votre région",
+          "quoteRequest": "Demande devis",
+          "productInfo": "Informations sur le produit",
+          "other": "Autre"
+        }
+      },
+      "name": "Nom*",
+      "companyName": "Nom de la société",
+      "email": "Email*",
+      "country": "Pays*",
+      "message": "Message",
+      "phonenumber": "N° de telephone",
+      "wilaya": "Veuillez choisir votre wilaya"
+    },
+    "agreement": {
+      "text": "Oui, je suis d'accord pour que Sym stocke et traite mes données pour traiter ma demande et me contacter. "
+    },
+    "submitButton": "Soumettre"
+  },
+  "successMessage": {
+    "title": "Message envoyé",
+    "text": "Votre message a été envoyé avec succès !"
+  },
+  "errorMessage": {
+    "title": "Oups...",
+    "text": "Une erreur s'est produite. Veuillez réessayer."
+  }
 }

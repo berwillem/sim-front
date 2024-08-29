@@ -1,8 +1,11 @@
 import "./Footer.css";
-import image from "../../assets/logo.png";
+import image from "../../assets/Logo.png";
 import { useTranslation } from "react-i18next";
 import { BsInstagram } from "react-icons/bs";
 import { FaSquareFacebook } from "react-icons/fa6";
+import { FaLinkedin } from "react-icons/fa";
+import { AiFillTikTok } from "react-icons/ai";
+import { Link } from "react-router-dom";
 
 export default function Component() {
   const { t } = useTranslation();
@@ -19,21 +22,38 @@ export default function Component() {
           <h3 className="">About Sym Industries</h3>
           <ul className="">
             <li>
-              <ChevronRightIcon className="" />
-              Our Company
+              <a
+                style={{
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  color: "white",
+                }}
+                href="#aboutus"
+              >
+                <ChevronRightIcon className="" />
+                Our Company
+              </a>
             </li>
             <li>
-              <ChevronRightIcon className="" />
-              Products
+              <Link
+                to="/products"
+                style={{
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  color: "white",
+                }}
+              >
+                <ChevronRightIcon className="" />
+                Products
+              </Link>
             </li>
             <li>
               <ChevronRightIcon className="" />
               News
             </li>
-            <li>
-              <ChevronRightIcon className="" />
-              Warranty Reg.
-            </li>
+
             <li>
               <ChevronRightIcon className="" />
               Download Catalog
@@ -45,7 +65,7 @@ export default function Component() {
           <h3 className="">Talk with our support</h3>
           <ul className="">
             <li>+213 552 74 14 09</li>
-            <li>contact@symindustries.com</li>
+            <li>contact@symindustrie.com</li>
             <li>
               <a
                 href="https://web.facebook.com/profile.php?id=61558883573403"
@@ -60,6 +80,23 @@ export default function Component() {
                 <BsInstagram /> Instagram
               </a>
             </li>
+            <li>
+              <a
+                href="https://www.linkedin.com/company/symindustrie/posts/?feedView=all"
+                target="_blank"
+              >
+                <FaLinkedin /> Linkedin
+              </a>
+            </li>
+            <li>
+              <a
+                href="
+                https://www.tiktok.com/@sym.industrie?_t=8pH77R8N85Z&_r=1"
+                target="_blank"
+              >
+                <AiFillTikTok size={17} /> TikTok
+              </a>
+            </li>
           </ul>
         </div>
         <div className="forIframe">
@@ -72,7 +109,6 @@ export default function Component() {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
           ></iframe>
- 
         </div>
         <div className="foriframeunder"></div>
       </div>

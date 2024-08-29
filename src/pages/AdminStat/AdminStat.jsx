@@ -92,45 +92,7 @@ export default function AdminStat() {
       <div className="table">
         <MuiTable />
       </div>
-      {/* <div className="table">
-    <div className="table-stat">
-          <div className="titre-stat">
-            <ul className="ligne">
-              <div className="info-stat categoryinfostat">
-                <li>name </li>
-                <li>need</li>
-                <li>field</li>
-                <li>message</li>
-              </div>
-              <li>action</li>
-            </ul>
-          </div>
-
-          {contacts?.map((contact) => (
-            <ul key={contact._id} className="stores">
-           
-
-              <li className="ligne contactligne">
-                <span>{contact.name}</span>
-                <span>{contact.need}</span>
-                <span>{contact.field}</span>
-                <span >{contact.message}</span>
-                <div >
-                <DeleteButton handledelet={()=>handelDelete(contact._id)} />
-              </div>
-
-             
-              </li>
-            </ul>
-          ))}
-        </div>
-        <Pagination
-          count={totalPages}
-          page={page}
-          onChange={handlePageChange}
-        />
-
-    </div> */}
+     
     </div>
   );
 }

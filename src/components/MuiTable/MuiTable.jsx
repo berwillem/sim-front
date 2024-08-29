@@ -13,7 +13,9 @@ import { Pagination } from "@mui/material";
 
 export default function StickyHeadTable() {
   const columns = [
-    { id: "name", label: "Name", minWidth: 170 },
+    { id: "name", label: "Name", minWidth: 120 },
+    { id: "email", label: "Email", minWidth: 100 },
+    { id: "phonenumber", label: "Phone", minWidth: 100 },
     { id: "need", label: "Need", minWidth: 100 },
     { id: "field", label: "Field", minWidth: 170, align: "left" },
     { id: "message", label: "Message", minWidth: 170, align: "left" },

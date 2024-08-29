@@ -10,6 +10,8 @@ import { useParams } from "react-router-dom";
 import LevelBar from "../../components/LevelBar/LevelBar";
 import { Helmet } from "react-helmet";
 
+
+
 const Levels = () => {
   const [levelData, setLeveldata] = useState();
   const { userId } = useParams();
@@ -18,18 +20,20 @@ const Levels = () => {
       .then((res) => setLeveldata(res.data.level))
       .catch(console.log("error"));
   }, []);
+  const fixedlevelpoints = Math.floor(levelData?.points);
+
   return (
     <>
-     <Helmet>
-            <title>User Level</title>
-         
-        </Helmet>
-    <div className="bar">
-    <LevelBar level={levelData}></LevelBar> <span>{levelData?.points} points</span>
-    </div>
+      <Helmet>
+        <title>User Level</title>
+      </Helmet>
+      <div className="bar">
+        <LevelBar level={levelData}></LevelBar>{" "}
+        <span>{fixedlevelpoints} points</span>
+      </div>
       <div className="levels">
         <div className="level-explain">
-          <div className="level" data-hover-text="réduction 1%">
+            <div className="level" data-hover-text="réduction 1%">
             <h1>Bronze</h1>
             <img src={bronze} alt="" />
           </div>
@@ -49,7 +53,7 @@ const Levels = () => {
         </div>
         <div className="remarque">
           <p>
-          <span>Remarque</span>: chaque 10000 da = 1 point
+            <span>Remarque</span>: Chaque 10 000,00 DA = 1 point
           </p>
         </div>
       </div>

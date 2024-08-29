@@ -21,7 +21,7 @@ const LevelBar = ({ level }) => {
         <progress className={level?.name} style={{background:"bleu"}} value={transformationLogarithmique(level?.points,1000)} max={1}></progress>
        <p className="bronze1">0 </p> 
        <p className="silver1">10 </p>
-       <p className="gold1">100 </p>
+       <p className="gold1">200 </p>
        <p className="diamond1">1000 </p>
  
       </div>

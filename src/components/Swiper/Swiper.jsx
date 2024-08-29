@@ -9,11 +9,12 @@ import { SwiperSlide, Swiper } from "swiper/react";
 import toolImage1 from "../../assets/sliderImages/tool1.jpg";
 import toolImage2 from "../../assets/sliderImages/tool2.jpeg";
 import toolImage3 from "../../assets/sliderImages/tool3.png";
+import toolImage4 from "../../assets/sliderImages/tool4.jpg";
 
 const swiperItems = [
   {
     id: 1,
-    image: toolImage1,
+    image: toolImage4,
     header2: "BRAND HOT PRODUCTS",
     header1: "Outillage Professionnel de Qualité    ",
     description:
@@ -22,7 +23,7 @@ const swiperItems = [
   },
   {
     id: 2,
-    image: toolImage2,
+    image: toolImage3,
     header2: "BRAND HOT PRODUCTS",
     header1: "Solutions de Fixation de Qualité Supérieure",
     description:
@@ -31,10 +32,11 @@ const swiperItems = [
   },
   {
     id: 3,
-    image: toolImage3,
+    image: toolImage2,
     header2: "BRAND HOT PRODUCTS",
     header1: "Excellence en Detailing Automobile",
-    description: "SYM Industrie fournit des équipements de detailing de marques renommées, assurant une finition parfaite et un entretien supérieur pour vos véhicules.",
+    description:
+      "SYM Industrie fournit des équipements de detailing de marques renommées, assurant une finition parfaite et un entretien supérieur pour vos véhicules.",
     button: "Learn more",
   },
 ];
@@ -47,10 +49,10 @@ export default function App() {
         loop={true}
         effect={"Flip"}
         speed={1000}
-        autoplay={{
-          delay: 3000,
-          disableOnInteraction: false,
-        }}
+        // autoplay={{
+        //   delay: 3000,
+        //   disableOnInteraction: false,
+        // }}
         navigation={true}
         modules={[EffectFlip, Navigation, Autoplay]}
         className="mySwiper"

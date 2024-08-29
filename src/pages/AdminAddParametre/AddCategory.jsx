@@ -6,6 +6,7 @@ import {
 } from "../../services/parametresServices";
 import Swal from "sweetalert2";
 import { CiCirclePlus } from "react-icons/ci";
+import { CircularProgress } from "@mui/material";
 
 const AddCategory = () => {
   const [titlefr, setTitlefr] = useState("");
@@ -14,7 +15,7 @@ const AddCategory = () => {
   const [image, setImage] = useState(null);
   const [selectedFamille, setSelectedFamille] = useState("");
   const [file, setFile] = useState("");
-
+  const [loading, setLoading] = useState(false);
   const handleImageChange = (e) => {
     setImage(e.target.files[0]);
     setFile(URL.createObjectURL(e.target.files[0]));
@@ -29,7 +30,7 @@ const AddCategory = () => {
     if (image) {
       formData.append("image", image);
     }
-
+    setLoading(true);
     createCategory(formData)
       .then(() => {
         Swal.fire({
@@ -41,6 +42,7 @@ const AddCategory = () => {
         setTitleen("");
         setSelectedFamille("");
         setFile("");
+        setLoading(false);
       })
       .catch((err) => {
         console.log(err);
@@ -111,7 +113,9 @@ const AddCategory = () => {
           className="image-input"
         />
 
-        <button type="submit">Envoyer</button>
+        <button type="submit" disabled={loading}>
+          {loading ? <CircularProgress size={25} color="inherit" /> : "Ajouter"}
+        </button>
       </form>
     </div>
   );
