@@ -7,6 +7,7 @@ import { PiKeyReturnLight } from "react-icons/pi";
 import { Helmet } from "react-helmet";
 import Fixation from "../../assets/fasteners-banner.webp";
 import Outillage from "../../assets/outillagelastv.jpg";
+import Detailling from "../../assets/detaillingbanner.jpeg";
 // import Detailling from "../../assets/sliderImages/tool2.jpeg";
 
 const CategoriesList = () => {
@@ -25,29 +26,31 @@ const CategoriesList = () => {
   return (
     <>
       <Helmet>
-            <title>Product Categorie</title>
-         
-        </Helmet>
+        <title>Product Categorie</title>
+      </Helmet>
       <Navbar></Navbar>
       <div
-        className="famille-header"
-        style={{
-          backgroundImage: `url(${
-            (famille.titlefr === "Fixation" && Fixation) ||
-            (famille.titlefr === "Outillage" && Outillage) ||
-            (famille._id === "664e88614cf5a42abd0b5e37" && "https://maxshine.cn/wp-content/themes/maxshinecn/assets/img/about-1.jpg")
-          }) `,
-        }}
+     className="familleheaderbig"
       >
-        <div className="gobackproduct">
-          <Link to="/products">
-            <PiKeyReturnLight size={30} />
-            PRODUCTS
-          </Link>
-        </div>
-        <div className="familycont">
-          <h1>{famille.titlefr}</h1>
-          <h2
+        <div
+          className="famille-header"
+          style={{
+            backgroundImage: `url(${
+              (famille.titlefr === "Fixation" && Fixation) ||
+              (famille.titlefr === "Outillage" && Outillage) ||
+              (famille._id === "664e88614cf5a42abd0b5e37" && Detailling)
+            }) `,
+          }}
+        >
+          <div className="gobackproduct">
+            <Link to="/products">
+              <PiKeyReturnLight size={30} />
+              PRODUCTS
+            </Link>
+          </div>
+          <div className="familycont">
+            <h1>{famille.titlefr}</h1>
+            {/* <h2
             style={{
               color: "#5D6164",
               fontSize: "16px",
@@ -58,7 +61,8 @@ const CategoriesList = () => {
             {famille?.categories?.map((category) => {
               return `${category.titlefr} / `;
             })}
-          </h2>
+          </h2> */}
+          </div>
         </div>
       </div>
 

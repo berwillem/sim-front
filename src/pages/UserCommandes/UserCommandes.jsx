@@ -9,6 +9,7 @@ import moment from "moment";
 import { deleteCommande } from "../../services/commandeservices";
 import { RiPassValidFill, RiPassValidLine } from "react-icons/ri";
 import { Helmet } from "react-helmet";
+import { FaRegSquareCheck, FaRegSquareFull } from "react-icons/fa6";
 const UserCommandes = () => {
   const [commandes, setCommandes] = useState([]);
   const { userId } = useParams();
@@ -61,9 +62,8 @@ const UserCommandes = () => {
   return (
     <>
       <Helmet>
-            <title>User Commandes</title>
-         
-        </Helmet>
+        <title>User Commandes</title>
+      </Helmet>
       <div className="admin-stat">
         <div className="table-stat">
           <div className="titre-stat titrestat2">
@@ -112,12 +112,11 @@ const UserCommandes = () => {
                       <>
                         {"valide  "}
                         {""}
-                        <RiPassValidLine size={30} color="green" />
+                        <FaRegSquareCheck size={30} />
                       </>
                     ) : (
                       <>
-                        {" non valide  "}{" "}
-                        <RiPassValidFill size={30} color="red" />
+                        {" non valide  "} <FaRegSquareFull size={24} />
                       </>
                     )}
                   </span>
@@ -143,14 +142,13 @@ const UserCommandes = () => {
                     status :
                     {Commande.isValid ? (
                       <>
-                        {"valide  "}
-                        {""}
-                        <RiPassValidLine size={30} color="green" />
+                        {"valide"}
+                        <FaRegSquareCheck size={30} />
                       </>
                     ) : (
                       <>
-                        {" non valide  "}{" "}
-                        <RiPassValidFill size={30} color="red" />
+                        {" non valide  "}
+                        <FaRegSquareFull size={24} />
                       </>
                     )}
                   </span>
@@ -168,3 +166,16 @@ const UserCommandes = () => {
 };
 
 export default UserCommandes;
+{
+  /* <span style={{ cursor: "pointer" }}>
+  {Commande.isValid ? (
+    <>
+      <FaRegSquareCheck size={30} onClick={() => updateOrder(Commande._id)} />
+    </>
+  ) : (
+    <>
+      <FaRegSquareFull size={24} onClick={() => updateOrder(Commande._id)} />
+    </>
+  )}
+</span>; */
+}

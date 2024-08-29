@@ -1,141 +1,50 @@
+.medaille {
+  width: 60px;
+  object-fit: cover;
+  margin-right: 12px;
+}
+
 .user-card {
-  height: 300px;
-  width: 65%;
-  border-radius: 10px;
-  border: 2px solid #c1c1c1;
-  box-shadow: 0 0 30px 1px #00000026;
-  color: rgb(26, 26, 26);
-  border-left: 1px rgba(0, 0, 0, 0.2) solid;
-  position: relative;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  background-image: url(../../assets/bg-texture.png);
-}
-.pen-edit-magasin {
-  font-size: 30px;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 11px;
   position: absolute;
-  top: 30px;
-  right: 30px;
-  transition: 0.3s;
+  left: 34%;
+  top: -50px;
 }
-.pen-edit-magasin:hover {
-  cursor: pointer;
-  scale: 1.1;
+.userprofile {
+  position: relative;
 }
-.user-card h2 {
-  margin-top: 20px;
-  color: #1a1a1a;
 
-  font-family: "Proxima Nova", "Helvetica Neue", Verdana, Arial, sans-serif;
-  font-size: 22px;
-  line-height: 30px;
-  vertical-align: baseline;
-  letter-spacing: 2.2px;
-  word-spacing: 0px;
-  font-weight: 600;
-  font-style: normal;
-  text-transform: uppercase;
-  text-decoration: none solid rgb(26, 26, 26);
-  text-align: center;
-  text-indent: 0px;
-}
-.css-2s90m6-MuiAvatar-root {
-  position: absolute !important;
-  height: 150px !important;
-  width: 150px !important;
-  top: -25% !important;
-}
-.user-info {
-  display: grid;
-  grid-template-columns: auto auto;
-
-  width: 100%;
-  height: 100px;
-  column-gap: 300px;
-
-  align-items: center;
-  justify-content: center;
-}
-.info-user {
-  height: 20px;
-  width: 200px;
+.user-lign {
   display: flex;
-  gap: 2px;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 10px 15px;
 }
-.info-user span:first-child {
-  text-transform: uppercase;
-  font-weight: bolder;
+.user-lign .t12 {
+  align-items: flex-end;
 }
-.user-card-container {
-  width: 100%;
-
+.level-bar22 {
+  margin-top: 40px;
+  width: 70vw;
+  position: absolute;
+  top: 180px;
+  left: 14.5%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-}
-.user-card.bronze {
-  background-color: #cd7f32;
 }
 
-.user-card.silver {
-  background-color: #c0c0c0;
-}
-
-.user-card.gold {
-  background-color: #ffd700;
-}
-
-.user-card.diamond {
-  background-color: #b9f2ff;
-}
-@media screen and (max-width: 1400px) {
-  .user-info {
-    column-gap: 200px;
-  }
-}
-@media screen and (max-width: 1240px) {
-  .user-info {
-    column-gap: 100px;
-  }
-}
-@media screen and (max-width: 1070px) {
+@media screen and (max-width: 600px) {
   .user-card {
-    height: 400px;
+    left: 0;
+  }
+  .level-bar22 {
+    width: 100vw;
+    left: 0;
     justify-content: flex-start;
-    gap: 50px;
   }
-  .user-card h2 {
-    margin-top: 70px;
-    font-size: 18px;
-  }
-  .user-info {
-    grid-template-columns: auto;
-    height: 150px;
-  }
-  .info-user {
-    height: 50px;
-    flex-direction: column;
-  }
-}
-@media screen and (max-width: 820px) {
-}
-@media screen and (max-width: 750px) {
-  .css-2s90m6-MuiAvatar-root {
-    height: 100px !important;
-    width: 100px !important;
-    top: -15% !important;
-  }
-}
-@media screen and (max-width: 590px) {
-}
-@media screen and (max-width: 480px) {
-}
-@media screen and (max-width: 414px) {
-}
-@media screen and (max-width: 385px) {
-}
-@media screen and (max-width: 250px) {
 }

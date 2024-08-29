@@ -48,7 +48,7 @@ export default function App({ product, functio, language }) {
               ))}
             </Swiper>
 
-            <Swiper
+            {/* <Swiper
               onSwiper={setThumbsSwiper}
               loop={true}
               spaceBetween={10}
@@ -63,7 +63,7 @@ export default function App({ product, functio, language }) {
                   <img src={image} />
                 </SwiperSlide>
               ))}
-            </Swiper>
+            </Swiper> */}
           </div>
           <h1> {language === "fr" ? product?.titlefr : product?.titleen} </h1>
           <h4>Gamme : {product?.gamme}</h4>

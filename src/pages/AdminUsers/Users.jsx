@@ -76,31 +76,30 @@ const Users = () => {
           <div className="titre-stat">
             <ul className="ligne" id="ligneuser">
               <div className="info-stat" id="info-statuser">
-                <li>id</li>
-                <li>name</li>
-                <li>email</li>
+                <li>Nom complet</li>
+                <li>Email</li>
+                <li>Nombre de commandes</li>
               </div>
-              <li id="actionuser">order</li>
-              <li id="actionuser">action</li>
+              <li id="actionuser">Commandes</li>
+              <li id="actionuser">Action</li>
             </ul>
           </div>
 
           {users?.map((user, index) => (
             <ul key={index} className="stores">
               <li className="ligne">
-                <span>{user._id}</span>
                 <span>
                   {user.LastName} {user.FirstName}
                 </span>
                 <span>{user.email}</span>
+
+                <span>{user.commandes.length}</span>
                 <Link to={`/profile/${user._id}/commandes`}>
                   {" "}
                   <span className="orderIcon">
-                    {" "}
                     <PiPackageFill />
                   </span>
                 </Link>
-
                 <DeleteButon
                   handledelet={() => handleDelet(user._id)}
                 ></DeleteButon>

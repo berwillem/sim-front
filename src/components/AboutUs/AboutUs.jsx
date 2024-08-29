@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import ScrollAnimation from "react-animate-on-scroll";
 import "animate.css/animate.compat.css";
 import { LazyLoadImage } from "react-lazy-load-image-component";
-import image from "../../assets/logo.png";
+import image from "../../assets/logo1.png";
 import pic1 from "../../assets/pic1.webp";
 import pic2 from "../../assets/pic2.webp";
 import pic3 from "../../assets/pic3.webp";

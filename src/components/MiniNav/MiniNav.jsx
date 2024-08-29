@@ -12,22 +12,23 @@ const MiniNav = () => {
   const steps = [
     {
       target: ".my-first-step",
-      content: "This is my awesome feature!",
+      content: "Vous pouvez consultez vos information sur la page profile.",
       disableBeacon: true,
     },
     {
       target: ".my-second-step",
-      content: "This another awesome feature!",
+      content: "Vous pouvez voir vos commandes en cours et en attente sur la page commandes.",
     },
     {
       target: ".my-third-step",
-      content: "This another awesome feature!",
+      content:
+        "Voir les niveaux que vous avez accomplis afin de bénifisser des réductions sur nos produits.",
     },
   ];
   useEffect(() => {
     getUserById(userId).then((res) => setTour(res.data.tour));
   }, []);
-  
+
   return (
     <>
       {!tour && (
