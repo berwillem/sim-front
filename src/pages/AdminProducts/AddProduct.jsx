@@ -14,6 +14,7 @@ import {
   getAllFamilles,
 } from "../../services/parametresServices";
 import { useNavigate } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 const AddProduct = () => {
   const [categories, setCategories] = useState([]);
@@ -22,19 +23,20 @@ const AddProduct = () => {
   const [selectedCategorie, setSelectedCategorie] = useState(null);
   const [selectedType, setSelectedType] = useState(null);
   const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
-// test
-const handleFamilleChange = (newFamille) => {
-  setSelectedFamille(newFamille);
-  setSelectedCategorie(null);
-  setSelectedType(null);
-};
+  // test
+  const handleFamilleChange = (newFamille) => {
+    setSelectedFamille(newFamille);
+    setSelectedCategorie(null);
+    setSelectedType(null);
+  };
 
-const handleCategorieChange = (newCategorie) => {
-  setSelectedCategorie(newCategorie);
-  setSelectedType(null);
-};
-//test
+  const handleCategorieChange = (newCategorie) => {
+    setSelectedCategorie(newCategorie);
+    setSelectedType(null);
+  };
+  //test
   const fetchCategories = () => {
     getAllCategories()
       .then((res) => {
@@ -80,13 +82,17 @@ const handleCategorieChange = (newCategorie) => {
     data.Categorie = selectedCategorie?._id;
     data.Type = selectedType?._id;
     data.images = images;
+    setLoading(true);
     createProduct(data)
       .then((res) => {
+        setLoading(false);
         toast.success(res.data?.message);
         navigate("/admin/products");
       })
       .catch((err) => console.log(err));
   };
+
+  console.log(categories);
 
   function ImageUpload() {
     function handleChange(e) {
@@ -175,6 +181,7 @@ const handleCategorieChange = (newCategorie) => {
                       {/* titre fr */}
                       <div className="hadtmekhriga labelSignUphalfinput" id="">
                         <input
+                          required
                           type="text"
                           id=""
                           placeholder="Titre francais"
@@ -185,6 +192,7 @@ const handleCategorieChange = (newCategorie) => {
                     <div className="labelSignUphalf">
                       <div className="labelSignUphalfinput">
                         <input
+                          required
                           type="text"
                           id=""
                           placeholder="Titre anglais"
@@ -194,6 +202,7 @@ const handleCategorieChange = (newCategorie) => {
 
                       <div className="labelSignUphalfinput">
                         <input
+                          required
                           type="text"
                           id=""
                           placeholder="Prix"
@@ -204,6 +213,7 @@ const handleCategorieChange = (newCategorie) => {
                     <div className="labelSignUphalf  ">
                       <div className="labelSignUphalfinput">
                         <input
+                          required
                           type="text"
                           id=""
                           placeholder="Marque"
@@ -212,6 +222,7 @@ const handleCategorieChange = (newCategorie) => {
                       </div>
                       <div className="labelSignUphalfinput">
                         <input
+                          required
                           type="text"
                           id=""
                           placeholder="Gamme"
@@ -230,8 +241,12 @@ const handleCategorieChange = (newCategorie) => {
                     </div>
                   </div>
                   <div className="forlabeladd">
-                    <button type="submit" className="btnred">
-                      Continuer
+                    <button type="submit" className="btnred" disabled={loading}>
+                      {loading ? (
+                        <CircularProgress size={25} color="inherit" />
+                      ) : (
+                        "Ajouter"
+                      )}
                     </button>
                   </div>
                   <div className="text-center"></div>

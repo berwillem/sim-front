@@ -7,7 +7,6 @@ export default function Profile() {
     <>
         <Helmet>
             <title>Profil</title>
-         
         </Helmet>
       <div className="userprofile">
         <UserCard></UserCard>

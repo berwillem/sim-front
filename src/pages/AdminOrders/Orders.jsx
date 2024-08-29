@@ -1,7 +1,7 @@
 import "./Orders.css";
 /* eslint-disable react-hooks/exhaustive-deps */
 import AdminMiniCard from "../../components/AdminMiniCard/AdminMiniCard";
-import { FaUsers } from "react-icons/fa6";
+import { FaRegSquareCheck, FaRegSquareFull, FaUsers } from "react-icons/fa6";
 import { CiSquareCheck } from "react-icons/ci";
 import { IoIosTimer } from "react-icons/io";
 import { TbGitBranchDeleted } from "react-icons/tb";
@@ -131,7 +131,11 @@ const Orders = () => {
             stat={"0"}
           />
         </div>
-        <FormControl variant="outlined" style={{ minWidth: 120 }} className="filterParent">
+        <FormControl
+          variant="outlined"
+          style={{ minWidth: 120 }}
+          className="filterParent"
+        >
           <InputLabel>Status</InputLabel>
           <Select
             value={filter}
@@ -159,8 +163,8 @@ const Orders = () => {
                 <li>Quantity</li>
                 <li>Total Price</li>
                 <li>createdAt</li>
-                <li>Status</li>
               </div>
+              <li>Status</li>
               <li>action</li>
             </ul>
           </div>
@@ -175,9 +179,7 @@ const Orders = () => {
                 }
               >
                 <li className="ligne">
-                  <span>
-                    {Commande.num}
-                  </span>
+                  <span>{Commande.num}</span>
                   <span>
                     {Commande.product
                       ? Commande.product?.titlefr
@@ -199,24 +201,19 @@ const Orders = () => {
                   <span>
                     {moment(Commande.createdAt).format("DD MMM YYYY")}
                   </span>
-                  <span style={{cursor:"pointer"}}>
+                  <span style={{ cursor: "pointer" }}>
                     {Commande.isValid ? (
                       <>
-                        {"valide  "}
-                        {""}
-                        <RiPassValidLine
+                        <FaRegSquareCheck
                           size={30}
                           onClick={() => updateOrder(Commande._id)}
-                          color="green"
                         />
                       </>
                     ) : (
                       <>
-                        {" non valide  "}{" "}
-                        <RiPassValidFill
-                          size={30}
+                        <FaRegSquareFull
+                          size={24}
                           onClick={() => updateOrder(Commande._id)}
-                          color="red"
                         />
                       </>
                     )}

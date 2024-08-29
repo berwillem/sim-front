@@ -5,15 +5,15 @@ import { Pagination } from "@mui/material";
 import AdminMiniCard from "../../components/AdminMiniCard/AdminMiniCard";
 import { FaUsers } from "react-icons/fa6";
 import moment from "moment";
-import "moment/locale/fr"; // Import French locale
+import "moment/locale/fr";
 
-moment.locale("fr"); // Set moment to use French locale
+moment.locale("fr");
 
 export default function AdminNewsletter() {
   const [page, setPage] = useState(1);
   const [newsletters, setNewsletters] = useState([]);
   const [allNewsletters, setAllNewsletters] = useState([]); // New state to store all newsletters
-
+  console.log(newsletters);
   useEffect(() => {
     fetchAllNewsletters();
   }, []);

@@ -3,16 +3,21 @@ import "./Contact.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet";
-import cover from "../../assets/csm_Menzerna_building_1620x250_13dedd488c.webp";
-import { createContact } from "../../services/contactservices"; // Assurez-vous que ce chemin est correct
+import cover from "../../assets/contactcover.jpg";
+import { createContact } from "../../services/contactservices";
+import { useTranslation } from "react-i18next";
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   const [formData, setFormData] = useState({
     email: "",
     message: "",
     name: "",
     companyName: "",
     country: "Algeria",
+    phonenumber: "",
+    wilaya: "",
     agreement: false,
     activityField: [],
     requestType: [],
@@ -49,21 +54,25 @@ const Contact = () => {
       email: formData.email,
       country: formData.country,
       message: formData.message,
+      phonenumber: formData.phonenumber,
+      wilaya: formData.wilaya,
     };
+
+    console.log(contactData + "contactDataaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
     createContact(contactData)
       .then(() => {
         Swal.fire({
           icon: "success",
-          title: "Message Sent",
-          text: "Your message has been sent successfully!",
+          title: t("successMessage.title"),
+          text: t("successMessage.text"),
         });
       })
       .catch((err) => {
         console.log(err);
         Swal.fire({
           icon: "error",
-          title: "Oops...",
+          title: t("errorMessage.title"),
           text: err.message,
         });
       });
@@ -72,7 +81,7 @@ const Contact = () => {
   return (
     <div>
       <Helmet>
-        <title>Contact</title>
+        <title>{t("pageTitle")}</title>
       </Helmet>
       <Navbar />
       <div className="maincontact" id="maincontact1">
@@ -81,27 +90,26 @@ const Contact = () => {
         </div>
         <div className="ALL">
           <div className="titles">
-            <h4>HOW CAN WE HELP YOU?</h4>
-            <h2>Contact</h2>
-            <p>
-              Do you have a question for us? We have compiled the most
-              frequently asked questions and answers for you. If you have
-              additional questions or suggestions, please feel free to contact
-              us. We will respond as quickly as possible.
-            </p>
+            <h4>{t("header.title")}</h4>
+            <h2>{t("header.subtitle")}</h2>
+            <p>{t("header.description")}</p>
           </div>
           <div className="infos">
             <div className="info1">
-              <h4>How to find us</h4>
+              <h4>{t("infoSection.title")}</h4>
               <div className="adress">
-                <span>menzerna polishing compounds</span>
-                <span>GmbH & Co. KG</span>
-                <span>Industriestraße 25</span>
-                <span>76470 Birtoutq</span>
-                <span>Algeria</span>
+                <span>{t("infoSection.address.company")}</span>
+                <span>{t("infoSection.address.city")}</span>
+                <span>{t("infoSection.address.country")}</span>
               </div>
-              <button>Call now</button>
-              <button>Calculate Route</button>
+              <button>
+                <a
+                  target="_blank"
+                  href="https://www.google.com/maps/dir//EURL+SYM+INDUSTRIE+Khraicia+16091/@36.6503013,3.0101263,16z/data=!4m8!4m7!1m0!1m5!1m1!1s0x128fa9748ff0cb75:0x6dafc944c4d5fb5f!2m2!1d3.0101263!2d36.6503013?entry=ttu&g_ep=EgoyMDI0MDgyNi4wIKXMDSoASAFQAw%3D%3D"
+                >
+                  {t("infoSection.button")}
+                </a>
+              </button>
             </div>
             <div className="map">
               <iframe
@@ -117,50 +125,64 @@ const Contact = () => {
           </div>
           <div className="contactuscarre">
             <div className="titleContact">
-              <h1>Contact us</h1>
+              <h1>{t("contactForm.title")}</h1>
             </div>
             <div className="checkBox">
               <ul>
-                <li className="checkTitle">Your field of activity</li>
-                <li>
-                  <input
-                    type="checkbox"
-                    name="activityField"
-                    value="industrial company"
-                    onChange={handleChange}
-                  />
-                  <label>industrial company</label>
+                <li className="checkTitle">
+                  {t("contactForm.fields.activityField.label")}
                 </li>
                 <li>
                   <input
                     type="checkbox"
                     name="activityField"
-                    value="Dealer"
+                    value="Société industrielle"
                     onChange={handleChange}
                   />
-                  <label>Dealer</label>
+                  <label>
+                    {t(
+                      "contactForm.fields.activityField.options.industrialCompany"
+                    )}
+                  </label>
                 </li>
                 <li>
                   <input
                     type="checkbox"
                     name="activityField"
-                    value="Detailer/Body and paint shop"
+                    value="Particulier"
                     onChange={handleChange}
                   />
-                  <label>Detailer/Body and paint shop</label>
+                  <label>
+                    {t("contactForm.fields.activityField.options.individual")}
+                  </label>
                 </li>
                 <li>
                   <input
                     type="checkbox"
                     name="activityField"
-                    value="Other"
+                    value="Revendeur"
                     onChange={handleChange}
                   />
-                  <label>Other</label>
+                  <label>
+                    {t("contactForm.fields.activityField.options.reseller")}
+                  </label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    name="activityField"
+                    value="Autre"
+                    onChange={handleChange}
+                  />
+                  <label>
+                    {t("contactForm.fields.activityField.options.other")}
+                  </label>
                 </li>
               </ul>
               <ul>
-                <li className="checkTitle">You want</li>
+                <li className="checkTitle">
+                  {t("contactForm.fields.requestType.label")}
+                </li>
                 <li>
                   <input
                     type="checkbox"
@@ -168,7 +190,22 @@ const Contact = () => {
                     value="To find a distributor in your area"
                     onChange={handleChange}
                   />
-                  <label>To find a distributor in your area</label>
+                  <label>
+                    {t(
+                      "contactForm.fields.requestType.options.findDistributor"
+                    )}
+                  </label>
+                </li>
+                <li>
+                  <input
+                    type="checkbox"
+                    name="requestType"
+                    value="Demande devis"
+                    onChange={handleChange}
+                  />
+                  <label>
+                    {t("contactForm.fields.requestType.options.quoteRequest")}
+                  </label>
                 </li>
                 <li>
                   <input
@@ -177,7 +214,9 @@ const Contact = () => {
                     value="Product information"
                     onChange={handleChange}
                   />
-                  <label>Product information</label>
+                  <label>
+                    {t("contactForm.fields.requestType.options.productInfo")}
+                  </label>
                 </li>
                 <li>
                   <input
@@ -185,64 +224,85 @@ const Contact = () => {
                     name="requestType"
                     value="Other"
                     onChange={handleChange}
+                    required
                   />
-                  <label>Other</label>
+                  <label>
+                    {t("contactForm.fields.requestType.options.other")}
+                  </label>
                 </li>
               </ul>
             </div>
             <form onSubmit={handleSubmit}>
               <div className="forinput" id="forinputsmall">
                 <div className="inputText">
-                  <label>Name*</label>
+                  <label>{t("contactForm.fields.name")}</label>
                   <input
                     type="text"
                     name="name"
-                    placeholder="Enter Your Name"
+                    placeholder={t("contactForm.fields.name")}
                     value={formData.name}
                     onChange={handleChange}
                     required
                   />
                 </div>
                 <div className="inputText">
-                  <label>Company name</label>
+                  <label>{t("contactForm.fields.companyName")}</label>
                   <input
                     type="text"
                     name="companyName"
-                    placeholder="Enter Your Company name"
+                    placeholder={t("contactForm.fields.companyName")}
                     value={formData.companyName}
                     onChange={handleChange}
                   />
                 </div>
                 <div className="inputText">
-                  <label>Email*</label>
+                  <label>{t("contactForm.fields.email")}</label>
                   <input
                     type="email"
                     name="email"
-                    placeholder="Enter Your Email"
+                    placeholder={t("contactForm.fields.email")}
                     value={formData.email}
                     onChange={handleChange}
                     required
                   />
                 </div>
                 <div className="inputText">
-                  <label>Country*</label>
-                  <select
-                    name="country"
-                    value={formData.country}
+                  <label>{t("contactForm.fields.phonenumber")}</label>
+                  <input
+                    type="string"
+                    name="phonenumber"
+                    placeholder={t("contactForm.fields.phonenumber")}
+                    value={formData.phonenumber}
                     onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="inputText">
+                  <label>Wilaya</label>
+                  <select
+                    name="wilaya"
+                    value={formData.wilaya}
+                    onChange={handleChange}
+                    required
                   >
-                    <option value="Algeria">Algeria</option>
-                    {/* Add other country options as needed */}
+                    <option value="" disabled>
+                      {t("contactForm.fields.wilaya")}
+                    </option>
+                    {wilayas.map((wilaya) => (
+                      <option key={wilaya} value={wilaya}>
+                        {wilaya}
+                      </option>
+                    ))}
                   </select>
                 </div>
               </div>
               <div className="message">
                 <div className="inputText">
-                  <label>Message</label>
+                  <label>{t("contactForm.fields.message")}</label>
                   <textarea
                     name="message"
                     id="inputcontactbig"
-                    placeholder="Enter Your message"
+                    placeholder={t("contactForm.fields.message")}
                     value={formData.message}
                     onChange={handleChange}
                     required
@@ -256,13 +316,9 @@ const Contact = () => {
                   checked={formData.agreement}
                   onChange={handleChange}
                 />
-                <label>
-                  Yes, I agree to Sym storing and processing my data to handle
-                  my inquiry and to contact me. You can find more information
-                  and revocation instructions in our privacy policy.
-                </label>
+                <label>{t("contactForm.agreement.text")}</label>
               </div>
-              <button type="submit">Submit</button>
+              <button type="submit">{t("contactForm.submitButton")}</button>
             </form>
           </div>
         </div>
@@ -272,3 +328,64 @@ const Contact = () => {
 };
 
 export default Contact;
+
+const wilayas = [
+  "Adrar",
+  "Chlef",
+  "Laghouat",
+  "Oum El Bouaghi",
+  "Batna",
+  "Béjaïa",
+  "Biskra",
+  "Béchar",
+  "Blida",
+  "Bouira",
+  "Tamanrasset",
+  "Tébessa",
+  "Tlemcen",
+  "Tiaret",
+  "Tizi Ouzou",
+  "Alger",
+  "Djelfa",
+  "Jijel",
+  "Sétif",
+  "Saïda",
+  "Skikda",
+  "Sidi Bel Abbès",
+  "Annaba",
+  "Guelma",
+  "Constantine",
+  "Médéa",
+  "Mostaganem",
+  "M'Sila",
+  "Mascara",
+  "Ouargla",
+  "Oran",
+  "El Bayadh",
+  "Illizi",
+  "Bordj Bou Arreridj",
+  "Boumerdès",
+  "El Tarf",
+  "Tindouf",
+  "Tissemsilt",
+  "El Oued",
+  "Khenchela",
+  "Souk Ahras",
+  "Tipaza",
+  "Mila",
+  "Aïn Defla",
+  "Naâma",
+  "Aïn Témouchent",
+  "Ghardaïa",
+  "Relizane",
+  "Timimoun",
+  "Bordj Badji Mokhtar",
+  "Ouled Djellal",
+  "Béni Abbès",
+  "In Salah",
+  "In Guezzam",
+  "Touggourt",
+  "Djanet",
+  "El M'Ghair",
+  "El Meniaa",
+];

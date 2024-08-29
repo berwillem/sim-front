@@ -16,7 +16,7 @@
   "aboutushomep": "SYM is a dynamic company based in Algiers, Algeria. We are proud to offer our clients an exceptional range of German equipment and tools, specializing in construction site work and car bodywork. Our company is rooted in an unwavering commitment to quality and quantity. Whether for our B2B or B2C clients, we strive to provide the highest quality products, meeting the rigorous standards of the German industry.",
   "signout": "Sign out",
   "copyright": "Copyright © 2024 SYM INDUSTRIE. All rights reserved.",
-  "footerAbout": "SYM is a dynamic company based in Algiers, Algeria. We are proud to offer our clients an exceptional range of German equipment and tools, specializing in construction site work and car bodywork.",
+  "footerAbout": "SYM Industrie is your partner of choice for high-quality industrial solutions. Specializing in the import and distribution of global brands, we focus on fastening and professional tooling, as well as automotive detailing equipment.",
   "email": "Email",
   "connectezvous": "Connect to SYM Industrie to continue for <website>.com.",
   "password": "Password",
@@ -32,5 +32,63 @@
   "loginbefore": "Login before making an order and benefit from a discount on our products",
   "makeorder": "Make An Order",
   "totalprice": "Total Price: ",
-  "phonenumber": "Phone number"
+  "phonenumber": "Phone number",
+
+  "pageTitle": "Contact",
+  "header": {
+    "title": "HOW CAN WE HELP YOU?",
+    "subtitle": "Contact",
+    "description": "Do you have a question for us? We have compiled the most frequently asked questions and answers for you. If you have additional questions or suggestions, please feel free to contact us. We will respond as quickly as possible."
+  },
+  "infoSection": {
+    "title": "How to find us",
+    "address": {
+      "company": "Sym Industries",
+      "city": "Birtouta",
+      "country": "Algeria"
+    },
+    "button": "Calculate Route"
+  },
+  "contactForm": {
+    "title": "Contact us",
+    "fields": {
+      "activityField": {
+        "label": "Your field of activity",
+        "options": {
+          "industrialCompany": "Industrial Company",
+          "individual": "Individual",
+          "reseller": "Reseller",
+          "other": "Other"
+        }
+      },
+      "requestType": {
+        "label": "You want",
+        "options": {
+          "findDistributor": "To find a distributor in your area",
+          "quoteRequest": "Request a quote",
+          "productInfo": "Product information",
+          "other": "Other"
+        }
+      },
+      "name": "Name*",
+      "companyName": "Company name",
+      "email": "Email*",
+      "country": "Country*",
+      "message": "Message",
+      "phonenumber": "Phone number",
+      "wilaya": "please choose your wilaya"
+    },
+    "agreement": {
+      "text": "Yes, I agree to Sym storing and processing my data to handle my inquiry and to contact me."
+    },
+    "submitButton": "Submit"
+  },
+  "successMessage": {
+    "title": "Message Sent",
+    "text": "Your message has been sent successfully!"
+  },
+  "errorMessage": {
+    "title": "Oops...",
+    "text": "Something went wrong. Please try again."
+  }
 }

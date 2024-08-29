@@ -1,7 +1,8 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { CiGlobe, CiLogout, CiMenuBurger } from "react-icons/ci";
-import Logo from "../../assets/logo.png";
+import Logosim from "../../assets/Logo.png";
+
 import { FaUser } from "react-icons/fa";
 import { useState } from "react";
 import Popover from "../Popover/Menu";
@@ -31,11 +32,12 @@ export default function Navbar() {
       <nav className="navbar">
         <div className="navbarfirst">
           <img
-            src={Logo}
+            src={Logosim}
             alt="Logo"
             className="main-logo"
             onClick={() => navigate("/")}
           />
+
           <NavLink to={"/"}>{t("homeNav")}</NavLink>
           <NavLink
             onClick={async () => {

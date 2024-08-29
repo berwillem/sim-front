@@ -12,7 +12,7 @@ export const createCategory = (data) => {
 };
 
 // Service to create a new type
-export const createType = (data) => {
+export const createType = (data ) => {
   return axios.post(`${BASE_API_URL}/parametres/type`, data);
 };
 
@@ -77,4 +77,3 @@ export const getTotalCategoriesCount = () => {
 export const getTotalTypesCount = () => {
   return axios.get(`${BASE_API_URL}/parametres/type/count`);
 };
-

@@ -37,6 +37,7 @@
   width: 75%;
   display: flex;
   justify-content: space-between;
+  padding: 0px 50px 0 40px !important;
 }
 #ligneuser {
   display: flex;
@@ -96,7 +97,7 @@
   color: white;
   transition: 0.2s;
 }
-.orderIcon{
+.orderIcon {
   width: 60px !important;
   height: 60px;
   border-radius: 50%;
@@ -106,25 +107,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
- 
 }
-.ligne a{
+.ligne a {
   max-width: 120px;
   height: 60px;
   display: flex;
 }
-.orderIcon:hover{
+.orderIcon:hover {
   width: 120px !important;
   border-radius: 50px;
   background-color: orange;
- 
- 
 }
-.orderIcon svg{
- fill: white;
- width: 20px;
- height: 20px;
- 
+.orderIcon svg {
+  fill: white;
+  width: 20px;
+  height: 20px;
 }
 .etat:hover {
   opacity: 0.7;

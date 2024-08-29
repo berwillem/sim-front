@@ -10,9 +10,9 @@
   align-items: flex-start;
   gap: 10px;
 }
-.loading{
+.loading {
   width: 250px;
-  height: 250px ;
+  height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,6 +31,9 @@
   text-decoration: none;
   color: rgb(93, 97, 100);
   margin-left: 40px;
+  background-color: aliceblue;
+  border-radius: 5px;
+  padding: 2px 5px;
 }
 
 .gobackproduct-final h2 {
@@ -92,10 +95,10 @@
   cursor: pointer;
 }
 .productitempreview-final img {
-  padding: 25px;
+  padding: 18px 25px 0 25px;
   width: 250px;
 }
-.filter2{
+.filter2 {
   display: flex;
   padding: 20px;
 }

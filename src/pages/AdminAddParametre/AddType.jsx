@@ -9,10 +9,10 @@ const AddType = () => {
   const [familles, setFamilles] = useState([]);
   const [selectedFamille, setSelectedFamille] = useState(null);
   const [selectedCategorie, setSelectedCategorie] = useState("");
-
+  console.log(selectedCategorie);
   const handleSubmit = (e) => {
     e.preventDefault();
-    createType({ titlefr, titleen, category: selectedCategorie })
+    createType({ titlefr, titleen, categoryId: selectedCategorie })
       .then(() => {
         Swal.fire({
           title: "Good job!",
@@ -67,7 +67,7 @@ const AddType = () => {
               familles.find((famille) => famille.titlefr === e.target.value)
             );
             console.log(e.target.value);
-            setSelectedCategorie(""); 
+            setSelectedCategorie("");
           }}
           required
           className="parametre-select"
@@ -81,7 +81,10 @@ const AddType = () => {
         </select>
         <select
           value={selectedCategorie}
-          onChange={(e) => setSelectedCategorie(e.target.value)}
+          onChange={(e) => {
+            setSelectedCategorie(e.target.value);
+            console.log(e.target.value);
+          }}
           required
           className="parametre-select"
           disabled={!selectedFamille}
@@ -90,7 +93,7 @@ const AddType = () => {
             Sélectionner une catégorie
           </option>
           {selectedFamille?.categories?.map((categorie) => (
-            <option key={categorie.id} value={categorie.id}>
+            <option key={categorie._id} value={categorie._id}>
               {categorie.titlefr}
             </option>
           ))}
