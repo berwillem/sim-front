@@ -18,7 +18,6 @@ import { useNavigate } from "react-router-dom";
 import {
   getAllCategories,
   getAllFamilles,
-  getAllTypes,
 } from "../../services/parametresServices";
 import {
   FormControl,
@@ -36,7 +35,6 @@ const Products = () => {
   const [totalProductCount, setTotalProductCount] = useState(0);
   const [categories, setCategories] = useState([]);
   const [familles, setFamilles] = useState([]);
-  const [types, setTypes] = useState([]);
   const [selectedFamille, setSelectedFamille] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedType, setSelectedType] = useState("");
@@ -86,20 +84,11 @@ const Products = () => {
       });
   };
 
-  const fetchTypes = () => {
-    getAllTypes()
-      .then((res) => {
-        setTypes(res.data.types);
-      })
-      .catch((error) => {
-        console.error("Error fetching types:", error);
-      });
-  };
   useEffect(() => {
     fetchProducts(page);
     fetchCategories();
     fetchFamilles();
-    fetchTypes();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   const handleDelet = (productId) => {
