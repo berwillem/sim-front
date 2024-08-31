@@ -14,7 +14,6 @@ const ProfileLayout = () => {
   useEffect(()=>{
   if(role!="admin"){
     if (useridCheck !== userId) {
-      console.log("user not found");
       return navigate("/notfound")
     }
   }

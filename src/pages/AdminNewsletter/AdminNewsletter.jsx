@@ -13,7 +13,6 @@ export default function AdminNewsletter() {
   const [page, setPage] = useState(1);
   const [newsletters, setNewsletters] = useState([]);
   const [allNewsletters, setAllNewsletters] = useState([]); // New state to store all newsletters
-  console.log(newsletters);
   useEffect(() => {
     fetchAllNewsletters();
   }, []);
@@ -98,16 +97,15 @@ export default function AdminNewsletter() {
         <div className="titre-stat">
           <ul className="ligne">
             <div className="info-stat newsletterli">
-              <li>email</li>
+              <li>Email</li>
             </div>
-            <li>joined at</li>
+            <li>Joined at</li>
           </ul>
         </div>
         {newsletters.map((newsletter) => (
           <ul className="stores" id="storesnews" key={newsletter._id}>
             <h1>{newsletter.email}</h1>
             <h1>{moment(newsletter.createdAt).format("DD MMM YYYY")}</h1>
-            {console.log(newsletter)}
           </ul>
         ))}
       </div>

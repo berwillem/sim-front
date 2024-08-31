@@ -24,7 +24,6 @@ const AdminCategory = () => {
       .then((res) => {
         setCategories(res.data.categories);
         setTotalPages(res.data.totalPages);
-        console.log(res.data, "categories");
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
@@ -85,11 +84,11 @@ const AdminCategory = () => {
           <div className="titre-stat">
             <ul className="ligne">
               <div className="info-stat categoryinfostat">
-                <li>name fr</li>
-                <li>name en</li>
-                <li>famille</li>
+                <li>Nom en français</li>
+                <li>Nom en anglais</li>
+                <li>Famille</li>
               </div>
-              <li>action</li>
+              <li>Action</li>
             </ul>
           </div>
 

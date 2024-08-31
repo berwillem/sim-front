@@ -86,7 +86,6 @@ const OrderModal = ({ open, onClose, product }) => {
   const originalPrice = product?.price * quantity || 0;
   const totalPrice = getDiscountedPrice(originalPrice, level) || 0;
   const discountAmount = originalPrice - totalPrice;
-  console.log(quantity);
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {

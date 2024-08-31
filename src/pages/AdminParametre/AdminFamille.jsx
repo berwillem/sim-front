@@ -21,7 +21,6 @@ const AdminFamille = () => {
         setFamille(res.data.familles);
         setTotalPages(res.data.totalPages || 1);
 
-        console.log(res.data, "familles");
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
@@ -55,9 +54,9 @@ const AdminFamille = () => {
           <div className="titre-stat-famille">
             <ul className="ligne">
               <div className="info-stat-famille">
-                <li>id</li>
-                <li>name fr</li>
-                <li>name en</li>
+                <li>Id</li>
+                <li>Nom en français</li>
+                <li>Nom en anglais</li>
               </div>
             </ul>
           </div>

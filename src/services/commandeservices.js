@@ -32,3 +32,7 @@ export const getValidCommandesCount = () => {
 export const getPendingCommandesCount = () => {
   return axios.get(`${BASE_API_URL}/commandes/pendingcount`);
 };
+
+export const getOrdersByFamily = () => {
+  return axios.get(`${BASE_API_URL}/commandes/getbyfamily`);
+};

@@ -2,7 +2,6 @@ import "./SideCard.css";
 import { Link } from "react-router-dom";
 
 const SideCard = ({ Labels }) => {
-  console.log(Labels);
   return (
     <>
       <ul className="side-button">

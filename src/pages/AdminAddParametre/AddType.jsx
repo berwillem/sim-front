@@ -9,7 +9,6 @@ const AddType = () => {
   const [familles, setFamilles] = useState([]);
   const [selectedFamille, setSelectedFamille] = useState(null);
   const [selectedCategorie, setSelectedCategorie] = useState("");
-  console.log(selectedCategorie);
   const handleSubmit = (e) => {
     e.preventDefault();
     createType({ titlefr, titleen, categoryId: selectedCategorie })
@@ -66,7 +65,6 @@ const AddType = () => {
             setSelectedFamille(
               familles.find((famille) => famille.titlefr === e.target.value)
             );
-            console.log(e.target.value);
             setSelectedCategorie("");
           }}
           required
@@ -83,7 +81,6 @@ const AddType = () => {
           value={selectedCategorie}
           onChange={(e) => {
             setSelectedCategorie(e.target.value);
-            console.log(e.target.value);
           }}
           required
           className="parametre-select"

@@ -32,12 +32,10 @@ const Orders = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [filter, setFilter] = useState("");
-  console.log(totalPages, "commandes");
 
   const fetchCommandes = (page, filter) => {
     getAllCommandes(page, filter)
       .then((res) => {
-        console.log(res.data.commandes);
         setCommandes(res.data.commandes);
         setTotalPages(res.data.totalPages);
       })
@@ -140,7 +138,6 @@ const Orders = () => {
           <Select
             value={filter}
             onChange={(e) => {
-              console.log(e.target.value);
               setFilter(e.target.value);
               fetchCommandes(page, e.target.value);
             }}
@@ -170,7 +167,6 @@ const Orders = () => {
           </div>
 
           {Commandes?.map((Commande, index) => {
-            // console.log(Commande, "commande");
             return (
               <ul
                 key={index}

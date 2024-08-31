@@ -36,7 +36,6 @@ export default function StickyHeadTable() {
         console.error("Error fetching contacts:", error);
       });
   }, [page]);
-  console.log(page, "paaaaaaaa");
 
   const handleDelete = (id) => {
     Swal.fire({

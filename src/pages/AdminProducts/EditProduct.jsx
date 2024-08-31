@@ -25,7 +25,6 @@ const EditProduct = () => {
   const [selectedType, setSelectedType] = useState(null);
   const [product, setProduct] = useState({});
   const [images, setImages] = useState([]);
-  console.log(images, "images");
 
   const { productid } = useParams();
   useEffect(() => {
@@ -44,7 +43,6 @@ const EditProduct = () => {
     getAllCategories()
       .then((res) => {
         setCategories(res.data.categories);
-        console.log(res.data);
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
@@ -96,14 +94,12 @@ const EditProduct = () => {
     form.append("type", selectedType?._id);
     images.forEach((image) => form.append("images", image.file||image));
     form.append("titleen", data.titleen);
-    console.log(form.getAll("images"));
     form.append("titlefr", data.titlefr);
     form.append("prix", data.prix);
     form.append("marque", data.marque);
     form.append("gamme", data.gamme);
     form.append("description", data.description);
 
-    console.log(form.getAll("images"))
     
     updateProduct(productid, form)
       .then((res) => {

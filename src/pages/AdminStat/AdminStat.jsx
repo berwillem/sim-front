@@ -1,69 +1,103 @@
 import { PieChart } from "@mui/x-charts/PieChart";
 import "./AdminStat.css";
-import image from "../../assets/Logo_Google_Analytics.svg.png";
-import { LineChart } from "@mui/x-charts";
-import DeleteButton from "../../components/DeleteButton/DeleteButon";
-import { useEffect, useState } from "react";
-import { DeleteContact, getContact } from "../../services/contactservices";
-import { Pagination } from "@mui/material";
-import Swal from "sweetalert2";
+import { BarChart } from "@mui/x-charts";
+
 import MuiTable from "../../components/MuiTable/MuiTable";
+import { useEffect, useState } from "react";
+import { getAllUserLevels } from "../../services/usersServices";
+import { getOrdersByFamily } from "../../services/commandeservices";
 
 export default function AdminStat() {
-  const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
-  const pData = [2400, 1398, 9800, 3908, 4800, 3800, 4300];
+  const [countBronze, setCountBronze] = useState(0);
+  const [countSilver, setCountSilver] = useState(0);
+  const [countGold, setCountGold] = useState(0);
 
-  const xLabels = [
-    "Page A",
-    "Page B",
-    "Page C",
-    "Page D",
-    "Page E",
-    "Page F",
-    "Page G",
-  ];
-  // const [totalPages, setTotalPages] = useState(1);
-  // const [contacts, setContacts] = useState([]);
-  const [page, setPage] = useState(1);
-  // useEffect(() => {
-  //   getContact(page)
-  //     .then((res) => {
-  //       console.log(res.data.Contacts);
-  //       setContacts(res.data.Contacts);
+  const [ordersByFamilyData, setOrdersByFamilyData] = useState([]);
 
-  //       setTotalPages(res.data.totalPages);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching users:", error);
-  //     });
-  // }, [page]);
-  const handlePageChange = (event, value) => {
-    setPage(value);
+  const props = {
+    width: 780,
+    height: 280,
+    xAxis: [
+      { data: ["Fixation", "Outillage", "Detailling"], scaleType: "band" },
+    ],
   };
- 
+  const fetchOrdersByFamily = () => {
+    getOrdersByFamily().then((res) => {
+      const chartData = res.data.ordersByFamily?.map((family, index) => ({
+        id: index,
+        label:
+          family._id === "664e87fc4cf5a42abd0b5e33"
+            ? "Fixation"
+            : family._id === "664e88294cf5a42abd0b5e35"
+            ? "Outillage"
+            : family._id === "664e88614cf5a42abd0b5e37"
+            ? "Detailling"
+            : "Unknown Family",
+        value: family.count,
+        color:
+          family._id === "664e87fc4cf5a42abd0b5e33"
+            ? "#FFD700"
+            : family._id === "664e88294cf5a42abd0b5e35"
+            ? "#C0C0C0"
+            : "#CD7F32",
+      }));
+      console.log(chartData);
+      setOrdersByFamilyData(chartData);
+    });
+  };
 
+  const fetchAllUserLevels = () => {
+    getAllUserLevels().then((res) => {
+      const levels = res.data.levels.map((level, index) => ({
+        value: level.name,
+        label: level.name,
+        id: index,
+      }));
+
+      setCountGold(levels.filter((level) => level.value === "gold").length);
+      setCountSilver(levels.filter((level) => level.value === "silver").length);
+      setCountBronze(levels.filter((level) => level.value === "bronze").length);
+    });
+  };
+
+  useEffect(() => {
+    fetchAllUserLevels();
+    fetchOrdersByFamily();
+  }, []);
   return (
     <div className="statPage">
-      <div className="title">
+      {/* <div className="title">
         <h2>Dashboard</h2>
-      </div>
+      </div> */}
       <div className="statG">
         <div className="chart">
           <div className="firstCol">
             <div className="googleAnalytique">
-              <img src={image} alt="" />
-              <button>
-                <h3>View Analytics</h3>
-              </button>
+              <h1>Dashboard</h1>
             </div>
             <div className="statBox">
               <PieChart
                 series={[
                   {
                     data: [
-                      { id: 0, value: 10, label: "series A" },
-                      { id: 1, value: 15, label: "series B" },
-                      { id: 2, value: 20, label: "series C" },
+                      {
+                        id: 0,
+                        value: countBronze,
+                        label: "Bronze",
+                        color: "#FF5733",
+                      },
+                      {
+                        id: 1,
+                        value: countSilver,
+                        label: "Silver",
+                        color: "#C0C0C0",
+                      },
+                      {
+                        id: 2,
+                        value: countGold,
+                        label: "Gold",
+                        color: "#FFD700",
+                      },
                     ],
                     innerRadius: 30,
                     outerRadius: 80,
@@ -77,14 +111,15 @@ export default function AdminStat() {
             </div>
           </div>
           <div className="statBox2">
-            <LineChart
-              width={800}
-              height={250}
+            <BarChart
+              {...props}
               series={[
-                { data: pData, label: "pv" },
-                { data: uData, label: "uv" },
+                {
+                  data: ordersByFamilyData.map((order) => order.value),
+                  label: "Orders by Family",
+                  color: "#FF5733",
+                },
               ]}
-              xAxis={[{ scaleType: "point", data: xLabels }]}
             />
           </div>
         </div>
@@ -92,7 +127,6 @@ export default function AdminStat() {
       <div className="table">
         <MuiTable />
       </div>
-     
     </div>
   );
 }

@@ -1,11 +1,11 @@
 import "./Footer.css";
-import image from "../../assets/Logo.png";
 import { useTranslation } from "react-i18next";
 import { BsInstagram } from "react-icons/bs";
 import { FaSquareFacebook } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { AiFillTikTok } from "react-icons/ai";
 import { Link } from "react-router-dom";
+import image from "../../assets/Logo.png";
 
 export default function Component() {
   const { t } = useTranslation();
@@ -48,10 +48,6 @@ export default function Component() {
                 <ChevronRightIcon className="" />
                 Products
               </Link>
-            </li>
-            <li>
-              <ChevronRightIcon className="" />
-              News
             </li>
 
             <li>

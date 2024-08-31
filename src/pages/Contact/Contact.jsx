@@ -58,7 +58,6 @@ const Contact = () => {
       wilaya: formData.wilaya,
     };
 
-    console.log(contactData + "contactDataaaaaaaaaaaaaaaaaaaaaaaaaaa");
 
     createContact(contactData)
       .then(() => {

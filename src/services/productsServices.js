@@ -1,7 +1,6 @@
 import { BASE_API_URL } from "../config/api";
 import axios from "axios";
 const createProductFormData = (data) => {
-  console.log(data);
   const fd = new FormData();
   fd.append("titlefr", data.Titre);
   fd.append("titleen", data.Titre2);

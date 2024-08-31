@@ -50,7 +50,12 @@ const Products = () => {
   }, [totalProductCount]);
 
   const fetchProducts = (page) => {
-    getAllProducts(page, selectedFamille._id, selectedCategory._id, selectedType._id)
+    getAllProducts(
+      page,
+      selectedFamille._id,
+      selectedCategory._id,
+      selectedType._id
+    )
       .then((res) => {
         setProducts(res.data.products);
         setTotalPages(res.data.totalPages);
@@ -155,7 +160,9 @@ const Products = () => {
                 <InputLabel>Famille</InputLabel>
                 <Select
                   value={selectedFamille}
-                  onChange={(e) => {setSelectedFamille(e.target.value),console.log(selectedFamille);}}
+                  onChange={(e) => {
+                    setSelectedFamille(e.target.value);
+                  }}
                   label="Famille"
                 >
                   <MenuItem value="all">All</MenuItem>
@@ -172,7 +179,9 @@ const Products = () => {
                 <InputLabel>Category</InputLabel>
                 <Select
                   value={selectedCategory}
-                  onChange={(e) => {setSelectedCategory(e.target.value)}}
+                  onChange={(e) => {
+                    setSelectedCategory(e.target.value);
+                  }}
                   label="Category"
                 >
                   <MenuItem value="all">All</MenuItem>
@@ -193,11 +202,13 @@ const Products = () => {
                   label="Type"
                 >
                   <MenuItem value="all">All</MenuItem>
-                  {categories.find(cat => cat?._id === selectedCategory?._id)?.types.map((type) => (
-                    <MenuItem key={type._id} value={type._id}>
-                      {type.titlefr}
-                    </MenuItem>
-                  ))}
+                  {categories
+                    .find((cat) => cat?._id === selectedCategory?._id)
+                    ?.types.map((type) => (
+                      <MenuItem key={type._id} value={type._id}>
+                        {type.titlefr}
+                      </MenuItem>
+                    ))}
                 </Select>
               </FormControl>
             </Grid>
@@ -237,13 +248,13 @@ const Products = () => {
           <div className="titre-stat">
             <ul className="ligne">
               <div className="info-stat temporary">
-                <li>title</li>
-                <li>price</li>
-                <li>desc.</li>
-                <li>marque</li>
-                <li>gamme</li>
+                <li>Title</li>
+                <li>Price</li>
+                <li>Desc.</li>
+                <li>Marque</li>
+                <li>Gamme</li>
               </div>
-              <li>preview</li>
+              <li>Preview</li>
             </ul>
           </div>
           {products?.map((product, index) => (

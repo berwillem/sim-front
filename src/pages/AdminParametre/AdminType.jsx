@@ -24,7 +24,6 @@ const AdminTypes = () => {
       .then((res) => {
         setTypes(res.data.types);
         setTotalPages(res.data.totalPages);
-        console.log(res.data, "types");
       })
       .catch((error) => {
         console.error("Error fetching types:", error);
@@ -85,10 +84,12 @@ const AdminTypes = () => {
           <div className="titre-stat">
             <ul className="ligne">
               <div className="info-stat">
-                <li style={{ width: "22%" }}>id</li>
-                <li style={{ paddingLeft: "380px" }}>name</li>
+                <li style={{ width: "25%" }}>Nom en français</li>
+                <li style={{ width: "25%", marginLeft: "250px" }}>
+                  Nom en anglais
+                </li>
               </div>
-              <li>action</li>
+              <li>Action</li>
             </ul>
           </div>
 

@@ -10,7 +10,6 @@ const LevelBar = ({ level }) => {
     return Math.log1p(valeur) / Math.log1p(valeurMax) ;
   };
  
-  console.log(level);
   return (
     <>
       <div className="level-bar" >

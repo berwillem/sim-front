@@ -41,7 +41,6 @@ const AddProduct = () => {
     getAllCategories()
       .then((res) => {
         setCategories(res.data.categories);
-        console.log(categories);
       })
       .catch((error) => {
         console.error("Error fetching categories:", error);
@@ -92,7 +91,6 @@ const AddProduct = () => {
       .catch((err) => console.log(err));
   };
 
-  console.log(categories);
 
   function ImageUpload() {
     function handleChange(e) {

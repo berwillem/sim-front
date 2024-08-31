@@ -8,10 +8,10 @@
   position: fixed;
 }
 .admin-logo {
-  height: 4vw;
+  height: 12vh;
   border-radius: 5px;
-  margin-bottom: 50px;
-  margin-top: 50px;
+  margin-bottom: 30px;
+  margin-top: 40px;
 }
 .sidebar-items {
   width: 100%;

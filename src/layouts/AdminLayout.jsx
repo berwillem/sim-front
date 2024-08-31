@@ -6,7 +6,6 @@ import axios from "axios";
 const AdminLayout = () => {
   const token = localStorage.getItem("token");
 
-  console.log(token)
   if (token) {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }

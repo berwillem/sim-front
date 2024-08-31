@@ -18,7 +18,6 @@ const UserCommandes = () => {
       .then((res) => {
         setCommandes(res.data);
 
-        console.log(res.data, "daaaaaa");
       })
       .catch((error) => {
         Swal.fire({
@@ -33,7 +32,6 @@ const UserCommandes = () => {
     getUserCommandes(userId)
       .then((res) => {
         setCommandes(res.data);
-        console.log(res.data, "daataaaaaaatata");
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
@@ -58,7 +56,6 @@ const UserCommandes = () => {
         });
       });
   };
-  console.log(commandes);
   return (
     <>
       <Helmet>
@@ -81,7 +78,6 @@ const UserCommandes = () => {
           </div>
 
           {commandes?.map((Commande, index) => {
-            console.log(Commande, "commande");
             return (
               <ul
                 key={index}

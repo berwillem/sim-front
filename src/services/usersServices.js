@@ -24,3 +24,7 @@ export const getUserLevelInfos = (userId) => {
 export const updateUserTour = (userId) => {
   return axios.put(`${BASE_API_URL}/users/tour/${userId}`);
 };
+
+export const getAllUserLevels = () => {
+  return axios.get(`${BASE_API_URL}/users/levels`);
+}
