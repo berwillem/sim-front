@@ -26,6 +26,7 @@ const schema = yup.object().shape({
 });
 
 export default function SignUp() {
+  const [exist, setExist] = useState(false);
   const {
     register,
     handleSubmit,
@@ -43,16 +44,20 @@ export default function SignUp() {
         dispatch(login(res.data));
         navigate("/");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err);
+        err.response.data.message == "User already exists! Login instead." &&
+          setExist(true);
+      });
   };
+  console.log(exist);
   const [show, setShow] = useState(true);
   const { t } = useTranslation();
   return (
     <>
-     <Helmet>
-            <title>signup </title>
-         
-        </Helmet>
+      <Helmet>
+        <title>signup </title>
+      </Helmet>
       <p>{t("signupP")} </p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="forlabelsignin">
@@ -83,6 +88,7 @@ export default function SignUp() {
             </div>
           </div>
           <label htmlFor="email">{t("email")}</label>
+
           <div className="passinputcontainer">
             <input
               type="email"
@@ -94,6 +100,7 @@ export default function SignUp() {
 
             {errors.email && <p className="error">{errors.email.message}</p>}
           </div>
+
           <label htmlFor="password">{t("password")}</label>
           <div className="passinputcontainer">
             <input
@@ -119,7 +126,13 @@ export default function SignUp() {
               />
             )}
           </div>
+          {exist && (
+            <p className="error" style={{ color: "red" }}>
+              User already exists! Login instead.
+            </p>
+          )}
         </div>
+
         <div className="middivsignin">
           <button type="submit">{t("Continuer")}</button>
         </div>
