@@ -5,7 +5,7 @@ import { FaSquareFacebook } from "react-icons/fa6";
 import { FaLinkedin } from "react-icons/fa";
 import { AiFillTikTok } from "react-icons/ai";
 import { Link } from "react-router-dom";
-import image from "../../assets/Logo.png";
+import image from "../../assets/logosim.png";
 
 export default function Component() {
   const { t } = useTranslation();

@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { CiGlobe, CiLogout, CiMenuBurger } from "react-icons/ci";
-import Logosim from "../../assets/Logo.png";
+import Logosim from "../../assets/logosim.png";
 
 import { FaUser } from "react-icons/fa";
 import { useState } from "react";
