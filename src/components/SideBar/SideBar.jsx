@@ -6,9 +6,9 @@ import { BsBorderStyle } from "react-icons/bs";
 import { BiSolidCategoryAlt } from "react-icons/bi";
 import { NavLink, useNavigate } from "react-router-dom";
 import "./SideBar.css";
-import Logo from "../../assets/Logo.png";
 import { LuNewspaper } from "react-icons/lu";
 import { IoMdStats } from "react-icons/io";
+import Logo from "../../assets/Logo.png";
 const SideBar = () => {
   const infos = [
     { icon: <IoHome />, text: "Home", link: "/admin/home" },
