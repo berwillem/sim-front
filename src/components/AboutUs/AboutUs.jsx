@@ -20,7 +20,7 @@ const AboutUs = () => {
       <ScrollAnimation
         className="topScroll"
         animateOnce={true}
-        duration={2}
+        duration={1}
         animateIn="fadeInRight"
       >
         <div className="aboutusfirst">
@@ -60,7 +60,7 @@ const AboutUs = () => {
         </div>
         <ScrollAnimation
           style={{ cursor: "auto" }}
-          duration={2.5}
+          duration={1}
           className="box"
           animateOnce={true}
           animateIn="fadeInLeft"

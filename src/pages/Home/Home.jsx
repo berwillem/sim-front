@@ -15,7 +15,7 @@ export default function Home() {
       </Helmet>
       <Swiper></Swiper>
       <AboutUs></AboutUs>
-      <ScrollAnimation animateOnce={true} duration={2} animateIn="fadeIn">
+      <ScrollAnimation animateOnce={true} duration={1} animateIn="fadeIn">
         <Cards title={"Maxshine"}></Cards>
       </ScrollAnimation>
       <FloatingWhatsApp

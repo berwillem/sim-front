@@ -36,7 +36,7 @@ export default function Cards() {
         animateOnce={true}
         className="productAnim"
         key={product.id}
-        duration={1.5}
+        duration={1}
         animateIn={product.animateIn}
       >
         <div className="cardsmain">

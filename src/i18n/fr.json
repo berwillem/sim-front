@@ -90,5 +90,16 @@
   "errorMessage": {
     "title": "Oups...",
     "text": "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "tool": {
+    "header1_1": "Outillage Professionnel de Qualité",
+    "description_1": "SYM Industrie vous offre des outils professionnels de marques prestigieuses comme Milwaukee, garantissant performance et durabilité pour toutes vos applications industrielles.",
+    "header1_2": "Solutions de Fixation de Qualité Supérieure",
+    "description_2": "SYM Industrie vous offre des systèmes de fixation robustes et fiables pour toutes vos applications industrielles, garantissant performance et durabilité.",
+    "header1_3": "Excellence en Detailing Automobile",
+    "description_3": "SYM Industrie fournit des équipements de detailing de marques renommées, assurant une finition parfaite et un entretien supérieur pour vos véhicules."
+  },
+  "button": {
+    "learn_more": "En savoir plus"
   }
 }

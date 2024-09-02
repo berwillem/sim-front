@@ -90,5 +90,17 @@
   "errorMessage": {
     "title": "Oops...",
     "text": "Something went wrong. Please try again."
+  },
+
+  "tool": {
+    "header1_1": "Professional Tools at Excellent Quality",
+    "description_1": "SYM Industrie offers you professional tools from prestigious brands such as Milwaukee, ensuring performance and durability for all your industrial applications.",
+    "header1_2": "Superior Quality Fastening Solutions",
+    "description_2": "SYM Industrie offers you robust and reliable fastening systems for all your industrial applications, ensuring performance and durability.",
+    "header1_3": "Automobile Detailing Excellence",
+    "description_3": "SYM Industrie provides detailing equipment from renowned brands, ensuring a flawless finish and superior maintenance for your vehicles."
+  },
+  "button": {
+    "learn_more": "Learn more"
   }
 }
