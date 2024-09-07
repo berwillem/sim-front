@@ -76,14 +76,14 @@
   width: 30px;
   height: 30px;
 
-  border: 2px solid black; /* Change this color to whatever you want */
+  border: 2px solid black;
   border-radius: 4px;
   outline: none;
 }
 
 .checkBox input:checked {
   background-color: #af1d1f;
-  border: 2px solid red; /* Change this color to whatever you want */
+  border: 2px solid red;
   border-radius: 4px;
   outline: none;
   accent-color: red;
@@ -95,7 +95,7 @@
   padding: 20px 0;
 }
 .checkBox li input:hover {
-  border: 2px solid red; /* Change this color to whatever you want */
+  border: 2px solid red;
   border-radius: 4px;
   outline: none;
 }
@@ -191,16 +191,16 @@
   display: flex;
   flex-direction: column;
   box-shadow: 5px 5px 10px rgba(73, 73, 73, 0.3);
-
+  gap: 34.5px;
   margin-bottom: 30px;
   min-height: calc(100% - 30px);
   width: 400px;
   padding: 40px 30px;
-  gap: 10px;
 }
 .adress {
   display: flex;
   flex-direction: column;
+  gap: 10px;
 }
 .infos {
   display: flex;
@@ -246,4 +246,97 @@
   font-size: 50px;
   color: #1d1d1d;
   font-family: "Source Sans 3", sans-serif;
+}
+
+.ALL {
+  padding: 0 30px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Tablet Devices */
+@media (max-width: 768px) {
+  .ALL {
+    padding: 0 20px;
+  }
+
+  .infos {
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .info1,
+  .map {
+    width: 100%;
+  }
+  .titles p {
+    width: 80%;
+  }
+  .titleContact {
+    padding: 0 20px;
+  }
+}
+
+/* Mobile Devices */
+@media (max-width: 480px) {
+  .ALL {
+    padding: 0 10px;
+  }
+
+  .titles h2 {
+    font-size: 36px;
+  }
+
+  .titles h4 {
+    font-size: 18px;
+  }
+
+  .forinput {
+    grid-template-columns: 1fr;
+  }
+
+  .inputText input,
+  .inputText select,
+  .inputText textarea {
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  button {
+    width: 100%;
+    font-size: 16px;
+  }
+  .titles p {
+    width: 100%;
+  }
+
+  .contactuscarre {
+    width: 100%;
+  }
+
+  .info1 {
+    width: 100%;
+    padding: 20px;
+  }
+
+  .map {
+    width: 100%;
+  }
+
+  .checkBox ul {
+    width: 100%;
+  }
+  .titleContact h1 {
+    font-size: 40px;
+  }
+  .titleContact {
+    padding: 0;
+    justify-content: center;
+    margin-bottom: 15px;
+  }
 }

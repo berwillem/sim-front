@@ -40,10 +40,9 @@ const PasswordReset = () => {
   };
   return (
     <>
-     <Helmet>
-            <title>Reste Password </title>
-         
-        </Helmet>
+      <Helmet>
+        <title>Reset Password </title>
+      </Helmet>
       <div className="password-reset">
         <div className="password-reset-header">
           <h1 className="password-reset-title">Reset Password</h1>
@@ -73,6 +72,7 @@ const PasswordReset = () => {
               onChange={(e) => setConfirmPassword(e.target.value)}
             />
           </div>
+
           <button className="password-reset-button" type="submit">
             Reset Password
           </button>
