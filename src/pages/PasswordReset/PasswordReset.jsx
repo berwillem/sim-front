@@ -41,7 +41,7 @@ const PasswordReset = () => {
   return (
     <>
       <Helmet>
-        <title>Reset Password </title>
+        <title>Reset Password</title>
       </Helmet>
       <div className="password-reset">
         <div className="password-reset-header">
