@@ -52,6 +52,7 @@ const buttonStyle = {
 
 const OrderModal = ({ open, onClose, product }) => {
   const { t } = useTranslation();
+  const { i18n } = useTranslation();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth?.user);
   const isAuth = useSelector((state) => state.auth?.isLoggedIn);
@@ -118,6 +119,7 @@ const OrderModal = ({ open, onClose, product }) => {
         });
       });
   };
+  const title = i18n.language === "fr" ? product.titlefr : product.titleen;
 
   return (
     <Modal open={open} onClose={onClose}>
@@ -159,7 +161,7 @@ const OrderModal = ({ open, onClose, product }) => {
               type="text"
               placeholder={t("product")}
               style={inputStyle}
-              value={product.titlefr}
+              value={title}
               readOnly
             />
             <input

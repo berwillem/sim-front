@@ -19,7 +19,7 @@ export default function Component() {
           <p>{t("footerAbout")}</p>
         </div>
         <div className="footeraboutsection">
-          <h3 className="">About Sym Industries</h3>
+          <h3 className="">{t("AboutSym")}</h3>
           <ul className="">
             <li>
               <a
@@ -32,7 +32,7 @@ export default function Component() {
                 href="#aboutus"
               >
                 <ChevronRightIcon className="" />
-                Our Company
+                {t("Our Company")}
               </a>
             </li>
             <li>
@@ -46,13 +46,13 @@ export default function Component() {
                 }}
               >
                 <ChevronRightIcon className="" />
-                Products
+                {t("productsNav")}
               </Link>
             </li>
 
             <li>
               <ChevronRightIcon className="" />
-              Download Catalog
+              {t("Download Catalog")}
             </li>
           </ul>
         </div>

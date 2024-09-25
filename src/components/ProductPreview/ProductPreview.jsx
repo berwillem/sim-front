@@ -13,16 +13,23 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { LiaTimesCircleSolid } from "react-icons/lia";
 import OrderModal from "../OrderModal/OrderModal";
+import { useTranslation } from "react-i18next";
 
 export default function App({ product, functio, language }) {
+  const { t } = useTranslation();
   const [thumbsSwiper, setThumbsSwiper] = useState("null");
   const [openModal, setOpenModal] = useState(false);
+
   const handleOpenModal = () => {
     setOpenModal(true);
   };
   const handleCloseModal = () => {
     setOpenModal(false);
   };
+
+  const typeTitle =
+    language === "fr" ? product.type?.titlefr : product?.type?.titleen;
+
   return (
     <>
       <div className="menuopenforfinal">
@@ -47,32 +54,15 @@ export default function App({ product, functio, language }) {
                 </SwiperSlide>
               ))}
             </Swiper>
-
-            {/* <Swiper
-              onSwiper={setThumbsSwiper}
-              loop={true}
-              spaceBetween={10}
-              slidesPerView={4}
-              freeMode={true}
-              watchSlidesProgress={true}
-              modules={[FreeMode, Navigation, Thumbs]}
-              className="mySwiper11"
-            >
-              {product?.images?.map((image, index) => (
-                <SwiperSlide key={index}>
-                  <img src={image} />
-                </SwiperSlide>
-              ))}
-            </Swiper> */}
           </div>
           <h1> {language === "fr" ? product?.titlefr : product?.titleen} </h1>
           <h4>Gamme : {product?.gamme}</h4>
           <h4>Marque : {product?.marque}</h4>
-          <h4>Type : {product?.type.titlefr}</h4>
+          <h4>Type : {typeTitle}</h4>
           <p className="textpreview">Description : {product?.description}</p>
           <h2>{product?.price} DA</h2>
 
-          <button onClick={handleOpenModal}>Acheter</button>
+          <button onClick={handleOpenModal}>{t("order")}</button>
         </div>
       </div>
       <OrderModal

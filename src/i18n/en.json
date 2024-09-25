@@ -102,5 +102,19 @@
   },
   "button": {
     "learn_more": "Learn more"
-  }
+  },
+  "order": "Order",
+  "plus d'infos": "More infos",
+  "produitdisponibles": "Available products",
+  "aucunproduitdisponible": "No products available",
+  "see more": "See more",
+  "aboutus_title": "SYM INDUSTRIE YOUR PARTNER IN TOOLS",
+  "play_video": "Play video",
+  "our_values": "OUR VALUES",
+  "economic": "ECONOMIC",
+  "quality": "QUALITY",
+  "efficient": "EFFICIENT",
+  "our company": "Our Company",
+  "Download Catalog": "Download Catalog",
+  "AboutSym": "About Sym Industrie"
 }

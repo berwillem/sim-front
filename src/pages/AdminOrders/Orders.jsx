@@ -23,6 +23,7 @@ import moment from "moment";
 import { LuUserX } from "react-icons/lu";
 
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 const Orders = () => {
   const [Commandes, setCommandes] = useState([]);
@@ -104,6 +105,8 @@ const Orders = () => {
       setValidCommandesCount(res.data.count);
     });
   }, [handleDelet]);
+  const { i18n } = useTranslation();
+
   return (
     <>
       <div className="admin-stat">
@@ -167,6 +170,11 @@ const Orders = () => {
           </div>
 
           {Commandes?.map((Commande, index) => {
+            const title =
+              i18n.language === "fr"
+                ? Commande.product?.titlefr
+                : Commande.product?.titleen;
+
             return (
               <ul
                 key={index}
@@ -177,9 +185,7 @@ const Orders = () => {
                 <li className="ligne">
                   <span>{Commande.num}</span>
                   <span>
-                    {Commande.product
-                      ? Commande.product?.titlefr
-                      : "Produit supprimé"}
+                    {Commande.product ? title : "Produit supprimé"}
                   </span>{" "}
                   <span>
                     {Commande.user ? (

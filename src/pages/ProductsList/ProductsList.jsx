@@ -11,10 +11,12 @@ import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 import { Helmet } from "react-helmet";
 import Fixation from "../../assets/fasteners-banner.webp";
 import Outillage from "../../assets/outillagelastv.jpg";
+import { useTranslation } from "react-i18next";
 // import Detailling from "../../assets/detailing.webp";
 
 const ProductsList = () => {
   const currentLanguage = i18n.language;
+  const { t } = useTranslation();
 
   const { CategoryId } = useParams();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -84,14 +86,14 @@ const ProductsList = () => {
         <div className="gobackproduct-final">
           <Link to="/products">
             <PiKeyReturnLight size={30} />
-            Products
+            {t("productsNav")}
           </Link>
         </div>
         <div className="familycont-final">
           <h1>
             {products.length < 1
-              ? "aucun produit disponible"
-              : "Produits disponibles"}
+              ? t("aucunproduitdisponible")
+              : t("produitdisponibles")}
           </h1>
           <h2
             style={{
@@ -155,7 +157,7 @@ const ProductsList = () => {
                       setData(item);
                     }}
                   >
-                    {"Plus d'info"}
+                    {t("plus d'infos")}
                   </h3>
                 </div>
               </>

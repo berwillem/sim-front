@@ -12,9 +12,11 @@ import image from "../../assets/logo1.png";
 import pic1 from "../../assets/pic1.webp";
 import pic2 from "../../assets/pic2.webp";
 import pic3 from "../../assets/pic3.webp";
+
 const AboutUs = () => {
   const { t } = useTranslation();
   const [play, setPlay] = useState(false);
+
   return (
     <section className="aboutus" id="aboutus">
       <ScrollAnimation
@@ -35,6 +37,7 @@ const AboutUs = () => {
           </div>
         </div>
       </ScrollAnimation>
+
       {play && (
         <div className="react-player">
           <ReactPlayer
@@ -56,8 +59,9 @@ const AboutUs = () => {
           <LazyLoadImage src={bgimg} alt="" className="imgoverlay" />
           <div className="overlayimgabout"></div>
           <GoPlay className="goplay" size={100} color="white"></GoPlay>
-          <h1>Play video</h1>
+          <h1>{t("play_video")}</h1>
         </div>
+
         <ScrollAnimation
           style={{ cursor: "auto" }}
           duration={1}
@@ -66,20 +70,20 @@ const AboutUs = () => {
           animateIn="fadeInLeft"
         >
           <div className="aboutussecondbox">
-            <h1>SYM INDUSTRIE VOTRE PARTENAIRE EN OUTILLAGE</h1>
-            <h2>NOS VALEURS : </h2>
+            <h1>{t("aboutus_title")}</h1>
+            <h2>{t("our_values")}</h2>
             <div className="aboutussecondboximg">
               <div className="overlayimg">
                 <LazyLoadImage src={pic1} alt="icon" />
-                <p>ECONOMIQUE</p>
+                <p>{t("economic")}</p>
               </div>
               <div className="overlayimg">
                 <LazyLoadImage src={pic2} alt="icon" />
-                <p> QUALITY</p>
+                <p>{t("quality")}</p>
               </div>
               <div className="overlayimg">
                 <LazyLoadImage src={pic3} alt="icon" />
-                <p>TRUST</p>
+                <p>{t("efficient")}</p>
               </div>
             </div>
           </div>

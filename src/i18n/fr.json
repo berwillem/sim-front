@@ -101,5 +101,19 @@
   },
   "button": {
     "learn_more": "En savoir plus"
-  }
+  },
+  "order": "Commander",
+  "plus d'infos": "Plus d'infos",
+  "produitdisponibles": "Produits disponibles",
+  "aucunproduitdisponible": "Aucun produit disponible",
+  "see more": "Voir plus",
+  "play_video": "Lire la vidéo",
+  "aboutus_title": "SYM INDUSTRIE VOTRE PARTENAIRE EN OUTILLAGE",
+  "our_values": "NOS VALEURS",
+  "economic": "ÉCONOMIQUE",
+  "quality": "QUALITÉ",
+  "efficient": "EFFICACE",
+  "Download Catalog": "Télécharger le catalogue",
+  "Our Company": "Notre société",
+  "AboutSym": "A propos de Sym Industrie"
 }

@@ -8,10 +8,13 @@ import { Helmet } from "react-helmet";
 import Fixation from "../../assets/fasteners-banner.webp";
 import Outillage from "../../assets/outillagelastv.jpg";
 import Detailling from "../../assets/detaillingbanner.jpeg";
+import { useTranslation } from "react-i18next";
 // import Detailling from "../../assets/sliderImages/tool2.jpeg";
 
 const CategoriesList = () => {
   const { famillId } = useParams();
+  const { t } = useTranslation();
+  const { i18n } = useTranslation();
   const [famille, setFamille] = useState([]);
   useEffect(() => {
     getFamilleById(famillId)
@@ -22,15 +25,14 @@ const CategoriesList = () => {
         console.error("Error fetching products:", error);
       });
   }, [famillId]);
+  const title = i18n.language === "en" ? famille.titleen : famille.titlefr;
   return (
     <>
       <Helmet>
         <title>Product Categorie</title>
       </Helmet>
       <Navbar></Navbar>
-      <div
-     className="familleheaderbig"
-      >
+      <div className="familleheaderbig">
         <div
           className="famille-header"
           style={{
@@ -44,37 +46,27 @@ const CategoriesList = () => {
           <div className="gobackproduct">
             <Link to="/products">
               <PiKeyReturnLight size={30} />
-              PRODUCTS
+              {t("productsNav")}
             </Link>
           </div>
           <div className="familycont">
-            <h1>{famille.titlefr}</h1>
-            {/* <h2
-            style={{
-              color: "#5D6164",
-              fontSize: "16px",
-              width: "40%",
-              fontWeight: "100",
-            }}
-          >
-            {famille?.categories?.map((category) => {
-              return `${category.titlefr} / `;
-            })}
-          </h2> */}
+            <h1>{title}</h1>
           </div>
         </div>
       </div>
 
       <div className="gridfamille">
         {famille?.categories?.map((category) => {
+          const title =
+            i18n.language === "en" ? category.titleen : category.titlefr;
           return (
             <>
               <div key={category._id} className="productitempreview">
                 <img src={category.image} alt="item preview" />
                 <div>
-                  <h1>{category.titlefr}</h1>
+                  <h1>{title}</h1>
                   <Link to={`/products/categorie/${category._id}`}>
-                    See more{" "}
+                    {t("see more")}
                   </Link>
                 </div>
               </div>
