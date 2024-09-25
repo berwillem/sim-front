@@ -41,6 +41,7 @@ import UserCommandes from "./pages/UserCommandes/UserCommandes.jsx";
 import AdminStat from "./pages/AdminStat/AdminStat.jsx";
 
 import axios from "axios";
+import AboutUsPage from "./pages/AboutUsPage/AboutUsPage.jsx";
 
 axios.defaults.withCredentials = true;
 
@@ -58,7 +59,10 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    children: [{ path: "/", element: <App /> }],
+    children: [
+      { path: "", element: <App /> },
+      { path: "about", element: <AboutUsPage /> },
+    ],
   },
   {
     path: "contact",

@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { CiGlobe, CiLogout, CiMenuBurger } from "react-icons/ci";
 import Logosim from "../../assets/logosim.png";
@@ -14,12 +14,6 @@ import { useTranslation } from "react-i18next";
 
 export default function Navbar() {
   const { t } = useTranslation();
-  const scrollTo = () => {
-    window.scrollTo({
-      top: 500,
-      behavior: "smooth",
-    });
-  };
   const navigate = useNavigate();
   const isauth = useSelector((state) => state.auth?.isLoggedIn);
   const userId = useSelector((state) => state.auth?.user?._id);
@@ -31,22 +25,17 @@ export default function Navbar() {
     <>
       <nav className="navbar">
         <div className="navbarfirst">
-          <img
-            src={Logosim}
-            alt="Logo"
-            className="main-logo"
-            onClick={() => navigate("/")}
-          />
+          <Link to={"/"}>
+            <img
+              src={Logosim}
+              alt="Logo"
+              className="main-logo"
+              onClick={() => navigate("/")}
+            />
+          </Link>
 
           <NavLink to={"/"}>{t("homeNav")}</NavLink>
-          <NavLink
-            onClick={async () => {
-              await navigate("/");
-              scrollTo();
-            }}
-          >
-            {t("about-usNav")}
-          </NavLink>
+          <NavLink to={"/about"}>{t("about-usNav")}</NavLink>
           <NavLink to={"/products"}>{t("productsNav")}</NavLink>
           <NavLink to={"/contact"}>{t("contact-usNav")}</NavLink>
         </div>
@@ -105,15 +94,7 @@ export default function Navbar() {
             <NavLink to={"/"} onClick={() => setMenuOpen(false)}>
               {t("homeNav")}
             </NavLink>
-            <NavLink
-              onClick={async () => {
-                setMenuOpen(false);
-                await navigate("/");
-                scrollTo();
-              }}
-            >
-              {t("about-usNav")}
-            </NavLink>
+            <NavLink to={"/about"}>{t("about-usNav")}</NavLink>
             <NavLink to={"/products"} onClick={() => setMenuOpen(false)}>
               {t("productsNav")}
             </NavLink>
