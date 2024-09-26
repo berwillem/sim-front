@@ -6,9 +6,11 @@ import { GrUpgrade } from "react-icons/gr";
 import { getUserById, updateUserTour } from "../../services/usersServices";
 import Joyride from "react-joyride";
 import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 const MiniNav = () => {
   const { userId } = useParams();
   const [tour, setTour] = useState(true);
+  const authState = useSelector((state) => state.auth);
   const steps = [
     {
       target: ".my-first-step",
@@ -17,7 +19,8 @@ const MiniNav = () => {
     },
     {
       target: ".my-second-step",
-      content: "Vous pouvez voir vos commandes en cours et en attente sur la page commandes.",
+      content:
+        "Vous pouvez voir vos commandes en cours et en attente sur la page commandes.",
     },
     {
       target: ".my-third-step",
@@ -26,7 +29,11 @@ const MiniNav = () => {
     },
   ];
   useEffect(() => {
-    getUserById(userId).then((res) => setTour(res.data.tour));
+    if (authState.user.role === "admin") {
+      setTour(true);
+    } else {
+      getUserById(userId).then((res) => setTour(res.data.tour));
+    }
   }, []);
 
   return (
@@ -40,7 +47,7 @@ const MiniNav = () => {
           disableOverlayClose={true}
           disableScrolling={true}
           callback={(data) => {
-            if (data.status === "finished") {
+            if (data.status === "finished" && authState.user.role !== "admin") {
               updateUserTour(userId);
             }
           }}
