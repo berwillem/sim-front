@@ -74,7 +74,7 @@ const OrderModal = ({ open, onClose, product }) => {
       case "bronze":
         return price * 0.99;
       case "silver":
-        return price * 0.98;
+        return price * 0.97;
       case "gold":
         return price * 0.95;
       case "diamond":

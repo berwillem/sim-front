@@ -67,7 +67,6 @@ const UserCommandes = () => {
                 <div className="info-stat infostat2 ">
                   <li>Product image</li>
                   <li>Product Name</li>
-
                   <li>Quantity</li>
                   <li>createdAt</li>
                   <li>Status</li>
@@ -115,9 +114,13 @@ const UserCommandes = () => {
                         </>
                       )}
                     </span>
-                    <DeleteButon
-                      handledelet={() => handleDelet(Commande._id)}
-                    ></DeleteButon>
+                    {Commande.isValid ? (
+                      <div style={{ width: "60px" }}></div>
+                    ) : (
+                      <DeleteButon
+                        handledelet={() => handleDelet(Commande._id)}
+                      ></DeleteButon>
+                    )}
                   </li>
                   <li className="ligne forphone">
                     <span className="imgprevieforcommandespan">
@@ -147,9 +150,11 @@ const UserCommandes = () => {
                         </>
                       )}
                     </span>
-                    <DeleteButon
-                      handledelet={() => handleDelet(Commande._id)}
-                    ></DeleteButon>
+                    {!Commande.isValid && (
+                      <DeleteButon
+                        handledelet={() => handleDelet(Commande._id)}
+                      ></DeleteButon>
+                    )}
                   </li>
                 </ul>
               );

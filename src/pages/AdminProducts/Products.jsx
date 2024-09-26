@@ -41,12 +41,6 @@ const Products = () => {
   const [filtersApplied, setFiltersApplied] = useState(false);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    getTotalProductsCount().then((res) => {
-      setTotalProductCount(res.data.count);
-    });
-  }, [totalProductCount]);
-
   const fetchProducts = (page) => {
     getAllProducts(
       page,
@@ -83,12 +77,17 @@ const Products = () => {
         console.error("Error fetching familles:", error);
       });
   };
+  useEffect(() => {
+    getTotalProductsCount().then((res) => {
+      setTotalProductCount(res.data.count);
+    });
+  }, [totalProductCount, products]);
 
   useEffect(() => {
     fetchProducts(page);
     fetchCategories();
     fetchFamilles();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   const handleDelet = (productId) => {

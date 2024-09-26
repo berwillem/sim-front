@@ -6,7 +6,6 @@ import { CiSquareCheck } from "react-icons/ci";
 import { IoIosTimer } from "react-icons/io";
 import { TbGitBranchDeleted } from "react-icons/tb";
 import { useEffect, useState } from "react";
-import { RiPassValidFill, RiPassValidLine } from "react-icons/ri";
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import Swal from "sweetalert2";
 import {
@@ -49,6 +48,7 @@ const Orders = () => {
     setPage(value);
     fetchCommandes(value, filter);
   };
+
   const handleDelet = (CommandeId) => {
     deleteCommande(CommandeId)
       .then(() => {
@@ -126,12 +126,8 @@ const Orders = () => {
             title={"Commandes en attente"}
             stat={pendingCommandesCount}
           />
-          <AdminMiniCard
-            icon={<TbGitBranchDeleted />}
-            title={"Commandes supprimées"}
-            stat={"0"}
-          />
         </div>
+
         <FormControl
           variant="outlined"
           style={{ minWidth: 120 }}
@@ -151,88 +147,138 @@ const Orders = () => {
             <MenuItem value="false">Not Valid</MenuItem>
           </Select>
         </FormControl>
-
-        <div className="table-stat">
-          <div className="titre-stat">
-            <ul className="ligne commandeslist">
-              <div className="info-stat ">
-                <li>Command Number</li>
-                <li>Product</li>
-                <li>Fullname</li>
-                <li>Number</li>
-                <li>Quantity</li>
-                <li>Total Price</li>
-                <li>createdAt</li>
-              </div>
-              <li>Status</li>
-              <li>action</li>
-            </ul>
-          </div>
-
-          {Commandes?.map((Commande, index) => {
-            const title =
-              i18n.language === "fr"
-                ? Commande.product?.titlefr
-                : Commande.product?.titleen;
-
-            return (
-              <ul
-                key={index}
-                className={
-                  Commande.isValid ? "stores backgreen" : "stores backred"
-                }
-              >
-                <li className="ligne">
-                  <span>{Commande.num}</span>
-                  <span>
-                    {Commande.product ? title : "Produit supprimé"}
-                  </span>{" "}
-                  <span>
-                    {Commande.user ? (
-                      Commande.user.FirstName + " " + Commande.user.LastName
-                    ) : (
-                      <div className="flex">
-                        {" "}
-                        {Commande.client} <LuUserX />
-                      </div>
-                    )}
-                  </span>
-                  <span>{Commande.phoneNumber}</span>
-                  <span>{Commande.quantity}</span>
-                  <span>{Commande.totalPrice}</span>
-                  <span>
-                    {moment(Commande.createdAt).format("DD MMM YYYY")}
-                  </span>
-                  <span style={{ cursor: "pointer" }}>
-                    {Commande.isValid ? (
-                      <>
-                        <FaRegSquareCheck
-                          size={30}
-                          onClick={() => updateOrder(Commande._id)}
-                        />
-                      </>
-                    ) : (
-                      <>
-                        <FaRegSquareFull
-                          size={24}
-                          onClick={() => updateOrder(Commande._id)}
-                        />
-                      </>
-                    )}
-                  </span>
-                  <DeleteButon
-                    handledelet={() => handleDelet(Commande._id)}
-                  ></DeleteButon>
-                </li>
+        {Commandes.length !== 0 && (
+          <div className="table-stat">
+            <div className="titre-stat">
+              <ul className="ligne commandeslist">
+                <div
+                  className="info-stat "
+                  style={{ marginLeft: "0px", gap: "0px" }}
+                >
+                  <li>Command Number</li>
+                  <li>Product</li>
+                  <li>Fullname</li>
+                  <li>Number</li>
+                  <li>Quantity</li>
+                  <li>Total Price</li>
+                  <li>createdAt</li>
+                </div>
+                <li>Status</li>
+                <li>action</li>
               </ul>
-            );
-          })}
-        </div>
-        <Pagination
-          count={totalPages}
-          page={page}
-          onChange={handlePageChange}
-        />
+            </div>
+
+            {Commandes?.map((Commande, index) => {
+              const title =
+                i18n.language === "fr"
+                  ? Commande.product?.titlefr
+                  : Commande.product?.titleen;
+
+              return (
+                <ul
+                  key={index}
+                  className={
+                    Commande.isValid ? "stores backgreen" : "stores backred"
+                  }
+                >
+                  <li className="ligne">
+                    <span>{Commande.num}</span>
+                    <span>
+                      {Commande.product ? title : "Produit supprimé"}
+                    </span>{" "}
+                    <span>
+                      {Commande.user ? (
+                        Commande.user.FirstName + " " + Commande.user.LastName
+                      ) : (
+                        <div className="flex">
+                          {" "}
+                          {Commande.client} <LuUserX />
+                        </div>
+                      )}
+                    </span>
+                    <span>{Commande.phoneNumber}</span>
+                    <span>{Commande.quantity}</span>
+                    <span>
+                      {new Intl.NumberFormat("fr-FR", {
+                        style: "currency",
+                        currency: "DZD",
+                        minimumFractionDigits: 0,
+                        maximumFractionDigits: 0,
+                      }).format(Commande.totalPrice)}
+                    </span>
+                    <span>
+                      {moment(Commande.createdAt).format("DD MMM YYYY")}
+                    </span>
+                    <span style={{ cursor: "pointer" }}>
+                      {Commande.isValid ? (
+                        <>
+                          <FaRegSquareCheck
+                            size={30}
+                            onClick={() => updateOrder(Commande._id)}
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <FaRegSquareFull
+                            size={24}
+                            onClick={() => updateOrder(Commande._id)}
+                          />
+                        </>
+                      )}
+                    </span>
+                    <DeleteButon
+                      handledelet={() => handleDelet(Commande._id)}
+                    ></DeleteButon>
+                  </li>
+                </ul>
+              );
+            })}
+          </div>
+        )}
+
+        {Commandes.length === 0 && filter === "all" && (
+          <div
+            style={{
+              textAlign: "center",
+              marginTop: "50px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "20px",
+            }}
+          >
+            <h1>Aucune commande</h1>
+            <h3>Vous verrez toutes vos commandes ici</h3>
+          </div>
+        )}
+
+        {Commandes.length === 0 && filter !== "all" && (
+          <div
+            style={{
+              textAlign: "center",
+              marginTop: "50px",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              gap: "20px",
+            }}
+          >
+            <h1>{`Aucune commande ${
+              filter === "true" ? "valide" : "non valide"
+            }`}</h1>
+            <h3>Vous verrez toutes vos commandes ici</h3>
+          </div>
+        )}
+
+        {Commandes.length !== 0 && (
+          <Pagination
+            count={totalPages}
+            page={page}
+            onChange={handlePageChange}
+          />
+        )}
       </div>
     </>
   );

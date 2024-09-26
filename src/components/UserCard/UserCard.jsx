@@ -83,6 +83,7 @@ const UserCard = () => {
         </div>
         <div className="level-bar22">
           <LevelBar level={levelData} />
+          <span>{levelData?.points.toFixed(0)} points</span>
         </div>
       </div>
     </>
