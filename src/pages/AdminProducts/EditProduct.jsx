@@ -73,7 +73,7 @@ const EditProduct = () => {
     fetchTypes();
   }, []);
 
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, reset } = useForm({
     defaultValues: {
       titre: product?.title,
       gamme: product?.gamme,
@@ -86,13 +86,31 @@ const EditProduct = () => {
       images: "",
     },
   });
-  const [activeImage, setActiveImage] = useState(0)
+
+  useEffect(() => {
+    reset({
+      titre: product?.title || "",
+      gamme: product?.gamme || "",
+      marque: product?.marque || "",
+      famille: product?.famille || "",
+      type: product?.type || "",
+      categorie: product?.category || "",
+      description: product?.description || "",
+      prix: product?.price || "",
+      images: "",
+    });
+    setSelectedCategorie(product?.category);
+    setSelectedFamille(product?.famille);
+    setSelectedType(product?.type);
+  }, [product, reset]);
+
+  const [activeImage, setActiveImage] = useState(0);
   const onSubmit = (data) => {
     const form = new FormData();
     form.append("famille", selectedFamille?._id);
     form.append("categorie", selectedCategorie?._id);
     form.append("type", selectedType?._id);
-    images.forEach((image) => form.append("images", image.file||image));
+    images.forEach((image) => form.append("images", image.file || image));
     form.append("titleen", data.titleen);
     form.append("titlefr", data.titlefr);
     form.append("prix", data.prix);
@@ -100,7 +118,6 @@ const EditProduct = () => {
     form.append("gamme", data.gamme);
     form.append("description", data.description);
 
-    
     updateProduct(productid, form)
       .then((res) => {
         toast.success(res.data?.message);
@@ -136,7 +153,16 @@ const EditProduct = () => {
           onChange={handleChange}
           multiple
         />
-        <button className="delete-image-button" onClick={() => setImages((state)=>state.filter((_,index)=>(index!==activeImage)))}>Delete</button>
+        <button
+          className="delete-image-button"
+          onClick={() =>
+            setImages((state) =>
+              state.filter((_, index) => index !== activeImage)
+            )
+          }
+        >
+          Delete
+        </button>
         <SwiperProduct
           onImageChange={setActiveImage}
           previews={
