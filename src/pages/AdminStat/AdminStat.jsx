@@ -11,6 +11,7 @@ export default function AdminStat() {
   const [countBronze, setCountBronze] = useState(0);
   const [countSilver, setCountSilver] = useState(0);
   const [countGold, setCountGold] = useState(0);
+  const [countDiamond, setCountDiamond] = useState(0);
 
   const [ordersByFamilyData, setOrdersByFamilyData] = useState([]);
 
@@ -57,6 +58,9 @@ export default function AdminStat() {
       setCountGold(levels.filter((level) => level.value === "gold").length);
       setCountSilver(levels.filter((level) => level.value === "silver").length);
       setCountBronze(levels.filter((level) => level.value === "bronze").length);
+      setCountDiamond(
+        levels.filter((level) => level.value === "diamond").length
+      );
     });
   };
 
@@ -66,9 +70,6 @@ export default function AdminStat() {
   }, []);
   return (
     <div className="statPage">
-      {/* <div className="title">
-        <h2>Dashboard</h2>
-      </div> */}
       <div className="statG">
         <div className="chart">
           <div className="firstCol">
@@ -76,6 +77,7 @@ export default function AdminStat() {
               <h1>Dashboard</h1>
             </div>
             <div className="statBox">
+              <h1>Users Levels</h1>
               <PieChart
                 series={[
                   {
@@ -84,19 +86,25 @@ export default function AdminStat() {
                         id: 0,
                         value: countBronze,
                         label: "Bronze",
-                        color: "#FF5733",
+                        color: "#CD7F32",
                       },
                       {
                         id: 1,
                         value: countSilver,
                         label: "Silver",
-                        color: "#C0C0C0",
+                        color: "#D3D3D3",
                       },
                       {
                         id: 2,
                         value: countGold,
                         label: "Gold",
-                        color: "#FFD700",
+                        color: "#ffd700",
+                      },
+                      {
+                        id: 3,
+                        value: countDiamond,
+                        label: "Diamond",
+                        color: "#B9F2FF",
                       },
                     ],
                     innerRadius: 30,
@@ -106,7 +114,7 @@ export default function AdminStat() {
                   },
                 ]}
                 width={300}
-                height={200}
+                height={160}
               />
             </div>
           </div>

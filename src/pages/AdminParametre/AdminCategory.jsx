@@ -32,14 +32,14 @@ const AdminCategory = () => {
 
   useEffect(() => {
     fetchCategories();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   useEffect(() => {
     getTotalCategoriesCount().then((res) => {
       setTotalCategoriesCount(res.data.count);
     });
-  }, []);
+  }, [categories]);
 
   const handlePageChange = (event, value) => {
     setPage(value);
