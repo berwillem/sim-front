@@ -7,9 +7,11 @@ import { getUserById, updateUserTour } from "../../services/usersServices";
 import Joyride from "react-joyride";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
+import { useTranslation } from "react-i18next";
 const MiniNav = () => {
   const { userId } = useParams();
   const [tour, setTour] = useState(true);
+  const { t } = useTranslation();
   const authState = useSelector((state) => state.auth);
   const steps = [
     {
@@ -63,12 +65,12 @@ const MiniNav = () => {
           </Link>
           <Link to={`/profile/${userId}/commandes`} className="my-second-step">
             <li>
-              Commandes <GrDeliver />
+              {t("commandes")} <GrDeliver />
             </li>
           </Link>
           <Link to={`/profile/${userId}/levels`} className="my-third-step">
             <li>
-              Levels <GrUpgrade />
+              {t("levels")} <GrUpgrade />
             </li>
           </Link>
         </ul>

@@ -15,6 +15,7 @@ import {
   getAllTypes,
 } from "../../services/parametresServices";
 import { useNavigate, useParams } from "react-router-dom";
+import { CircularProgress } from "@mui/material";
 
 const EditProduct = () => {
   const [categories, setCategories] = useState([]);
@@ -25,6 +26,7 @@ const EditProduct = () => {
   const [selectedType, setSelectedType] = useState(null);
   const [product, setProduct] = useState({});
   const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const { productid } = useParams();
   useEffect(() => {
@@ -117,7 +119,7 @@ const EditProduct = () => {
     form.append("marque", data.marque);
     form.append("gamme", data.gamme);
     form.append("description", data.description);
-
+    setLoading(true);
     updateProduct(productid, form)
       .then((res) => {
         toast.success(res.data?.message);
@@ -271,7 +273,11 @@ const EditProduct = () => {
                   </div>
                   <div className="forlabeladd">
                     <button type="submit" className="btnred">
-                      Edit product
+                      {loading ? (
+                        <CircularProgress size={25} color="inherit" />
+                      ) : (
+                        "Edit product"
+                      )}
                     </button>
                   </div>
                   <div className="text-center"></div>

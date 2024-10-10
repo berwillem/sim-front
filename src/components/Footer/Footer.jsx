@@ -22,18 +22,20 @@ export default function Component() {
           <h3 className="">{t("AboutSym")}</h3>
           <ul className="">
             <li>
-              <a
+
+              <Link
+                to="/about"
                 style={{
+                
                   textDecoration: "none",
                   display: "flex",
                   alignItems: "center",
                   color: "white",
                 }}
-                href="#aboutus"
               >
                 <ChevronRightIcon className="" />
                 {t("Our Company")}
-              </a>
+              </Link>
             </li>
             <li>
               <Link

@@ -1,5 +1,5 @@
 import "./AboutUsPage.css";
-import image from "../../assets/logo1.png";
+import image from "../../assets/logo2.png";
 import { useTranslation } from "react-i18next";
 import LogoCarousel from "../../components/LogoCarouselle/LogoCarousel";
 
@@ -9,7 +9,7 @@ export default function AboutUsPage() {
   return (
     <>
       <div>
-        <div className="aboutusfirst">
+        <div className="aboutusfirst" style={{ marginTop: "50px" }}>
           <div className="aboutusimg">
             <img src={image} alt="loading" />
           </div>

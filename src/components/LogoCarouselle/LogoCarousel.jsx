@@ -8,14 +8,12 @@ import logo2 from "../../assets/partners/elringlogo.png";
 import logo3 from "../../assets/partners/ESPIROFLEX.png";
 import logo4 from "../../assets/partners/febilogo.jpg";
 import logo5 from "../../assets/partners/maxshinelogo.png";
-import logo6 from "../../assets/partners/maydubellogo.png";
 import logo7 from "../../assets/partners/MilwaukeeLogo.webp";
 import logo8 from "../../assets/partners/netexlogo.jpg";
 import logo9 from "../../assets/partners/normholdinglogo.jpg";
 import logo10 from "../../assets/partners/omegacivatalogo.jpg";
 import logo11 from "../../assets/partners/saragrouplogo.jpg";
 import logo12 from "../../assets/partners/spitlogo.png";
-import logo13 from "../../assets/partners/starklips.png";
 import { useTranslation } from "react-i18next";
 import Marquee from "react-fast-marquee";
 
@@ -24,12 +22,12 @@ const LogoCarousel = () => {
 
   return (
     <>
-      <h1 style={{ textAlign: "center", margin: "50px" }}>
+      <h1 style={{ textAlign: "center", marginTop: "50px" }}>
         {t("dicoverpartners")}
       </h1>
 
       <Marquee
-        style={{ height: "365px", overflow: "hidden" }}
+        style={{ height: "310px", overflow: "hidden", marginBottom: "50px" }}
         // gradient={false}
         speed={120}
         className="marquee"
@@ -39,14 +37,12 @@ const LogoCarousel = () => {
         <img src={logo3} alt="Brand 3" />
         <img src={logo4} alt="Brand 4" />
         <img src={logo5} alt="Brand 5" />
-        <img src={logo6} alt="Brand 6" />
         <img src={logo7} alt="Brand 7" />
         <img src={logo8} alt="Brand 8" />
         <img src={logo9} alt="Brand 9" />
         <img src={logo10} alt="Brand 10" />
         <img src={logo11} alt="Brand 11" />
         <img src={logo12} alt="Brand 12" />
-        <img src={logo13} alt="Brand 13" />
       </Marquee>
     </>
   );

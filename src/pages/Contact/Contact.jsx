@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import "./Contact.css";
 import Navbar from "../../components/Navbar/Navbar";
 import Swal from "sweetalert2";
@@ -6,8 +6,31 @@ import { Helmet } from "react-helmet";
 import cover from "../../assets/contactcover.jpg";
 import { createContact } from "../../services/contactservices";
 import { useTranslation } from "react-i18next";
+import emailjs from "@emailjs/browser";
 
 const Contact = () => {
+  const form = useRef();
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm(
+        "service_j9929fh",
+        "template_qxk90lj",
+        form.current, // Passing the form reference
+        "JwvjYGDMFmRwbSfVI"
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+        },
+        
+        (error) => {
+          console.log("FAILED...", error.text);
+        }
+      );
+  };
+
   const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
@@ -15,7 +38,6 @@ const Contact = () => {
     message: "",
     name: "",
     companyName: "",
-    country: "Algeria",
     phonenumber: "",
     wilaya: "",
     agreement: false,
@@ -25,16 +47,21 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
+
     if (
       type === "checkbox" &&
       (name === "activityField" || name === "requestType")
     ) {
-      setFormData((prevData) => ({
-        ...prevData,
-        [name]: checked
-          ? [...prevData[name], value]
-          : prevData[name].filter((item) => item !== value),
-      }));
+      setFormData((prevData) => {
+        const updatedArray = checked
+          ? [...new Set([...prevData[name], value])] // Prevent duplicates
+          : prevData[name].filter((item) => item !== value); // Remove if unchecked
+
+        return {
+          ...prevData,
+          [name]: updatedArray,
+        };
+      });
     } else {
       setFormData((prevData) => ({
         ...prevData,
@@ -52,12 +79,10 @@ const Contact = () => {
       name: formData.name,
       companyName: formData.companyName,
       email: formData.email,
-      country: formData.country,
       message: formData.message,
       phonenumber: formData.phonenumber,
       wilaya: formData.wilaya,
     };
-
 
     createContact(contactData)
       .then(() => {
@@ -75,6 +100,19 @@ const Contact = () => {
           text: err.message,
         });
       });
+    sendEmail(e);
+    // Reset form data
+    setFormData({
+      email: "",
+      message: "",
+      name: "",
+      companyName: "",
+      phonenumber: "",
+      wilaya: "",
+      agreement: false,
+      activityField: [],
+      requestType: [],
+    });
   };
 
   return (
@@ -126,7 +164,7 @@ const Contact = () => {
             <div className="titleContact">
               <h1>{t("contactForm.title")}</h1>
             </div>
-            <div className="checkBox">
+            {/* <div className="checkBox">
               <ul>
                 <li className="checkTitle">
                   {t("contactForm.fields.activityField.label")}
@@ -230,8 +268,8 @@ const Contact = () => {
                   </label>
                 </li>
               </ul>
-            </div>
-            <form onSubmit={handleSubmit}>
+            </div> */}
+            {/* <form onSubmit={handleSubmit}>
               <div className="forinput" id="forinputsmall">
                 <div className="inputText">
                   <label>{t("contactForm.fields.name")}</label>
@@ -317,6 +355,212 @@ const Contact = () => {
                 />
                 <label>{t("contactForm.agreement.text")}</label>
               </div>
+              <button type="submit">{t("contactForm.submitButton")}</button>
+            </form> */}
+            <form ref={form} onSubmit={handleSubmit}>
+              <div className="checkBox">
+                <ul>
+                  <li className="checkTitle">
+                    {t("contactForm.fields.activityField.label")}
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="activityField"
+                      value="Société industrielle"
+                      onChange={handleChange}
+                    />
+                    <label>
+                      {t(
+                        "contactForm.fields.activityField.options.industrialCompany"
+                      )}
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="activityField"
+                      value="Particulier"
+                      onChange={handleChange}
+                    />
+                    <label>
+                      {t("contactForm.fields.activityField.options.individual")}
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="activityField"
+                      value="Revendeur"
+                      onChange={handleChange}
+                    />
+                    <label>
+                      {t("contactForm.fields.activityField.options.reseller")}
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="activityField"
+                      value="Autre"
+                      onChange={handleChange}
+                    />
+                    <label>
+                      {t("contactForm.fields.activityField.options.other")}
+                    </label>
+                  </li>
+                </ul>
+
+                <ul>
+                  <li className="checkTitle">
+                    {t("contactForm.fields.requestType.label")}
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="requestType"
+                      value="To find a distributor in your area"
+                      onChange={handleChange}
+                    />
+                    <label>
+                      {t(
+                        "contactForm.fields.requestType.options.findDistributor"
+                      )}
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="requestType"
+                      value="Demande devis"
+                      onChange={handleChange}
+                    />
+                    <label>
+                      {t("contactForm.fields.requestType.options.quoteRequest")}
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="requestType"
+                      value="Product information"
+                      onChange={handleChange}
+                    />
+                    <label>
+                      {t("contactForm.fields.requestType.options.productInfo")}
+                    </label>
+                  </li>
+                  <li>
+                    <input
+                      type="checkbox"
+                      name="requestType"
+                      value="Other"
+                      onChange={handleChange}
+                    />
+                    <label>
+                      {t("contactForm.fields.requestType.options.other")}
+                    </label>
+                  </li>
+                </ul>
+              </div>
+              <div className="forinput" id="forinputsmall">
+                <div className="inputText">
+                  <label>{t("contactForm.fields.name")}</label>
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder={t("contactForm.fields.name")}
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="inputText">
+                  <label>{t("contactForm.fields.companyName")}</label>
+                  <input
+                    type="text"
+                    name="companyName"
+                    placeholder={t("contactForm.fields.companyName")}
+                    value={formData.companyName}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="inputText">
+                  <label>{t("contactForm.fields.email")}</label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder={t("contactForm.fields.email")}
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="inputText">
+                  <label>{t("contactForm.fields.phonenumber")}</label>
+                  <input
+                    type="string"
+                    name="phonenumber"
+                    placeholder={t("contactForm.fields.phonenumber")}
+                    value={formData.phonenumber}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div className="inputText">
+                  <label>Wilaya</label>
+                  <select
+                    name="wilaya"
+                    value={formData.wilaya}
+                    onChange={handleChange}
+                    required
+                  >
+                    <option value="" disabled>
+                      {t("contactForm.fields.wilaya")}
+                    </option>
+                    {wilayas.map((wilaya) => (
+                      <option key={wilaya} value={wilaya}>
+                        {wilaya}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+              <div className="message">
+                <div className="inputText">
+                  <label>{t("contactForm.fields.message")}</label>
+                  <textarea
+                    name="message"
+                    id="inputcontactbig"
+                    placeholder={t("contactForm.fields.message")}
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </div>
+              <div className="checkBox condition">
+                <input
+                  type="checkbox"
+                  name="agreement"
+                  checked={formData.agreement}
+                  onChange={handleChange}
+                />
+                <label>{t("contactForm.agreement.text")}</label>
+              </div>
+              {/* Hidden fields for EmailJS to send the joined array data */}
+              <input
+                type="hidden"
+                name="activityField"
+                value={formData.activityField.join(", ")}
+              />
+              <input
+                type="hidden"
+                name="requestType"
+                value={formData.requestType.join(", ")}
+              />
+
+              {/* Other form fields */}
               <button type="submit">{t("contactForm.submitButton")}</button>
             </form>
           </div>

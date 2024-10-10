@@ -9,9 +9,11 @@ import diamond from "../../assets/diamant.png";
 import { MdEmail } from "react-icons/md";
 import { GrUpgrade } from "react-icons/gr";
 import LevelBar from "../LevelBar/LevelBar.jsx";
+import { useTranslation } from "react-i18next";
 
 const UserCard = () => {
   const [user, setUser] = useState({});
+  const { t } = useTranslation();
   const { userId } = useParams();
   useEffect(() => {
     getUserById(userId).then((res) => setUser(res.data));
@@ -68,7 +70,9 @@ const UserCard = () => {
                 size={50}
                 style={{ marginRight: "15px", marginLeft: "2px" }}
               />{" "}
-              <span style={{ fontWeight: "bold" }}>Email:</span>
+              <span style={{ fontWeight: "bold", marginRight: "8px" }}>
+                E-mail:
+              </span>
               <span>{user && user.email ? user.email : ""}</span>
             </div>
             <div className="user-lign">
@@ -76,8 +80,11 @@ const UserCard = () => {
                 size={50}
                 style={{ marginRight: "15px", marginLeft: "2px" }}
               />{" "}
-              <span style={{ fontWeight: "bold" }}>level:</span>{" "}
-              <span> {user.level?.name}</span>
+              <span style={{ fontWeight: "bold", marginRight: "8px" }}>
+                {" "}
+                {t("level")} :
+              </span>{" "}
+              <span> {user.level?.name.toUpperCase()}</span>
             </div>
           </div>
         </div>

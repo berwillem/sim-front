@@ -3,7 +3,7 @@
   "hello": "Bonjour",
   "goodbye": "Au revoir",
   "about-usNav": "À propos",
-  "homeNav": "Accueille",
+  "homeNav": "Accueil",
   "productsNav": "Produits",
   "btnNav": "Connectez-vous",
   "contact-usNav": "Contactez-nous",
@@ -12,8 +12,8 @@
   "subscribe": "S'abonner",
   "newsletterpholder": "Entrez votre email",
   "aboutushomeh2": "À propos de nous",
-  "aboutushomeh1": "À propos de SYM INDUSTRIE",
-  "aboutushomep": "SYM Industrie est votre partenaire de choix pour des solutions industrielles de haute qualité. Spécialisés dans l’importation et la distribution de marques mondiales, nous nous concentrons sur la fixation et l’outillage professionnel, ainsi que sur le matériel de detailing automobile. Notre engagement envers l’excellence nous permet de fournir des produits fiables et performants, répondant aux standards les plus élevés. Nous nous efforçons de soutenir nos clients avec des solutions innovantes et un service exceptionnel, assurant ainsi le succès de vos projets. Faites confiance à SYM Industrie pour tous vos besoins en équipements industriels.",
+  "aboutushomeh1": "SYM INDUSTRIE",
+  "aboutushomep": "Votre partenaire de choix pour des solutions industrielles de haute qualité. Spécialisés dans l’importation et la distribution de marques mondiales, nous nous concentrons sur la fixation et l’outillage professionnel, ainsi que sur le matériel de detailing automobile. Notre engagement envers l’excellence nous permet de fournir des produits fiables et performants, répondant aux standards les plus élevés. Nous nous efforçons de soutenir nos clients avec des solutions innovantes et un service exceptionnel, assurant ainsi le succès de vos projets. Faites confiance à SYM Industrie pour tous vos besoins en équipements industriels.",
   "signout": "Se déconnecter",
   "copyright": "Copyright © 2024 SYM INDUSTRIE. Tous droits réservés.",
   "footerAbout": "SYM Industrie est votre partenaire de choix pour des solutions industrielles de haute qualité. Spécialisés dans l’importation et la distribution de marques mondiales, nous nous concentrons sur la fixation et l’outillage professionnel, ainsi que sur le matériel de detailing automobile.",
@@ -43,7 +43,7 @@
   "infoSection": {
     "title": "Comment nous trouver",
     "address": {
-      "company": "Sym Industries",
+      "company": "SYM INDUSTRIE",
       "city": "Birtouta",
       "country": "Algérie"
     },
@@ -108,13 +108,16 @@
   "aucunproduitdisponible": "Aucun produit disponible",
   "see more": "Voir plus",
   "play_video": "Lire la vidéo",
-  "aboutus_title": "SYM INDUSTRIE VOTRE PARTENAIRE EN OUTILLAGE",
+  "aboutus_title": "ENSEMBLE VERS L'EXCELLENCE INDUSTRIELLE",
   "our_values": "NOS VALEURS",
   "economic": "ÉCONOMIQUE",
   "quality": "QUALITÉ",
-  "efficient": "EFFICACE",
+  "efficient": "CONFIANCE",
   "Download Catalog": "Télécharger le catalogue",
   "Our Company": "Notre société",
   "AboutSym": "A propos de Sym Industrie",
-  "dicoverpartners": "Découvrez nos partenaires"
+  "dicoverpartners": "Découvrez nos partenaires",
+  "level": "NIVEAU",
+  "commandes": "Commandes",
+  "levels": "Niveaux"
 }

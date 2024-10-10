@@ -36,10 +36,14 @@
   display: block;
   margin-bottom: 10px;
 }
+p {
+  text-align: justify;
+}
 .aboutustext p {
   font-size: 1.2em;
   display: block;
   margin-bottom: 10px;
+  text-align: justify;
 }
 .aboutusfirst {
   display: flex;
@@ -98,9 +102,9 @@
   margin: 10px 0 55px 75px;
 }
 .aboutussecondbox h1 {
-  font-size: 24px;
+  font-size: 20px;
   margin-bottom: 15px;
-  width: 90%;
+  width: 99%;
 }
 .aboutussecondbox h2 {
   font-size: 13px;
