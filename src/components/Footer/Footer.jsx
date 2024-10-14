@@ -22,11 +22,9 @@ export default function Component() {
           <h3 className="">{t("AboutSym")}</h3>
           <ul className="">
             <li>
-
               <Link
                 to="/about"
                 style={{
-                
                   textDecoration: "none",
                   display: "flex",
                   alignItems: "center",
@@ -89,7 +87,7 @@ export default function Component() {
             <li>
               <a
                 href="
-                https://www.tiktok.com/@sym.industrie?_t=8pH77R8N85Z&_r=1"
+                https://www.tiktok.com/@sym_industrie"
                 target="_blank"
               >
                 <AiFillTikTok size={17} /> TikTok

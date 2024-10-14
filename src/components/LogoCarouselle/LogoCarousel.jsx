@@ -1,5 +1,4 @@
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
+
 import "swiper/css";
 import "swiper/css/navigation"; // Import navigation styles
 import "./LogoCaroussel.css"; // Custom styles for arrows
@@ -32,7 +31,7 @@ const LogoCarousel = () => {
       <Marquee
         style={{ height: "310px", overflow: "hidden", marginBottom: "50px" }}
         gradient={false}
-        speed={120}
+        speed={160}
         className="marquee"
       >
         <img src={logo14} alt="Brand 7" />
