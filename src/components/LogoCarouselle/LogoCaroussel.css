@@ -1,7 +1,10 @@
 .rfm-child img {
-  height: 150px;
+  max-height: 185px;
   max-width: 650px;
   object-fit: cover;
+  min-width: 150px;
+}
+.rfm-child {
   min-width: 300px;
 }
 
