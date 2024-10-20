@@ -26,6 +26,8 @@ const EditProduct = () => {
   const [selectedType, setSelectedType] = useState(null);
   const [product, setProduct] = useState({});
   const [images, setImages] = useState([]);
+  const [activeImage, setActiveImage] = useState(0);
+
   const [loading, setLoading] = useState(false);
 
   const { productid } = useParams();
@@ -106,7 +108,6 @@ const EditProduct = () => {
     setSelectedType(product?.type);
   }, [product, reset]);
 
-  const [activeImage, setActiveImage] = useState(0);
   const onSubmit = (data) => {
     const form = new FormData();
     form.append("famille", selectedFamille?._id);
