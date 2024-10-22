@@ -15,8 +15,8 @@ const Contact = () => {
 
     emailjs
       .sendForm(
-        "service_5hbb3k9",
-        "template_qxk90lj",
+        "service_5c7xedp",
+        "template_9c8fqej",
         form.current, // Passing the form reference
         "JwvjYGDMFmRwbSfVI"
       )
