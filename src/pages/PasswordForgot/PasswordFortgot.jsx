@@ -15,7 +15,7 @@ const PasswordFortgot = () => {
         Swal.fire({
           icon: "success",
           title: "Success",
-          text: "An email has been sent to your email address",
+          text: "An email has been sent to your email address Please check Your spams too.",
         });
         navigate("/");
       })
@@ -29,10 +29,9 @@ const PasswordFortgot = () => {
   };
   return (
     <>
-     <Helmet>
-            <title>Password forgot </title>
-         
-        </Helmet>
+      <Helmet>
+        <title>Password forgot </title>
+      </Helmet>
       <div className="pass-forgot-container">
         <div className="pass-forgot-image-container">
           <img src={passForgotImage} alt="Image" />
