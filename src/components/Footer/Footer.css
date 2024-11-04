@@ -35,6 +35,7 @@ footer {
 }
 .footerfirstsection p {
   width: 70%;
+  max-width: 600px;
   line-height: 24px;
 }
 .iconfooter {

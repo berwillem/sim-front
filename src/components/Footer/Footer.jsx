@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 import "./Footer.css";
 import { useTranslation } from "react-i18next";
 import { BsInstagram } from "react-icons/bs";
@@ -16,7 +17,10 @@ export default function Component() {
         <div className="footerfirstsection">
           <img src={image} alt="maxshine logo" className="iconfooter" />
 
-          <p>{t("footerAbout")}</p>
+          {/* <p>{t("footerAbout")}</p> */}
+          <h3 style={{ fontSize: "16.5px", width: "70%", margin: "0" }}>
+            ENSEMBLE VERS L'EXCELLENCE INDUSTRIELLE
+          </h3>
         </div>
         <div className="footeraboutsection">
           <h3 className="">{t("AboutSym")}</h3>
@@ -58,7 +62,7 @@ export default function Component() {
         </div>
 
         <div className="footercontactsection">
-          <h3 className="">Talk with our support</h3>
+          <h3 className="">{t("ContactUs")}</h3>
           <ul className="">
             <li>+213 552 74 14 09</li>
             <li>contact@symindustrie.com</li>

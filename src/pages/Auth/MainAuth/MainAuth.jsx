@@ -1,5 +1,5 @@
 import "./MainAuth.css";
-import Logo from "../../../assets/logo1.png";
+import Logo from "../../../assets/logo2.png";
 import { Link, Outlet } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 export default function MainAuth() {
