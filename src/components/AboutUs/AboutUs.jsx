@@ -24,6 +24,8 @@ const AboutUs = () => {
         animateOnce={true}
         duration={1}
         animateIn="fadeInRight"
+        offset={270}
+        delay={0.2}
       >
         <div className="aboutusfirst">
           <div className="aboutusimg">

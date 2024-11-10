@@ -13,7 +13,7 @@
   "newsletterpholder": "Enter your email",
   "aboutushomeh2": "About us",
   "aboutushomeh1": "SYM INDUSTRIE",
-  "aboutushomep": "Your partner of choice for high-quality industrial solutions. Specializing in the import and distribution of global brands, we focus on fastening and professional tooling, as well as automotive detailing equipment.",
+  "aboutushomep": "Your preferred partner for high-quality industrial solutions. Specializing in the import and distribution of global brands, we focus on fasteners, professional tools, and automotive detailing equipment. Our commitment to excellence enables us to provide reliable and high-performance products that meet the highest standards. We strive to support our customers with innovative solutions and exceptional service, ensuring the success of your projects. Trust SYM Industrie for all your industrial equipment needs.",
   "signout": "Sign out",
   "copyright": "Copyright © 2024 SYM INDUSTRIE. All rights reserved.",
   "footerAbout": "SYM Industrie is your partner of choice for high-quality industrial solutions. Specializing in the import and distribution of global brands, we focus on fastening and professional tooling, as well as automotive detailing equipment.",
@@ -33,7 +33,6 @@
   "makeorder": "Make An Order",
   "totalprice": "Total Price: ",
   "phonenumber": "Phone number",
-
   "pageTitle": "Contact",
   "header": {
     "title": "HOW CAN WE HELP YOU?",
@@ -91,7 +90,6 @@
     "title": "Oops...",
     "text": "Something went wrong. Please try again."
   },
-
   "tool": {
     "header1_1": "Professional Tools at Excellent Quality",
     "description_1": "SYM Industrie offers you professional tools from prestigious brands such as Milwaukee, ensuring performance and durability for all your industrial applications.",

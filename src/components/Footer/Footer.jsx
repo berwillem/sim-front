@@ -19,7 +19,7 @@ export default function Component() {
 
           {/* <p>{t("footerAbout")}</p> */}
           <h3 style={{ fontSize: "16.5px", width: "70%", margin: "0" }}>
-            ENSEMBLE VERS L'EXCELLENCE INDUSTRIELLE
+           {t("aboutus_title")}
           </h3>
         </div>
         <div className="footeraboutsection">
