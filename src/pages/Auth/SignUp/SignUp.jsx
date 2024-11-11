@@ -50,7 +50,6 @@ export default function SignUp() {
           setExist(true);
       });
   };
-  console.log(exist);
   const [show, setShow] = useState(true);
   const { t } = useTranslation();
   return (

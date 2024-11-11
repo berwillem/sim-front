@@ -1,6 +1,3 @@
-
-import "swiper/css";
-import "swiper/css/navigation"; // Import navigation styles
 import "./LogoCaroussel.css"; // Custom styles for arrows
 import logo1 from "../../assets/partners/demirizlogo.png";
 import logo2 from "../../assets/partners/elringlogo.png";

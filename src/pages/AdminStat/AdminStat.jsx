@@ -42,7 +42,6 @@ export default function AdminStat() {
             ? "#C0C0C0"
             : "#CD7F32",
       }));
-      console.log(chartData);
       setOrdersByFamilyData(chartData);
     });
   };
