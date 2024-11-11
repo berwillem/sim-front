@@ -37,8 +37,8 @@ const CategoriesList = () => {
           className="famille-header"
           style={{
             backgroundImage: `url(${
-              (famille.titlefr === "Fixation" && Fixation) ||
-              (famille.titlefr === "Outillage" && Outillage) ||
+              (famille._id === "664e87fc4cf5a42abd0b5e33" && Fixation) ||
+              (famille._id === "664e88294cf5a42abd0b5e35" && Outillage) ||
               (famille._id === "664e88614cf5a42abd0b5e37" && Detailling)
             }) `,
           }}
