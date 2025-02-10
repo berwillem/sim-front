@@ -13,11 +13,23 @@ import "react-toastify/dist/ReactToastify.css";
 import { login } from "../../../redux/slices/authSlice";
 import { CiMail } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
-import axios from 'axios';
+import axios from "axios";
 import { Helmet } from "react-helmet";
+import { FaPhone } from "react-icons/fa";
 
 const schema = yup.object().shape({
-  email: yup.string().email("Invalid email").required("Email is required"),
+  identifier: yup
+    .string()
+    .test(
+      "is-email-or-phone",
+      "Enter a valid email or phone number",
+      (value) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        const phoneRegex = /^\+?\d{10,15}$/; // Supports international format
+        return emailRegex.test(value) || phoneRegex.test(value);
+      }
+    )
+    .required("Email or phone number is required"),
   password: yup.string().required("Password is required"),
 });
 
@@ -33,11 +45,11 @@ export default function SignIn() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState(null);
+  const [show, setShow] = useState(false);
+
   const onSubmit = (data) => {
-    SignInUser(data)
+    SignInUser(data) // Send { identifier: "email/phone", password }
       .then((res) => {
-        
-        
         setTimeout(() => {
           const token = localStorage.getItem("token");
           axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -53,30 +65,31 @@ export default function SignIn() {
       })
       .catch((err) => setError(err.response?.data.message));
   };
-  const [show, setShow] = useState(false);
 
   return (
     <>
-       <Helmet>
-            <title>signin </title>
-         
-        </Helmet>
+      <Helmet>
+        <title>Sign In</title>
+      </Helmet>
       <p>{t("connectezvous")}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="forlabelsignin">
-          <label htmlFor="email">{t("email")}</label>
+          <label htmlFor="identifier">{t("emailOrPhone")}</label>
           <div className="passinputcontainer">
             <input
-              type="email"
-              id="email"
-              placeholder="Email"
-              {...register("email")}
+              type="text"
+              id="identifier"
+              placeholder="Email or Phone Number"
+              {...register("identifier")}
             />
-            {errors.email && <p className="error">{errors.email.message}</p>}
-            <CiMail size={25} fontSize={"35px"} fontWeight={"bold"} />
+            {errors.identifier && (
+              <p className="error">{errors.identifier.message}</p>
+            )}
+            <CiMail size={25} />
+            <FaPhone size={20} style={{ marginLeft: "10px" }} />
           </div>
-          <label htmlFor="password">{t("password")}</label>
 
+          <label htmlFor="password">{t("password")}</label>
           <div className="passinputcontainer">
             <input
               type={show ? "text" : "password"}
@@ -87,7 +100,6 @@ export default function SignIn() {
             {errors.password && (
               <p className="error">{errors.password.message}</p>
             )}
-
             {!show ? (
               <IoMdEyeOff
                 onClick={() => setShow(!show)}
@@ -103,25 +115,13 @@ export default function SignIn() {
             )}
           </div>
         </div>
+
         <div className="middivsignin">
-          {error && (
-            <h3
-              style={{
-                color: "red",
-                textAlign: "center",
-                fontSize: "18px",
-                border: "0.5px solid red",
-                padding: "4px",
-                borderRadius: "5px",
-                marginBottom: "10px",
-              }}
-            >
-              {error}
-            </h3>
-          )}
-          <Link to="/passwordForgot">{t("motdepasseoublie")} </Link>
-          <button type="submit">{t("Continuer")} </button>
-        </div>{" "}
+          {error && <h3 className="error-message">{error}</h3>}
+          <Link to="/passwordForgot">{t("motdepasseoublie")}</Link>
+          <button type="submit">{t("Continuer")}</button>
+        </div>
+
         <div className="text-center">
           <p>
             {t("pasdecompte")}

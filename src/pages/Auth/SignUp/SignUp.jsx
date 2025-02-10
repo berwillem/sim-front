@@ -19,6 +19,11 @@ const schema = yup.object().shape({
   FirstName: yup.string().required("Prénom est requis"),
   LastName: yup.string().required("Nom est requis"),
   email: yup.string().email("Email invalide").required("Email est requis"),
+  phoneNumber: yup
+    .string()
+    .matches(/^[0-9]+$/, "Le numéro de téléphone doit être valide")
+    .min(8, "Le numéro de téléphone doit contenir au moins 8 chiffres")
+    .required("Numéro de téléphone est requis"),
   password: yup
     .string()
     .min(6, "Le mot de passe doit contenir au moins 6 caractères")
@@ -34,35 +39,44 @@ export default function SignUp() {
   } = useForm({
     resolver: yupResolver(schema),
   });
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  // register function :
+
   const onSubmit = (data) => {
+    console.log("Form Data:", data);
+
     SignUpUser(data)
       .then((res) => {
+        console.log(res);
         toast.success(res.data?.message);
         dispatch(login(res.data));
         navigate("/");
       })
       .catch((err) => {
         console.log(err);
-        err.response.data.message == "User already exists! Login instead." &&
+        if (
+          err.response?.data?.message === "User already exists! Login instead."
+        ) {
           setExist(true);
+        }
       });
   };
+
   const [show, setShow] = useState(true);
   const { t } = useTranslation();
+
   return (
     <>
       <Helmet>
-        <title>signup </title>
+        <title>Sign Up</title>
       </Helmet>
-      <p>{t("signupP")} </p>
+      <p>{t("signupP")}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="forlabelsignin">
           <div className="labelSignUphalf">
             <div>
-              <label htmlFor="FirstName">{t("firstname")} </label>
+              <label htmlFor="FirstName">{t("firstname")}</label>
               <input
                 type="text"
                 id="FirstName"
@@ -74,7 +88,7 @@ export default function SignUp() {
               )}
             </div>
             <div>
-              <label htmlFor="LastName">{t("lastname")} </label>
+              <label htmlFor="LastName">{t("lastname")}</label>
               <input
                 type="text"
                 id="LastName"
@@ -86,8 +100,9 @@ export default function SignUp() {
               )}
             </div>
           </div>
-          <label htmlFor="email">{t("email")}</label>
 
+          {/* Email Input */}
+          <label htmlFor="email">{t("email")}</label>
           <div className="passinputcontainer">
             <input
               type="email"
@@ -95,11 +110,26 @@ export default function SignUp() {
               placeholder={t("email")}
               {...register("email")}
             />
-            <CiMail size={25} fontSize={"35px"} fontWeight={"bold"} />
-
+            <CiMail size={25} fontSize="35px" fontWeight="bold" />
             {errors.email && <p className="error">{errors.email.message}</p>}
           </div>
 
+          {/* Phone Number Input */}
+          <label htmlFor="phoneNumber">{t("phonenumber")}</label>
+          <div className="passinputcontainer">
+            <input
+              type="text"
+              id="phoneNumber"
+              placeholder={t("phonenumber")}
+              {...register("phoneNumber")}
+            />
+            <CiMail size={25} fontSize="35px" fontWeight="bold" />
+            {errors.phoneNumber && (
+              <p className="error">{errors.phoneNumber.message}</p>
+            )}
+          </div>
+
+          {/* Password Input */}
           <label htmlFor="password">{t("password")}</label>
           <div className="passinputcontainer">
             <input
@@ -114,17 +144,19 @@ export default function SignUp() {
             {show ? (
               <IoMdEyeOff
                 onClick={() => setShow(!show)}
-                fontSize={"25px"}
-                cursor={"pointer"}
+                fontSize="25px"
+                cursor="pointer"
               />
             ) : (
               <IoEye
                 onClick={() => setShow(!show)}
-                fontSize={"25px"}
-                cursor={"pointer"}
+                fontSize="25px"
+                cursor="pointer"
               />
             )}
           </div>
+
+          {/* Existing User Error */}
           {exist && (
             <p className="error" style={{ color: "red" }}>
               User already exists! Login instead.
@@ -135,6 +167,7 @@ export default function SignUp() {
         <div className="middivsignin">
           <button type="submit">{t("Continuer")}</button>
         </div>
+
         <div className="text-center">
           <p>
             {t("dejauncompte")}
