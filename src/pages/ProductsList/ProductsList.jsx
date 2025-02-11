@@ -143,11 +143,12 @@ const ProductsList = () => {
             return (
               <>
                 <div key={item._id} className="productitempreview-final">
-                  <img src={item.images[0]} alt="item preview-final" />
+                  <img src={item.images[0]} alt="Product-img" />
                   <h1>
                     {currentLanguage === "fr" ? item.titlefr : item.titleen}
                   </h1>
-                  <h2>{item.price} DA </h2>
+
+                  {item.price ? <h2>{item.price} DA</h2> : <h2>Sur devis</h2>}
 
                   {/* {products[0]?.famille._id === "664e87fc4cf5a42abd0b5e33" &&
                       "/Kg"} */}

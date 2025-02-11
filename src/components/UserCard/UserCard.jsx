@@ -10,6 +10,7 @@ import { MdEmail } from "react-icons/md";
 import { GrUpgrade } from "react-icons/gr";
 import LevelBar from "../LevelBar/LevelBar.jsx";
 import { useTranslation } from "react-i18next";
+import { FaPhoneAlt } from "react-icons/fa";
 
 const UserCard = () => {
   const [user, setUser] = useState({});
@@ -74,6 +75,16 @@ const UserCard = () => {
                 E-mail:
               </span>
               <span>{user && user.email ? user.email : ""}</span>
+            </div>
+            <div className="user-lign">
+              <FaPhoneAlt
+                size={50}
+                style={{ marginRight: "15px", marginLeft: "2px" }}
+              />{" "}
+              <span style={{ fontWeight: "bold", marginRight: "8px" }}>
+                {t("phonenumber")}:
+              </span>
+              <span>{user && user.phoneNumber ? user.phoneNumber : ""}</span>
             </div>
             <div className="user-lign">
               <GrUpgrade

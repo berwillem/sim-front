@@ -98,9 +98,11 @@
     "header1_3": "Automobile Detailing Excellence",
     "description_3": "SYM Industrie provides detailing equipment from renowned brands, ensuring a flawless finish and superior maintenance for your vehicles."
   },
+  "emailOrPhone": "Email or phone number",
   "button": {
     "learn_more": "Learn more"
   },
+  "demande-devis": "Quote request",
   "order": "Order",
   "plus d'infos": "More infos",
   "produitdisponibles": "Available products",

@@ -79,7 +79,7 @@ export default function SignIn() {
             <input
               type="text"
               id="identifier"
-              placeholder="Email or Phone Number"
+                placeholder="Email or Phone Number"
               {...register("identifier")}
             />
             {errors.identifier && (

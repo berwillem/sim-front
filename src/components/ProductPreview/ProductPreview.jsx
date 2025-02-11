@@ -13,6 +13,7 @@ import "swiper/css/thumbs";
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { LiaTimesCircleSolid } from "react-icons/lia";
 import OrderModal from "../OrderModal/OrderModal";
+import DevisModal from "../DevisModal/DevisModal";
 import { useTranslation } from "react-i18next";
 
 export default function App({ product, functio, language }) {
@@ -25,6 +26,14 @@ export default function App({ product, functio, language }) {
   };
   const handleCloseModal = () => {
     setOpenModal(false);
+  };
+
+  const [openDevisModal, setOpenDevisModal] = useState(false);
+  const handleOpenDevisModal = () => {
+    setOpenDevisModal(true);
+  };
+  const handleCloseDevisModal = () => {
+    setOpenDevisModal(false);
   };
 
   const typeTitle =
@@ -60,14 +69,22 @@ export default function App({ product, functio, language }) {
           <h4>Marque : {product?.marque}</h4>
           <h4>Type : {typeTitle}</h4>
           <p className="textpreview">Description : {product?.description}</p>
-          <h2>{product?.price} DA</h2>
-
-          <button onClick={handleOpenModal}>{t("order")}</button>
+          {product?.price ? <h2>{product?.price} DA</h2> : <h2>Sur devis</h2>}
+          {product?.price ? (
+            <button onClick={handleOpenModal}>{t("order")}</button>
+          ) : (
+            <button onClick={handleOpenDevisModal}>{t("demande-devis")}</button>
+          )}
         </div>
       </div>
       <OrderModal
         open={openModal}
         onClose={handleCloseModal}
+        product={product}
+      />
+      <DevisModal
+        open={openDevisModal}
+        onClose={handleCloseDevisModal}
         product={product}
       />
     </>
