@@ -31,6 +31,7 @@ const AddProduct = () => {
     setSelectedCategorie(null);
     setSelectedType(null);
   };
+  console.log(selectedFamille);
 
   const handleCategorieChange = (newCategorie) => {
     setSelectedCategorie(newCategorie);
@@ -90,7 +91,6 @@ const AddProduct = () => {
       })
       .catch((err) => console.log(err));
   };
-
 
   function ImageUpload() {
     function handleChange(e) {
@@ -199,13 +199,23 @@ const AddProduct = () => {
                       </div>
 
                       <div className="labelSignUphalfinput">
-                        <input
-                          required
-                          type="text"
-                          id=""
-                          placeholder="Prix"
-                          {...register("Prix")}
-                        />
+                        {selectedFamille?.titlefr !== "FIXATION" ? (
+                          <input
+                            required
+                            type="text"
+                            id=""
+                            placeholder="Prix"
+                            {...register("Prix")}
+                          />
+                        ) : (
+                          <input
+                            type="text"
+                            id=""
+                            placeholder="Sur devis"
+                            {...register("Prix")}
+                            disabled
+                          />
+                        )}
                       </div>
                     </div>
                     <div className="labelSignUphalf  ">

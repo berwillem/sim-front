@@ -41,6 +41,7 @@ import UserCommandes from "./pages/UserCommandes/UserCommandes.jsx";
 import AdminStat from "./pages/AdminStat/AdminStat.jsx";
 import axios from "axios";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage.jsx";
+import AdminDevis from "./pages/AdminDevis/AdminDevis.jsx";
 
 axios.defaults.withCredentials = true;
 
@@ -130,6 +131,10 @@ const router = createBrowserRouter([
       {
         path: "newsletter",
         element: <AdminNewsletter />,
+      },
+      {
+        path: "devis",
+        element: <AdminDevis />,
       },
     ],
   },
