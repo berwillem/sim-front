@@ -15,7 +15,7 @@
   width: 80%;
 }
 .table-stat {
-  border: 3px solid black;
+  border: none;
   padding: 20px;
   border-radius: 10px;
   gap: 10px;
@@ -63,20 +63,25 @@
   border-radius: 10px;
 }
 .stores {
-  border: 3px solid black;
-  padding: 20px;
+  border: none;
+  padding: 0px;
   border-radius: 10px;
+  gap: 10px;
 }
 .stores .ligne > span,
 .stores .ligne > li {
   display: flex;
-
+  font-weight: 600;
   align-items: center;
   justify-content: center;
+  text-align: center;
 }
 .stores .ligne,
 .stores .ligne {
   justify-content: space-between;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  padding: 10px !important;
 }
 .etat {
   width: 200px;

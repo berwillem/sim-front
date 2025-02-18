@@ -12,6 +12,20 @@
   top: 0;
   z-index: 6;
 }
+.panier-nbr {
+  display: flex;
+  background-color: white;
+  color: red;
+  height: 15px;
+  width: 15px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  font-size: 12px;
+}
 .navbar a {
   color: white;
   text-decoration: none;
@@ -54,6 +68,18 @@
 .navbarrespo {
   display: none;
   position: relative;
+}
+.panier-icon svg {
+  color: white;
+  height: 20px;
+  width: 20px;
+}
+.panier-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
 }
 @media (max-width: 600px) {
   .navbarfirst {

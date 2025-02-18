@@ -41,6 +41,7 @@ import UserCommandes from "./pages/UserCommandes/UserCommandes.jsx";
 import AdminStat from "./pages/AdminStat/AdminStat.jsx";
 import axios from "axios";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage.jsx";
+import PanierPage from "./pages/PanierPage/PanierPage.jsx";
 
 axios.defaults.withCredentials = true;
 
@@ -168,6 +169,10 @@ const router = createBrowserRouter([
   {
     path: "/products",
     element: <Products />,
+  },
+  {
+    path: "/panier",
+    element: <PanierPage />,
   },
   {
     path: "/productsList",

@@ -9,8 +9,11 @@ import moment from "moment";
 import { deleteCommande } from "../../services/commandeservices";
 import { Helmet } from "react-helmet";
 import { FaRegSquareCheck, FaRegSquareFull } from "react-icons/fa6";
+import { FaRegTrashAlt } from "react-icons/fa";
 const UserCommandes = () => {
   const [commandes, setCommandes] = useState([]);
+  console.log(commandes);
+
   const { userId } = useParams();
   useEffect(() => {
     getUserCommandes(userId)
@@ -75,90 +78,89 @@ const UserCommandes = () => {
               </ul>
             </div>
 
-            {commandes?.map((Commande, index) => {
-              return (
-                <ul
-                  key={index}
-                  className={
-                    Commande.isValid ? "stores backgreen" : "stores backred"
-                  }
-                >
-                  <li className="ligne forpc">
-                    <span className="imgprevieforcommandespan">
-                      <img
-                        src={Commande.product?.images[0]}
-                        alt=""
-                        className="imgprevieforcommande"
-                      />{" "}
-                    </span>{" "}
-                    <span>
-                      {" "}
-                      {Commande.product
-                        ? Commande.product.titlefr
-                        : "Produit supprimé"}
-                    </span>{" "}
-                    <span>{Commande.quantity}</span>
-                    <span>
-                      {moment(Commande.createdAt).format("DD MMM YYYY")}
-                    </span>
-                    <span>
-                      {Commande.isValid ? (
-                        <>
-                          {"valide  "}
-                          {""}
-                          <FaRegSquareCheck size={30} />
-                        </>
-                      ) : (
-                        <>
-                          {" non valide  "} <FaRegSquareFull size={24} />
-                        </>
-                      )}
-                    </span>
-                    {Commande.isValid ? (
-                      <div style={{ width: "60px" }}></div>
-                    ) : (
-                      <DeleteButon
-                        handledelet={() => handleDelet(Commande._id)}
-                      ></DeleteButon>
-                    )}
-                  </li>
-                  <li className="ligne forphone">
-                    <span className="imgprevieforcommandespan">
-                      <img
-                        src={Commande.product?.images[0]}
-                        alt=""
-                        className="imgprevieforcommande"
-                      />{" "}
-                    </span>
-                    <span>product title : {Commande.product?.titlefr}</span>{" "}
-                    <span>quantité :{Commande.quantity}</span>
-                    <span>
-                      createdAt :
-                      {moment(Commande.createdAt).format("DD MMM YYYY")}
-                    </span>
-                    <span>
-                      status :
-                      {Commande.isValid ? (
-                        <>
-                          {"valide"}
-                          <FaRegSquareCheck size={30} />
-                        </>
-                      ) : (
-                        <>
-                          {" non valide  "}
-                          <FaRegSquareFull size={24} />
-                        </>
-                      )}
-                    </span>
-                    {!Commande.isValid && (
-                      <DeleteButon
-                        handledelet={() => handleDelet(Commande._id)}
-                      ></DeleteButon>
-                    )}
-                  </li>
+            {commandes?.map((Commande, index) => (
+              <>
+                <p> {moment(Commande.createdAt).format("DD MMM YYYY")}</p>
+                <ul key={index} className="stores">
+                  {Commande?.products?.map((product, productIndex) => {
+                    return (
+                      <li key={productIndex} className="ligne forpc">
+                        <span className="imgprevieforcommandespan">
+                          <img
+                            src={product?.product?.images?.[0] || ""}
+                            alt="Produit"
+                            className="imgprevieforcommande"
+                          />
+                        </span>
+                        <span>
+                          {product?.product?.titlefr || "Produit supprimé"}
+                        </span>
+                        <span>{product.quantity}</span>
+                        <span>
+                          {moment(Commande.createdAt).format("DD MMM YYYY")}
+                        </span>
+                        <span>
+                          {Commande.isValid ? (
+                            <span className="valid">{"valide  "}</span>
+                          ) : (
+                            <span className="no-valid">{" non valide  "}</span>
+                          )}
+                        </span>
+                        {!Commande.isValid && (
+                          <div className="delete-icon">
+                            <FaRegTrashAlt
+                              handledelet={() => handleDelet(Commande._id)}
+                            />
+                          </div>
+                        )}
+                      </li>
+                    );
+                  })}
+
+                  {/* Version mobile */}
+                  {Commande?.products?.map((product, productIndex) => {
+                    return (
+                      <>
+                        <li className="ligne forphone">
+                          <span className="imgprevieforcommandespan">
+                            <img
+                              src={product?.product?.images?.[0] || ""}
+                              alt="Produit"
+                              className="imgprevieforcommande"
+                            />
+                          </span>
+                          <span>
+                            Product title: {product?.product?.titlefr || "N/A"}
+                          </span>
+                          <span>Quantité: {product?.quantity}</span>
+                          <span>
+                            CreatedAt:{" "}
+                            {moment(Commande.createdAt).format("DD MMM YYYY")}
+                          </span>
+                          <span>
+                            Status:
+                            {Commande.isValid ? (
+                              <span className="valid">{"valide  "}</span>
+                            ) : (
+                              <span className="no-valid">
+                                {" non valide  "}
+                              </span>
+                            )}
+                          </span>
+                          {!Commande.isValid && (
+                            <div className="delete-icon">
+                              <FaRegTrashAlt
+                                handledelet={() => handleDelet(Commande._id)}
+                              />
+                            </div>
+                          )}
+                        </li>
+                      </>
+                    );
+                  })}
                 </ul>
-              );
-            })}
+              </>
+            ))}
           </div>
         </div>
       ) : (
