@@ -8,24 +8,29 @@ import "swiper/css";
 import "swiper/css/free-mode";
 import "swiper/css/navigation";
 import "swiper/css/thumbs";
+import { useDispatch, useSelector } from "react-redux";
 
 // import required modules
 import { FreeMode, Navigation, Thumbs } from "swiper/modules";
 import { LiaTimesCircleSolid } from "react-icons/lia";
 import OrderModal from "../OrderModal/OrderModal";
-import DevisModal from "../DevisModal/DevisModal";
 import { useTranslation } from "react-i18next";
+import { ajouterAuPanier } from "../../redux/slices/cartSlice";
 
 export default function App({ product, functio, language }) {
   const { t } = useTranslation();
-  const [thumbsSwiper, setThumbsSwiper] = useState("null");
-  const [openModal, setOpenModal] = useState(false);
+  const dispatch = useDispatch();
 
-  const handleOpenModal = () => {
-    setOpenModal(true);
-  };
-  const handleCloseModal = () => {
-    setOpenModal(false);
+  const [thumbsSwiper, setThumbsSwiper] = useState("null");
+  const cart = useSelector((state) => state.cart);
+  console.log("====================================");
+  console.log(cart);
+  console.log("====================================");
+
+  const handleAddToCart = () => {
+    if (product) {
+      dispatch(ajouterAuPanier(product));
+    }
   };
 
   const [openDevisModal, setOpenDevisModal] = useState(false);
@@ -71,17 +76,12 @@ export default function App({ product, functio, language }) {
           <p className="textpreview">Description : {product?.description}</p>
           {product?.price ? <h2>{product?.price} DA</h2> : <h2>Sur devis</h2>}
           {product?.price ? (
-            <button onClick={handleOpenModal}>{t("order")}</button>
+            <button onClick={handleAddToCart}>{t("order")}</button>
           ) : (
             <button onClick={handleOpenDevisModal}>{t("demande-devis")}</button>
           )}
         </div>
       </div>
-      <OrderModal
-        open={openModal}
-        onClose={handleCloseModal}
-        product={product}
-      />
       <DevisModal
         open={openDevisModal}
         onClose={handleCloseDevisModal}
