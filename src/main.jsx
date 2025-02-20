@@ -42,6 +42,8 @@ import AdminStat from "./pages/AdminStat/AdminStat.jsx";
 import axios from "axios";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage.jsx";
 import AdminDevis from "./pages/AdminDevis/AdminDevis.jsx";
+import UserType from "./pages/UserType/UserType.jsx";
+import ValidationPage from "./pages/ValidationPage/ValidationPage.jsx";
 
 axios.defaults.withCredentials = true;
 
@@ -191,6 +193,14 @@ const router = createBrowserRouter([
       { path: "levels", element: <Levels /> },
       { path: "commandes", element: <UserCommandes /> },
     ],
+  },
+  {
+    path: "/user/type",
+    element: <UserType />,
+  },
+  {
+    path: "/pending-approval",
+    element: <ValidationPage />,
   },
 ]);
 

@@ -14,6 +14,7 @@ import { login } from "../../../redux/slices/authSlice";
 import { CiMail } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
+import { AiOutlinePhone } from "react-icons/ai";
 
 const schema = yup.object().shape({
   FirstName: yup.string().required("Prénom est requis"),
@@ -51,7 +52,7 @@ export default function SignUp() {
         console.log(res);
         toast.success(res.data?.message);
         dispatch(login(res.data));
-        navigate("/");
+        navigate("/user/type");
       })
       .catch((err) => {
         console.log(err);
@@ -74,7 +75,7 @@ export default function SignUp() {
       <p>{t("signupP")}</p>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="forlabelsignin">
-          <div className="labelSignUphalf">
+          <div className="labelSignUphalf" style={{ marginBottom: "0" }}>
             <div>
               <label htmlFor="FirstName">{t("firstname")}</label>
               <input
@@ -123,7 +124,7 @@ export default function SignUp() {
               placeholder={t("phonenumber")}
               {...register("phoneNumber")}
             />
-            <CiMail size={25} fontSize="35px" fontWeight="bold" />
+            <AiOutlinePhone size={25} fontSize="35px" fontWeight="bold" />
             {errors.phoneNumber && (
               <p className="error">{errors.phoneNumber.message}</p>
             )}

@@ -20,6 +20,8 @@ export default function Navbar() {
   const fistname = useSelector((state) => state.auth?.user?.FirstName);
   const [menuOpen, setMenuOpen] = useState(false);
   const dispatch = useDispatch();
+  const isAdmin = useSelector((state) => state.auth?.user?.role);
+  console.log(isAdmin);
 
   return (
     <>
@@ -38,6 +40,7 @@ export default function Navbar() {
           <NavLink to={"/about"}>{t("about-usNav")}</NavLink>
           <NavLink to={"/products"}>{t("productsNav")}</NavLink>
           <NavLink to={"/contact"}>{t("contact-usNav")}</NavLink>
+          {isAdmin === "admin" && <NavLink to={"/admin"}>Dashboard</NavLink>}
         </div>
         <div className="navbarlast">
           <Popover

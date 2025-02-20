@@ -37,7 +37,7 @@
   width: 75%;
   display: flex;
   justify-content: space-between;
-  padding: 0px 50px 0 40px !important;
+  padding: 0px 50px 0 40px;
 }
 #ligneuser {
   display: flex;

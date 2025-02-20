@@ -41,6 +41,7 @@ const Products = () => {
   const [filtersApplied, setFiltersApplied] = useState(false);
   const navigate = useNavigate();
 
+  console.log(products);
   const fetchProducts = (page) => {
     getAllProducts(
       page,
@@ -277,7 +278,12 @@ const Productitem = ({ product, index }) => {
   return (
     <li key={index} className="ligne">
       <span> {product?.titlefr}</span>
-      <span>{product?.price}</span>
+      <span>
+        Client {product?.price} DA <br />
+        R/S {product?.priceRevendeur} DA
+        <br />
+        Grossiste {product?.priceGrossiste} DA
+      </span>
       <span>{product?.description}</span>
       <span>{product?.marque}</span>
       <span>{product?.gamme}</span>

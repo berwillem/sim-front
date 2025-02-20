@@ -94,7 +94,7 @@ const OrderModal = ({ open, onClose, product }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      product: product._id,
+      product: product.titlefr,
       phoneNumber,
       email: user?.email,
       name: isAuth ? `${user.FirstName} ${user.LastName}` : clientName,

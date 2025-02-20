@@ -73,6 +73,8 @@ const AddProduct = () => {
       Categorie: "",
       Description: "",
       Prix: "",
+      PrixRevendeur: "",
+      PrixGrossiste: "",
       images: [],
     },
   });
@@ -82,6 +84,7 @@ const AddProduct = () => {
     data.Categorie = selectedCategorie?._id;
     data.Type = selectedType?._id;
     data.images = images;
+    console.log(data, "DAAAAAAAAAAAAAAAAAAAA");
     setLoading(true);
     createProduct(data)
       .then((res) => {
@@ -200,13 +203,15 @@ const AddProduct = () => {
 
                       <div className="labelSignUphalfinput">
                         {selectedFamille?.titlefr !== "FIXATION" ? (
-                          <input
-                            required
-                            type="text"
-                            id=""
-                            placeholder="Prix"
-                            {...register("Prix")}
-                          />
+                          <>
+                            <input
+                              required
+                              type="text"
+                              id=""
+                              placeholder="Prix "
+                              {...register("Prix")}
+                            />
+                          </>
                         ) : (
                           <input
                             type="text"
@@ -218,6 +223,29 @@ const AddProduct = () => {
                         )}
                       </div>
                     </div>
+
+                    {selectedFamille?.titlefr !== "FIXATION" && (
+                      <div className="labelSignUphalf">
+                        <div className="labelSignUphalfinput">
+                          <input
+                            required
+                            type="text"
+                            id=""
+                            placeholder="Prix Revendeur/Société"
+                            {...register("PrixRevendeur")}
+                          />{" "}
+                        </div>
+                        <div className="labelSignUphalfinput">
+                          <input
+                            required
+                            type="text"
+                            id=""
+                            placeholder="Prix Grossiste"
+                            {...register("PrixGrossiste")}
+                          />
+                        </div>
+                      </div>
+                    )}
                     <div className="labelSignUphalf  ">
                       <div className="labelSignUphalfinput">
                         <input

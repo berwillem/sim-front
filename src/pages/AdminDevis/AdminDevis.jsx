@@ -1,6 +1,6 @@
 import "./AdminDevis.css";
 // import AdminMiniCard from "../../components/AdminMiniCard/AdminMiniCard";
-import { FaRegSquareCheck, FaRegSquareFull } from "react-icons/fa6";
+import { FaRegSquareCheck, FaRegSquareFull, FaUsers } from "react-icons/fa6";
 
 import { useEffect, useState } from "react";
 import DeleteButton from "../../components/DeleteButton/DeleteButon";
@@ -9,16 +9,20 @@ import {
   getAllDevis,
   deleteDevis,
   updateDevis,
+  getDevisCount,
 } from "../../services/devisServices";
 import moment from "moment";
 import { LuUserX } from "react-icons/lu";
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import AdminMiniCard from "../../components/AdminMiniCard/AdminMiniCard";
 
 export default function Devis() {
   const [Devis, setDevis] = useState([]);
   const [filter, setFilter] = useState("");
   const { i18n } = useTranslation();
+
+  const [totalDevisCount, setTotalDevisCount] = useState(0);
 
   const fetchDevis = () => {
     getAllDevis()
@@ -32,6 +36,10 @@ export default function Devis() {
 
   useEffect(() => {
     fetchDevis();
+    getDevisCount().then((res) => {
+      setTotalDevisCount(res.data.totalCount);
+      console.log(res.data);
+    });
   }, []);
 
   const handleDelete = (orderId) => {
@@ -66,55 +74,31 @@ export default function Devis() {
 
   return (
     <div className="admin-stat">
-      {/* <div className="mini-cards">
+      <div className="mini-cards">
         <AdminMiniCard
           icon={<FaUsers />}
-          title={"Total Devis"}
+          title={"Devis demandés "}
           stat={totalDevisCount}
         />
-        <AdminMiniCard
-          icon={<CiSquareCheck />}
-          title={"Validated Devis"}
-          stat={validDevisCount}
-        />
-        <AdminMiniCard
-          icon={<IoIosTimer />}
-          title={"Pending Devis"}
-          stat={pendingDevisCount}
-        />
-      </div> */}
-      <FormControl
-        variant="outlined"
-        style={{ minWidth: 120 }}
-        className="filterParent"
-      >
-        <InputLabel>Status</InputLabel>
-        <Select
-          value={filter}
-          onChange={(e) => {
-            setFilter(e.target.value);
-            fetchDevis(e.target.value);
-          }}
-          label="Status"
-        >
-          <MenuItem value="all">All</MenuItem>
-          <MenuItem value="true">Valid</MenuItem>
-          <MenuItem value="false">Not Valid</MenuItem>
-        </Select>
-      </FormControl>
+      </div>
+
       {Devis.length !== 0 ? (
         <div className="table-stat">
           <div className="titre-stat">
             <ul className="ligne order-list">
-              <div className="info-stat">
+              <div
+                className="info-stat"
+                style={{ justifyContent: "space-between" }}
+              >
                 <li>Name</li>
                 <li>Product</li>
-                <li>Email</li>
+                <li style={{ marginLeft: "19px" }}>Email</li>
                 <li>Phone</li>
+                <li style={{ textAlign: "right" }}>Message</li>
+                <li style={{ textAlign: "right" }}>Date</li>
+                <li style={{ textAlign: "right" }}>Status</li>
+                <li style={{ textAlign: "right", width: "140px" }}>Action</li>
               </div>
-
-              <li>Status</li>
-              <li>Action</li>
             </ul>
           </div>
 
@@ -124,25 +108,11 @@ export default function Devis() {
               className={order.isValid ? "stores backgreen" : "stores backred"}
             >
               <li className="ligne">
-                <span>{order.num}</span>
-                <span>
-                  {order.product ? order.product.title : "Product Deleted"}
-                </span>
-                <span>
-                  {order.user ? (
-                    `${order.user.FirstName} ${order.user.LastName}`
-                  ) : (
-                    <LuUserX />
-                  )}
-                </span>
+                <span>{order.name}</span>
+                <span>{order.product ? order.product : "Product Deleted"}</span>
+                <span>{order.email}</span>
                 <span>{order.phoneNumber}</span>
-                <span>{order.quantity}</span>
-                <span>
-                  {new Intl.NumberFormat("fr-FR", {
-                    style: "currency",
-                    currency: "DZD",
-                  }).format(order.totalPrice)}
-                </span>
+                <span style={{ width: "250px" }}>{order.message}</span>
                 <span>{moment(order.createdAt).format("DD MMM YYYY")}</span>
                 <span
                   onClick={() => handleUpdate(order._id)}
@@ -154,7 +124,7 @@ export default function Devis() {
                     <FaRegSquareFull size={24} />
                   )}
                 </span>
-                <DeleteButton handleDelete={() => handleDelete(order._id)} />
+                <DeleteButton handledelet={() => handleDelete(order._id)} />
               </li>
             </ul>
           ))}

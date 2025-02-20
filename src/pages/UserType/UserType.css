@@ -1,0 +1,94 @@
+.row {
+  display: grid;
+  justify-items: center;
+  width: 100%;
+  gap: 30px;
+}
+.subscription-choise .container {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding: 80px 300px 50px 300px;
+}
+.subscription-choise .Title-button {
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px;
+}
+.toogle-button {
+  border: 3px solid var(--button-color);
+  display: flex;
+  padding: 10px;
+  align-items: center;
+  border-radius: 100px;
+  gap: 20px;
+  font-size: 24px;
+  width: 350px;
+}
+.toggle-button-span {
+  display: flex;
+  padding: 5px 20px;
+  align-items: center;
+  border-radius: 100px;
+  cursor: pointer;
+  transition: 0.3s;
+  width: 150px;
+  text-align: center;
+  justify-content: center;
+}
+.active {
+  background-color: var(--button-color);
+  color: white;
+}
+@media screen and (max-width: 1640px) {
+  .subscription-choise .container {
+    padding: 80px 200px 50px 200px;
+  }
+}
+@media screen and (max-width: 1460px) {
+  .subscription-choise .container {
+    padding: 80px 100px 50px 100px;
+  }
+  .subscription-choise .Title-button {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 1070px) {
+  .subscription-choise .container {
+    padding: 80px 50px 50px 50px;
+    margin: 0;
+  }
+}
+@media screen and (max-width: 670px) {
+  .subscription-choise .container {
+    padding: 20px 20px 50px 20px;
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 820px) {
+}
+@media screen and (max-width: 750px) {
+}
+@media screen and (max-width: 590px) {
+}
+@media screen and (max-width: 480px) {
+}
+
+@media screen and (max-width: 420px) {
+}
+@media screen and (max-width: 385px) {
+  .toogle-button {
+    width: 250px;
+  }
+  .toggle-button-span {
+    width: 100px;
+    font-size: 16px;
+  }
+  .subscription-choise .container {
+    padding: 20px 20px;
+  }
+}
+@media screen and (max-width: 250px) {
+}

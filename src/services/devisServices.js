@@ -20,3 +20,7 @@ export const updateDevis = (devisId) => {
 export const deleteDevis = (devisId) => {
   return axios.delete(`${BASE_API_URL}/devis/${devisId}`);
 };
+
+export const getDevisCount = () => {
+  return axios.get(`${BASE_API_URL}/devis/count`);
+};
