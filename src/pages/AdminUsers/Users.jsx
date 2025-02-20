@@ -9,6 +9,7 @@ import {
   deleteUser,
   getAllpendingUsers,
   validateAttribution,
+  AddCodeClient,
 } from "../../services/usersServices";
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import Swal from "sweetalert2";
@@ -16,6 +17,7 @@ import Pagination from "@mui/material/Pagination";
 import { PiPackageFill } from "react-icons/pi";
 import { Link } from "react-router-dom";
 import { FaCheck, FaTimes } from "react-icons/fa";
+import { TextField } from "@mui/material";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -56,6 +58,15 @@ const Users = () => {
     validateAttribution(userId, false).then(() => {
       fetchPendingUsers();
     });
+  };
+  const handleAddCodeClient = (userId, codeClient) => {
+    AddCodeClient(userId, codeClient)
+      .then(() => {
+        console.log(`User type updated to: ${codeClient}`);
+      })
+      .catch((error) => {
+        console.error("Failed to update user type:", error);
+      });
   };
 
   const handleDelet = (userId) => {
@@ -160,8 +171,11 @@ const Users = () => {
               <div
                 className="info-stat"
                 id="info-statuser"
-                style={{ width: "81%" }}
+                style={{ width: "86%" }}
               >
+                <li style={{ marginLeft: "40px", width: "120px" }}>
+                  Code client
+                </li>
                 <li style={{ marginLeft: "40px", width: "120px" }}>
                   Nom complet
                 </li>
@@ -170,10 +184,16 @@ const Users = () => {
                 <li>Téléphone</li>
                 <li style={{ width: "130px" }}>Nombre de commandes</li>
               </div>
-              <li id="actionuser" style={{ width: "7%" }}>
+              <li
+                id="actionuser"
+                style={{ width: "7%", paddingLeft: "0px", paddingRight: "15px" }}
+              >
                 Commandes
               </li>
-              <li id="actionuser" style={{ width: "7%" }}>
+              <li
+                id="actionuser"
+                style={{ width: "5%", paddingLeft: "0px", paddingRight: "22px" }}
+              >
                 Action
               </li>
             </ul>
@@ -182,6 +202,20 @@ const Users = () => {
           {users?.map((user, index) => (
             <ul key={index} className="stores">
               <li className="ligne">
+                <span>
+                  <TextField
+                    id="outlined-basic"
+                    label="Code Client"
+                    variant="outlined"
+                    defaultValue={user.code}
+                    onKeyPress={(event) => {
+                      if (event.key === "Enter") {
+                        handleAddCodeClient(user._id, event.target.value);
+                        console.log(event.target.value);
+                      }
+                    }}
+                  />
+                </span>
                 <span>
                   {user.LastName} {user.FirstName}
                 </span>

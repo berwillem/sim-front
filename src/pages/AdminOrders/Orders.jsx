@@ -18,9 +18,7 @@ import {
 } from "../../services/commandeservices";
 import Pagination from "@mui/material/Pagination";
 import moment from "moment";
-
 import { LuUserX } from "react-icons/lu";
-
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
@@ -67,6 +65,7 @@ const Orders = () => {
         });
       });
   };
+
   const updateOrder = (CommandeId) => {
     updateCommande(CommandeId)
       .then(() => {
@@ -85,9 +84,63 @@ const Orders = () => {
         });
       });
   };
+
+  const downloadValidOrdersCSV = () => {
+    // Filter valid orders
+    const validOrders = Commandes.filter((order) => order.isValid);
+
+    // Properly cased headers
+    const headers = [
+      "Command Number",
+      "Product Name",
+      "Full Name",
+      "Phone Number",
+      "Quantity",
+      "Total Price",
+      "Order Date",
+    ];
+
+    // Prepare the rows
+    const rows = validOrders.map((order) => {
+      const productName =
+        i18n.language === "fr"
+          ? order.product?.titlefr
+          : order.product?.titleen;
+      const fullName = order.user
+        ? `${order.user.FirstName} ${order.user.LastName}`
+        : order.client || "N/A";
+
+      return [
+        order.num, // Command Number
+        productName || "Produit supprimé", // Product Name
+        fullName, // Full Name
+        order.phoneNumber || "N/A", // Phone Number
+        order.quantity || 0, // Quantity
+        order.totalPrice || 0, // Total Price (plain number)
+        moment(order.createdAt).format("DD MMM YYYY"), // Order Date
+      ];
+    });
+
+    // Combine headers and rows into a CSV string
+    const csvContent = [headers, ...rows]
+      .map((row) => row.map((item) => `"${item}"`).join(",")) // Escape and join
+      .join("\n");
+
+    // Create a Blob and trigger download
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "valid_orders.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   useEffect(() => {
     fetchCommandes(page, filter);
   }, [page, filter]);
+
   useEffect(() => {
     getTotalCommandesCount().then((res) => {
       setTotalCommandesCount(res.data.count);
@@ -105,6 +158,7 @@ const Orders = () => {
       setValidCommandesCount(res.data.count);
     });
   }, [handleDelet]);
+
   const { i18n } = useTranslation();
 
   return (
@@ -127,6 +181,13 @@ const Orders = () => {
             stat={pendingCommandesCount}
           />
         </div>
+
+        <button
+          onClick={downloadValidOrdersCSV}
+          className="download-csv-button"
+        >
+          Download Valid Orders as CSV
+        </button>
 
         <FormControl
           variant="outlined"

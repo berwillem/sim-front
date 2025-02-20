@@ -42,3 +42,7 @@ export const validateAttribution = (userId, validate) => {
     validate,
   });
 };
+
+export const AddCodeClient = (userId, code) => {
+  return axios.put(`${BASE_API_URL}/users/add-code-client/${userId}`, { code });
+};
