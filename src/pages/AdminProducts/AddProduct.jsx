@@ -31,6 +31,7 @@ const AddProduct = () => {
     setSelectedCategorie(null);
     setSelectedType(null);
   };
+  console.log(selectedFamille);
 
   const handleCategorieChange = (newCategorie) => {
     setSelectedCategorie(newCategorie);
@@ -72,6 +73,8 @@ const AddProduct = () => {
       Categorie: "",
       Description: "",
       Prix: "",
+      PrixRevendeur: "",
+      PrixGrossiste: "",
       images: [],
     },
   });
@@ -81,6 +84,7 @@ const AddProduct = () => {
     data.Categorie = selectedCategorie?._id;
     data.Type = selectedType?._id;
     data.images = images;
+    console.log(data, "DAAAAAAAAAAAAAAAAAAAA");
     setLoading(true);
     createProduct(data)
       .then((res) => {
@@ -90,7 +94,6 @@ const AddProduct = () => {
       })
       .catch((err) => console.log(err));
   };
-
 
   function ImageUpload() {
     function handleChange(e) {
@@ -199,15 +202,50 @@ const AddProduct = () => {
                       </div>
 
                       <div className="labelSignUphalfinput">
-                        <input
-                          required
-                          type="text"
-                          id=""
-                          placeholder="Prix"
-                          {...register("Prix")}
-                        />
+                        {selectedFamille?.titlefr !== "FIXATION" ? (
+                          <>
+                            <input
+                              required
+                              type="text"
+                              id=""
+                              placeholder="Prix "
+                              {...register("Prix")}
+                            />
+                          </>
+                        ) : (
+                          <input
+                            type="text"
+                            id=""
+                            placeholder="Sur devis"
+                            {...register("Prix")}
+                            disabled
+                          />
+                        )}
                       </div>
                     </div>
+
+                    {selectedFamille?.titlefr !== "FIXATION" && (
+                      <div className="labelSignUphalf">
+                        <div className="labelSignUphalfinput">
+                          <input
+                            required
+                            type="text"
+                            id=""
+                            placeholder="Prix Revendeur/Société"
+                            {...register("PrixRevendeur")}
+                          />{" "}
+                        </div>
+                        <div className="labelSignUphalfinput">
+                          <input
+                            required
+                            type="text"
+                            id=""
+                            placeholder="Prix Grossiste"
+                            {...register("PrixGrossiste")}
+                          />
+                        </div>
+                      </div>
+                    )}
                     <div className="labelSignUphalf  ">
                       <div className="labelSignUphalfinput">
                         <input

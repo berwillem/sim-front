@@ -5,6 +5,8 @@ const createProductFormData = (data) => {
   fd.append("titlefr", data.Titre);
   fd.append("titleen", data.Titre2);
   fd.append("price", data.Prix);
+  fd.append("priceRevendeur", data.PrixRevendeur);
+  fd.append("priceGrossiste", data.PrixGrossiste);
   fd.append("description", data.Description);
   fd.append("famille", data.Famille);
   fd.append("category", data.Categorie);

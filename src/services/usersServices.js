@@ -27,4 +27,22 @@ export const updateUserTour = (userId) => {
 
 export const getAllUserLevels = () => {
   return axios.get(`${BASE_API_URL}/users/levels`);
-}
+};
+
+export const attributeUser = (userId, type) => {
+  return axios.put(`${BASE_API_URL}/users/type/${userId}`, { type });
+};
+
+export const getAllpendingUsers = () => {
+  return axios.get(`${BASE_API_URL}/users/pendingType`);
+};
+
+export const validateAttribution = (userId, validate) => {
+  return axios.put(`${BASE_API_URL}/users/validate-attribution/${userId}`, {
+    validate,
+  });
+};
+
+export const AddCodeClient = (userId, code) => {
+  return axios.put(`${BASE_API_URL}/users/add-code-client/${userId}`, { code });
+};

@@ -1,5 +1,5 @@
 import { IoHome } from "react-icons/io5";
-import { FaUser } from "react-icons/fa";
+import { FaRegListAlt, FaUser } from "react-icons/fa";
 import { FaTools } from "react-icons/fa";
 import { BsBorderStyle } from "react-icons/bs";
 
@@ -18,6 +18,7 @@ const SideBar = () => {
     { icon: <BiSolidCategoryAlt />, text: "Parametres", link: "parametres" },
     { icon: <BsBorderStyle />, text: "Orders", link: "orders" },
     { icon: <LuNewspaper />, text: "Newsletter", link: "newsletter" },
+    { icon: <FaRegListAlt />, text: "Devis", link: "devis" },
   ];
   const navigate = useNavigate();
   return (

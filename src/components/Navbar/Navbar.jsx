@@ -3,7 +3,6 @@ import "./Navbar.css";
 import { CiGlobe, CiLogout, CiMenuBurger } from "react-icons/ci";
 import Logosim from "../../assets/logosim.png";
 import { FiShoppingCart } from "react-icons/fi";
-
 import { FaUser } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import Popover from "../Popover/Menu";
@@ -23,7 +22,10 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [backendCart, setBackendCart] = useState([]);
   const dispatch = useDispatch();
+
+  const isAdmin = useSelector((state) => state.auth?.user?.role);
   const cart = useSelector((state) => state.cart.items);
+  
   const fetchCart = async () => {
     try {
       const res = await getCart(userId);
@@ -32,10 +34,10 @@ export default function Navbar() {
       console.error("Erreur lors de la récupération du panier", error);
     }
   };
+  
   useEffect(() => {
     fetchCart();
   }, []);
-
   return (
     <>
       <nav className="navbar">
@@ -53,6 +55,7 @@ export default function Navbar() {
           <NavLink to={"/about"}>{t("about-usNav")}</NavLink>
           <NavLink to={"/products"}>{t("productsNav")}</NavLink>
           <NavLink to={"/contact"}>{t("contact-usNav")}</NavLink>
+          {isAdmin === "admin" && <NavLink to={"/admin"}>Dashboard</NavLink>}
         </div>
         <div className="navbarlast">
           <Popover
