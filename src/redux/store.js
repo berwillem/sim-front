@@ -1,5 +1,6 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import AuthReducer from "./slices/authSlice";
+import CartReducer from "./slices/cartSlice";
 import storage from "redux-persist/lib/storage";
 import { persistReducer, persistStore } from "redux-persist";
 import { thunk } from "redux-thunk";
@@ -7,12 +8,14 @@ import { thunk } from "redux-thunk";
 const persistConfig = {
   key: "sym",
   storage,
+  whitelist: ["cart"], // Sauvegarde uniquement le panier
 };
 
 const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
     auth: AuthReducer,
+    cart: CartReducer, // Ajout du reducer du panier
   })
 );
 
