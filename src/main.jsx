@@ -39,9 +39,14 @@ import Levels from "./pages/Levels/Levels.jsx";
 import ProfileLayout from "./pages/Profile/ProfileLayout.jsx";
 import UserCommandes from "./pages/UserCommandes/UserCommandes.jsx";
 import AdminStat from "./pages/AdminStat/AdminStat.jsx";
-
 import axios from "axios";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage.jsx";
+
+import AdminDevis from "./pages/AdminDevis/AdminDevis.jsx";
+import UserType from "./pages/UserType/UserType.jsx";
+import ValidationPage from "./pages/ValidationPage/ValidationPage.jsx";
+import PanierPage from "./pages/PanierPage/PanierPage.jsx";
+
 
 axios.defaults.withCredentials = true;
 
@@ -132,6 +137,10 @@ const router = createBrowserRouter([
         path: "newsletter",
         element: <AdminNewsletter />,
       },
+      {
+        path: "devis",
+        element: <AdminDevis />,
+      },
     ],
   },
   {
@@ -171,6 +180,10 @@ const router = createBrowserRouter([
     element: <Products />,
   },
   {
+    path: "/panier",
+    element: <PanierPage />,
+  },
+  {
     path: "/productsList",
     element: <ProductsList />,
   },
@@ -187,6 +200,14 @@ const router = createBrowserRouter([
       { path: "levels", element: <Levels /> },
       { path: "commandes", element: <UserCommandes /> },
     ],
+  },
+  {
+    path: "/user/type",
+    element: <UserType />,
+  },
+  {
+    path: "/pending-approval",
+    element: <ValidationPage />,
   },
 ]);
 

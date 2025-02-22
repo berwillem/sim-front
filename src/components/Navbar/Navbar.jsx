@@ -2,15 +2,16 @@ import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 import { CiGlobe, CiLogout, CiMenuBurger } from "react-icons/ci";
 import Logosim from "../../assets/logosim.png";
-
+import { FiShoppingCart } from "react-icons/fi";
 import { FaUser } from "react-icons/fa";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Popover from "../Popover/Menu";
 import { useDispatch, useSelector } from "react-redux";
 import { AiOutlineProfile } from "react-icons/ai";
 import { logout } from "../../redux/slices/authSlice";
 import { changeLanguage } from "i18next";
 import { useTranslation } from "react-i18next";
+import { getCart } from "../../services/cartservices";
 
 export default function Navbar() {
   const { t } = useTranslation();
@@ -19,8 +20,24 @@ export default function Navbar() {
   const userId = useSelector((state) => state.auth?.user?._id);
   const fistname = useSelector((state) => state.auth?.user?.FirstName);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [backendCart, setBackendCart] = useState([]);
   const dispatch = useDispatch();
 
+  const isAdmin = useSelector((state) => state.auth?.user?.role);
+  const cart = useSelector((state) => state.cart.items);
+  
+  const fetchCart = async () => {
+    try {
+      const res = await getCart(userId);
+      setBackendCart(res.data.products);
+    } catch (error) {
+      console.error("Erreur lors de la récupération du panier", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchCart();
+  }, []);
   return (
     <>
       <nav className="navbar">
@@ -38,6 +55,7 @@ export default function Navbar() {
           <NavLink to={"/about"}>{t("about-usNav")}</NavLink>
           <NavLink to={"/products"}>{t("productsNav")}</NavLink>
           <NavLink to={"/contact"}>{t("contact-usNav")}</NavLink>
+          {isAdmin === "admin" && <NavLink to={"/admin"}>Dashboard</NavLink>}
         </div>
         <div className="navbarlast">
           <Popover
@@ -49,6 +67,19 @@ export default function Navbar() {
             userClicked={() => changeLanguage("fr")}
             userClicked2={() => changeLanguage("en")}
           />
+          <Link to={"/panier"}>
+            {" "}
+            <div className="panier-icon">
+              <FiShoppingCart />
+              {isauth
+                ? backendCart.length != 0 && (
+                    <span className="panier-nbr">{backendCart.length}</span>
+                  )
+                : cart.length != 0 && (
+                    <span className="panier-nbr">{cart.length}</span>
+                  )}
+            </div>
+          </Link>
           {!isauth ? (
             <button
               onClick={() => {

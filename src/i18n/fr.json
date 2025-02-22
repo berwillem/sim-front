@@ -31,8 +31,12 @@
   "S'inscrire": "S'inscrire",
   "loginbefore": "Connectez-vous avant de passer une commande et bénéficiez d'une réduction sur nos produits.",
   "makeorder": "Faire une commande",
+  "askdevis": "Demander un devis",
+  "addcart":"Ajouter au panier",
   "totalprice": "Prix total: ",
   "phonenumber": "Numéro de téléphone",
+  "emailOrPhone": "Email ou Numéro de téléphone",
+  "demande-devis": "Demander un devis",
 
   "pageTitle": "Contact",
   "header": {

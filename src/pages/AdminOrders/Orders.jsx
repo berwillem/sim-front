@@ -4,7 +4,6 @@ import AdminMiniCard from "../../components/AdminMiniCard/AdminMiniCard";
 import { FaRegSquareCheck, FaRegSquareFull, FaUsers } from "react-icons/fa6";
 import { CiSquareCheck } from "react-icons/ci";
 import { IoIosTimer } from "react-icons/io";
-import { TbGitBranchDeleted } from "react-icons/tb";
 import { useEffect, useState } from "react";
 import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import Swal from "sweetalert2";
@@ -18,9 +17,7 @@ import {
 } from "../../services/commandeservices";
 import Pagination from "@mui/material/Pagination";
 import moment from "moment";
-
 import { LuUserX } from "react-icons/lu";
-
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import { useTranslation } from "react-i18next";
 
@@ -33,61 +30,102 @@ const Orders = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [filter, setFilter] = useState("");
 
-  const fetchCommandes = (page, filter) => {
+  const fetchCommandes = () => {
     getAllCommandes(page, filter)
       .then((res) => {
         setCommandes(res.data.commandes);
         setTotalPages(res.data.totalPages);
       })
       .catch((error) => {
-        console.error("Error fetching users:", error);
+        console.error("Error fetching orders:", error);
       });
   };
 
   const handlePageChange = (event, value) => {
     setPage(value);
-    fetchCommandes(value, filter);
   };
 
   const handleDelet = (CommandeId) => {
     deleteCommande(CommandeId)
       .then(() => {
-        Swal.fire({
-          title: "Good job!",
-          text: "order deleted succefuly",
-          icon: "success",
-        });
+        Swal.fire("Supprimé!", "Commande supprimée avec succès.", "success");
         fetchCommandes();
       })
       .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: err.message,
-        });
+        Swal.fire("Erreur", err.message, "error");
       });
   };
+
   const updateOrder = (CommandeId) => {
     updateCommande(CommandeId)
       .then(() => {
-        Swal.fire({
-          title: "Good job!",
-          text: "commande updated succefuly",
-          icon: "success",
-        });
+        Swal.fire("Succès!", "Commande mise à jour avec succès.", "success");
         fetchCommandes();
       })
       .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: err.message,
-        });
+        Swal.fire("Erreur", err.message, "error");
       });
   };
+
+
+  const downloadValidOrdersCSV = () => {
+    // Filter valid orders
+    const validOrders = Commandes.filter((order) => order.isValid);
+
+    // Properly cased headers
+    const headers = [
+      "Command Number",
+      "Product Name",
+      "Full Name",
+      "Phone Number",
+      "Quantity",
+      "Total Price",
+      "Order Date",
+    ];
+
+    // Prepare the rows
+    const rows = validOrders.map((order) => {
+      const productName =
+        i18n.language === "fr"
+          ? order.product?.titlefr
+          : order.product?.titleen;
+      const fullName = order.user
+        ? `${order.user.FirstName} ${order.user.LastName}`
+        : order.client || "N/A";
+
+      return [
+        order.num, // Command Number
+        productName || "Produit supprimé", // Product Name
+        fullName, // Full Name
+        order.phoneNumber || "N/A", // Phone Number
+        order.quantity || 0, // Quantity
+        order.totalPrice || 0, // Total Price (plain number)
+        moment(order.createdAt).format("DD MMM YYYY"), // Order Date
+      ];
+    });
+
+    // Combine headers and rows into a CSV string
+    const csvContent = [headers, ...rows]
+      .map((row) => row.map((item) => `"${item}"`).join(",")) // Escape and join
+      .join("\n");
+
+    // Create a Blob and trigger download
+    const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", "valid_orders.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+
   useEffect(() => {
-    fetchCommandes(page, filter);
+    fetchCommandes();
   }, [page, filter]);
+
+
   useEffect(() => {
     getTotalCommandesCount().then((res) => {
       setTotalCommandesCount(res.data.count);
@@ -95,192 +133,181 @@ const Orders = () => {
   }, [handleDelet]);
 
   useEffect(() => {
-    getPendingCommandesCount().then((res) => {
-      setPendingCommandesCount(res.data.count);
-    });
-  }, [handleDelet]);
+    getTotalCommandesCount().then((res) =>
+      setTotalCommandesCount(res.data.count)
+    );
+    getPendingCommandesCount().then((res) =>
+      setPendingCommandesCount(res.data.count)
+    );
+    getValidCommandesCount().then((res) =>
+      setValidCommandesCount(res.data.count)
+    );
+  }, [Commandes]);
+
 
   useEffect(() => {
     getValidCommandesCount().then((res) => {
       setValidCommandesCount(res.data.count);
     });
   }, [handleDelet]);
+
+
   const { i18n } = useTranslation();
 
   return (
-    <>
-      <div className="admin-stat">
-        <div className="mini-cards">
-          <AdminMiniCard
-            icon={<FaUsers />}
-            title={"Total Commandes"}
-            stat={TotalCommandesCount}
-          />
-          <AdminMiniCard
-            icon={<CiSquareCheck />}
-            title={"Commandes validées"}
-            stat={validCommandesCount}
-          />
-          <AdminMiniCard
-            icon={<IoIosTimer />}
-            title={"Commandes en attente"}
-            stat={pendingCommandesCount}
-          />
-        </div>
+    <div className="admin-stat">
+      <div className="mini-cards">
+        <AdminMiniCard
+          icon={<FaUsers />}
+          title="Total Commandes"
+          stat={TotalCommandesCount}
+        />
+        <AdminMiniCard
+          icon={<CiSquareCheck />}
+          title="Commandes validées"
+          stat={validCommandesCount}
+        />
+        <AdminMiniCard
+          icon={<IoIosTimer />}
+          title="Commandes en attente"
+          stat={pendingCommandesCount}
+        />
+      </div>
 
-        <FormControl
-          variant="outlined"
-          style={{ minWidth: 120 }}
-          className="filterParent"
+
+        <button
+          onClick={downloadValidOrdersCSV}
+          className="download-csv-button"
         >
-          <InputLabel>Status</InputLabel>
-          <Select
-            value={filter}
-            onChange={(e) => {
-              setFilter(e.target.value);
-              fetchCommandes(page, e.target.value);
-            }}
-            label="Status"
-          >
-            <MenuItem value="all">All</MenuItem>
-            <MenuItem value="true">Valid</MenuItem>
-            <MenuItem value="false">Not Valid</MenuItem>
-          </Select>
-        </FormControl>
-        {Commandes.length !== 0 && (
-          <div className="table-stat">
-            <div className="titre-stat">
-              <ul className="ligne commandeslist">
-                <div
-                  className="info-stat "
-                  style={{ marginLeft: "0px", gap: "0px" }}
-                >
-                  <li>Command Number</li>
-                  <li>Product</li>
-                  <li>Fullname</li>
-                  <li>Number</li>
-                  <li>Quantity</li>
-                  <li>Total Price</li>
-                  <li>createdAt</li>
-                </div>
-                <li>Status</li>
-                <li>action</li>
-              </ul>
-            </div>
+          Download Valid Orders as CSV
+        </button>
 
-            {Commandes?.map((Commande, index) => {
-              const title =
-                i18n.language === "fr"
-                  ? Commande.product?.titlefr
-                  : Commande.product?.titleen;
 
-              return (
+      <FormControl
+        variant="outlined"
+        style={{ minWidth: 120 }}
+        className="filterParent"
+      >
+        <InputLabel>Status</InputLabel>
+        <Select
+          value={filter}
+          onChange={(e) => setFilter(e.target.value)}
+          label="Status"
+
+        >
+          <MenuItem value="all">All</MenuItem>
+          <MenuItem value="true">Valid</MenuItem>
+          <MenuItem value="false">Not Valid</MenuItem>
+        </Select>
+      </FormControl>
+
+      {Commandes.length > 0 ? (
+        <div className="table-stat">
+          <div className="titre-stat">
+            <ul className="ligne commandeslist">
+              <div className="info-stat">
+                <li>Command Number</li>
+                <li>Product</li>
+                <li>Fullname</li>
+                <li>Number</li>
+                <li>Quantity</li>
+                <li>Total Price</li>
+                <li>createdAt</li>
+              </div>
+              <li>Status</li>
+              <li>Action</li>
+            </ul>
+          </div>
+
+          {Commandes.map((Commande) => (
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "10px" }}
+              key={Commande._id}
+            >
+              <p> {moment(Commande.createdAt).format("DD MMM YYYY")}</p>
+              {Commande.products.map((product, idx) => (
                 <ul
-                  key={index}
+                  key={idx}
                   className={
-                    Commande.isValid ? "stores backgreen" : "stores backred"
+                    Commande.isValid ? "stores " : "stores "
                   }
                 >
                   <li className="ligne">
                     <span>{Commande.num}</span>
                     <span>
-                      {Commande.product ? title : "Produit supprimé"}
-                    </span>{" "}
+                      {product?.product?.titlefr || "Produit supprimé"}
+                    </span>
                     <span>
                       {Commande.user ? (
-                        Commande.user.FirstName + " " + Commande.user.LastName
+                        `${Commande.user.FirstName} ${Commande.user.LastName}`
                       ) : (
                         <div className="flex">
-                          {" "}
                           {Commande.client} <LuUserX />
                         </div>
                       )}
                     </span>
                     <span>{Commande.phoneNumber}</span>
-                    <span>{Commande.quantity}</span>
+                    <span>{product?.quantity}</span>
                     <span>
                       {new Intl.NumberFormat("fr-FR", {
                         style: "currency",
                         currency: "DZD",
                         minimumFractionDigits: 0,
                         maximumFractionDigits: 0,
-                      }).format(Commande.totalPrice)}
+                      }).format(product.totalPrice)}
                     </span>
                     <span>
                       {moment(Commande.createdAt).format("DD MMM YYYY")}
                     </span>
                     <span style={{ cursor: "pointer" }}>
-                      {Commande.isValid ? (
-                        <>
-                          <FaRegSquareCheck
-                            size={30}
+                      <span>
+                        {Commande.isValid ? (
+                          <span
                             onClick={() => updateOrder(Commande._id)}
-                          />
-                        </>
-                      ) : (
-                        <>
-                          <FaRegSquareFull
-                            size={24}
+                            className="valid"
+                          >
+                            {"valide  "}
+                          </span>
+                        ) : (
+                          <span
                             onClick={() => updateOrder(Commande._id)}
-                          />
-                        </>
-                      )}
+                            className="no-valid"
+                          >
+                            {" non valide  "}
+                          </span>
+                        )}
+                      </span>
                     </span>
                     <DeleteButon
                       handledelet={() => handleDelet(Commande._id)}
-                    ></DeleteButon>
+                    />
                   </li>
                 </ul>
-              );
-            })}
-          </div>
-        )}
+              ))}
+            </div>
+          ))}
+        </div>
+      ) : (
+        <div className="empty-orders">
+          <h1>{`Aucune commande ${
+            filter === "true"
+              ? "valide"
+              : filter === "false"
+              ? "non valide"
+              : ""
+          }`}</h1>
+          <h3>Vous verrez toutes vos commandes ici</h3>
+        </div>
+      )}
 
-        {Commandes.length === 0 && filter === "all" && (
-          <div
-            style={{
-              textAlign: "center",
-              marginTop: "50px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "20px",
-            }}
-          >
-            <h1>Aucune commande</h1>
-            <h3>Vous verrez toutes vos commandes ici</h3>
-          </div>
-        )}
-
-        {Commandes.length === 0 && filter !== "all" && (
-          <div
-            style={{
-              textAlign: "center",
-              marginTop: "50px",
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-              alignItems: "center",
-              gap: "20px",
-            }}
-          >
-            <h1>{`Aucune commande ${
-              filter === "true" ? "valide" : "non valide"
-            }`}</h1>
-            <h3>Vous verrez toutes vos commandes ici</h3>
-          </div>
-        )}
-
-        {Commandes.length !== 0 && (
-          <Pagination
-            count={totalPages}
-            page={page}
-            onChange={handlePageChange}
-          />
-        )}
-      </div>
-    </>
+      {Commandes.length > 0 && (
+        <Pagination
+          count={totalPages}
+          page={page}
+          onChange={handlePageChange}
+        />
+      )}
+    </div>
   );
 };
 

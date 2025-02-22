@@ -7,9 +7,8 @@ export default function Products() {
   return (
     <>
       <Helmet>
-            <title>Product Familly</title>
-         
-        </Helmet>
+        <title>Product Familly</title>
+      </Helmet>
       <Navbar />
       <Cards />
     </>
