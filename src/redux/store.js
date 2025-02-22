@@ -8,7 +8,7 @@ import { thunk } from "redux-thunk";
 const persistConfig = {
   key: "sym",
   storage,
-  whitelist: ["cart"], // Sauvegarde uniquement le panier
+  whitelist: ["cart", "auth"],
 };
 
 const persistedReducer = persistReducer(
