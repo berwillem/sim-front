@@ -17,8 +17,8 @@ const SideBar = () => {
     { icon: <FaTools />, text: "Products", link: "products" },
     { icon: <BiSolidCategoryAlt />, text: "Parametres", link: "parametres" },
     { icon: <BsBorderStyle />, text: "Orders", link: "orders" },
-    { icon: <LuNewspaper />, text: "Newsletter", link: "newsletter" },
     { icon: <FaRegListAlt />, text: "Devis", link: "devis" },
+    { icon: <LuNewspaper />, text: "Newsletter", link: "newsletter" },
   ];
   const navigate = useNavigate();
   return (

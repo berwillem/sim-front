@@ -184,7 +184,7 @@ const EditProduct = () => {
         <div className="fortable-stat">
           <div className="table-stat" id="table-statadd">
             <ImageUpload />{" "}
-            <div className="titre-stat">
+            <div className="titre-stat" style={{ backgroundColor: "unset" }}>
               <div className="ligne">
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="forlabelsignin">

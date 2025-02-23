@@ -36,3 +36,12 @@ export const getPendingCommandesCount = () => {
 export const getOrdersByFamily = () => {
   return axios.get(`${BASE_API_URL}/commandes/getbyfamily`);
 };
+
+export const addFileToOrder = async (orderId, file) => {
+  const formData = new FormData();
+  formData.append("image", file);
+
+  return axios.put(`${BASE_API_URL}/commandes/addfile/${orderId}`, formData, {
+    headers: { "Content-Type": "multipart/form-data" },
+  });
+};

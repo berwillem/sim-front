@@ -25,6 +25,8 @@ const Users = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [totalUserCount, setTotalUserCount] = useState(0);
   const [pendingUsers, setPendingUsers] = useState([]);
+  const [clientCode, setClientCode] = useState("");
+  const [clientCodes, setClientCodes] = useState({});
 
   const fetchUsers = (page) => {
     getAllUsers(page)
@@ -62,7 +64,12 @@ const Users = () => {
   const handleAddCodeClient = (userId, codeClient) => {
     AddCodeClient(userId, codeClient)
       .then(() => {
-        console.log(`User type updated to: ${codeClient}`);
+        Swal.fire({
+          title: "Good job!",
+          text: `code client add succefuly : ${codeClient}`,
+
+          icon: "success",
+        });
       })
       .catch((error) => {
         console.error("Failed to update user type:", error);
@@ -173,12 +180,10 @@ const Users = () => {
                 id="info-statuser"
                 style={{ width: "86%" }}
               >
-                <li style={{ marginLeft: "40px", width: "120px" }}>
+                <li style={{ marginLeft: "0px", width: "120px" }}>
                   Code client
                 </li>
-                <li style={{ marginLeft: "40px", width: "120px" }}>
-                  Nom complet
-                </li>
+                <li style={{ width: "120px" }}>Nom complet</li>
                 <li>Type</li>
                 <li>Email</li>
                 <li>Téléphone</li>
@@ -186,13 +191,21 @@ const Users = () => {
               </div>
               <li
                 id="actionuser"
-                style={{ width: "7%", paddingLeft: "0px", paddingRight: "15px" }}
+                style={{
+                  width: "7%",
+                  paddingLeft: "0px",
+                  paddingRight: "15px",
+                }}
               >
                 Commandes
               </li>
               <li
                 id="actionuser"
-                style={{ width: "5%", paddingLeft: "0px", paddingRight: "22px" }}
+                style={{
+                  width: "5%",
+                  paddingLeft: "0px",
+                  paddingRight: "22px",
+                }}
               >
                 Action
               </li>
@@ -202,19 +215,50 @@ const Users = () => {
           {users?.map((user, index) => (
             <ul key={index} className="stores">
               <li className="ligne">
-                <span>
+                <span style={{ position: "relative", width: "160px" }}>
                   <TextField
                     id="outlined-basic"
                     label="Code Client"
                     variant="outlined"
                     defaultValue={user.code}
-                    onKeyPress={(event) => {
+                    onChange={(e) =>
+                      setClientCodes((prev) => ({
+                        ...prev,
+                        [user._id]: e.target.value,
+                      }))
+                    }
+                    onKeyDown={(event) => {
                       if (event.key === "Enter") {
-                        handleAddCodeClient(user._id, event.target.value);
-                        console.log(event.target.value);
+                        handleAddCodeClient(user._id, clientCodes[user._id]);
+                        event.preventDefault();
                       }
                     }}
                   />
+                  {clientCodes[user._id] && (
+                    <FaCheck
+                      onClick={() =>
+                        handleAddCodeClient(user._id, clientCodes[user._id])
+                      }
+                      color="green"
+                      style={{
+                        cursor: "pointer",
+                        position: "absolute",
+                        right: "10px",
+                      }}
+                    />
+                  )}
+
+                  {clientCode && (
+                    <FaCheck
+                      onClick={() => handleAddCodeClient(user._id, clientCode)}
+                      color="green"
+                      style={{
+                        cursor: "pointer",
+                        position: "absolute",
+                        right: "10px",
+                      }}
+                    />
+                  )}
                 </span>
                 <span>
                   {user.LastName} {user.FirstName}

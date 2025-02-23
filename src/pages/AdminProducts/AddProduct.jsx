@@ -136,10 +136,14 @@ const AddProduct = () => {
     <>
       <div className="admin-stat">
         <div className="fortable-stat">
-          <div className="table-stat" id="table-statadd">
+          <div
+            className="table-stat"
+            id="table-statadd"
+            style={{ border: "2px solid #e0e0e0" }}
+          >
             <ImageUpload />
 
-            <div className="titre-stat">
+            <div className="titre-stat" style={{ backgroundColor: "unset" }}>
               <div className="ligne">
                 <form onSubmit={handleSubmit(onSubmit)}>
                   <div className="forlabelsignin">

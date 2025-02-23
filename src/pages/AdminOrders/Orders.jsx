@@ -1,7 +1,8 @@
 import "./Orders.css";
 /* eslint-disable react-hooks/exhaustive-deps */
 import AdminMiniCard from "../../components/AdminMiniCard/AdminMiniCard";
-import { FaRegSquareCheck, FaRegSquareFull, FaUsers } from "react-icons/fa6";
+import { FaUsers } from "react-icons/fa6";
+import { AiFillPrinter } from "react-icons/ai";
 import { CiSquareCheck } from "react-icons/ci";
 import { IoIosTimer } from "react-icons/io";
 import { useEffect, useState } from "react";
@@ -14,12 +15,15 @@ import {
   getPendingCommandesCount,
   getValidCommandesCount,
   updateCommande,
+  addFileToOrder,
 } from "../../services/commandeservices";
 import Pagination from "@mui/material/Pagination";
 import moment from "moment";
 import { LuUserX } from "react-icons/lu";
 import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 import { useTranslation } from "react-i18next";
+import { LuImage } from "react-icons/lu";
+import { LuImagePlus } from "react-icons/lu";
 
 const Orders = () => {
   const [Commandes, setCommandes] = useState([]);
@@ -29,6 +33,7 @@ const Orders = () => {
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [filter, setFilter] = useState("");
+  const [fileUploading, setFileUploading] = useState(false);
 
   const fetchCommandes = () => {
     getAllCommandes(page, filter)
@@ -67,6 +72,97 @@ const Orders = () => {
       });
   };
 
+  const handleFileUpload = async (commandeId, event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    setFileUploading(true); // Show a loading state if needed
+
+    try {
+      const response = await addFileToOrder(commandeId, file);
+
+      // Update the state to reflect the new file URL
+      setCommandes((prevCommandes) =>
+        prevCommandes.map((commande) =>
+          commande._id === commandeId
+            ? { ...commande, file: response.data.file } // Update file URL
+            : commande
+        )
+      );
+
+      Swal.fire("Succès!", "Fichier ajouté avec succès.", "success");
+    } catch (error) {
+      Swal.fire(
+        "Erreur",
+        error.response?.data?.error || "Erreur inconnue",
+        "error"
+      );
+    } finally {
+      setFileUploading(false);
+    }
+  };
+
+  const printOrders = (commande) => {
+    const printContent = `
+      <html>
+        <head>
+          <title>Commande</title>
+          <style>
+            body { font-family: Arial, sans-serif; }
+            table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+            th, td { border: 1px solid #ddd; padding: 8px; text-align: left; }
+            th { background-color: #f4f4f4; }
+          </style>
+        </head>
+        <body>
+          <h2>Commande N° ${commande.num}</h2>
+          <table>
+            <thead>
+              <tr>
+                <th>Produit</th>
+                <th>Nom Complet</th>
+                <th>Numéro</th>
+                <th>Quantité</th>
+                <th>Prix Total</th>
+                <th>Date</th>
+                <th>Statut</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${commande.products
+                .map(
+                  (product) => `
+                <tr>
+                  <td>${product?.product?.titlefr || "Produit supprimé"}</td>
+                  <td>${
+                    commande.user
+                      ? `${commande.user.FirstName} ${commande.user.LastName}`
+                      : commande.client || "N/A"
+                  }</td>
+                  <td>${commande.phoneNumber || "N/A"}</td>
+                  <td>${product?.quantity || 0}</td>
+                  <td>${new Intl.NumberFormat("fr-FR", {
+                    style: "currency",
+                    currency: "DZD",
+                  }).format(product.totalPrice)}</td>
+                  <td>${moment(commande.createdAt).format("DD MMM YYYY")}</td>
+                  <td>${commande.isValid ? "Validé" : "Non Validé"}</td>
+                </tr>
+              `
+                )
+                .join("")}
+            </tbody>
+          </table>
+        </body>
+      </html>
+    `;
+
+    const printWindow = window.open("", "", "width=800,height=600");
+    printWindow.document.open();
+    printWindow.document.write(printContent);
+    printWindow.document.close();
+    printWindow.print();
+  };
 
   const downloadValidOrdersCSV = () => {
     // Filter valid orders
@@ -120,11 +216,9 @@ const Orders = () => {
     document.body.removeChild(link);
   };
 
-
   useEffect(() => {
     fetchCommandes();
   }, [page, filter]);
-
 
   useEffect(() => {
     getTotalCommandesCount().then((res) => {
@@ -144,13 +238,11 @@ const Orders = () => {
     );
   }, [Commandes]);
 
-
   useEffect(() => {
     getValidCommandesCount().then((res) => {
       setValidCommandesCount(res.data.count);
     });
   }, [handleDelet]);
-
 
   const { i18n } = useTranslation();
 
@@ -174,14 +266,9 @@ const Orders = () => {
         />
       </div>
 
-
-        <button
-          onClick={downloadValidOrdersCSV}
-          className="download-csv-button"
-        >
-          Download Valid Orders as CSV
-        </button>
-
+      <button onClick={downloadValidOrdersCSV} className="download-csv-button">
+        <h4 style={{ cursor: "pointer" }}> Download Valid Orders as CSV</h4>
+      </button>
 
       <FormControl
         variant="outlined"
@@ -193,7 +280,6 @@ const Orders = () => {
           value={filter}
           onChange={(e) => setFilter(e.target.value)}
           label="Status"
-
         >
           <MenuItem value="all">All</MenuItem>
           <MenuItem value="true">Valid</MenuItem>
@@ -224,13 +310,51 @@ const Orders = () => {
               style={{ display: "flex", flexDirection: "column", gap: "10px" }}
               key={Commande._id}
             >
-              <p> {moment(Commande.createdAt).format("DD MMM YYYY")}</p>
+              <div
+                style={{ display: "flex", gap: "15px", alignItems: "center" }}
+              >
+                <h4>
+                  {Commande.user.FirstName} {Commande.user.LastName}
+                </h4>
+                <AiFillPrinter
+                  style={{ cursor: "pointer" }}
+                  size={25}
+                  onClick={() => {
+                    printOrders(Commande);
+                  }}
+                ></AiFillPrinter>
+                {Commande.file ? (
+                  <a
+                    href={Commande.file}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <LuImage size={20} color="black" />
+                  </a>
+                ) : (
+                  <>
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      onChange={(event) =>
+                        handleFileUpload(Commande._id, event)
+                      }
+                      disabled={fileUploading}
+                      id="file"
+                    />
+                    <label htmlFor="file">
+                      <LuImagePlus
+                        size={20}
+                        style={{ cursor: "pointer", color: "black" }}
+                      />
+                    </label>
+                  </>
+                )}
+              </div>
               {Commande.products.map((product, idx) => (
                 <ul
                   key={idx}
-                  className={
-                    Commande.isValid ? "stores " : "stores "
-                  }
+                  className={Commande.isValid ? "stores " : "stores "}
                 >
                   <li className="ligne">
                     <span>{Commande.num}</span>
@@ -260,11 +384,12 @@ const Orders = () => {
                       {moment(Commande.createdAt).format("DD MMM YYYY")}
                     </span>
                     <span style={{ cursor: "pointer" }}>
-                      <span>
+                      <span style={{ width: "unset" }}>
                         {Commande.isValid ? (
                           <span
                             onClick={() => updateOrder(Commande._id)}
                             className="valid"
+                            style={{ width: "unset" }}
                           >
                             {"valide  "}
                           </span>
@@ -272,6 +397,7 @@ const Orders = () => {
                           <span
                             onClick={() => updateOrder(Commande._id)}
                             className="no-valid"
+                            style={{ width: "unset" }}
                           >
                             {" non valide  "}
                           </span>
