@@ -1,27 +1,23 @@
 import { useNavigate } from "react-router-dom";
 import "./CardSubsciptions.css";
-import { attributeUser } from "../../services/usersServices";
 import { useSelector } from "react-redux";
 import { RiTeamFill } from "react-icons/ri";
 import { BsPersonCheck } from "react-icons/bs";
 import { BiBuildings } from "react-icons/bi";
 import { MdOutlineWarehouse } from "react-icons/md";
+import { useState } from "react";
 
 export default function CardSubscriptions() {
   const navigate = useNavigate();
   const userId = useSelector((state) => state.auth?.user?._id);
+  const [isOpen, setIsOpen] = useState(false);
+  const [type, setType] = useState("");
 
   const handleClick = async (type) => {
-    await attributeUser(userId, type)
-      .then(() => {
-        console.log(`User type updated to: ${type}`);
-      })
-      .catch((error) => {
-        console.error("Failed to update user type:", error);
-      });
-    type === "particulier" ? navigate("/") : navigate("/pending-approval");
+    setType(type);
+    setIsOpen(true);
+    type === "particulier" ? navigate("/") : navigate(`/auth/register/${type}`);
   };
-
   const data = [
     { id: 1, type: "particulier", icon: <RiTeamFill /> },
     { id: 2, type: "revendeur", icon: <BsPersonCheck /> },

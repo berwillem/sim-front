@@ -67,12 +67,16 @@ const Users = () => {
         Swal.fire({
           title: "Good job!",
           text: `code client add succefuly : ${codeClient}`,
-
           icon: "success",
         });
       })
       .catch((error) => {
         console.error("Failed to update user type:", error);
+        Swal.fire({
+          title: "failed!",
+          text: error.response.data.error,
+          icon: "error",
+        });
       });
   };
 

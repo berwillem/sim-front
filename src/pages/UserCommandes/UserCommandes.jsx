@@ -8,7 +8,6 @@ import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import moment from "moment";
 import { deleteCommande } from "../../services/commandeservices";
 import { Helmet } from "react-helmet";
-import { FaRegSquareCheck, FaRegSquareFull } from "react-icons/fa6";
 import { FaRegTrashAlt } from "react-icons/fa";
 const UserCommandes = () => {
   const [commandes, setCommandes] = useState([]);
@@ -68,13 +67,14 @@ const UserCommandes = () => {
             <div className="titre-stat titrestat2">
               <ul className="ligne commandeslist">
                 <div className="info-stat infostat2 ">
-                  <li>Product image</li>
-                  <li>Product Name</li>
-                  <li>Quantity</li>
-                  <li>createdAt</li>
-                  <li>Status</li>
+                  <li>Image</li>
+                  <li>Produit </li>
+                  <li>Quantité</li>
+                  <li>Prix total</li>
+                  <li>Crée le</li>
+                  <li style={{ marginLeft: "20px" }}>Status</li>
+                  <li style={{ marginLeft: "20px" }}>Bon de Commande</li>
                 </div>
-                <li>action</li>
               </ul>
             </div>
 
@@ -96,6 +96,7 @@ const UserCommandes = () => {
                           {product?.product?.titlefr || "Produit supprimé"}
                         </span>
                         <span>{product.quantity}</span>
+                        <span>{product.totalPrice}</span>
                         <span>
                           {moment(Commande.createdAt).format("DD MMM YYYY")}
                         </span>
@@ -106,12 +107,22 @@ const UserCommandes = () => {
                             <span className="no-valid">{" non valide  "}</span>
                           )}
                         </span>
-                        {!Commande.isValid && (
-                          <div className="delete-icon">
-                            <FaRegTrashAlt
-                              handledelet={() => handleDelet(Commande._id)}
-                            />
-                          </div>
+                        {Commande.file ? (
+                          <span>
+                            <a href={Commande.file} target="_blank">
+                              Télécharger le bon de commande
+                            </a>
+                          </span>
+                        ) : (
+                          <span>
+                            <a
+                              href={Commande.file}
+                              target="_blank"
+                              style={{ alignItems: "center" }}
+                            >
+                              En cours de traitement
+                            </a>
+                          </span>
                         )}
                       </li>
                     );
@@ -130,20 +141,28 @@ const UserCommandes = () => {
                             />
                           </span>
                           <span>
-                            Product title: {product?.product?.titlefr || "N/A"}
+                            Produit: {product?.product?.titlefr || "N/A"}
                           </span>
                           <span>Quantité: {product?.quantity}</span>
                           <span>
-                            CreatedAt:{" "}
+                            Fait Le:{" "}
                             {moment(Commande.createdAt).format("DD MMM YYYY")}
                           </span>
                           <span>
                             Status:
                             {Commande.isValid ? (
-                              <span className="valid">{"valide  "}</span>
+                              <span
+                                className="valid"
+                                style={{ width: "unset", marginLeft: "10px" }}
+                              >
+                                {"valide"}
+                              </span>
                             ) : (
-                              <span className="no-valid">
-                                {" non valide  "}
+                              <span
+                                className="no-valid"
+                                style={{ width: "unset", marginLeft: "10px" }}
+                              >
+                                {"non valide"}
                               </span>
                             )}
                           </span>

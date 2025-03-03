@@ -10,19 +10,17 @@ import {
   deleteDevis,
   updateDevis,
   getDevisCount,
+  addfileToDevis,
+  removeFileFromDevis,
 } from "../../services/devisServices";
 import moment from "moment";
-import { LuUserX } from "react-icons/lu";
-import { Select, MenuItem, FormControl, InputLabel } from "@mui/material";
-import { useTranslation } from "react-i18next";
 import AdminMiniCard from "../../components/AdminMiniCard/AdminMiniCard";
+import { LuImage, LuImagePlus } from "react-icons/lu";
 
 export default function Devis() {
   const [Devis, setDevis] = useState([]);
-  const [filter, setFilter] = useState("");
-  const { i18n } = useTranslation();
-
   const [totalDevisCount, setTotalDevisCount] = useState(0);
+  const [fileUploading, setFileUploading] = useState(false);
 
   const fetchDevis = () => {
     getAllDevis()
@@ -57,8 +55,8 @@ export default function Devis() {
       );
   };
 
-  const handleUpdate = (DevisId) => {
-    updateDevis(DevisId)
+  const validateDevis = (DevisId) => {
+    updateDevis(DevisId, { isValid: true })
       .then(() => {
         Swal.fire({
           title: "Success!",
@@ -70,6 +68,76 @@ export default function Devis() {
       .catch((err) =>
         Swal.fire({ icon: "error", title: "Oops...", text: err.message })
       );
+  };
+
+  const rejectDevis = (DevisId) => {
+    updateDevis(DevisId, { isValid: false })
+      .then(() => {
+        Swal.fire({
+          title: "Success!",
+          text: "Devis updated successfully",
+          icon: "success",
+        });
+        fetchDevis();
+      })
+      .catch((err) =>
+        Swal.fire({ icon: "error", title: "Oops...", text: err.message })
+      );
+  };
+
+  const handleFileUpload = async (orderId, event) => {
+    const image = event.target.files[0];
+    if (!image) return;
+
+    setFileUploading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append("image", image); // Ensure "file" matches the field in multer
+
+      const response = await addfileToDevis(orderId, formData);
+
+      setDevis((prevDevis) =>
+        prevDevis.map((devis) =>
+          devis._id === orderId
+            ? { ...devis, file: response.data.image }
+            : devis
+        )
+      );
+
+      Swal.fire("Succès!", "Fichier ajouté avec succès.", "success");
+    } catch (error) {
+      console.error("Error uploading file:", error);
+      Swal.fire(
+        "Error",
+        "Une erreur s'est produite lors de l'ajout du fichier.",
+        "error"
+      );
+    } finally {
+      setFileUploading(false);
+    }
+  };
+
+  const handleFileRemove = async (orderId) => {
+    try {
+      await removeFileFromDevis(orderId);
+      setDevis((prevDevis) =>
+        prevDevis.map((devis) => {
+          if (devis._id === orderId) {
+            return { ...devis, file: null }; // Update file URL
+          }
+          return devis;
+        })
+      );
+      Swal.fire("Succès!", "Fichier supprimé avec succès.", "success");
+    } catch (error) {
+      console.error("Error removing file:", error);
+      Swal.fire(
+        "Error",
+        "Une erreur s'est produite lors de la suppression du fichier.",
+        "error"
+      );
+    }
   };
 
   return (
@@ -108,20 +176,50 @@ export default function Devis() {
               className={order.isValid ? "stores backgreen" : "stores backred"}
             >
               <li className="ligne">
+                {order.file ? (
+                  <a
+                    href={order.file}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{ alignItems: "center" }}
+                  >
+                    <LuImage size={20} color="black" />
+                  </a>
+                ) : (
+                  <>
+                    <input
+                      style={{ display: "none" }}
+                      type="file"
+                      onChange={(event) => handleFileUpload(order._id, event)}
+                      disabled={fileUploading}
+                      id={order._id}
+                    />
+                    <label htmlFor={order._id}>
+                      <LuImagePlus
+                        id={order._id}
+                        size={20}
+                        style={{ cursor: "pointer", color: "black" }}
+                      />
+                    </label>
+                  </>
+                )}
                 <span>{order.name}</span>
                 <span>{order.product ? order.product : "Product Deleted"}</span>
                 <span>{order.email}</span>
                 <span>{order.phoneNumber}</span>
                 <span style={{ width: "250px" }}>{order.message}</span>
                 <span>{moment(order.createdAt).format("DD MMM YYYY")}</span>
-                <span
-                  onClick={() => handleUpdate(order._id)}
-                  style={{ cursor: "pointer" }}
-                >
+                <span style={{ cursor: "pointer" }}>
                   {order.isValid ? (
-                    <FaRegSquareCheck size={30} />
+                    <FaRegSquareCheck
+                      size={30}
+                      onClick={() => rejectDevis(order._id)}
+                    />
                   ) : (
-                    <FaRegSquareFull size={24} />
+                    <FaRegSquareFull
+                      size={24}
+                      onClick={() => validateDevis(order._id)}
+                    />
                   )}
                 </span>
                 <DeleteButton handledelet={() => handleDelete(order._id)} />

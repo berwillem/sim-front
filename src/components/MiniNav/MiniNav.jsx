@@ -8,6 +8,7 @@ import Joyride from "react-joyride";
 import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
+import { LuMailQuestion } from "react-icons/lu";
 const MiniNav = () => {
   const { userId } = useParams();
   const [tour, setTour] = useState(true);
@@ -66,6 +67,11 @@ const MiniNav = () => {
           <Link to={`/profile/${userId}/commandes`} className="my-second-step">
             <li>
               {t("commandes")} <GrDeliver />
+            </li>
+          </Link>
+          <Link to={`/profile/${userId}/devis`} className="my-second-step">
+            <li>
+              {t("Devis")} <LuMailQuestion />
             </li>
           </Link>
           <Link to={`/profile/${userId}/levels`} className="my-third-step">

@@ -7,15 +7,9 @@
 .user-card {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: 11px;
-  position: absolute;
-  left: 34%;
-  top: -50px;
-}
-.userprofile {
-  position: relative;
 }
 
 .user-lign {
@@ -30,7 +24,6 @@
 .level-bar22 {
   margin-top: 40px;
   width: 70vw;
-  position: absolute;
   top: 180px;
   left: 14.5%;
   display: flex;
@@ -38,6 +31,15 @@
   align-items: center;
 }
 
+.user-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+@media screen and (max-width: 800px) {
+  .user-info {
+    grid-template-columns: 1fr;
+  }
+}
 @media screen and (max-width: 600px) {
   .user-card {
     left: 0;

@@ -56,11 +56,7 @@ export default function SignUp() {
       })
       .catch((err) => {
         console.log(err);
-        if (
-          err.response?.data?.message === "User already exists! Login instead."
-        ) {
-          setExist(true);
-        }
+        setExist(err.response.data?.message);
       });
   };
 
@@ -160,7 +156,7 @@ export default function SignUp() {
           {/* Existing User Error */}
           {exist && (
             <p className="error" style={{ color: "red" }}>
-              User already exists! Login instead.
+              {exist}
             </p>
           )}
         </div>

@@ -38,6 +38,7 @@ import EditProduct from "./pages/AdminProducts/EditProduct.jsx";
 import Levels from "./pages/Levels/Levels.jsx";
 import ProfileLayout from "./pages/Profile/ProfileLayout.jsx";
 import UserCommandes from "./pages/UserCommandes/UserCommandes.jsx";
+import UserDevis from "./pages/UserDevis/UserDevis.jsx";
 import AdminStat from "./pages/AdminStat/AdminStat.jsx";
 import axios from "axios";
 import AboutUsPage from "./pages/AboutUsPage/AboutUsPage.jsx";
@@ -46,7 +47,7 @@ import AdminDevis from "./pages/AdminDevis/AdminDevis.jsx";
 import UserType from "./pages/UserType/UserType.jsx";
 import ValidationPage from "./pages/ValidationPage/ValidationPage.jsx";
 import PanierPage from "./pages/PanierPage/PanierPage.jsx";
-
+import Type from "./pages/Auth/SignUp/Type.jsx";
 
 axios.defaults.withCredentials = true;
 
@@ -149,6 +150,10 @@ const router = createBrowserRouter([
     children: [
       { path: "signin", element: <SignIn /> },
       { path: "signup", element: <SignUp /> },
+      {
+        path: "register/:type",
+        element: <Type />,
+      },
     ],
   },
   {
@@ -199,6 +204,7 @@ const router = createBrowserRouter([
       { path: "", element: <Profile /> },
       { path: "levels", element: <Levels /> },
       { path: "commandes", element: <UserCommandes /> },
+      { path: "devis", element: <UserDevis /> },
     ],
   },
   {
