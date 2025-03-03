@@ -14,9 +14,7 @@ export default function CardSubscriptions() {
   const [type, setType] = useState("");
 
   const handleClick = async (type) => {
-    setType(type);
-    setIsOpen(true);
-    type === "particulier" ? navigate("/") : navigate(`/auth/register/${type}`);
+    navigate(`/auth/signup/${type}`);
   };
   const data = [
     { id: 1, type: "particulier", icon: <RiTeamFill /> },
@@ -41,5 +39,4 @@ export default function CardSubscriptions() {
   );
 }
 
-
-// 
+//

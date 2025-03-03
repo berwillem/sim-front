@@ -15,6 +15,7 @@ import { CiMail } from "react-icons/ci";
 import { useTranslation } from "react-i18next";
 import { Helmet } from "react-helmet";
 import { AiOutlinePhone } from "react-icons/ai";
+import { useParams } from "react-router-dom";
 
 const schema = yup.object().shape({
   FirstName: yup.string().required("Prénom est requis"),
@@ -32,6 +33,9 @@ const schema = yup.object().shape({
 });
 
 export default function SignUp() {
+  const { type } = useParams();
+  console.log(type);
+
   const [exist, setExist] = useState(false);
   const {
     register,
@@ -45,14 +49,14 @@ export default function SignUp() {
   const dispatch = useDispatch();
 
   const onSubmit = (data) => {
-    console.log("Form Data:", data);
-
     SignUpUser(data)
       .then((res) => {
         console.log(res);
         toast.success(res.data?.message);
         dispatch(login(res.data));
-        navigate("/user/type");
+        type === "particulier"
+          ? navigate("/")
+          : navigate(`/auth/register/${type}`);
       })
       .catch((err) => {
         console.log(err);

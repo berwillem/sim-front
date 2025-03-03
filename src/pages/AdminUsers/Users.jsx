@@ -134,7 +134,11 @@ const Users = () => {
                     style={{ width: "100%", padding: "0px 50px 0 40px" }}
                   >
                     <li>Nom complet</li>
-                    <li>Email</li>
+                    <li>Téléphone</li>
+                    <li>RC</li>
+                    <li>Adresse</li>
+                    <li>Entresprise</li>
+
                     <li style={{ textAlign: "right", width: "130px" }}>Type</li>
                     <li>Action</li>
                   </div>
@@ -147,7 +151,10 @@ const Users = () => {
                     <span>
                       {user.LastName} {user.FirstName}
                     </span>
-                    <span>{user.email}</span>
+                    <span>{user.phoneNumber}</span>
+                    <span>{user.pendingRC}</span>
+                    <span>{user.pendingAdresse}</span>
+                    <span>{user.pendingEntreprise}</span>
                     <span>{user.pendingType}</span>
                     <span
                       style={{

@@ -149,12 +149,16 @@ const router = createBrowserRouter([
     element: <MainAuth />,
     children: [
       { path: "signin", element: <SignIn /> },
-      { path: "signup", element: <SignUp /> },
+      { path: "signup/:type", element: <SignUp /> },
       {
         path: "register/:type",
         element: <Type />,
       },
     ],
+  },
+  {
+    path: "/user/type",
+    element: <UserType />,
   },
   {
     path: "/passwordForgot",
@@ -207,10 +211,7 @@ const router = createBrowserRouter([
       { path: "devis", element: <UserDevis /> },
     ],
   },
-  {
-    path: "/user/type",
-    element: <UserType />,
-  },
+
   {
     path: "/pending-approval",
     element: <ValidationPage />,
