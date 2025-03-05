@@ -12,6 +12,9 @@ export const getAllUsers = (page) => {
 export const getUserCommandes = (userId) => {
   return axios.get(`${BASE_API_URL}/users/commandes/${userId}`);
 };
+export const getUserDevis = (userId) => {
+  return axios.get(`${BASE_API_URL}/users/devis/${userId}`);
+};
 export const getUserById = (id) => {
   return axios.get(`${BASE_API_URL}/users/${id}`);
 };
@@ -29,8 +32,8 @@ export const getAllUserLevels = () => {
   return axios.get(`${BASE_API_URL}/users/levels`);
 };
 
-export const attributeUser = (userId, type) => {
-  return axios.put(`${BASE_API_URL}/users/type/${userId}`, { type });
+export const attributeUser = (userId, data) => {
+  return axios.put(`${BASE_API_URL}/users/type/${userId}`, data);
 };
 
 export const getAllpendingUsers = () => {

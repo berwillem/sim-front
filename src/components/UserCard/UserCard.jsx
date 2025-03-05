@@ -10,7 +10,7 @@ import { MdEmail } from "react-icons/md";
 import { GrUpgrade } from "react-icons/gr";
 import LevelBar from "../LevelBar/LevelBar.jsx";
 import { useTranslation } from "react-i18next";
-import { FaPhoneAlt } from "react-icons/fa";
+import { FaPhoneAlt, FaRegUser } from "react-icons/fa";
 
 const UserCard = () => {
   const [user, setUser] = useState({});
@@ -43,66 +43,73 @@ const UserCard = () => {
 
   return (
     <>
-      <div className="user-card-container">
-        <div className="user-card">
-          <div className="user-info">
-            <div className="user-lign t12">
-              <img
-                src={
-                  user.level?.name === "bronze"
-                    ? bronze
-                    : user.level?.name === "silver"
-                    ? silver
-                    : user.level?.name === "gold"
-                    ? gold
-                    : diamond
-                }
-                alt=""
-                className="medaille"
-              />
-              <h2>
-                {user && user.FirstName && user.LastName
-                  ? user.LastName + " " + user.FirstName
-                  : ""}
-              </h2>
-            </div>{" "}
-            <div className="user-lign">
-              <MdEmail
-                size={50}
-                style={{ marginRight: "15px", marginLeft: "2px" }}
-              />{" "}
-              <span style={{ fontWeight: "bold", marginRight: "8px" }}>
-                E-mail:
-              </span>
-              <span>{user && user.email ? user.email : ""}</span>
-            </div>
-            <div className="user-lign">
-              <FaPhoneAlt
-                size={50}
-                style={{ marginRight: "15px", marginLeft: "2px" }}
-              />{" "}
-              <span style={{ fontWeight: "bold", marginRight: "8px" }}>
-                {t("phonenumber")}:
-              </span>
-              <span>{user && user.phoneNumber ? user.phoneNumber : ""}</span>
-            </div>
-            <div className="user-lign">
-              <GrUpgrade
-                size={50}
-                style={{ marginRight: "15px", marginLeft: "2px" }}
-              />{" "}
-              <span style={{ fontWeight: "bold", marginRight: "8px" }}>
-                {" "}
-                {t("level")} :
-              </span>{" "}
-              <span> {user.level?.name.toUpperCase()}</span>
-            </div>
+      <div className="user-card">
+        <div className="user-info">
+          <div className="user-lign t12">
+            <img
+              src={
+                user.level?.name === "bronze"
+                  ? bronze
+                  : user.level?.name === "silver"
+                  ? silver
+                  : user.level?.name === "gold"
+                  ? gold
+                  : diamond
+              }
+              alt=""
+              className="medaille"
+            />
+            <h2>
+              {user && user.FirstName && user.LastName
+                ? user.LastName + " " + user.FirstName
+                : ""}
+            </h2>
+          </div>
+          <div className="user-lign">
+            <MdEmail
+              size={50}
+              style={{ marginRight: "15px", marginLeft: "2px" }}
+            />
+            <span style={{ fontWeight: "bold", marginRight: "8px" }}>
+              E-mail:
+            </span>
+            <span>{user && user.email ? user.email : ""}</span>
+          </div>
+          <div className="user-lign">
+            <FaPhoneAlt
+              size={45}
+              style={{ marginRight: "15px", marginLeft: "2px" }}
+            />
+            <span style={{ fontWeight: "bold", marginRight: "8px" }}>
+              {t("phonenumber")}:
+            </span>
+            <span>{user && user.phoneNumber ? user.phoneNumber : ""}</span>
+          </div>
+          <div className="user-lign">
+            <FaRegUser
+              size={40}
+              style={{ marginRight: "15px", marginLeft: "2px" }}
+            />
+            <span style={{ fontWeight: "bold", marginRight: "8px" }}>
+              Type :
+            </span>
+            <span>{user.pendingType ? ` ${user.pendingType} (En attente de validation)` : user.type}</span>
+          </div>
+          <div className="user-lign">
+            <GrUpgrade
+              size={50}
+              style={{ marginRight: "15px", marginLeft: "2px" }}
+            />
+            <span style={{ fontWeight: "bold", marginRight: "8px" }}>
+              {t("level")} :
+            </span>
+            <span> {user.level?.name.toUpperCase()}</span>
           </div>
         </div>
-        <div className="level-bar22">
-          <LevelBar level={levelData} />
-          <span>{levelData?.points.toFixed(0)} points</span>
-        </div>
+      </div>
+      <div className="level-bar22">
+        <LevelBar level={levelData} />
+        <span>{levelData?.points.toFixed(0)} points</span>
       </div>
     </>
   );

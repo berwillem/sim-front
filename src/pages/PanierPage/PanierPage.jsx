@@ -45,6 +45,7 @@ export default function PanierPage() {
   const [clientName, setClientName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
+  const [adresse, setAdresse] = useState("");
   const [backendCart, setBackendCart] = useState([]);
 
   const fetchCart = async () => {
@@ -141,8 +142,8 @@ export default function PanierPage() {
     const totalCommandePrice = getTotalPrice();
     const cartToUse = isAuth ? backendCart : cart;
     const emailData = {
-      to_name: isAuth ? `${user.FirstName} ${user.LastName}` : clientName,
-      to_email: user?.email || email,
+      user: isAuth ? `${user.FirstName} ${user.LastName}` : clientName,
+      email: user?.email || email,
       phone_number: phoneNumber,
       total: `${totalCommandePrice} DA`,
       products_list: cartToUse
@@ -193,6 +194,7 @@ export default function PanierPage() {
         totalPrice:
           getDiscountedPrice(item.price, level) * (quantities[item._id] || 1),
       })),
+      adresse: isAuth && user.adresse ? user.adresse : adresse,
     };
 
     try {
@@ -210,6 +212,7 @@ export default function PanierPage() {
       Swal.fire({ icon: "error", title: "Erreur", text: error.message });
     }
   };
+  console.log(adresse, "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
 
   return (
     <>
@@ -314,6 +317,7 @@ export default function PanierPage() {
               onChange={(e) => setEmail(e.target.value)}
               required
             />
+
             <input
               style={inputStyle}
               type="tel"
@@ -324,6 +328,14 @@ export default function PanierPage() {
                   : phoneNumber
               }
               onChange={(e) => setPhoneNumber(e.target.value)}
+              required
+            />
+            <input
+              type="text"
+              style={inputStyle}
+              placeholder="Adresse"
+              value={isAuth && user.adresse ? `${user.adresse}` : adresse}
+              onChange={(e) => setAdresse(e.target.value)}
               required
             />
             <h2>

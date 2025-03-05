@@ -1,0 +1,12 @@
+.info-stat22 {
+  margin-right: 20px !important;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.flex-center a {
+  height: unset;
+}

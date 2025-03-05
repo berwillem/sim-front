@@ -42,6 +42,7 @@
   padding: 10px 10px 10px 28px;
   display: flex;
   justify-content: space-between;
+  flex-direction: row;
 }
 #storesnews h1 {
   font-size: 20px;

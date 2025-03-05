@@ -278,12 +278,16 @@ const Productitem = ({ product, index }) => {
   return (
     <li key={index} className="ligne">
       <span> {product?.titlefr}</span>
-      <span>
-        Client {product?.price} DA <br />
-        R/S {product?.priceRevendeur} DA
-        <br />
-        Grossiste {product?.priceGrossiste} DA
-      </span>
+      {product?.price ? (
+        <span>
+          Client {product?.price} DA <br />
+          R/S {product?.priceRevendeur} DA
+          <br />
+          Grossiste {product?.priceGrossiste} DA
+        </span>
+      ) : (
+        <span>Sur devis</span>
+      )}
       <span>{product?.description}</span>
       <span>{product?.marque}</span>
       <span>{product?.gamme}</span>

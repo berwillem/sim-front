@@ -1,10 +1,8 @@
 // import CardSubsciptions from "@/components/CardSubsciptions/CardSubsciptions";
 import "./UserType.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import CardSubsciptions from "../../components/CardSubsciptions/CardSubsciptions";
 export default function SubscriptionChoise() {
-  const [toogle, setToogle] = useState(false);
 
   return (
     <main className="subscription-choise">
@@ -15,7 +13,8 @@ export default function SubscriptionChoise() {
         <div className="row">
           <CardSubsciptions />
         </div>
-      </div>
+        
+      </div> 
     </main>
   );
 }

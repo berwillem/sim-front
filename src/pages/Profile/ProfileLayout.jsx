@@ -11,13 +11,13 @@ const ProfileLayout = () => {
   const useridCheck = useSelector((state) => state?.auth?.user?._id);
   const role = useSelector((state) => state?.auth?.user?.role);
 
-  useEffect(()=>{
-  if(role!="admin"){
-    if (useridCheck !== userId) {
-      return navigate("/notfound")
+  useEffect(() => {
+    if (role != "admin") {
+      if (useridCheck !== userId) {
+        return navigate("/notfound");
+      }
     }
-  }
-  },[])
+  }, []);
   return (
     <>
       <Navbar></Navbar>

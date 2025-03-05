@@ -125,7 +125,7 @@ export default function SignIn() {
         <div className="text-center">
           <p>
             {t("pasdecompte")}
-            <Link to="/auth/signup">{t("S'inscrire")}</Link>
+            <Link to="/user/type">{t("S'inscrire")}</Link>
           </p>
         </div>
       </form>

@@ -67,12 +67,16 @@ const Users = () => {
         Swal.fire({
           title: "Good job!",
           text: `code client add succefuly : ${codeClient}`,
-
           icon: "success",
         });
       })
       .catch((error) => {
         console.error("Failed to update user type:", error);
+        Swal.fire({
+          title: "failed!",
+          text: error.response.data.error,
+          icon: "error",
+        });
       });
   };
 
@@ -130,7 +134,11 @@ const Users = () => {
                     style={{ width: "100%", padding: "0px 50px 0 40px" }}
                   >
                     <li>Nom complet</li>
-                    <li>Email</li>
+                    <li>Téléphone</li>
+                    <li>RC</li>
+                    <li>Adresse</li>
+                    <li>Entresprise</li>
+
                     <li style={{ textAlign: "right", width: "130px" }}>Type</li>
                     <li>Action</li>
                   </div>
@@ -143,7 +151,10 @@ const Users = () => {
                     <span>
                       {user.LastName} {user.FirstName}
                     </span>
-                    <span>{user.email}</span>
+                    <span>{user.phoneNumber}</span>
+                    <span>{user.pendingRC}</span>
+                    <span>{user.pendingAdresse}</span>
+                    <span>{user.pendingEntreprise}</span>
                     <span>{user.pendingType}</span>
                     <span
                       style={{

@@ -31,7 +31,7 @@
   "S'inscrire": "Sign up",
   "loginbefore": "Login before making an order and benefit from a discount on our products",
   "makeorder": "Make An Order",
-  "addcart":"Add to cart",
+  "addcart": "Add to cart",
   "totalprice": "Total Price: ",
   "phonenumber": "Phone number",
   "pageTitle": "Contact",
@@ -123,5 +123,6 @@
   "level": "LEVEL",
   "commandes": "Orders",
   "levels": "Levels",
-  "ContactUs": "Talk with our support"
+  "ContactUs": "Talk with our support",
+  "remove_cart": "Remove from cart"
 }

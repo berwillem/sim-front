@@ -5,10 +5,10 @@ import "./Profile.css";
 export default function Profile() {
   return (
     <>
-        <Helmet>
-            <title>Profil</title>
-        </Helmet>
-      <div className="userprofile">
+      <Helmet>
+        <title>Profil</title>
+      </Helmet>
+      <div className="userprofile2">
         <UserCard></UserCard>
       </div>
     </>

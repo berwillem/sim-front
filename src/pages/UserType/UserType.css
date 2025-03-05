@@ -1,9 +1,4 @@
-.row {
-  display: grid;
-  justify-items: center;
-  width: 100%;
-  gap: 30px;
-}
+
 .subscription-choise .container {
   display: flex;
   flex-direction: column;

@@ -291,7 +291,7 @@ const Orders = () => {
         <div className="table-stat">
           <div className="titre-stat">
             <ul className="ligne commandeslist">
-              <div className="info-stat">
+              <div className="info-stat" style={{ marginLeft: "0" }}>
                 <li>Command Number</li>
                 <li>Product</li>
                 <li>Fullname</li>
@@ -340,16 +340,18 @@ const Orders = () => {
                         handleFileUpload(Commande._id, event)
                       }
                       disabled={fileUploading}
-                      id="file"
+                      id={Commande._id}
                     />
-                    <label htmlFor="file">
+                    <label htmlFor={Commande._id}>
                       <LuImagePlus
+                        id={Commande._id}
                         size={20}
                         style={{ cursor: "pointer", color: "black" }}
                       />
                     </label>
                   </>
                 )}
+                Adresse : {Commande.adresse}
               </div>
               {Commande.products.map((product, idx) => (
                 <ul
@@ -404,9 +406,11 @@ const Orders = () => {
                         )}
                       </span>
                     </span>
-                    <DeleteButon
-                      handledelet={() => handleDelet(Commande._id)}
-                    />
+                    <span style={{ width: "unset" }}>
+                      <DeleteButon
+                        handledelet={() => handleDelet(Commande._id)}
+                      />
+                    </span>
                   </li>
                 </ul>
               ))}
