@@ -351,6 +351,7 @@ const Orders = () => {
                     </label>
                   </>
                 )}
+                Adresse : {Commande.adresse}
               </div>
               {Commande.products.map((product, idx) => (
                 <ul

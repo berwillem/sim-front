@@ -45,7 +45,7 @@ export default function PanierPage() {
   const [clientName, setClientName] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
-  const [addresse, setAddresse] = useState("");
+  const [adresse, setAdresse] = useState("");
   const [backendCart, setBackendCart] = useState([]);
 
   const fetchCart = async () => {
@@ -194,6 +194,7 @@ export default function PanierPage() {
         totalPrice:
           getDiscountedPrice(item.price, level) * (quantities[item._id] || 1),
       })),
+      adresse: isAuth && user.adresse ? user.adresse : adresse,
     };
 
     try {
@@ -211,6 +212,7 @@ export default function PanierPage() {
       Swal.fire({ icon: "error", title: "Erreur", text: error.message });
     }
   };
+  console.log(adresse, "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
 
   return (
     <>
@@ -328,13 +330,14 @@ export default function PanierPage() {
               onChange={(e) => setPhoneNumber(e.target.value)}
               required
             />
-            {/* <input
+            <input
               type="text"
               style={inputStyle}
               placeholder="Adresse"
-              onChange={(e) => setAddresse(e.target.value)}
+              value={isAuth && user.adresse ? `${user.adresse}` : adresse}
+              onChange={(e) => setAdresse(e.target.value)}
               required
-            /> */}
+            />
             <h2>
               {t("totalprice")} {getTotalPrice()} DA
             </h2>

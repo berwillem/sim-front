@@ -93,8 +93,7 @@ const UserCard = () => {
             <span style={{ fontWeight: "bold", marginRight: "8px" }}>
               Type :
             </span>
-            <span>{user && user.type ? user.type : ""}</span>
-            <span>{user.pendingType && `En attente ${user.pendingType}`}</span>
+            <span>{user.pendingType ? ` ${user.pendingType} (En attente de validation)` : user.type}</span>
           </div>
           <div className="user-lign">
             <GrUpgrade
