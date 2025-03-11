@@ -17,17 +17,24 @@ import axios from "axios";
 import { Helmet } from "react-helmet";
 import { FaPhone } from "react-icons/fa";
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const phoneRegex = /^\+?\d{10,15}$/; // Supports international format
+
 const schema = yup.object().shape({
   identifier: yup
     .string()
+
     .test(
       "is-email-or-phone",
       "Enter a valid email or phone number",
       (value) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        const phoneRegex = /^\+?\d{10,15}$/; // Supports international format
-        return emailRegex.test(value) || phoneRegex.test(value);
+        const isEmail = emailRegex.test(value);
+        const isPhone = phoneRegex.test(value);
+        return isEmail || isPhone;
       }
+    )
+    .transform((value) =>
+      emailRegex.test(value) ? value.toLowerCase() : value
     )
     .required("Email or phone number is required"),
   password: yup.string().required("Password is required"),
@@ -48,6 +55,7 @@ export default function SignIn() {
   const [show, setShow] = useState(false);
 
   const onSubmit = (data) => {
+    console.log(data);
     SignInUser(data) // Send { identifier: "email/phone", password }
       .then((res) => {
         setTimeout(() => {
@@ -79,7 +87,7 @@ export default function SignIn() {
             <input
               type="text"
               id="identifier"
-                placeholder="Email or Phone Number"
+              placeholder="Email or Phone Number"
               {...register("identifier")}
             />
             {errors.identifier && (

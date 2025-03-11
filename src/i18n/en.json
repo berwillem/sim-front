@@ -129,5 +129,9 @@
   "remove": "Remove",
   "noordersdesc": "Make an order to get offers on our products.",
   "nodevis": "You don't have any devis requests",
-  "emptycart": "Your cart is empty"
+  "emptycart": "Your cart is empty",
+  "validationpageh2": "Once your account is successfully verified, you will be able to place an order.",
+  "validationpageh2_2": "the pricing will be updated accordingly.",
+  "contact_support": "Contact our support",
+  "order": "Order"
 }

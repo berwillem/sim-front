@@ -98,7 +98,7 @@ const UserCommandes = () => {
                           {product?.product?.titlefr || "Produit supprimé"}
                         </span>
                         <span>{product.quantity}</span>
-                        <span>{product.totalPrice}</span>
+                        <span>{product.totalPrice} DA</span>
                         <span>
                           {moment(Commande.createdAt).format("DD MMM YYYY")}
                         </span>
@@ -112,7 +112,7 @@ const UserCommandes = () => {
                         {Commande.file ? (
                           <span>
                             <a href={Commande.file} target="_blank">
-                              Télécharger le bon de commande
+                              Télécharger le bon de Livraison
                             </a>
                           </span>
                         ) : (

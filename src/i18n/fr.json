@@ -130,5 +130,9 @@
   "noorder": "Vous n'avez pas de commandes",
   "noordersdesc": "Faites une commande pour obtenir des offres sur nos produits.",
   "nodevis": "Vous n'avez pas de demandes de devis",
-  "emptycart": "Votre panier est vide"
+  "emptycart": "Votre panier est vide",
+  "validationpageh2": "Une fois votre compte vérifié avec succès, ",
+  "validationpageh2_2": "vous pourrez bénéficier de nos offres sur nos produits.",
+  "contact_support": "Contacter le support",
+  "order": "Commander"
 }

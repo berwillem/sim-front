@@ -1,20 +1,22 @@
 import { IoArrowForward } from "react-icons/io5";
 import "./ValidationPage.css";
 import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next";
 export default function ValidationPage() {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   return (
     <main className="wait-page">
       <h2>
-        Your account is awaiting validation and a message <br /> will be sent to
-        you as soon as possible.
+        {t("validationpageh2")} <br /> {t("validationpageh2_2")}
       </h2>
       <div className="buttons">
         <button onClick={() => navigate("/contact")}>
-          Contact support team
+          {t("contact_support")}
         </button>
+
         <button type="button" onClick={() => navigate("/")}>
-          <span>Continue</span>
+          <span>{t("Continuer")}</span>
           <IoArrowForward />
         </button>
       </div>

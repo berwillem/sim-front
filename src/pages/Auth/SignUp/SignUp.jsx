@@ -20,7 +20,11 @@ import { useParams } from "react-router-dom";
 const schema = yup.object().shape({
   FirstName: yup.string().required("Prénom est requis"),
   LastName: yup.string().required("Nom est requis"),
-  email: yup.string().email("Email invalide").required("Email est requis"),
+  email: yup
+    .string()
+    .email("Email invalide")
+    .lowercase()
+    .required("Email est requis"),
   phoneNumber: yup
     .string()
     .matches(/^[0-9]+$/, "Le numéro de téléphone doit être valide")

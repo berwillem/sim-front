@@ -342,7 +342,7 @@ export default function PanierPage() {
               {t("totalprice")} {getTotalPrice()} DA
             </h2>
             <button style={buttonStyle} type="submit">
-              {t("submit")}
+              {t("order")}
             </button>
           </form>
         )}

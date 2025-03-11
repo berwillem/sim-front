@@ -128,7 +128,7 @@ const UserDevis = () => {
             gap: "20px",
           }}
         >
-          <h1>{t("noDevis")}</h1>
+          <h1>{t("nodevis")}</h1>
           <h3>{t("noordersdesc")}</h3>
           <Link
             to="/products"

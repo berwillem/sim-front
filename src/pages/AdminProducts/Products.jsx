@@ -126,6 +126,10 @@ const Products = () => {
     fetchProducts(page);
   };
 
+  useEffect(() => {
+    fetchProducts(page);
+  }, [selectedFamille, selectedCategory, selectedType, filtersApplied]);
+
   return (
     <>
       <div className="admin-stat">
@@ -203,7 +207,7 @@ const Products = () => {
             </Grid>
           </Grid>
           <div className="btns">
-            <Button
+            {/* <Button
               variant="contained"
               color="primary"
               onClick={handleFilterApply}
@@ -215,7 +219,7 @@ const Products = () => {
               }}
             >
               Apply Filters
-            </Button>
+            </Button> */}
             {filtersApplied && (
               <Button
                 variant="outlined"
