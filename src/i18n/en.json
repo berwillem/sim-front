@@ -124,5 +124,10 @@
   "commandes": "Orders",
   "levels": "Levels",
   "ContactUs": "Talk with our support",
-  "remove_cart": "Remove from cart"
+  "remove_cart": "Remove from cart",
+  "noorder": "No orders",
+  "remove": "Remove",
+  "noordersdesc": "Make an order to get offers on our products.",
+  "nodevis": "You don't have any devis requests",
+  "emptycart": "Your cart is empty"
 }

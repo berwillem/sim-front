@@ -25,7 +25,7 @@ export default function Navbar() {
 
   const isAdmin = useSelector((state) => state.auth?.user?.role);
   const cart = useSelector((state) => state.cart.items);
-  
+
   const fetchCart = async () => {
     try {
       const res = await getCart(userId);
@@ -34,7 +34,7 @@ export default function Navbar() {
       console.error("Erreur lors de la récupération du panier", error);
     }
   };
-  
+
   useEffect(() => {
     fetchCart();
   }, []);

@@ -125,5 +125,10 @@
   "commandes": "Commandes",
   "levels": "Niveaux",
   "ContactUs": "Contacter notre support",
-  "remove_cart": "Retirer du panier"
+  "remove_cart": "Retirer du panier",
+  "remove": "Retirer",
+  "noorder": "Vous n'avez pas de commandes",
+  "noordersdesc": "Faites une commande pour obtenir des offres sur nos produits.",
+  "nodevis": "Vous n'avez pas de demandes de devis",
+  "emptycart": "Votre panier est vide"
 }

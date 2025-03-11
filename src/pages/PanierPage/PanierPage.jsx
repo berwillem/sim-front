@@ -287,7 +287,7 @@ export default function PanierPage() {
                 width: "100%",
               }}
             >
-              Votre panier est vide
+              {t("emptycart")}
             </h2>
           )}
         </div>

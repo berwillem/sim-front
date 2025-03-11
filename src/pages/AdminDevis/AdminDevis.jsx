@@ -213,12 +213,12 @@ export default function Devis() {
                   {order.isValid ? (
                     <FaRegSquareCheck
                       size={30}
-                      onClick={() => rejectDevis(order._id)}
+                      onClick={() => validateDevis(order._id)}
                     />
                   ) : (
                     <FaRegSquareFull
                       size={24}
-                      onClick={() => validateDevis(order._id)}
+                      onClick={() => rejectDevis(order._id)}
                     />
                   )}
                 </span>

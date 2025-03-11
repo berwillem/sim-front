@@ -8,7 +8,9 @@ import Swal from "sweetalert2";
 import moment from "moment";
 import { Helmet } from "react-helmet";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 const UserDevis = () => {
+  const { t } = useTranslation();
   const [commandes, setCommandes] = useState([]);
   console.log(commandes);
 
@@ -126,8 +128,8 @@ const UserDevis = () => {
             gap: "20px",
           }}
         >
-          <h1>No Orders Yet !</h1>
-          <h3>Make an order and receive a exclusive discount</h3>
+          <h1>{t("noDevis")}</h1>
+          <h3>{t("noordersdesc")}</h3>
           <Link
             to="/products"
             style={{

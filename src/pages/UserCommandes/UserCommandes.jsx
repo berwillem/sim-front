@@ -9,7 +9,9 @@ import moment from "moment";
 import { deleteCommande } from "../../services/commandeservices";
 import { Helmet } from "react-helmet";
 import { FaRegTrashAlt } from "react-icons/fa";
+import { useTranslation } from "react-i18next";
 const UserCommandes = () => {
+  const { t } = useTranslation();
   const [commandes, setCommandes] = useState([]);
   console.log(commandes);
 
@@ -194,8 +196,8 @@ const UserCommandes = () => {
             gap: "20px",
           }}
         >
-          <h1>No Orders Yet !</h1>
-          <h3>Make an order and receive a exclusive discount</h3>
+          <h1>{t("noorder")}</h1>
+          <h3>{t("noordersdesc")}</h3>
           <Link
             to="/products"
             style={{
