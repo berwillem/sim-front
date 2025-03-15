@@ -12,7 +12,7 @@ export const createCategory = (data) => {
 };
 
 // Service to create a new type
-export const createType = (data ) => {
+export const createType = (data) => {
   return axios.post(`${BASE_API_URL}/parametres/type`, data);
 };
 
@@ -23,6 +23,13 @@ export const getAllFamilles = (pagination = false, page = 1) => {
       page,
     },
   });
+};
+
+export const getCategoryById = (categoryId) => {
+  return axios.get(`${BASE_API_URL}/parametres/category/${categoryId}`);
+};
+export const editCategory = (categoryId, data) => {
+  return axios.put(`${BASE_API_URL}/parametres/category/${categoryId}`, data);
 };
 export const getFamilleById = (familleId) => {
   return axios.get(`${BASE_API_URL}/parametres/famille/${familleId}`);

@@ -4,6 +4,10 @@
 
 .buttondeleteabsolute {
   position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
 }
 .categoryinfostat {
   justify-content: flex-start;
@@ -19,4 +23,20 @@
 
   width: 100%;
   justify-content: space-around;
+}
+
+.preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(111, 109, 109, 0.422);
+}
+.preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

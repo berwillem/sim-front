@@ -32,7 +32,7 @@ const AdminTypes = () => {
 
   useEffect(() => {
     fetchTypes();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [page]);
 
   useEffect(() => {
@@ -84,13 +84,20 @@ const AdminTypes = () => {
         <div className="table-stat">
           <div className="titre-stat">
             <ul className="ligne">
-              <div className="info-stat">
-                <li style={{ width: "25%" }}>Nom en français</li>
-                <li style={{ width: "25%", marginLeft: "250px" }}>
-                  Nom en anglais
-                </li>
+              <div
+                className="info-stat"
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  marginRight: "70px",
+                }}
+              >
+                <li>Nom en français</li>
+                <li>Nom en anglais</li>
+                <li>Famille</li>
+                <li>Catégorie</li>
               </div>
-              <li>Action</li>
+              <li style={{ paddingRight: "0" }}>Action</li>
             </ul>
           </div>
 
@@ -99,7 +106,11 @@ const AdminTypes = () => {
               <li className="ligne">
                 <span>{type.titlefr}</span>
                 <span>{type.titleen}</span>
-                <DeleteButton handleDelete={() => handleDelete(type._id)} />
+                <span>{type.category.famille.titlefr}</span>
+                <span>{type.category.titlefr}</span>
+                <span style={{ width: "100px" }}>
+                  <DeleteButton handleDelete={() => handleDelete(type._id)} />
+                </span>
               </li>
             </ul>
           ))}

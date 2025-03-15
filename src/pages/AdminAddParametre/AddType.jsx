@@ -95,7 +95,7 @@ const AddType = () => {
             </option>
           ))}
         </select>
-        <button type="submit">Envoyer</button>
+        <button type="submit">Créer</button>
       </form>
     </div>
   );

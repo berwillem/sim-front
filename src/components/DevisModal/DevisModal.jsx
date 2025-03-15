@@ -94,6 +94,7 @@ const OrderModal = ({ open, onClose, product }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
+      user: user?._id,
       product: product.titlefr,
       phoneNumber,
       email: user?.email,
@@ -108,7 +109,7 @@ const OrderModal = ({ open, onClose, product }) => {
           text: "Your message has been placed successfully",
         });
         if (isAuth) {
-          navigate(`/profile/${user._id}/commandes`);
+          navigate(`/profile/${user._id}/devis`);
         } else {
           navigate(`/`);
         }

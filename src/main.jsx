@@ -48,6 +48,7 @@ import UserType from "./pages/UserType/UserType.jsx";
 import ValidationPage from "./pages/ValidationPage/ValidationPage.jsx";
 import PanierPage from "./pages/PanierPage/PanierPage.jsx";
 import Type from "./pages/Auth/SignUp/Type.jsx";
+import EditCategory from "./pages/AdminParametre/EditCategory.jsx";
 
 axios.defaults.withCredentials = true;
 
@@ -118,6 +119,11 @@ const router = createBrowserRouter([
         path: "parametres/category",
         element: <AdminCategory />,
       },
+      {
+        path: "parametres/category/:categoryId",
+        element: <EditCategory />,
+      },
+
       {
         path: "parametres/type",
         element: <AdminType />,

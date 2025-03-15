@@ -12,12 +12,15 @@ import {
 } from "../../services/parametresServices";
 import Swal from "sweetalert2";
 import AddButton from "../../components/AddButton/Addbutton";
+import { CiEdit } from "react-icons/ci";
+import { useNavigate } from "react-router-dom";
 
 const AdminCategory = () => {
   const [categories, setCategories] = useState([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [totalCategoriesCount, setTotalCategoriesCount] = useState(0);
+  const navigate = useNavigate();
 
   const fetchCategories = () => {
     getAllCategories(page)
@@ -37,6 +40,7 @@ const AdminCategory = () => {
 
   useEffect(() => {
     getTotalCategoriesCount().then((res) => {
+      console.log(res.data, "dAAAAAAAAAAAAAAAA");
       setTotalCategoriesCount(res.data.count);
     });
   }, [categories]);
@@ -97,6 +101,7 @@ const AdminCategory = () => {
             <ul key={category._id} className="stores">
               <div className="buttondeleteabsolute">
                 <DeleteButton handledelet={() => handleDelete(category._id)} />
+                <CiEdit size={40} onClick={() => navigate(`${category._id}`)} />
               </div>
 
               <li className="ligne categoryligne">

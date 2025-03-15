@@ -128,23 +128,39 @@ export default function PanierPage() {
       dispatch(supprimerDuPanier(id));
     }
   };
+  const getPriceForUser = (item, user) => {
+    if (!user) return Number(item.price) || 0;
+
+    switch (user.type) {
+      case "revendeur":
+      case "entreprise":
+        return Number(item.priceRevendeur) || 0;
+      case "grossiste":
+        return Number(item.priceGrossiste) || 0;
+      default:
+        return Number(item.price) || 0;
+    }
+  };
 
   const getTotalPrice = () => {
     const cartToUse = isAuth ? backendCart : cart;
     return cartToUse
       .reduce((total, item) => {
+        const price = getPriceForUser(item, user);
+        const discountedPrice = getDiscountedPrice(price, level);
         const quantity = quantities[item._id] || 1;
-        return total + getDiscountedPrice(item.price, level) * quantity;
+        return total + discountedPrice * quantity;
       }, 0)
       .toFixed(2);
   };
+
   const sendEmailConfirmation = async () => {
     const totalCommandePrice = getTotalPrice();
     const cartToUse = isAuth ? backendCart : cart;
     const emailData = {
       user: isAuth ? `${user.FirstName} ${user.LastName}` : clientName,
       email: user?.email || email,
-      phone_number: phoneNumber,
+      phone_number: user?.phoneNumber || phoneNumber,
       total: `${totalCommandePrice} DA`,
       products_list: cartToUse
         .map(
@@ -181,18 +197,19 @@ export default function PanierPage() {
 
     const totalCommandePrice = getTotalPrice();
     const cartToUse = isAuth ? backendCart : cart;
+    console.log(user);
 
     const data = {
       user: user?._id,
       client: isAuth ? `${user.FirstName} ${user.LastName}` : clientName,
-      phoneNumber:
-        isAuth && user.phoneNumber ? `${user.phoneNumber}` : phoneNumber,
+      phoneNumber: isAuth ? `${user.phoneNumber}` : phoneNumber,
       totalPrice: totalCommandePrice,
       products: cartToUse.map((item) => ({
         product: item._id,
         quantity: quantities[item._id] || 1,
         totalPrice:
-          getDiscountedPrice(item.price, level) * (quantities[item._id] || 1),
+          getDiscountedPrice(getPriceForUser(item, user), level) *
+          (quantities[item._id] || 1),
       })),
       adresse: isAuth && user.adresse ? user.adresse : adresse,
     };
@@ -212,7 +229,6 @@ export default function PanierPage() {
       Swal.fire({ icon: "error", title: "Erreur", text: error.message });
     }
   };
-  console.log(adresse, "PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP");
 
   return (
     <>
@@ -260,14 +276,23 @@ export default function PanierPage() {
                         +
                       </button>
                     </div>
-                    <p>{item.price} DA</p>
+                    <p>
+                      {user.type === "client"
+                        ? item.price
+                        : user.type === "revendeur"
+                        ? item.priceRevendeur
+                        : user.type === "grossiste"
+                        ? item.priceGrossiste
+                        : user.type === "entreprise"
+                        ? item.priceRevendeur
+                        : item.price}
+                      {!user && item.price} DA
+                    </p>
                   </div>
                   <div className="total-remove">
                     <p>
-                      {getDiscountedPrice(
-                        item.price * (quantities[item._id] || 1),
-                        level
-                      ).toFixed(2)}{" "}
+                      {getDiscountedPrice(getPriceForUser(item, user), level) *
+                        (quantities[item._id] || 1).toFixed(2)}{" "}
                       DA
                     </p>
                     <button onClick={() => handleRemove(item._id)}>

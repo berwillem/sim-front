@@ -12,6 +12,7 @@ import { Helmet } from "react-helmet";
 import Fixation from "../../assets/fasteners-banner.webp";
 import Outillage from "../../assets/outillagelastv.jpg";
 import { useTranslation } from "react-i18next";
+import { useSelector } from "react-redux";
 // import Detailling from "../../assets/detailing.webp";
 
 const ProductsList = () => {
@@ -25,6 +26,8 @@ const ProductsList = () => {
   const [types, setTypes] = useState([]);
   const [filter, setFilter] = useState();
   const [data, setData] = useState();
+  const user = useSelector((state) => state.auth.user);
+  console.log(user);
 
   useEffect(() => {
     getProductsByCategory(CategoryId)
@@ -148,10 +151,24 @@ const ProductsList = () => {
                     {currentLanguage === "fr" ? item.titlefr : item.titleen}
                   </h1>
 
-                  {item.price ? <h2>{item.price} DA</h2> : <h2>Sur devis</h2>}
+                  {user && item.price ? (
+                    <h2>
+                      {user.type === "client"
+                        ? item.price
+                        : user.type === "revendeur"
+                        ? item.priceRevendeur
+                        : user.type === "grossiste"
+                        ? item.priceGrossiste
+                        : user.type === "entreprise"
+                        ? item.priceRevendeur
+                        : item.price}{" "}
+                      DA
+                    </h2>
+                  ) : (
+                    <h2>Sur devis</h2>
+                  )}
+                  {!user && !item.price && <h2>Sur devis</h2>}
 
-                  {/* {products[0]?.famille._id === "664e87fc4cf5a42abd0b5e33" &&
-                      "/Kg"} */}
                   <h3
                     onClick={() => {
                       handleClick();

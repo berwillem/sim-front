@@ -29,7 +29,6 @@ const EditProduct = () => {
   const [activeImage, setActiveImage] = useState(0);
 
   const [loading, setLoading] = useState(false);
-
   const { productid } = useParams();
   useEffect(() => {
     getProductById(productid)
@@ -86,7 +85,9 @@ const EditProduct = () => {
       type: product?.type,
       categorie: product?.category,
       description: product?.description,
-      prix: product?.price,
+      price: product?.price,
+      priceGrossiste: product?.priceGrossiste,
+      priceRevendeur: product?.priceRevendeur,
       images: "",
     },
   });
@@ -100,7 +101,9 @@ const EditProduct = () => {
       type: product?.type || "",
       categorie: product?.category || "",
       description: product?.description || "",
-      prix: product?.price || "",
+      price: product?.price || "",
+      priceGrossiste: product?.priceGrossiste || "",
+      priceRevendeur: product?.priceRevendeur || "",
       images: "",
     });
     setSelectedCategorie(product?.category);
@@ -116,7 +119,9 @@ const EditProduct = () => {
     images.forEach((image) => form.append("images", image.file || image));
     form.append("titleen", data.titleen);
     form.append("titlefr", data.titlefr);
-    form.append("prix", data.prix);
+    form.append("price", data.price);
+    form.append("priceGrossiste", data.priceGrossiste);
+    form.append("priceRevendeur", data.priceRevendeur);
     form.append("marque", data.marque);
     form.append("gamme", data.gamme);
     form.append("description", data.description);
@@ -211,6 +216,18 @@ const EditProduct = () => {
                           onChange={setSelectedType}
                         />
                       </div>
+
+                      <div className="labelSignUphalfinput">
+                        <input
+                          type="text"
+                          id=""
+                          placeholder="Titre Francais"
+                          {...register("titlefr")}
+                          defaultValue={product?.titlefr}
+                        />
+                      </div>
+                    </div>
+                    <div className="labelSignUphalf">
                       <div className="hadtmekhriga labelSignUphalfinput" id="">
                         <input
                           type="text"
@@ -220,15 +237,25 @@ const EditProduct = () => {
                           defaultValue={product?.titleen}
                         />
                       </div>
+
+                      <div className="labelSignUphalfinput">
+                        <input
+                          type="text"
+                          id=""
+                          placeholder="Prix"
+                          {...register("price")}
+                          defaultValue={product?.price}
+                        />
+                      </div>
                     </div>
                     <div className="labelSignUphalf">
                       <div className="labelSignUphalfinput">
                         <input
                           type="text"
                           id=""
-                          placeholder="Title Francais"
-                          {...register("titlefr")}
-                          defaultValue={product?.titlefr}
+                          placeholder="Prix Grossiste"
+                          {...register("priceGrossiste")}
+                          defaultValue={product?.priceGrossiste}
                         />
                       </div>
 
@@ -236,9 +263,9 @@ const EditProduct = () => {
                         <input
                           type="text"
                           id=""
-                          placeholder="Prix"
-                          {...register("prix")}
-                          defaultValue={product?.price}
+                          placeholder="Prix Revendeur"
+                          {...register("priceRevendeur")}
+                          defaultValue={product?.priceRevendeur}
                         />
                       </div>
                     </div>

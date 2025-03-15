@@ -41,7 +41,6 @@ export default function ProductPreview({ product, functio, language }) {
     }
   };
 
- 
   const isInCart = isAuth
     ? backendCart.some((item) => item._id === product._id)
     : cartItems.some((item) => item._id === product._id);
@@ -109,7 +108,23 @@ export default function ProductPreview({ product, functio, language }) {
           <h4>Marque : {product?.marque}</h4>
           <h4>Type : {typeTitle}</h4>
           <p className="textpreview">Description : {product?.description}</p>
-          {product?.price ? <h2>{product?.price} DA</h2> : <h2>Sur devis</h2>}
+          <h2>
+            {product.price ? (
+              user.type === "client" ? (
+                product.price
+              ) : user.type === "revendeur" ? (
+                product.priceRevendeur + " DA"
+              ) : user.type === "grossiste" ? (
+                product.priceGrossiste + " DA"
+              ) : user.type === "entreprise" ? (
+                product.priceRevendeur + " DA"
+              ) : (
+                product.price + " DA"
+              )
+            ) : (
+              <h2>Sur devis</h2>
+            )}
+          </h2>
           {product?.price ? (
             <>
               {isInCart ? (

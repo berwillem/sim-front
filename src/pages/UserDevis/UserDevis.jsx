@@ -11,14 +11,13 @@ import { FaRegTrashAlt } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 const UserDevis = () => {
   const { t } = useTranslation();
-  const [commandes, setCommandes] = useState([]);
-  console.log(commandes);
+  const [devis, setDevis] = useState([]);
 
   const { userId } = useParams();
   useEffect(() => {
     getUserDevis(userId)
       .then((res) => {
-        setCommandes(res.data);
+        setDevis(res.data);
       })
       .catch((error) => {
         Swal.fire({
@@ -32,9 +31,9 @@ const UserDevis = () => {
   return (
     <>
       <Helmet>
-        <title>User Commandes</title>
+        <title>User Devis</title>
       </Helmet>
-      {commandes.length !== 0 ? (
+      {devis.length !== 0 ? (
         <div className="admin-stat">
           <div className="table-stat">
             <div className="titre-stat titrestat2">
@@ -52,7 +51,7 @@ const UserDevis = () => {
               </ul>
             </div>
 
-            {commandes?.map((Devis, index) => (
+            {devis?.map((Devis, index) => (
               <>
                 <p> {moment(Devis.createdAt).format("DD MMM YYYY")}</p>
                 <ul key={index} className="stores">

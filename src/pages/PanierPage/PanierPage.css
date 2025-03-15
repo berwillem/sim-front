@@ -7,7 +7,7 @@
   background-color: white;
   gap: 10px;
   position: relative;
-  
+
   overflow: hidden;
 }
 .h1header2 h1 {
@@ -62,7 +62,7 @@
   gap: 10px;
 }
 .total-remove p {
-  font-size: 30px;
+  font-size: 14px;
   font-weight: 600;
 }
 .switch-nbr {

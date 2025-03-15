@@ -79,6 +79,11 @@
   padding-bottom: 10px;
   border-radius: 2px;
 }
+.productitempreview-final h1 {
+  font-size: 20px;
+  font-weight: 600;
+  padding: 10px;
+}
 .productitempreview-final div {
   display: flex;
   flex-direction: column;

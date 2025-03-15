@@ -15,6 +15,7 @@ import {
 } from "../../services/parametresServices";
 import { useNavigate } from "react-router-dom";
 import { CircularProgress } from "@mui/material";
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
   const [categories, setCategories] = useState([]);
@@ -62,6 +63,16 @@ const AddProduct = () => {
     fetchFamilles();
   }, []);
 
+  const formatPrice = (value) => {
+    if (!value) return "";
+    return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " "); // Adds spaces every 3 digits
+  };
+
+  const cleanPrice = (value) => {
+    if (!value) return "";
+    return value.toString().replace(",", "."); // Replaces comma with a dot for decimal values
+  };
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
       Titre: "",
@@ -84,6 +95,11 @@ const AddProduct = () => {
     data.Categorie = selectedCategorie?._id;
     data.Type = selectedType?._id;
     data.images = images;
+    // Format prices
+    data.Prix = cleanPrice(data.Prix);
+    data.PrixRevendeur = cleanPrice(data.PrixRevendeur);
+    data.PrixGrossiste = cleanPrice(data.PrixGrossiste);
+
     console.log(data, "DAAAAAAAAAAAAAAAAAAAA");
     setLoading(true);
     createProduct(data)
@@ -92,7 +108,14 @@ const AddProduct = () => {
         toast.success(res.data?.message);
         navigate("/admin/products");
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        setLoading(false);
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: err,
+        });
+      });
   };
 
   function ImageUpload() {
@@ -214,6 +237,11 @@ const AddProduct = () => {
                               id=""
                               placeholder="Prix "
                               {...register("Prix")}
+                              onChange={(e) => {
+                                e.target.value = formatPrice(
+                                  e.target.value.replace(/\s/g, "")
+                                );
+                              }}
                             />
                           </>
                         ) : (
@@ -237,6 +265,11 @@ const AddProduct = () => {
                             id=""
                             placeholder="Prix Revendeur/Société"
                             {...register("PrixRevendeur")}
+                            onChange={(e) => {
+                              e.target.value = formatPrice(
+                                e.target.value.replace(/\s/g, "")
+                              );
+                            }}
                           />{" "}
                         </div>
                         <div className="labelSignUphalfinput">
@@ -246,6 +279,11 @@ const AddProduct = () => {
                             id=""
                             placeholder="Prix Grossiste"
                             {...register("PrixGrossiste")}
+                            onChange={(e) => {
+                              e.target.value = formatPrice(
+                                e.target.value.replace(/\s/g, "")
+                              );
+                            }}
                           />
                         </div>
                       </div>

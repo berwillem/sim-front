@@ -4,17 +4,12 @@ import { useEffect } from "react";
 import { getUserCommandes } from "../../services/usersServices";
 import { Link, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
-import DeleteButon from "../../components/DeleteButton/DeleteButon";
 import moment from "moment";
-import { deleteCommande } from "../../services/commandeservices";
 import { Helmet } from "react-helmet";
-import { FaRegTrashAlt } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 const UserCommandes = () => {
   const { t } = useTranslation();
   const [commandes, setCommandes] = useState([]);
-  console.log(commandes);
-
   const { userId } = useParams();
   useEffect(() => {
     getUserCommandes(userId)
@@ -40,24 +35,6 @@ const UserCommandes = () => {
       });
   };
 
-  const handleDelet = (CommandeId) => {
-    deleteCommande(CommandeId)
-      .then(() => {
-        Swal.fire({
-          title: "Good job!",
-          text: "order deleted succefuly",
-          icon: "success",
-        });
-        fetchCommandes();
-      })
-      .catch((err) => {
-        Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: err.message,
-        });
-      });
-  };
   return (
     <>
       <Helmet>
@@ -82,12 +59,21 @@ const UserCommandes = () => {
 
             {commandes?.map((Commande, index) => (
               <>
-                <p> {moment(Commande.createdAt).format("DD MMM YYYY")}</p>
+                <p>
+                  Prix total:{" "}
+                  <span style={{ fontWeight: "bold" }}>
+                    {" "}
+                    {Commande.totalOrderPrice} DA
+                  </span>
+                </p>
                 <ul key={index} className="stores">
                   {Commande?.products?.map((product, productIndex) => {
                     return (
                       <li key={productIndex} className="ligne forpc">
-                        <span className="imgprevieforcommandespan">
+                        <span
+                          className="imgprevieforcommandespan"
+                          style={{ marginRight: "30px" }}
+                        >
                           <img
                             src={product?.product?.images?.[0] || ""}
                             alt="Produit"
@@ -117,11 +103,7 @@ const UserCommandes = () => {
                           </span>
                         ) : (
                           <span>
-                            <a
-                              href={Commande.file}
-                              target="_blank"
-                              style={{ alignItems: "center" }}
-                            >
+                            <a style={{ alignItems: "center" }}>
                               En cours de traitement
                             </a>
                           </span>
@@ -168,12 +150,18 @@ const UserCommandes = () => {
                               </span>
                             )}
                           </span>
-                          {!Commande.isValid && (
-                            <div className="delete-icon">
-                              <FaRegTrashAlt
-                                handledelet={() => handleDelet(Commande._id)}
-                              />
-                            </div>
+                          {Commande.file ? (
+                            <span>
+                              <a href={Commande.file} target="_blank">
+                                Télécharger le bon de Livraison
+                              </a>
+                            </span>
+                          ) : (
+                            <span>
+                              <a style={{ alignItems: "center" }}>
+                                En cours de traitement
+                              </a>
+                            </span>
                           )}
                         </li>
                       </>

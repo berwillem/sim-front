@@ -185,9 +185,7 @@ const Orders = () => {
         i18n.language === "fr"
           ? order.product?.titlefr
           : order.product?.titleen;
-      const fullName = order.user
-        ? `${order.user.FirstName} ${order.user.LastName}`
-        : order.client || "N/A";
+      const fullName = (order.user && order.client) || "N/A";
 
       return [
         order.num, // Command Number
@@ -314,7 +312,7 @@ const Orders = () => {
                 style={{ display: "flex", gap: "15px", alignItems: "center" }}
               >
                 <h4>
-                  {Commande.user.FirstName} {Commande.user.LastName}
+                  {Commande.user?.FirstName} {Commande.user?.LastName}
                 </h4>
                 <AiFillPrinter
                   style={{ cursor: "pointer" }}
