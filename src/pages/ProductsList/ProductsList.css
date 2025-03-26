@@ -48,7 +48,7 @@
 
 .gridfamille-final {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 260px);
+  grid-template-columns: repeat(auto-fit, 400px);
   grid-template-rows: repeat(auto-fill, 400px);
   grid-column-gap: 0px;
   grid-row-gap: 60px;
@@ -71,6 +71,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  max-width: 320px;
   gap: 5px;
   box-shadow: 0px 150px 133px -177px rgba(0, 0, 0, 0.75) inset;
   -webkit-box-shadow: 0px 150px 133px -177px rgba(0, 0, 0, 0.75) inset;
@@ -83,6 +84,7 @@
   font-size: 20px;
   font-weight: 600;
   padding: 10px;
+  text-align: center;
 }
 .productitempreview-final div {
   display: flex;
