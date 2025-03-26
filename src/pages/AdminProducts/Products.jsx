@@ -39,6 +39,7 @@ const Products = () => {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedType, setSelectedType] = useState("");
   const [filtersApplied, setFiltersApplied] = useState(false);
+
   const navigate = useNavigate();
 
   console.log(products);
@@ -279,6 +280,8 @@ const Products = () => {
 export default Products;
 
 const Productitem = ({ product, index }) => {
+  const [showFullDesc, setShowFullDesc] = useState(false);
+  const descriptionLimit = 100;
   return (
     <li key={index} className="ligne">
       <span> {product?.titlefr}</span>
@@ -292,7 +295,19 @@ const Productitem = ({ product, index }) => {
       ) : (
         <span>Sur devis</span>
       )}
-      <span>{product?.description}</span>
+      <span style={{ display: "flex", flexDirection: "column" }}>
+        {showFullDesc || product?.description.length <= descriptionLimit
+          ? product?.description
+          : `${product?.description.slice(0, descriptionLimit)}... `}
+        {product?.description.length > descriptionLimit && (
+          <button
+            onClick={() => setShowFullDesc(!showFullDesc)}
+            className="see-more-btn"
+          >
+            {showFullDesc ? "Vois moins" : "Voir plus"}
+          </button>
+        )}
+      </span>
       <span>{product?.marque}</span>
       <span>{product?.gamme}</span>
       <span>

@@ -167,6 +167,7 @@ const ProductsList = () => {
                   ) : (
                     <h2>Sur devis</h2>
                   )}
+                  {!user && <h2>{item.price}</h2>}
                   {!user && !item.price && <h2>Sur devis</h2>}
 
                   <h3

@@ -275,3 +275,14 @@
 .filter .MuiOutlinedInput-notchedOutline {
   border: red 1px solid !important;
 }
+
+.see-more-btn {
+  background: none;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+  margin-left: 5px;
+  display: inline;
+}
